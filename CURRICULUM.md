@@ -70,8 +70,10 @@ the rules.
 - RNA end states: cap, 5'-PPP, 5'-OH, 2',3'-cyclic phosphate, poly(A)
 - Oligo pools from array synthesis (from the 2025 screening lecture)
 
-### A2. How sequencers read DNA
-Deck A2a: Sanger and Illumina (~30 slides) · Deck A2b: other short-read platforms and long reads (~30 slides)
+### A2. How sequencers read DNA  ✅ built
+`foundations/lectures/sequencers-illumina.qmd` (22 slides, 12 with figures) ·
+`sequencers-other.qmd` (16 slides, 9 with figures) · `sequencers-readings.qmd` ·
+`foundations/exercises/sequencers.qmd`
 - ★ Sanger as the baseline: one primer, one clonal template. Why NGS needs universal ends.
 - ★ Illumina: P5/P7 lawn, only P5…P7 molecules cluster, bridge amplification vs ExAmp on
   patterned flow cells, SBS with reversible terminators, 4-, 2- and 1-colour chemistry

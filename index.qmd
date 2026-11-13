@@ -33,7 +33,16 @@ differs.
 - [Readings](foundations/lectures/nucleic-acids-readings.html)
 - [Exercises](foundations/exercises/nucleic-acids.html)
 
-*Coming: how sequencers read DNA · anatomy of a library molecule*
+**How sequencers read DNA** — clustering and sequencing by synthesis, the four reads and
+their order, i5 orientation, insert size versus read length, index hopping and base
+diversity; then MGI, AVITI, Ultima, PacBio and Nanopore, and what each asks of a library.
+
+- Slides: [How Illumina reads DNA](foundations/lectures/sequencers-illumina.html) ·
+  [The other sequencing platforms](foundations/lectures/sequencers-other.html)
+- [Readings](foundations/lectures/sequencers-readings.html)
+- [Exercises](foundations/exercises/sequencers.html)
+
+*Coming: anatomy of a library molecule*
 
 ## Building blocks
 

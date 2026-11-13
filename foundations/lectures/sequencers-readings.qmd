@@ -1,0 +1,108 @@
+---
+title: "Readings — How sequencers read DNA"
+format:
+  html:
+    theme: yeti
+---
+
+The platform papers are worth reading as primary sources: each one is an argument for a
+particular trade-off, and those trade-offs are still what you choose between today.
+
+## The platforms
+
+**Sanger F, Nicklen S, Coulson AR (1977).** *DNA sequencing with chain-terminating
+inhibitors.* PNAS 74:5463–5467.
+[doi:10.1073/pnas.74.12.5463](https://doi.org/10.1073/pnas.74.12.5463) — **start here**
+
+> Short, and the baseline for everything after it. Note what it requires: one template
+> species, one primer. Every design decision in massively parallel sequencing follows from
+> removing that requirement.
+
+**Bentley DR, et al. (2008).** *Accurate whole human genome sequencing using reversible
+terminator chemistry.* Nature 456:53–59.
+[doi:10.1038/nature07517](https://doi.org/10.1038/nature07517) — **start here**
+
+> The Illumina system as first described: bridge amplification, reversible terminators,
+> paired ends. Read the methods for the library prep, and notice how little has changed.
+
+**Drmanac R, et al. (2010).** *Human genome sequencing using unchained base reads on
+self-assembling DNA nanoarrays.* Science 327:78–81.
+[doi:10.1126/science.1181498](https://doi.org/10.1126/science.1181498)
+
+> DNA nanoballs: amplify a circle by rolling circle instead of a cluster by PCR. The origin
+> of what is now DNBSEQ/MGI, and a good illustration that "amplify the library on a surface"
+> has more than one solution.
+
+**Eid J, et al. (2009).** *Real-time DNA sequencing from single polymerase molecules.*
+Science 323:133–138. [doi:10.1126/science.1162986](https://doi.org/10.1126/science.1162986)
+
+> Watching one polymerase work. Skim the optics; the part that matters for library design is
+> the zero-mode waveguide and what it implies about input molecule quality.
+
+**Wenger AM, et al. (2019).** *Accurate circular consensus long-read sequencing improves
+variant detection and assembly of a human genome.* Nature Biotechnology 37:1155–1162.
+[doi:10.1038/s41587-019-0217-9](https://doi.org/10.1038/s41587-019-0217-9)
+
+> How HiFi works: trade insert length for passes, and get accuracy out of repetition. This is
+> the paper that made long reads trustworthy for variant calling.
+
+**Arslan S, et al. (2023).** *Sequencing by avidity enables high accuracy with low reagent
+consumption.* Nature Biotechnology 42:132–138.
+[doi:10.1038/s41587-023-01750-7](https://doi.org/10.1038/s41587-023-01750-7)
+
+> Element's AVITI. Worth reading for the idea of separating binding from incorporation —
+> a genuinely different way to get a strong signal.
+
+**Jain M, Olsen HE, Paten B, Akeson M (2016).** *The Oxford Nanopore MinION: delivery of
+nanopore sequencing to the genomics community.* Genome Biology 17:239.
+[doi:10.1186/s13059-016-1103-0](https://doi.org/10.1186/s13059-016-1103-0)
+
+> A readable introduction to how the pore and the motor protein work.
+
+**Jain M, et al. (2018).** *Nanopore sequencing and assembly of a human genome with
+ultra-long reads.* Nature Biotechnology 36:338–345.
+[doi:10.1038/nbt.4060](https://doi.org/10.1038/nbt.4060)
+
+> What ultra-long reads take: the library prep is mostly an exercise in not shearing the DNA.
+> Read it as a lesson in sample handling.
+
+**Wang Y, Zhao Y, Bollas A, Wang Y, Au KF (2021).** *Nanopore sequencing technology,
+bioinformatics and applications.* Nature Biotechnology 39:1348–1365.
+[doi:10.1038/s41587-021-01108-x](https://doi.org/10.1038/s41587-021-01108-x)
+
+> A review to dip into rather than read through — use it for the kit chemistry and the
+> error-profile discussion.
+
+## Indexes and what goes wrong with them
+
+**Kircher M, Sawyer S, Meyer M (2011).** *Double indexing overcomes inaccuracies in multiplex
+sequencing on the Illumina platform.* Nucleic Acids Research 40:e3.
+[doi:10.1093/nar/gkr771](https://doi.org/10.1093/nar/gkr771)
+
+> Why one index is not enough. The argument here is the reason dual indexing is standard.
+
+**Costello M, et al. (2018).** *Characterization and remediation of sample index swaps by
+non-redundant dual indexing on massively parallel sequencing platforms.* BMC Genomics 19:332.
+[doi:10.1186/s12864-018-4703-0](https://doi.org/10.1186/s12864-018-4703-0)
+
+> Index hopping measured, and the fix that follows from it. Read this before pooling anything
+> precious with cheap index sets.
+
+## Reference material to keep open
+
+- **[NGS 101](https://henriksson-lab.github.io/NGS_101/)** — each protocol names its platform
+  and shows the finished construct with the reads marked on it.
+- **Illumina's adapter and index sequence documentation** — the authoritative list of what
+  P5, P7, the read primers and the index sets actually are, and which instruments use the
+  forward-strand or reverse-complement i5 workflow. Check the current version: reagent kits
+  change this.
+- **Your sequencing facility's run-setup form** — a surprisingly good teaching document. It
+  asks exactly the questions this deck is about: read lengths, index lengths, custom primers,
+  PhiX fraction, loading concentration.
+
+## If you want to go further
+
+- Nanopore's **adaptive sampling**, and what it means for enrichment steps that used to be
+  wet-lab work.
+- **Protein sequencing** at the single-molecule level, which borrows directly from these
+  ideas and may be where the field goes next.
