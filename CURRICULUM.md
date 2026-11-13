@@ -107,9 +107,17 @@ rely on it.
 ### B1. The enzyme toolbox
 Decks: B1a polymerases and reverse transcriptases · B1b ligases, kinases and phosphatases ·
 B1c nucleases · B1d transposases and modifying enzymes
-- ★ Polymerases: fidelity and proofreading, 3'→5' exonuclease, strand displacement,
-  thermostability and extension rate, hot start, the end type produced (blunt vs A-tailed),
-  uracil tolerance; Klenow and Klenow exo−, T4 DNA polymerase, phi29, Bst, Taq, Q5/KAPA
+- ★ Polymerases, taught along the axes NEB's selection chart actually compares, because these
+  are exactly the properties that decide whether a step works:
+  **error rate (fidelity)** · **3'→5' exonuclease** (proofreading, and chewing back 3' overhangs)
+  · **5'→3' exonuclease / 5' flap endonuclease** (nick translation vs leaving the nick)
+  · **strand displacement** (RCA, MDA, second-strand synthesis) · **reverse transcriptase
+  activity** · **resulting 3' ends** (blunt vs +A — the step that makes TA ligation possible)
+  · **RNA primer extension** (second-strand synthesis from RNase H nicks) · **nick extension**
+  · **dU tolerance** (reading through uracil after deamination or in dUTP-marked strands)
+  · **extension temperature** · **maximum PCR product**
+  Worked through: Taq, Q5/Phusion/KAPA HiFi, Klenow and Klenow exo−, T4 DNA polymerase,
+  Bst large fragment, phi29, and their uracil-tolerant variants.
 - ★ Reverse transcriptases: MMLV-derived, template switching, TGIRT; processivity through
   structure and modifications; RT stop vs misincorporation
 - ★ Ligases: T4 DNA ligase (blunt, TA, cohesive; PEG crowding), T4 RNA ligase 1 and 2 truncated,
@@ -121,9 +129,18 @@ B1c nucleases · B1d transposases and modifying enzymes
 - ★ Transposases: Tn5 (tagmentation, the 9 bp gap, loaded and fused variants), MuA
 - Modifying enzymes: methyltransferases, TET, β-glucosyltransferase, APOBEC3A, glycosylases,
   capping and decapping enzymes, T7 RNA polymerase, TdT, poly(A) polymerase
-- ★ **Skill: choosing an enzyme.** Reading vendor selection charts and datasheets (NEB's
-  polymerase, ligase and RNA-polymerase charts; buffer compatibility; unit definitions) and
-  justifying a choice for a step. Recurring exercise type throughout Part B.
+- ★ **Skill: choosing an enzyme.** Reading vendor selection charts and datasheets and
+  justifying a choice for a step. Recurring exercise type throughout Part B. Exercise
+  patterns built on the chart columns above:
+  - *forward:* given a step ("fill in a 5' overhang but do not displace the downstream
+    strand", "amplify a bisulfite-converted template", "copy an RNA:DNA hybrid"), pick the
+    polymerase and name the column that decides it
+  - *backward:* given an enzyme's row, say which library-prep steps it can and cannot do
+  - *trap:* a step that silently fails because of an activity nobody wanted — a 3'→5'
+    exonuclease eating a blocked 3' end, a 5'→3' exonuclease destroying a nick that was meant
+    to mark a strand, an A-tail where a blunt end was required
+  - the same treatment for ligases (substrate: blunt / cohesive / nicked / splinted / ssDNA,
+    ATP vs pre-adenylated donor) and for RNA polymerases and reverse transcriptases
 - Tricks: exploiting an activity the enzyme was not sold for (Taq's A-addition, Tn5 on
   RNA:DNA hybrids, RT template switching, phi29's strand displacement for RCA)
 
