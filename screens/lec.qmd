@@ -211,6 +211,30 @@ Which one you use decides what you must later read: a guide, a barcode, or an in
 - Reporter libraries, protein variants and lineage barcodes use the same machinery
 - Only the middle of the oligo changes, and with it the readout
 
+## Display: the same link, without a cell
+
+![](fig36-display.svg){width=78%}
+
+- A pooled screen uses the cell to hold variant and gene together. Display does it in a particle or a complex instead, so the library never has to enter a genome
+- **Phage**: the variant is a fusion to a coat protein, its own DNA is inside the particle [Smith 1985, doi:10.1126/science.4001944]{.small}. Human antibody and nanobody discovery is built on it [McCafferty et al. 1990, doi:10.1038/348552a0]{.small}
+- **In vitro**: ribosome display stalls the complex by removing the stop codon [Hanes and Plückthun 1997, doi:10.1073/pnas.94.10.4937]{.small}; mRNA display ties protein to its own message through puromycin [Roberts and Szostak 1997, doi:10.1073/pnas.94.23.12297]{.small}
+
+## Panning, and what sequencing changed
+
+![](fig37-panning.svg){width=72%}
+
+- Bind the pool to an immobilised target, wash, elute what stays, amplify, repeat
+- The old endpoint was to pick colonies and sequence a few winners, which sees only the top of the distribution
+- Counting every variant instead turns panning into a [measurement](../barcodes-umis/lec.qmd): the signal is a variant's enrichment between rounds
+- Rounds are not free. Each one costs diversity and enriches binders of the plastic and the streptavidin as much as of the target, so fewer rounds plus deep sequencing can beat more rounds [Olson et al. 2012, doi:10.1002/anie.201207005]{.small}
+
+## A display readout is an amplicon
+
+- The library is the variable region, amplified with [tailed primers](../handles/lec.qmd) in two steps — the same construction as a guide readout, so the same [skew and dimer](../amplification/lec.qmd) traps apply
+- The read must span the diversity. A randomised peptide fits in one read; an scFv or a multi-domain binder does not, which pushes the readout to [long reads](../long-reads/lec.qmd)
+- Chemistry can be encoded in the DNA: [silent cPTM phage encoding](https://henriksson-lab.github.io/NGS_101/silent-cptm-phage-encoding__10.1021+jacs.5b10390/01_chem.html) marks each chemically modified sub-pool with synonymous codons, so one panning run is decoded by sequencing [Tjhung et al. 2015, doi:10.1021/jacs.5b10390]{.small}
+- [Click display](https://henriksson-lab.github.io/NGS_101/click-display__10.1093+nar+gkad643/chem.html) and [CFMS mRNA display](https://henriksson-lab.github.io/NGS_101/cfms-mrna-display__10.1002+anie.201207005/chem.html) are in the collection; [PHAGE-ATAC](https://henriksson-lab.github.io/NGS_101/phage-atac__10.1038+s41587-021-01065-5/phage-atac.html) runs the idea backwards, using a nanobody-phage as the staining reagent in a [single-cell](../single-cell/lec.qmd) assay [Fiskin et al. 2022, doi:10.1038/s41587-021-01065-5]{.small}
+
 ## Vector geometry decides the readout
 
 ![](fig16-v1-v2.svg){width=93%}

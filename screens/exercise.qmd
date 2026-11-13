@@ -194,6 +194,42 @@ alone would suggest A is far more active than B (400 against 160), but A simply 
 plasmids in the DNA pool. Normalising to DNA removes that difference.
 :::
 
+## E12. Design a display readout
+
+A colleague has panned a phage library of randomised 16-amino-acid peptides against an
+immobilised human receptor. They have done four rounds, picked 40 colonies and Sanger-sequenced
+them. Three sequences appear repeatedly, and they are ready to call those the hits.
+
+a. Give two reasons the three repeated sequences might not be the best binders.
+b. Design a sequencing readout of the round-by-round pools instead. Say what you amplify,
+   where the primer sites come from, and what quantity you compare between rounds.
+c. They also want to know how many *molecules* of each variant were present, not just the
+   read fraction. What do you add, and at which step must it be added?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Ask what four rounds of binding, washing and amplification select for besides affinity. For
+(c), remember the rule about where a UMI can and cannot be introduced.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. Repetition measures *amplification*, not affinity. A peptide that grows faster in the
+   host, or that binds the plastic, the streptavidin or the blocking protein rather than the
+   receptor, is enriched by exactly the same cycle. Forty colonies also sample only the very
+   top of a pool that may still hold millions of variants, so nothing is learnt about the
+   distribution.
+b. The variable 48 nt sit between two constant flanks in the phage genome, so the readout is
+   an ordinary amplicon: amplify the variable region with primers in those flanks, carrying
+   the sequencing handles as tails, in two steps so the index is added last. Sequence the
+   input pool and every round. The quantity to compare is each variant's *enrichment ratio*
+   between consecutive rounds, not its abundance in the final round — that separates real
+   binders from things that were already common.
+c. A UMI on the first-round primer, that is, introduced in the single extension that first
+   copies each template, before any exponential amplification. A UMI added in a later PCR
+   cycle tags copies rather than original molecules and so counts nothing useful.
+:::
+
 # Self-check
 
 1. Why does an oligo pool contain constant ends?
@@ -201,6 +237,7 @@ plasmids in the DNA pool. Normalising to DNA removes that difference.
 3. Name two things that make the number of cells decide how many guides you can keep.
 4. Why does a one-end-known problem need a trick?
 5. What do UMIs correct that read counts do not?
+6. In display, what holds a protein variant and its own gene together?
 
 ::: {.callout-note collapse="true" appearance="minimal"}
 ## Answers
@@ -211,4 +248,7 @@ plasmids in the DNA pool. Normalising to DNA removes that difference.
 4. PCR needs two primer sites; the unknown side has none until it is circularised, ligated to
    an adapter or tagged.
 5. PCR duplication: they count original molecules, not copies.
+6. The particle or complex itself: the phage carries its DNA inside and the variant on its
+   coat; ribosome display keeps the mRNA, ribosome and protein as one complex; mRNA and click
+   display use a covalent linker. No cell is involved.
 :::

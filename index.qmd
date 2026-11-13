@@ -137,7 +137,8 @@ in situ sequencing; fixation and permeabilisation as the limiting chemistry.
 [Readings](spatial/readings.qmd) · [Exercise](spatial/exercise.qmd)
 
 **Pooled screens and synthetic libraries** — oligo pools, pooled cloning, lentiviral
-integration; then the readout treated as a library-prep problem in its own right.
+integration; display libraries, where a particle rather than a cell keeps variant and gene
+together; then the readout treated as a library-prep problem in its own right.
 [Building the library](screens/lec.qmd) · [Reading it out](screens/lec-readout.qmd) ·
 [Readings](screens/readings.qmd) · [Exercise](screens/exercise.qmd)
 

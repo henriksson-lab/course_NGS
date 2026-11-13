@@ -309,6 +309,9 @@ Deck C9a: building pooled libraries · Deck C9b: reading screens out
 - MPRA and STARR-seq, deep mutational scanning, lineage recording, display libraries
 - Collection: lentiCRISPR v2, Joung one-PCR readout, Moffat two-step readout, STARR-seq,
   CROP-seq, Perturb-seq, GUIDE-seq
+- Display libraries (phage, ribosome, mRNA and click display) taught as the same selection
+  problem without a cell, with human antibody and nanobody discovery as the application.
+  Collection: silent cPTM phage encoding, Click display, CFMS mRNA display, PHAGE-ATAC
 - Insertion-site mapping (the old Tn-seq material) taught as mapping lentiviral or transposon
   integration sites in human cells
 - Reuses the 2025 screening lecture

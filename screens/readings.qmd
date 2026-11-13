@@ -65,6 +65,25 @@ human cells using a massively parallel reporter assay.* Nature Biotechnology 30:
 
 > MPRA: how a tag links each synthesised sequence to its read-out.
 
+**Smith GP (1985).** *Filamentous fusion phage: novel expression vectors that display cloned antigens on the virion surface.* Science 228:1315–1317.
+[doi:10.1126/science.4001944](https://doi.org/10.1126/science.4001944)
+
+> The original display paper, and still the clearest statement of the idea the whole field
+> rests on: put the protein on the outside of a particle that carries its own gene inside.
+> Read it beside McCafferty, which turns the trick into antibody discovery.
+
+**McCafferty J, Griffiths AD, Winter G, Chiswell DJ (1990).** *Phage antibodies: filamentous phage displaying antibody variable domains.* Nature 348:552–554.
+[doi:10.1038/348552a0](https://doi.org/10.1038/348552a0)
+
+> Why display matters for human biology: this is the route by which therapeutic antibodies
+> are found. Note what the selection can and cannot ask for.
+
+**Olson CA, et al. (2012).** *Single-round, multiplexed antibody mimetic design through mRNA display.* Angewandte Chemie International Edition 51:12449–12453.
+[doi:10.1002/anie.201207005](https://doi.org/10.1002/anie.201207005)
+
+> The argument for sequencing a pool instead of panning it repeatedly. Look at what is gained
+> by counting every variant rather than isolating the winners.
+
 ## Reference material to keep open
 
 - Gibson DG, et al. (2009), Nature Methods 6:343–345,
@@ -84,4 +103,8 @@ human cells using a massively parallel reporter assay.* Nature Biotechnology 30:
   [Moffat](https://henriksson-lab.github.io/NGS_101/moffat-two-step-crispr-screen-readout/moffat-two-step-crispr-screen-readout.html),
   [Perturb-seq](https://henriksson-lab.github.io/NGS_101/perturb-seq-original-barcode-proxy__10.1016+j.cell.2016.11.038/chem.html),
   [CROP-seq](https://henriksson-lab.github.io/NGS_101/crop-seq__10.1038+nmeth.4177/crop-seq.html),
-  [GUIDE-seq](https://henriksson-lab.github.io/NGS_101/guide-seq__10.1038+nbt.3117/guide-seq.html)
+  [GUIDE-seq](https://henriksson-lab.github.io/NGS_101/guide-seq__10.1038+nbt.3117/guide-seq.html),
+  [Click display](https://henriksson-lab.github.io/NGS_101/click-display__10.1093+nar+gkad643/chem.html),
+  [CFMS mRNA display](https://henriksson-lab.github.io/NGS_101/cfms-mrna-display__10.1002+anie.201207005/chem.html),
+  [silent cPTM phage encoding](https://henriksson-lab.github.io/NGS_101/silent-cptm-phage-encoding__10.1021+jacs.5b10390/01_chem.html),
+  [PHAGE-ATAC](https://henriksson-lab.github.io/NGS_101/phage-atac__10.1038+s41587-021-01065-5/phage-atac.html)

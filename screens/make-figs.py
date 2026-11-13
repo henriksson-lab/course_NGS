@@ -682,6 +682,75 @@ def fig_lineage():
     return svg(760, 236, "".join(out))
 
 
+def fig_display():
+    """Genotype-phenotype linkage without a cell."""
+    out = [t(20, 22, "One particle, one variant: the protein and the gene that encodes it stay together", 14, INK)]
+
+    # Phage
+    out.append(t(20, 54, "Phage display", 13, HOT, weight="bold"))
+    out.append(box(20, 70, 170, 58, "", fill="#f4f6f8"))
+    out.append(box(32, 86, 92, 24, "its own DNA", fill="none", stroke=TOP, size=11))
+    out.append(t(32, 124, "phage particle", 11, MUTE))
+    out.append(dot(190, 99, 6, HOT))
+    out.append(t(190, 62, "variant", 11, HOT, anchor="middle"))
+    out.append(line(190, 68, 190, 91, HOT, 1.2))
+    out.append(t(20, 152, "Protein on the coat,", 12, INK))
+    out.append(t(20, 168, "DNA inside", 12, INK))
+
+    # Ribosome
+    out.append(t(240, 54, "Ribosome display", 13, HOT, weight="bold"))
+    out.append(line(248, 104, 366, 104, TOP, 2.4))
+    out.append(dot(306, 104, 13, "#dfe6ec"))
+    out.append(t(306, 108, "ribo", 10, MUTE, anchor="middle"))
+    out.append(line(312, 95, 338, 82, HOT, 1.4))
+    out.append(dot(342, 79, 6, HOT))
+    out.append(t(356, 80, "nascent protein", 11, HOT))
+    out.append(t(248, 124, "mRNA, no stop codon", 11, MUTE))
+    out.append(t(240, 152, "Nothing is released, so the", 12, INK))
+    out.append(t(240, 168, "complex is the link", 12, INK))
+
+    # mRNA / click
+    out.append(t(440, 54, "mRNA and click display", 13, HOT, weight="bold"))
+    out.append(line(448, 104, 548, 104, TOP, 2.4))
+    out.append(line(548, 104, 568, 86, HOT, 2.0))
+    out.append(dot(572, 82, 6, HOT))
+    out.append(t(540, 82, "covalent linker", 11, HOT, anchor="end"))
+    out.append(t(448, 124, "mRNA or cDNA", 11, MUTE))
+    out.append(t(440, 152, "A chemical bond replaces", 12, INK))
+    out.append(t(440, 168, "the particle", 12, INK))
+
+    return svg(620, 186, "".join(out))
+
+
+def fig_panning():
+    """Rounds of selection, and what sequencing changed."""
+    out = [t(20, 22, "Panning: enrich, then read the pool instead of picking clones", 14, INK)]
+
+    xs = [20, 150, 272, 376, 486]
+    labs = ["pooled\nvariants", "bind target", "wash", "elute", "amplify"]
+    ws = [100, 96, 74, 74, 92]
+    for x, lab, w in zip(xs, labs, ws):
+        lines = lab.split("\n")
+        out.append(box(x, 50, w, 40, "", fill="#f4f6f8"))
+        for i, ln in enumerate(lines):
+            out.append(t(x + w / 2, 68 + i * 15 - (7 if len(lines) > 1 else 0), ln, 12, INK, anchor="middle"))
+    for x, w in zip(xs[:-1], ws[:-1]):
+        out.append(arrow(x + w + 4, 70, x + w + 20, HOT))
+
+    out.append(line(578, 70, 596, 70, HOT, 1.6))
+    out.append(line(596, 70, 596, 112, HOT, 1.6))
+    out.append(line(596, 112, 70, 112, HOT, 1.6))
+    out.append(arrow(72, 112, 56, HOT))
+    out.append(t(300, 128, "repeat: each round costs diversity", 12, MUTE, anchor="middle"))
+
+    out.append(line(300, 142, 300, 158, MUTE, 1.2, dash="3,3"))
+    out.append(box(150, 160, 300, 40, "", fill="none", stroke=OK))
+    out.append(t(300, 178, "amplify the variable region, sequence it", 12, OK, anchor="middle"))
+    out.append(t(300, 194, "every variant is counted, not just the winners", 12, OK, anchor="middle"))
+
+    return svg(620, 212, "".join(out))
+
+
 build(__file__, [
     ("pipeline", fig_pipeline),
     ("oligo-arch", fig_oligo_arch),
@@ -718,4 +787,6 @@ build(__file__, [
     ("starr", fig_starr),
     ("dms", fig_dms),
     ("lineage", fig_lineage),
+    ("display", fig_display),
+    ("panning", fig_panning),
 ])
