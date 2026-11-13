@@ -16,13 +16,24 @@ base-by-base reference for about 840 published library chemistries. Protocols na
 to their page there.
 
 ::: {.callout-note}
-This site is being written. The plan for all of it is in `CURRICULUM.md` in the repository.
+This site is being written: the first module is up, the rest is outlined below. The plan for
+all of it is in `CURRICULUM.md` in the repository.
 :::
 
 ## Foundations — what the sequencer needs
 
 Nucleic acids as a building material; how each sequencing platform reads DNA; the anatomy of
 a finished library molecule.
+
+**Nucleic acids as a building material** — strand polarity and end states, what a ligase
+actually requires, hybridisation and Tm, degenerate bases, oligo modifications, how RNA
+differs.
+
+- [Slides](foundations/lectures/nucleic-acids.html)
+- [Readings](foundations/lectures/nucleic-acids-readings.html)
+- [Exercises](foundations/exercises/nucleic-acids.html)
+
+*Coming: how sequencers read DNA · anatomy of a library molecule*
 
 ## Building blocks
 

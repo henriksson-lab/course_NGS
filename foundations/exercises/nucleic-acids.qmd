@@ -1,0 +1,376 @@
+---
+title: "Exercises — Nucleic acids as a building material"
+format:
+  html:
+    theme: yeti
+---
+
+Pen and paper. Try each one before opening the **Hint**, and the hint before the
+**Solution** — the reasoning is the point, not the answer.
+
+Have the [NEB selection charts](https://www.neb.com/en/tools-and-resources/selection-charts)
+open for the enzyme questions.
+
+# Part 1 — End states
+
+## E1. Why does end repair exist?
+
+You have sheared human genomic DNA with a Covaris to around 350 bp. You want to ligate a
+double-stranded adapter with a single 3' T overhang to both ends of every fragment.
+
+List everything about the sheared ends that would stop that ligation working, and the
+operation that fixes each one.
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Shearing breaks the backbone mechanically. It does not care about producing a chemically
+tidy end. Think about the four things a ligase needs: the right shape, a 5'-phosphate, a free
+3'-OH, and the overhang it expects.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+| Problem at the end | Fix |
+|---|---|
+| Ragged ends: a mixture of blunt, 5' and 3' overhangs | Fill in 5' overhangs, chew back 3' overhangs → blunt |
+| Some 5' ends have no phosphate | T4 polynucleotide kinase adds one |
+| Some 3' ends are damaged or phosphorylated, so nothing can extend or ligate | T4 PNK's 3' phosphatase activity; damaged ends are removed by the chew-back |
+| Blunt ends do not match the adapter's T overhang | Add a single non-templated A to each 3' end (dA-tailing) |
+
+"End repair" in a kit is the first three happening in one tube; A-tailing is usually a
+separate step or a separate enzyme mix because it needs a polymerase that will *not* remove
+the A again.
+:::
+
+## E2. The A-tail trap
+
+A-tailing is done with Klenow fragment **exo−**, not with ordinary Klenow or with a
+high-fidelity proofreading polymerase. Why not? What would happen if you used a proofreading
+enzyme, and would you see an error message?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Look up the 3'→5' exonuclease column for each enzyme. What is an unpaired A at a 3' end, as
+far as a proofreading polymerase is concerned?
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+A proofreading polymerase's 3'→5' exonuclease exists to remove unpaired 3' terminal
+nucleotides. The non-templated A is exactly that: unpaired. The enzyme would add it and
+remove it in a futile cycle, leaving you with blunt ends.
+
+There is no error message. The reaction looks normal, the DNA is intact, and you only find
+out at the next step: adapter ligation is very inefficient, and the library yield is low or
+dominated by adapter dimers.
+
+This is the general shape of the most dangerous failures in library prep — an activity you
+did not want, acting on a substrate you did not think about.
+:::
+
+## E3. Nicks, gaps and who repairs them
+
+For each situation, say whether a ligase alone is enough, and if not what must happen first:
+
+a. A double-stranded molecule where one strand's backbone is cut between two adjacent bases
+b. The product of Tn5 tagmentation, which leaves a 9 nt single-stranded region on each side
+c. Two blunt fragments you want to join end to end
+d. A duplex where one strand is missing its 5'-phosphate at the cut
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Ask in each case: are any *bases* missing, and does each side present the right chemistry?
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. A nick: nothing is missing, so a ligase seals it directly.
+b. A gap, not a nick: 9 bases are absent. A polymerase must fill in first (this is the
+   "gap fill" step after tagmentation), then a ligase — or the first PCR cycle does it.
+c. A ligase can do it, but blunt ligation is slow and unselective. This is why protocols add
+   overhangs when they can.
+d. Nothing happens. T4 PNK must add the phosphate first. Some protocols leave the phosphate
+   off deliberately so that only one of the two strands is joined.
+:::
+
+# Part 2 — Hybridisation
+
+## E4. Designing a poly(A) capture
+
+You are capturing mRNA from total human RNA on oligo-dT beads.
+
+a. Why is the binding step done in high salt, and the elution in water or low-salt buffer at
+   an elevated temperature?
+b. A colleague's capture recovers almost nothing. Their only deviation: they washed the beads
+   with a buffer at 50 °C instead of room temperature. What happened?
+c. Why is the dT stretch typically 20–25 nt rather than 8 nt?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+An oligo-dT:poly(A) duplex is made entirely of A–T pairs, with two hydrogen bonds each. What
+does that do to its Tm compared with a mixed-sequence duplex of the same length? What does
+salt do to two molecules that are both negatively charged?
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. Salt shields the negative charge on both backbones, letting them approach: high salt
+   raises Tm and favours binding. Removing salt and warming destabilises the duplex, which
+   releases the mRNA.
+b. The wash was above the Tm of an AT-only duplex of that length, so the mRNA eluted during
+   the wash and went down the drain. There is no way to tell this apart from "capture
+   failed" without having measured.
+c. An AT-only duplex is weak per base pair, so it needs length to be stable at working
+   temperatures. An 8-mer dT would not hold at room temperature; it would also bind any short
+   A-rich stretch anywhere in a transcript.
+:::
+
+## E5. Reading a fragment-analyser trace
+
+Your library trace shows the expected broad peak around 320 bp, and a second sharp peak at
+about 130 bp that is nearly as tall.
+
+a. What is the 130 bp peak almost certainly?
+b. Why is it dangerous to load this library as it is, even though most of the material is the
+   right size?
+c. Give two ways to prevent it next time, and one way to rescue this library now.
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+What is the length of two adapters joined to each other, with no insert in between? And what
+does a sequencer prefer when it has a choice of fragment lengths?
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. Adapter dimers: two adapters ligated directly to each other.
+b. Short molecules cluster and amplify more efficiently than long ones, so dimers are
+   over-represented on the flow cell relative to their share of the trace. They produce
+   reads containing only adapter, which are worthless. A dimer peak of this size can consume
+   a large fraction of the run.
+c. Prevention: match adapter concentration to the amount of input DNA — excess adapter is the
+   usual cause; use adapters with a T overhang and inserts with an A tail so adapters cannot
+   ligate to each other. Rescue: a size selection, for example a bead clean-up at a ratio that
+   leaves short fragments in solution, or a gel cut.
+:::
+
+# Part 3 — Oligo design
+
+## E6. Which strand does it anneal to?
+
+An adapter's top strand ends `...AGATCGGAAGAGC`. You design a primer `GCTCTTCCGATCT`.
+
+a. What is the relationship between the two sequences?
+b. Which strand will your primer anneal to, and in which direction will it extend?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Write the second sequence out and reverse it, then complement each base. Remember both are
+written 5'→3' by convention.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. `GCTCTTCCGATCT` is the reverse complement of `AGATCGGAAGAGC`.
+b. It anneals to the strand that *contains* `AGATCGGAAGAGC`, and extends away from that
+   adapter, across the insert — it reads into the insert, which is what a sequencing or
+   amplification primer for this adapter must do.
+
+Working this out by hand for every oligo in a protocol is tedious but it is the only way to
+be certain. The *Annotate sequence* tool on the NGS 101 site does it for you once you trust
+your own reasoning.
+:::
+
+## E7. Degenerate positions
+
+a. You want an 8 nt UMI in a primer. How do you specify it when ordering, and how many
+   distinct molecules does that produce?
+b. Oligo-dT primers are often ordered as `T(20)VN` rather than `T(22)`. What does `VN` mean,
+   and what problem does it solve?
+c. Why can a UMI never be added during PCR?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+For (b), think about where along a poly(A) tail of 150 A's an oligo-dT primer would otherwise
+anneal, and where you would like it to sit.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. Eight `N` positions: the synthesiser uses a mixture of all four bases at each, giving
+   4⁸ = 65,536 distinct sequences in one tube.
+b. `V` is A, C or G — anything but T. `N` is any base. The two positions sit at the very
+   junction between the poly(A) tail and the transcript body, so the primer anchors at the
+   start of the tail instead of annealing somewhere in the middle of it. Without the anchor
+   you lose a variable and unknown amount of the 3' end of each transcript.
+c. A UMI must mark a molecule *before* it is copied. Anything introduced during amplification
+   labels copies, not originals, so it cannot distinguish a PCR duplicate from a second real
+   molecule. UMIs are added by ligation, in an RT primer, or in a template-switch oligo.
+:::
+
+## E8. Specifying an oligo for a job
+
+For each requirement, name the modification you would order and say what it does:
+
+a. A capture oligo that must be pulled down on streptavidin beads
+b. A blocking oligo that must hybridise but must never be extended by a polymerase
+c. A primer that must survive an exonuclease treatment that removes everything else
+d. An adapter that must be cut out again later, at a defined position, without a restriction
+   enzyme
+e. A 5' end that a ligase will accept as the donor
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. 5' or 3' **biotin** — binds streptavidin essentially irreversibly.
+b. A **3' blocking group**: C3 spacer, dideoxy C, or an inverted dT. No free 3'-OH, so no
+   extension.
+c. **Phosphorothioate** linkages at the terminal few positions — the sulfur substitution makes
+   the bond a poor substrate for exonucleases.
+d. One or more **dU** bases: UDG removes the uracil and an AP endonuclease breaks the backbone
+   there (together sold as USER). The cut position is wherever you put the U.
+e. A **5' phosphate**. Order it explicitly; synthetic oligos come with a 5'-OH by default.
+:::
+
+## E9. Ordering and stock solutions
+
+a. You receive an oligo as a dried pellet of 25 nmol. How much nuclease-free water do you add
+   for a 100 µM stock?
+b. Why are long adapters often ordered as two shorter oligos that you anneal yourself, rather
+   than as one long oligo?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+For (a): 100 µM is 100 nmol/mL. For (b): synthesis adds one base at a time, and each coupling
+is slightly less than perfect.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. 250 µL. 25 nmol / 0.25 mL = 100 nmol/mL = 100 µM.
+b. At ~99% coupling efficiency per base, the fraction of full-length product falls
+   exponentially with length: a 60-mer is only about 0.99⁵⁹ ≈ 55% full length. The truncated
+   molecules are not inert — a shortened adapter still ligates, but produces a library
+   molecule missing part of a primer site, which never amplifies or never sequences. Two
+   30-mers annealed together are each far purer, and the annealing step itself selects for
+   molecules that can pair.
+:::
+
+# Part 4 — RNA
+
+## E10. Fragmented RNA will not ligate
+
+You fragment total RNA by heating it with magnesium, then try to ligate a pre-adenylated
+3' adapter. Nothing happens. You also plan a 5' adapter ligation later.
+
+a. What ends does metal-ion or alkaline fragmentation leave?
+b. Which enzyme fixes them, and which two activities of it do you need?
+c. Why does the order of operations matter here?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+RNA's 2'-OH attacks its own backbone. Think about what that leaves behind on each side of the
+break, and compare it with what an RNA ligase requires at each end.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. A 2',3'-cyclic phosphate on one side and a 5'-OH on the other — the opposite of what is
+   needed at both ends.
+b. T4 polynucleotide kinase. Its **3' phosphatase** activity opens and removes the cyclic
+   phosphate, leaving 3'-OH; its **kinase** activity adds a 5'-phosphate. Note that the
+   "3' phosphatase minus" variant of PNK will not do the first job.
+c. The 3' adapter ligation needs a free 3'-OH on the RNA, and the 5' adapter ligation needs a
+   5'-phosphate on the RNA. If you phosphorylate everything first and then ligate the 3'
+   adapter, you must make sure the adapter's own ends cannot take part — which is why 3'
+   adapters are supplied pre-adenylated and 3'-blocked, so they can only act as the donor and
+   cannot self-ligate.
+:::
+
+# Part 5 — Choosing the enzyme
+
+## E11. Reading the polymerase chart
+
+Using the NEB DNA polymerase selection chart, pick an enzyme for each job and name the column
+that decides it:
+
+a. Fill in a 5' overhang, without displacing the strand downstream of it
+b. Amplify a bisulfite-converted template
+c. Amplify a 12 kb product with as few errors as possible
+d. Copy a circular template round and round, displacing the strand ahead
+e. Add a single non-templated A to a blunt 3' end
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+The deciding columns are, in order: strand displacement; dU tolerance; fidelity and maximum
+product length; strand displacement again; resulting 3' ends together with 3'→5' exonuclease.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. **T4 DNA polymerase** — no strand displacement, and its 3'→5' exonuclease also trims 3'
+   overhangs, which is why it is the end-repair enzyme. Klenow would work but can displace.
+b. A **uracil-tolerant** polymerase. Archaeal proofreading enzymes read ahead and stall at
+   uracil, and bisulfite conversion creates a great many uracils; the chart's dU tolerance
+   column is the one that matters.
+c. A **high-fidelity** polymerase with a long maximum product: fidelity and max PCR product
+   columns together.
+d. **phi29** — strong strand displacement and high processivity, which is what makes rolling
+   circle amplification and MDA possible.
+e. **Klenow exo−** — the resulting 3' ends column says +A, and exo− means the A is not removed
+   again (see E2).
+:::
+
+## E12. The activity you did not want
+
+Each of these is a real failure mode. Name the unwanted enzyme activity:
+
+a. A nick you created deliberately, to mark one strand, has vanished and the strand beyond it
+   has been replaced
+b. Your 3'-blocked blocking oligo has been shortened and now primes
+c. Your carefully made 3' overhangs are blunt before you ligate
+d. Your uracil-containing adapter is destroyed during PCR
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. **5'→3' exonuclease / flap endonuclease** — nick translation. Pol I and Taq do this;
+   Klenow and T4 DNA polymerase do not.
+b. **3'→5' exonuclease** on a proofreading polymerase, chewing in from the 3' end until it
+   passes the block.
+c. **3'→5' exonuclease** again, this time doing the job it is famous for.
+d. Not an exonuclease at all — **uracil excision** by a contaminating or deliberately added
+   UDG, or a polymerase that stalls at U so the adapter is simply never copied. Check whether
+   your master mix contains UDG, which some kits include to prevent carry-over contamination.
+:::
+
+# Self-check
+
+Answer without looking anything up.
+
+1. Which end of a strand can a polymerase extend?
+2. A ligase joins two molecules. What must be present on each side?
+3. What is the difference between a nick and a gap?
+4. Which raises Tm: more GC, or more salt? (Trick question.)
+5. Why can a UMI not be introduced during PCR?
+6. What does a 3' C3 spacer do?
+7. What ends does alkaline fragmentation of RNA leave?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Answers
+1. The 3' end — always, with no exceptions among the enzymes in this course.
+2. A 5'-phosphate on the donor side and a free 3'-OH on the acceptor side.
+3. A nick is a cut backbone with all bases present; a gap has bases missing. A ligase can
+   seal a nick but not a gap.
+4. Both do. It was a trick question: Tm depends on sequence *and* on the buffer.
+5. Because it would label copies rather than original molecules, which is precisely the
+   distinction it exists to make.
+6. Blocks the 3' end so no polymerase can extend it and no ligase can use it as the acceptor.
+7. A 2',3'-cyclic phosphate and a 5'-OH.
+:::
+
+# Going further
+
+- Open any protocol on [NGS 101](https://henriksson-lab.github.io/NGS_101/) and, for the first
+  five steps, write down the end state of the molecule after each one. Compare with the
+  drawing on the page.
+- Take a kit manual you have used, or can find online, and mark which step exists purely to
+  fix an end state.

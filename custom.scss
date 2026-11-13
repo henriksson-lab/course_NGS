@@ -29,3 +29,14 @@ $presentation-heading-color: #383d3d !default;
 .reveal pre {
   line-height: 2.2em;
 }
+.reveal .small {
+  font-size: 0.58em;
+  color: #6b6b66;
+}
+
+.reveal section img {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  margin: 0.3em 0;
+}

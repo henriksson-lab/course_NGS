@@ -1,0 +1,89 @@
+---
+title: "Readings — Nucleic acids as a building material"
+format:
+  html:
+    theme: yeti
+---
+
+Reading is optional but each item is here for a reason. Start with the two marked **start
+here** if you read nothing else.
+
+## Papers
+
+**Watson JD, Crick FHC (1953).** *Molecular structure of nucleic acids: a structure for
+deoxyribose nucleic acid.* Nature 171:737–738.
+[doi:10.1038/171737a0](https://doi.org/10.1038/171737a0)
+
+> One page. Worth reading once for how much of what we exploit was visible immediately:
+> antiparallel strands, the complementarity that every hybridisation step depends on.
+
+**Lehman IR (1974).** *DNA ligase: structure, mechanism, and function.* Science
+186:790–797. [doi:10.1126/science.186.4166.790](https://doi.org/10.1126/science.186.4166.790)
+— **start here**
+
+> Why a ligase needs a 5'-phosphate and a free 3'-OH, and what the enzyme is actually doing
+> with ATP. Every adapter ligation in the course rests on this.
+
+**Clark JM (1988).** *Novel non-templated nucleotide addition reactions catalyzed by
+procaryotic and eucaryotic DNA polymerases.* Nucleic Acids Research 16:9677–9686.
+[doi:10.1093/nar/16.20.9677](https://doi.org/10.1093/nar/16.20.9677)
+
+> The original description of non-templated 3' A addition. This accident of polymerase
+> behaviour became the A-tailing step in nearly every DNA library prep.
+
+**SantaLucia J (1998).** *A unified view of polymer, dumbbell, and oligonucleotide DNA
+nearest-neighbor thermodynamics.* PNAS 95:1460–1465.
+[doi:10.1073/pnas.95.4.1460](https://doi.org/10.1073/pnas.95.4.1460)
+
+> Where predicted Tm values come from. Skim the model and the tables; you do not need the
+> derivations, but you should know that Tm is a property of a duplex in a buffer, not of an
+> oligo on its own.
+
+**Kivioja T, et al. (2011).** *Counting absolute numbers of molecules using unique molecular
+identifiers.* Nature Methods 9:72–74.
+[doi:10.1038/nmeth.1778](https://doi.org/10.1038/nmeth.1778)
+
+> The idea that a degenerate stretch of `N` bases makes each starting molecule individually
+> countable. Returned to in depth later in the course.
+
+**Eckstein F (2014).** *Phosphorothioates, essential components of therapeutic
+oligonucleotides.* Nucleic Acid Therapeutics 24:374–387.
+[doi:10.1089/nat.2014.0506](https://doi.org/10.1089/nat.2014.0506)
+
+> Written for therapeutics, but it is the clearest account of what a phosphorothioate linkage
+> does and why nucleases cannot cut it — the reason it appears in exonuclease-resistant
+> primers and adapters.
+
+**Head SR, et al. (2014).** *Library construction for next-generation sequencing: overviews
+and challenges.* BioTechniques 56:61–77.
+[doi:10.2144/000114133](https://doi.org/10.2144/000114133) — **start here**
+
+> A survey of what goes wrong in library prep: adapter dimers, bias, low input. Read it now
+> for orientation, and again after the building-block modules.
+
+## Reference material to keep open
+
+- **[NGS 101](https://henriksson-lab.github.io/NGS_101/)** — every protocol in the collection
+  drawn base by base, with the end state at each step. The *Annotate sequence* tab identifies
+  adapter and primer parts in a sequence you paste; *Anneal primers* shows how two oligos pair.
+- **[NEB selection charts](https://www.neb.com/en/tools-and-resources/selection-charts)** —
+  polymerases, ligases, nucleases side by side. The polymerase chart's columns (fidelity,
+  3'→5' exonuclease, 5'→3' exonuclease, strand displacement, resulting 3' ends, dU tolerance)
+  are the properties this course asks you to reason with. You will use it in the exercises.
+- **[IDT OligoAnalyzer](https://eu.idtdna.com/pages/tools/oligoanalyzer)** — Tm, hairpins and
+  self-dimers for a sequence you type in. Free, requires an account.
+- Any supplier's **oligo modification list** — worth browsing once to see what can be put on
+  an oligo end.
+
+## Related protocols in the collection
+
+Once you have the end-state habit, look at how these differ in their first few steps:
+
+- [TruSeq DNA PCR-Free](https://henriksson-lab.github.io/NGS_101/) — shear, end repair,
+  A-tail, ligate: the canonical sequence of end transformations
+- [NEBNext Ultra II DNA with USER adaptor](https://henriksson-lab.github.io/NGS_101/) — a
+  hairpin adapter containing dU, opened later by USER
+- [Nextera XT](https://henriksson-lab.github.io/NGS_101/) — no end repair at all, because
+  tagmentation creates the ends and attaches the handle in one step
+
+Exact links for every protocol are in `planning/protocol_links.tsv` in the course repository.
