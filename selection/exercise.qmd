@@ -1,0 +1,145 @@
+---
+title: "Exercises — Selection: keeping what you want"
+---
+
+Pen and paper. Use a vendor enzyme chart where a question names an enzyme property.
+
+# Part 1 — Affinity and capture
+
+## E1. Is the exome capture working?
+
+A human exome is about 2% of the genome. Before capture, 2% of reads fall on target. After capture, 70% do.
+
+a. What is the fold enrichment, by fraction?
+b. A colleague says a second capture will "double" the on-target fraction. Why is that impossible, and what is the real limit?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. 70% / 2% = 35-fold.
+b. The on-target fraction cannot exceed 100%, and doubling 70% would give 140%. In practice a second round helps the remaining off-target fraction, but it loses more molecules and raises the duplicate fraction, and what is left off-target is the material that binds baits non-specifically.
+:::
+
+## E2. A capture library full of off-target reads
+
+A panel capture shows 25% on-target, much less than the kit's specification. The off-target reads are scattered across the genome, including repeats.
+
+a. Which two blocking components were most likely missing or wrongly added?
+b. A second library shows off-target reads that sit just beside the targets. Is that the same problem?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Think about what is identical on every fragment, and about how long a fragment is compared with a bait.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. Adapter blockers, and Cot-1 DNA (or other repeat blockers). Without them, fragments pair through their adapters or through repeats and are pulled down with the real targets.
+b. No. A fragment that overlaps only the edge of a bait is captured legitimately, and its flank maps next to the target. That is expected "near-target" signal and falls with shorter fragments or denser baits. Scattered reads in repeats are the blocker problem.
+:::
+
+# Part 2 — Depletion
+
+## E3. Pick the method for a fixed sample
+
+You have formalin-fixed human tissue with degraded RNA, and you want mRNA and long non-coding RNA. Choose between oligo-dT selection and rRNA depletion with RNase H. Which property of the sample decides, and what does the choice cost you?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+Fragmented RNA is the deciding property. Oligo-dT selects the 3' tail, so only fragments that still carry a poly(A) tail are kept, and coverage collapses toward the 3' end. Depletion removes what it names and keeps everything else, so it works on fragments. The cost is that you also keep other abundant non-coding RNAs, and you need an oligo set for every species you want removed.
+:::
+
+## E4. A trap: RNase H and your mRNA
+
+After depletion of a human RNA sample, the library contains much less mRNA than expected, and the loss is concentrated in a few genes with ribosomal-like stretches. Suggest two causes.
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+1. Some DNA oligos match a stretch shared with an mRNA, so the mRNA forms a hybrid and is cut. Check oligo specificity against the transcriptome, including repeats and pseudogenes.
+2. The oligos were not removed fully, or tolerate mismatches under permissive hybridisation, so off-target hybrids form. Raising the temperature or stringency helps. The check is a spike-in or known mRNA that should not change.
+:::
+
+## E5. Which Cas9 guides for DASH?
+
+You want to remove mitochondrial fragments from a human ATAC-type library by Cas9. Say in plain words how you would choose where the guides cut, and why a cut in the middle of the fragment is what you need.
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+What does PCR need on each molecule?
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+Guides are tiled along the mitochondrial genome so that most fragments contain a cut site. A cut inside a fragment gives two pieces, each carrying only one adapter, and PCR needs a primer site at each end of the same molecule, so neither piece amplifies. A cut in a fragment from a nuclear region with a similar sequence would also be lost, so guides must be checked against the nuclear genome.
+:::
+
+# Part 3 — Enzymes and ends
+
+## E6. Pick the exonuclease
+
+After circularising probes, you want to digest all linear DNA but keep circles. State which properties of the enzyme or mix decide the choice, using a vendor chart: which polarity, ssDNA or dsDNA, and what happens to nicked circles.
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+The mix must contain activities against the linear forms present: single-stranded linear probe and double-stranded linear genomic DNA, so it needs both ssDNA and dsDNA exonuclease activity. Neither may start on a closed circle. A nicked circle becomes linear, so an incomplete ligation reduces yield. Residual enzyme must be inactivated or removed before the next enzymatic step.
+:::
+
+## E7. Methylation and the cut
+
+You digest human genomic DNA with HpaII and with MspI, both of which cut CCGG. After bisulfite sequencing, you see that a CpG-island region has fragments with the MspI digest but not the HpaII digest. What does this say about the methylation at the CCGG sites?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+MspI cuts regardless of methylation of the inner cytosine; HpaII does not cut when it is methylated. Fragments present with MspI and absent with HpaII show that the sites were methylated at the inner C. The MspI digest is the reference: it tells you that the sites exist and that the lack of cutting is not simply a failed digest.
+:::
+
+# Part 4 — Tricks
+
+## E8. Carrier for a 20 pg sample
+
+You must extract and clean up 20 pg of cell-free DNA before ligating adapters. Yield is below the detection limit. A colleague proposes adding 1 µg of salmon sperm DNA as a carrier.
+
+a. Why would this help?
+b. What would go wrong during adapter ligation?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. Surfaces and beads adsorb a fixed amount; the carrier takes the binding sites so the small sample passes through.
+b. The carrier has ends too, so it would be ligated and amplified, and 1 µg of it would take nearly all the reads. A carrier must be added only before steps where it is inert (extraction, bead capture) and removed or lacking ends later, or it must come from a source whose reads are removed by mapping.
+:::
+
+## E9. What does the spike-in tell you?
+
+Two libraries are sequenced to the same depth. A fixed amount of spike-in RNA was added per cell. Control: gene A gets 200 reads and the spike-in 1000. Treated: gene A gets 200 reads and the spike-in 2000.
+
+a. What happened to the amount of gene A per cell?
+b. What would you have concluded without the spike-in?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. Divide by the spike-in: control 200/1000 = 0.2, treated 200/2000 = 0.1. Gene A per cell has halved. The spike-in took twice the share of the treated library because there was less cellular RNA to compete with.
+b. Equal reads for gene A and the same depth would look like no change. Only a standard that does not move with the cells shows a shift that affects everything.
+:::
+
+# Self-check
+
+1. Why can you not elute the biotinylated bait itself from streptavidin?
+2. Why does a captured library need adapter blockers?
+3. Why does Cas9 cutting stop PCR amplification?
+4. Which molecules survive an exonuclease treatment, and why?
+5. What does suppression PCR use to filter?
+6. When is a spike-in the only way to see a change?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Answers
+1. The bond is so strong it is effectively permanent; heat or alkali releases the target, not the bait.
+2. Identical adapters let fragments pair with each other, so off-target fragments are pulled down with the on-target ones.
+3. A cut inside a fragment leaves pieces with only one primer site each.
+4. Closed circles, because an exonuclease needs a free end.
+5. Intramolecular folding of molecules with identical ends, which outcompetes primer binding.
+6. When the whole sample changes in the same direction, because total-read normalisation removes it.
+:::
+
+# Going further
+
+- Take a capture protocol from [NGS 101](https://henriksson-lab.github.io/NGS_101/) and mark the step where each unwanted species is removed.
+- For one protocol, write down the control that would reveal each failure in the cost table of the lecture.

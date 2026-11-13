@@ -1,0 +1,214 @@
+---
+title: "Exercises — Pooled screens and synthetic libraries"
+---
+
+Pen and paper. Calculators are fine. These cover both decks: building a pooled library and
+reading it out.
+
+# Part 1 — Building the pool
+
+## E1. Synthesis yield
+
+An array vendor gives you 74-mers at 99.5% stepwise coupling, and offers 200-mers at the same
+rate.
+
+a. What fraction of the 74-mers and of the 200-mers are full length?
+b. A pooled oligo carries a primer site at each end. Why do truncated products matter less
+   than you might expect, and what do they still cost you?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+The yield is the coupling efficiency raised to the number of couplings, about n - 1.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. 0.995^73 ≈ 0.69 and 0.995^199 ≈ 0.37. Over a third of a 200-mer pool is truncated.
+b. A truncated molecule lacks one primer site and is not amplified by the primer pair, so it
+   drops out at the PCR step. Errors *inside* the sequence (substitutions, deletions) stay in
+   the pool and are cloned, and they show up as reads that match no design. Both reduce
+   how much of the pool is usable.
+:::
+
+## E2. How many colonies
+
+A 70,000-guide library is transformed into bacteria. Assume an even pool and Poisson sampling.
+
+a. If you collect 5 colonies per guide on average, how many guides are expected to be missing?
+b. And at 20 per guide?
+c. Why is the real number higher than your estimate?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. e^-5 ≈ 0.67%, so about 470 guides.
+b. e^-20 ≈ 2 x 10^-9: none.
+c. The pool is not even (synthesis, PCR and clone growth all add skew), so some members start
+   at a fraction of the mean. The Poisson estimate is a floor.
+:::
+
+## E3. Gibson or Golden Gate
+
+You need (i) one guide in lentiCRISPR v2 for a validation experiment, and (ii) 70,000 guides
+as a pool in the same vector. Which cloning method do you use for each, and which property of
+the method decides?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+(i) Annealed oligos with CACC and AAAC overhangs into a BsmBI-cut vector: the overhangs fix
+orientation and the construct is easy to verify. (ii) Gibson assembly of the amplified pool: it
+needs only homology at the ends, which the shared constant parts of the pool provide, and it
+joins every member in one reaction without designing 70,000 overhangs. The deciding property
+is whether the design must be per member or the same for all of them.
+:::
+
+# Part 2 — Delivering it
+
+## E4. One copy per cell
+
+a. At a multiplicity of 0.2, what fraction of cells receive 0, 1, or 2 or more copies?
+b. Of the infected cells, what fraction has two or more?
+c. You want at most about 10% of infected cells to carry two guides. Is 0.2 acceptable?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. P(0) = e^-0.2 = 0.819; P(1) = 0.2 x 0.819 = 0.164; P(2+) = 1 - 0.819 - 0.164 = 0.018.
+b. 0.018 / (1 - 0.819) ≈ 10%.
+c. Just acceptable. Going lower reduces doubles but wastes more cells.
+:::
+
+## E5. Cell numbers
+
+A 70,000-guide library, 300 cells per guide, MOI 0.2 (18% of cells infected).
+
+a. How many cells must be infected?
+b. After selection you harvest 21 million cells. How much DNA is that, at 6.6 pg per cell?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. Cells carrying a guide: 70,000 x 300 = 21 million. Infected cells needed: 21 million /
+   0.18 ≈ 117 million.
+b. 21 x 10^6 x 6.6 pg ≈ 139 µg of DNA, which is why a whole screen sample needs many PCR
+   reactions.
+:::
+
+## E6. The swapped barcode
+
+Two vector designs: (A) the guide is in U6 and a 12-nt barcode is placed in a separate
+transcript 2 kb away; (B) the guide itself is the readout. Pooled lentivirus is made from a
+plasmid pool.
+
+a. In which design can the link between guide and readout be broken, and by what?
+b. How does this change when you read guides directly from genomic DNA?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. In (A). A particle contains two RNA copies; reverse transcriptase can jump from one to
+   the other, so a barcode can end up beside a different guide. The further apart the two
+   elements, the likelier this is. In (B) there is nothing to separate.
+b. Reading guides from genomic DNA does not depend on a barcode, so this swap cannot occur.
+:::
+
+# Part 3 — Reading out
+
+## E7. Reactions per sample
+
+Each 50 µL PCR takes 3.5 µg of gDNA. How many reactions are needed for 100 µg per sample, and
+for 40 samples? What does that tell you about where the protocol should put its indexes?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+100 / 3.5 ≈ 29 reactions per sample, so about 1,150 for 40 samples. That many reactions with
+long indexed primers is expensive and a contamination risk. A two-step design uses short
+locus-specific primers for the many first reactions, pools them, and indexes only one small
+second reaction per sample.
+:::
+
+## E8. A low-diversity library
+
+You run a single-primer-type amplicon library with a 2% PhiX spike-in, and the run fails in
+the first cycles.
+
+a. Why?
+b. How do the Joung and Moffat protocols each handle this?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. Every molecule begins with the same sequence, so each cluster shows the same base in the
+   first cycles and the instrument cannot calibrate cluster positions and colours.
+b. Joung: ten forward primers with spacers of different length, so the start differs between
+   amplicons. The Moffat protocol skips the constant part with dark cycles and relies on the
+   run design for diversity.
+:::
+
+## E9. Counting molecules
+
+A 12-nt random tag has 4^12 ≈ 16.7 million possibilities. One guide is captured 1,000 times
+by an MIP pool, another 1,000,000 times.
+
+a. Roughly how many distinct tags are seen for each?
+b. What does it do to the counts?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+For n molecules and N tags, the expected number of collisions is about n^2 / (2N).
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. For 1,000: collisions ≈ 10^6 / 3.3 x 10^7 ≈ 0.03, so 1,000 tags. For 10^6: ≈ 10^12 / 3.3 x 10^7 ≈
+   30,000, so about 970,000 tags.
+b. High-copy guides are undercounted by about 3%, low-copy ones not at all. Longer tags or
+   correction for collisions removes the bias.
+:::
+
+## E10. Pick the anchor
+
+A lentiviral library integrated into human cells; you want the integration sites of 20 clones.
+You know the LTR sequence only.
+
+a. Describe inverse PCR for this problem: what must be true of the restriction enzyme?
+b. What goes wrong if the ligation is concentrated?
+c. What does a splinkerette adapter add?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. The enzyme should cut in the flank and once on the known side, so that each junction
+   fragment has the known part at one end, the unknown flank at the other, and both primer
+   sites between. Enzymes that cut often give fragments too short to map.
+b. Fragments ligate to each other and form concatemers and hybrid circles, giving chimeric
+   products. Dilute ligation favours intramolecular circles.
+c. A second primer site that exists only on molecules copied from the known side. Genomic
+   ends that carry only adapter cannot prime, which cuts the background.
+:::
+
+## E11. Activity from tags
+
+In an MPRA, tag A has 100 DNA and 400 RNA counts, tag B has 40 DNA and 160 RNA, and tag C has
+100 DNA and 100 RNA. Which candidates are active? What would you conclude if you looked at RNA
+counts alone?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+RNA/DNA is 4 for A and B and 1 for C: A and B are equally active, C is not. The RNA counts
+alone would suggest A is far more active than B (400 against 160), but A simply had more
+plasmids in the DNA pool. Normalising to DNA removes that difference.
+:::
+
+# Self-check
+
+1. Why does an oligo pool contain constant ends?
+2. What is the purpose of sequencing the plasmid pool?
+3. Name two things that make the number of cells decide how many guides you can keep.
+4. Why does a one-end-known problem need a trick?
+5. What do UMIs correct that read counts do not?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Answers
+1. One primer pair amplifies every member, and the ends give homology for cloning.
+2. It is the time-zero reference and the check of completeness, evenness and correctness.
+3. Coverage per guide times library size sets the minimum cells; the multiplicity of infection
+   sets how many must be infected.
+4. PCR needs two primer sites; the unknown side has none until it is circularised, ligated to
+   an adapter or tagged.
+5. PCR duplication: they count original molecules, not copies.
+:::

@@ -1,0 +1,60 @@
+---
+title: "Readings — Attaching a handle: the five ways"
+---
+
+Reading is optional, but each item is here for a reason. Start with the two marked **start here**.
+
+## Papers
+
+**Zhu YY, et al. (2001).** *Reverse transcriptase template switching: a SMART approach for full-length cDNA library construction.* BioTechniques 30:892–897.
+[doi:10.2144/01304pf02](https://doi.org/10.2144/01304pf02)
+
+> The origin of template switching as a way to add a handle at the 5' end. Look at how few
+> components are needed: a polymerase that adds C's, and an oligo that ends in G's.
+
+**Picelli S, et al. (2013).** *Smart-seq2 for sensitive full-length transcriptome profiling in single cells.* Nature Methods 10:1096–1098.
+[doi:10.1038/nmeth.2639](https://doi.org/10.1038/nmeth.2639)
+
+> Template switching and tailed primers in one protocol, followed by tagmentation of the cDNA.
+> Trace which handle arrives by which way.
+
+**Reznikoff WS (2008).** *Transposon Tn5.* Annual Review of Genetics 42:269–286.
+[doi:10.1146/annurev.genet.42.110807.091656](https://doi.org/10.1146/annurev.genet.42.110807.091656)
+
+> The mechanism behind tagmentation: cut positions, the 9-bp duplication and the roles of the
+> mosaic ends. Read the mechanism section; skip the regulation.
+
+**Adey A, et al. (2010).** *Rapid, low-input, low-bias construction of shotgun fragment libraries by high-density in vitro transposition.* Genome Biology 11:R119.
+[doi:10.1186/gb-2010-11-12-r119](https://doi.org/10.1186/gb-2010-11-12-r119)
+
+> The paper that turned transposition into a library preparation method. Note how insert size
+> is tuned by the amount of transposase.
+
+**Picelli S, et al. (2014).** *Tn5 transposase and tagmentation procedures for massively scaled sequencing projects.* Genome Research 24:2033–2040.
+[doi:10.1101/gr.177881.114](https://doi.org/10.1101/gr.177881.114) — **start here**
+
+> A practical account: loading, activity, the gap-fill step, and what goes wrong. Good for
+> understanding the A and B combinations.
+
+**Kircher M, et al. (2012).** *Double indexing overcomes inaccuracies in multiplex sequencing on the Illumina platform.* Nucleic Acids Research 40:e3.
+[doi:10.1093/nar/gkr771](https://doi.org/10.1093/nar/gkr771) — **start here**
+
+> Why handles carry indexes at both ends, and how truncated adapters plus index PCR work.
+> Look for the way the stub and the index primer divide the work.
+
+**Jayaprakash AD, et al. (2011).** *Identification and remediation of biases in the activity of RNA ligases in small-RNA deep sequencing.* Nucleic Acids Research 39:e141.
+[doi:10.1093/nar/gkr693](https://doi.org/10.1093/nar/gkr693)
+
+> What the sequences at an RNA junction do to ligation efficiency, and what randomised
+> adapter ends do about it.
+
+**König J, et al. (2010).** *iCLIP reveals the function of hnRNP particles in splicing at individual nucleotide resolution.* Nature Structural & Molecular Biology 17:909–915.
+[doi:10.1038/nsmb.1838](https://doi.org/10.1038/nsmb.1838)
+
+> RNA 3' adapter ligation, an RT primer carrying handles, and circularisation, all in one
+> method, on human cells.
+
+## Reference material to keep open
+
+- [NGS 101](https://henriksson-lab.github.io/NGS_101/) draws each protocol base by base.
+- [NEB selection charts](https://www.neb.com/en/tools-and-resources/selection-charts) for the ligases, polymerases and transposases named here.

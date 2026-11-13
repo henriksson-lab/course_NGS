@@ -1,0 +1,64 @@
+---
+title: "Readings — Genomic DNA libraries"
+---
+
+Reading is optional but each item is here for a reason. Start with the two marked **start here**.
+
+## Papers
+
+**Kozarewa I, et al. (2009).** *Amplification-free Illumina sequencing-library preparation
+facilitates improved mapping and assembly of (G+C)-biased genomes.* Nature Methods 6:291–295.
+[doi:10.1038/nmeth.1311](https://doi.org/10.1038/nmeth.1311) — **start here**
+
+> The case for PCR-free libraries, made on the genomes where PCR hurts most. Look at the coverage-versus-GC plots with and without amplification.
+
+**Aird D, et al. (2011).** *Analyzing and minimizing PCR amplification bias in Illumina sequencing
+libraries.* Genome Biology 12:R18.
+[doi:10.1186/gb-2011-12-2-r18](https://doi.org/10.1186/gb-2011-12-2-r18) — **start here**
+
+> Where GC bias comes from in the PCR step and what changes it (cycling conditions, polymerase, additives). Read it with the compounding-efficiency slide in mind.
+
+**Ross MG, et al. (2013).** *Characterizing and measuring bias in sequence data.* Genome Biology 14:R51.
+[doi:10.1186/gb-2013-14-5-r51](https://doi.org/10.1186/gb-2013-14-5-r51)
+
+> A systematic look at how library preparation and sequencing shape coverage. Useful for learning which metrics to look at.
+
+**Adey A, et al. (2010).** *Rapid, low-input, low-bias construction of shotgun fragment libraries by
+high-density in vitro transposition.* Genome Biology 11:R119.
+[doi:10.1186/gb-2010-11-12-r119](https://doi.org/10.1186/gb-2010-11-12-r119)
+
+> The paper behind Nextera-style tagmentation. Note how the transposase-to-DNA ratio sets the fragment size.
+
+**Briggs AW, et al. (2007).** *Patterns of damage in genomic DNA sequences from a Neandertal.* PNAS 104:14616–14621.
+[doi:10.1073/pnas.0704665104](https://doi.org/10.1073/pnas.0704665104)
+
+> Where the C-to-T-at-the-ends signature was described. Check the figure showing change frequency by read position.
+
+**Gansauge M-T, Meyer M (2013).** *Single-stranded DNA library preparation for the sequencing of
+ancient or damaged DNA.* Nature Protocols 8:737–748.
+[doi:10.1038/nprot.2013.038](https://doi.org/10.1038/nprot.2013.038)
+
+> The single-stranded library protocol in full. Follow what happens to a nicked molecule at each step.
+
+**Rohland N, et al. (2015).** *Partial uracil–DNA–glycosylase treatment for screening of ancient DNA.*
+Philosophical Transactions of the Royal Society B 370:20130624.
+[doi:10.1098/rstb.2013.0624](https://doi.org/10.1098/rstb.2013.0624)
+
+> Why one removes damage internally but not at the ends.
+
+**Zong C, et al. (2012).** *Genome-wide detection of single-nucleotide and copy-number variations of a
+single human cell.* Science 338:1622–1626.
+[doi:10.1126/science.1229164](https://doi.org/10.1126/science.1229164)
+
+> MALBAC, with a head-to-head against MDA. Compare what they chose to measure.
+
+**Gonzalez-Pena V, et al. (2021).** *Accurate genomic variant detection in single cells with primary
+template-directed amplification.* PNAS 118:e2024176118.
+[doi:10.1073/pnas.2024176118](https://doi.org/10.1073/pnas.2024176118)
+
+> PTA, with its own benchmark of variant calling against other single-cell amplification methods.
+
+## Reference material to keep open
+
+- [NGS_101 collection](https://henriksson-lab.github.io/NGS_101/): the protocol pages for TruSeq DNA PCR-Free, NEBNext Ultra II FS PCR-free, Illumina DNA Prep, Nextera XT, MALBAC and PTA
+- [NEB selection charts](https://www.neb.com/en/tools-and-resources/selection-charts)

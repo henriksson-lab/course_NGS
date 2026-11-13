@@ -1,0 +1,77 @@
+---
+title: "Readings — Spatial libraries"
+---
+
+Every method in this unit is a way of asking one question: how does position survive the
+trip into a sequencing library? Read each paper for that, and for the paragraph on tissue
+preparation, which is usually in the methods and usually decides everything.
+
+## Array capture
+
+**Ståhl PL, et al. (2016).** *Visualization and analysis of gene expression in tissue
+sections by spatial transcriptomics.* Science 353:78–82.
+[doi:10.1126/science.aaf2403](https://doi.org/10.1126/science.aaf2403) — **start here**
+
+> The array that Visium grew from. Look at how the permeabilisation time was optimised and
+> how the barcode is carried through reverse transcription.
+
+**Salmén F, et al. (2018).** *Barcoded solid-phase RNA capture for Spatial Transcriptomics
+profiling in mammalian tissue sections.* Nature Protocols 13:2501–2534.
+[doi:10.1038/s41596-018-0045-2](https://doi.org/10.1038/s41596-018-0045-2)
+
+> The protocol version, with the troubleshooting table. Read it as a list of ways
+> permeabilisation and fixation fail.
+
+**Rodriques SG, et al. (2019).** *Slide-seq: A scalable technology for measuring
+genome-wide expression at high spatial resolution.* Science 363:1463–1467.
+[doi:10.1126/science.aaw1219](https://doi.org/10.1126/science.aaw1219)
+
+> Beads placed at random and decoded afterwards. Note what is sequenced twice.
+
+**Chen A, et al. (2022).** *Spatiotemporal transcriptomic atlas of mouse organogenesis
+using DNA nanoball-patterned arrays.* Cell 185:1777–1792.
+[doi:10.1016/j.cell.2022.04.003](https://doi.org/10.1016/j.cell.2022.04.003)
+
+> Stereo-seq: the array is built and decoded before the tissue arrives. The methods give the
+> methanol and pepsin conditions.
+
+## Barcoding in the tissue, regions and in situ reads
+
+**Liu Y, et al. (2020).** *High-spatial-resolution multi-omics sequencing via deterministic
+barcoding in tissue.* Cell 183:1665–1681.
+[doi:10.1016/j.cell.2020.10.026](https://doi.org/10.1016/j.cell.2020.10.026) — **start here**
+
+> DBiT-seq. The splint-ligation design in the supplementary oligo tables is worth working
+> through base by base.
+
+**Merritt CR, et al. (2020).** *Multiplex digital spatial profiling of proteins and RNA in
+fixed tissue.* Nature Biotechnology 38:586–599.
+[doi:10.1038/s41587-020-0472-9](https://doi.org/10.1038/s41587-020-0472-9)
+
+> GeoMx. Compare what a tag is here with what a cell barcode is in a droplet method.
+
+**Lee JH, et al. (2014).** *Highly multiplexed subcellular RNA sequencing in situ.*
+Science 343:1360–1363.
+[doi:10.1126/science.1250212](https://doi.org/10.1126/science.1250212)
+
+> FISSEQ. The crosslinking step is the part to understand.
+
+**Wang X, et al. (2018).** *Three-dimensional intact-tissue sequencing of single-cell
+transcriptional states.* Science 361:eaat5691.
+[doi:10.1126/science.aat5691](https://doi.org/10.1126/science.aat5691)
+
+> STARmap. Compare targeted padlock probes with FISSEQ's random priming.
+
+## Reference material to keep open
+
+- Protocol pages in [NGS 101](https://henriksson-lab.github.io/NGS_101/):
+  [Visium](https://henriksson-lab.github.io/NGS_101/10x-visium-spatial-gene-expression/visium.html),
+  [Slide-seq](https://henriksson-lab.github.io/NGS_101/slide-seq__10.1126+science.aaw1219/slide-seq.html),
+  [Stereo-seq](https://henriksson-lab.github.io/NGS_101/stereo-seq__10.1016+j.cell.2022.04.003/stereo-seq.html),
+  [HDST](https://henriksson-lab.github.io/NGS_101/hdst__10.1038+s41592-019-0548-y/hdst.html),
+  [DBiT-seq](https://henriksson-lab.github.io/NGS_101/dbit-seq__10.1016+j.cell.2020.10.026/dbit-seq.html),
+  [GeoMx](https://henriksson-lab.github.io/NGS_101/geomx-dsp__10.1038+s41587-020-0472-9/geomx-dsp.html),
+  [FISSEQ](https://henriksson-lab.github.io/NGS_101/fisseq__10.1126+science.1250212/fisseq.html),
+  [STARmap](https://henriksson-lab.github.io/NGS_101/starmap__10.1126+science.aat5691/starmap.html)
+- The vendor user guide for the slide you are using: its tissue-optimisation section is the
+  authority on permeabilisation times.

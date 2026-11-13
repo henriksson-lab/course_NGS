@@ -15,55 +15,155 @@ The companion to this course is [NGS 101](https://henriksson-lab.github.io/NGS_1
 base-by-base reference for about 840 published library chemistries. Protocols named here link
 to their page there.
 
-::: {.callout-note}
-This site is being written: the Foundations units are going up first, and the rest is
-outlined below. Use the sidebar to navigate; the plan for the whole course is in
-`CURRICULUM.md` in the repository.
-:::
+## How the course is built
 
-## Foundations — what the sequencer needs
+The course is organised around **blocks**: the steps a protocol is assembled from. Part B
+teaches the blocks one at a time. Part C takes real protocols apart and shows which blocks
+they are made of, and why two protocols answering the same question differ. Part D is a
+reference indexed by the *problem* rather than by the step, and Part E is about judging
+whether a library worked and designing one of your own.
 
-Nucleic acids as a building material; how each sequencing platform reads DNA; the anatomy of
-a finished library molecule.
+If you are here to run an established protocol, read Parts A and E, then the Part C unit for
+your assay. If you are here to design something new, the whole course is the argument.
 
-**Nucleic acids as a building material** — strand polarity and end states, what a ligase
-actually requires, hybridisation and Tm, degenerate bases, oligo modifications, how RNA
-differs.
+## Part A — Foundations: what the sequencer needs
 
-- [Lecture (slides)](nucleic-acids/lec.qmd)
-- [Readings](nucleic-acids/readings.qmd)
-- [Exercise](nucleic-acids/exercise.qmd)
+**[Nucleic acids as a building material](nucleic-acids/lec.qmd)** — strand polarity and end
+states, what a ligase actually requires, hybridisation and Tm, degenerate bases, oligo
+modifications, how RNA differs.
+[Readings](nucleic-acids/readings.qmd) · [Exercise](nucleic-acids/exercise.qmd)
 
 **How sequencers read DNA** — clustering and sequencing by synthesis, the four reads and
 their order, i5 orientation, insert size versus read length, index hopping and base
 diversity; then MGI, AVITI, Ultima, PacBio and Nanopore, and what each asks of a library.
+[Illumina](sequencers/lec.qmd) · [Other platforms](sequencers/lec-platforms.qmd) ·
+[Readings](sequencers/readings.qmd) · [Exercise](sequencers/exercise.qmd)
 
-- Lectures (slides): [How Illumina reads DNA](sequencers/lec.qmd) ·
-  [The other sequencing platforms](sequencers/lec-platforms.qmd)
-- [Readings](sequencers/readings.qmd)
-- [Exercise](sequencers/exercise.qmd)
+**[Anatomy of a library molecule](library-molecule/lec.qmd)** — P5 to P7 part by part, Y
+adapters versus Nextera, full versus truncated adapters, where a barcode or UMI can sit, and
+what fails to cluster at all.
+[Readings](library-molecule/readings.qmd) · [Exercise](library-molecule/exercise.qmd)
 
-*Coming: anatomy of a library molecule*
+## Part B — Building blocks
 
-## Building blocks
+The heart of the course, and the most technical part. Each unit covers what the step does to
+the molecule, the enzymes and oligos it needs, what it requires of the ends, how it fails,
+and the tricks practitioners use.
 
-The core of the course. One module per step you can put into a protocol: the enzyme toolbox,
-attaching a handle, end chemistry, fragmentation, amplification, selection, barcodes and UMIs,
-converting chemistry into sequence, and compartments. Each covers what the step does to the
-molecule, how it fails, and the tricks practitioners use.
+**The enzyme toolbox** — polymerases along the axes vendor selection charts actually compare,
+reverse transcriptases and template switching, ligases and the end states they demand,
+kinases and phosphatases, nucleases, transposases and modifying enzymes. Throughout: how to
+justify an enzyme choice from a datasheet.
+[Polymerases and RTs](enzymes/lec.qmd) · [Ligases, kinases, phosphatases](enzymes/lec-ligases.qmd) ·
+[Nucleases](enzymes/lec-nucleases.qmd) · [Transposases and modifying enzymes](enzymes/lec-transposases.qmd) ·
+[Readings](enzymes/readings.qmd) · [Exercise](enzymes/exercise.qmd)
 
-## Use cases
+**[Attaching a handle — the five ways](handles/lec.qmd)** — the central idea of the course:
+there are only a few ways to put a known sequence onto an unknown molecule. Ligation, RNA
+ligation, primer tails, transposition, template switching.
+[Readings](handles/readings.qmd) · [Exercise](handles/exercise.qmd)
 
-Whole protocols read as combinations of blocks: genomic DNA, RNA, targeted sequencing,
-chromatin, the 3D genome, modifications, single cells, spatial, pooled screens, long reads.
+**[End chemistry](end-chemistry/lec.qmd)** — 5′-P versus 5′-OH, blocked 3′ ends, overhangs,
+nicks and gaps; end repair, dA-tailing, fill-in; controlling which ends are allowed to ligate.
+[Readings](end-chemistry/readings.qmd) · [Exercise](end-chemistry/exercise.qmd)
 
-## The trick catalogue
+**[Fragmentation and size control](fragmentation/lec.qmd)** — acoustic, enzymatic,
+tagmentation, restriction, MNase; size targets set by the sequencer; why fragmenting before
+or after the key chemistry changes the answer.
+[Readings](fragmentation/readings.qmd) · [Exercise](fragmentation/exercise.qmd)
 
-Cross-cutting reference, indexed by the problem rather than by the step: making the right
-thing ligate, killing what you do not want, getting a handle onto an impossible end, counting
-honestly, working with degraded material.
+**[Amplification](amplification/lec.qmd)** — PCR bias, duplicates and cycle number;
+PCR-free; linear amplification and IVT; RCA, MDA and PTA; suppressing adapter dimers.
+[Readings](amplification/readings.qmd) · [Exercise](amplification/exercise.qmd)
 
-## Quality control and designing your own
+**[Selection — keeping what you want](selection/lec.qmd)** — affinity, hybridisation capture,
+depletion with RNase H or Cas9, enzymatic and physical selection, and selecting by end
+structure rather than by sequence.
+[Readings](selection/readings.qmd) · [Exercise](selection/exercise.qmd)
 
-Cleanups, quantification and reading a trace; design patterns and failure modes; a capstone
-where you design a library prep from scratch.
+**[Barcodes, UMIs and where information lives](barcodes-umis/lec.qmd)** — index design, cell
+barcodes, where a UMI may be added and why never in PCR, and budgeting the read structure.
+[Readings](barcodes-umis/readings.qmd) · [Exercise](barcodes-umis/exercise.qmd)
+
+**[Converting chemistry into sequence](chemistry-to-sequence/lec.qmd)** — the trick that makes
+anything measurable: turn a property into a base change, an end, or a ligation event.
+[Readings](chemistry-to-sequence/readings.qmd) · [Exercise](chemistry-to-sequence/exercise.qmd)
+
+**[Compartments](compartments/lec.qmd)** — keeping the molecules of one cell together: wells,
+droplets, nuclei, hydrogels, split-and-pool; Poisson loading, doublets and collisions.
+[Readings](compartments/readings.qmd) · [Exercise](compartments/exercise.qmd)
+
+## Part C — Use cases: blocks assembled into protocols
+
+Each unit takes a biological question, derives the protocol from the blocks above, then reads
+real protocols from the collection and asks why they differ.
+
+**[Genomic DNA](genomic-dna/lec.qmd)** — shotgun and PCR-free, degraded and ancient DNA, low
+input, single-cell whole-genome amplification; coverage uniformity and GC bias.
+[Readings](genomic-dna/readings.qmd) · [Exercise](genomic-dna/exercise.qmd)
+
+**RNA** — choosing by RNA class; rRNA depletion, RT priming, second-strand synthesis, dUTP
+strandedness; tag counting versus full length; small RNA and low input.
+[mRNA and total RNA](rna/lec.qmd) · [Small RNA, tag protocols, low input](rna/lec-small-rna.qmd) ·
+[Readings](rna/readings.qmd) · [Exercise](rna/exercise.qmd)
+
+**[Targeted sequencing](targeted/lec.qmd)** — amplicons and tiled panels, hybrid capture,
+MIPs and padlocks, Cas9-guided enrichment, reduced representation; why rare-variant detection
+forces UMIs or duplex tags.
+[Readings](targeted/readings.qmd) · [Exercise](targeted/exercise.qmd)
+
+**[Chromatin and protein–DNA](chromatin/lec.qmd)** — accessibility and binding; crosslinking
+and its reversal; the tethered-enzyme idea (pA-MNase, pA-Tn5) treated as a block.
+[Readings](chromatin/readings.qmd) · [Exercise](chromatin/exercise.qmd)
+
+**[Three-dimensional genome and contacts](3d-genome/lec.qmd)** — proximity ligation as a
+block: crosslink, digest, ligate, pull down the junction; 3C through Micro-C; ligation-free
+approaches.
+[Readings](3d-genome/readings.qmd) · [Exercise](3d-genome/exercise.qmd)
+
+**Modifications, damage and dynamics** — bisulfite and its successors, break mapping,
+replication timing; m6A, the CLIP family, metabolic labelling, nascent RNA and TSS mapping.
+[DNA](modifications/lec.qmd) · [RNA](modifications/lec-rna.qmd) ·
+[Readings](modifications/readings.qmd) · [Exercise](modifications/exercise.qmd)
+
+**Single cells** — the same blocks, but every molecule must carry a compartment barcode.
+Plates, droplets and microwells; combinatorial indexing; multimodal assays.
+[Plates, droplets, microwells](single-cell/lec.qmd) ·
+[Combinatorial indexing and multimodal](single-cell/lec-combinatorial.qmd) ·
+[Readings](single-cell/readings.qmd) · [Exercise](single-cell/exercise.qmd)
+
+**[Spatial](spatial/lec.qmd)** — array capture, microfluidic barcoding, region selection and
+in situ sequencing; fixation and permeabilisation as the limiting chemistry.
+[Readings](spatial/readings.qmd) · [Exercise](spatial/exercise.qmd)
+
+**Pooled screens and synthetic libraries** — oligo pools, pooled cloning, lentiviral
+integration; then the readout treated as a library-prep problem in its own right.
+[Building the library](screens/lec.qmd) · [Reading it out](screens/lec-readout.qmd) ·
+[Readings](screens/readings.qmd) · [Exercise](screens/exercise.qmd)
+
+**[Long reads](long-reads/lec.qmd)** — handling HMW DNA and what shears it; PacBio SMRTbell
+and Iso-Seq; ONT ligation, rapid, ultra-long and direct RNA; Cas9 enrichment and adaptive
+sampling.
+[Readings](long-reads/readings.qmd) · [Exercise](long-reads/exercise.qmd)
+
+## Part D — The trick catalogue
+
+Indexed by the problem rather than by the step. Each entry gives the problem, the trick, the
+molecular reason it works, and protocols that use it. These can be read in any order, and
+this is the part to come back to while at the bench.
+[Ligation, clean-up, handles and the read](tricks/lec.qmd) ·
+[Counting, low input, compartments and bases](tricks/lec-more.qmd) ·
+[Readings](tricks/readings.qmd) · [Exercise](tricks/exercise.qmd)
+
+## Part E — Quality control and designing your own
+
+**[Cleanup, quantification and QC](qc/lec.qmd)** — how an SPRI ratio sets the cut-off; what
+Qubit, qPCR and a fragment analyser each actually measure; pooling, denaturing and loading;
+reading a trace for adapter dimers and over-amplification.
+[Readings](qc/readings.qmd) · [Exercise](qc/exercise.qmd)
+
+**[Design patterns, failure modes and the capstone](design/lec.qmd)** — reading a protocol as
+a sequence of blocks and drawing the construct after every step; failure signatures and the
+controls that distinguish them; then design a library prep of your own and compare it with
+the closest protocol in the collection.
+[Readings](design/readings.qmd) · [Exercise](design/exercise.qmd)

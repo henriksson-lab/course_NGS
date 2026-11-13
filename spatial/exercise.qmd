@@ -1,0 +1,201 @@
+---
+title: "Exercises — Spatial libraries"
+---
+
+Pen and paper. Each problem is a choice you would have to make at the bench, or a symptom you
+would have to explain from a data set.
+
+# Part 1 — Getting the RNA onto the array
+
+## E1. Pick a permeabilisation time
+
+A tissue-optimisation slide has four wells. You permeabilise each for a different time,
+make fluorescent cDNA on the slide, and image it:
+
+| Time | What the image shows |
+|---|---|
+| 3 min | Faint, patchy signal, strongest in the least dense regions |
+| 6 min | Bright signal, sharp edges, follows the tissue outline |
+| 12 min | Brighter overall, edges soft, a halo outside the tissue |
+| 24 min | Bright and uniform, tissue shape barely visible |
+
+a. Which time do you choose, and why not the brightest well?
+b. What does the 3 min well tell you about *which* RNA is released first?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+What would the signal under one cell look like if RNA spent a long time free before it was
+caught?
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. 6 min. Brightness is not the goal: **localisation** is. Past 6 min the extra signal is
+   RNA that has travelled, so each spot reports a blend of its neighbours and the outline of
+   the tissue is lost. Choose the shortest time that gives full, sharp signal.
+b. Short, abundant, loosely bound transcripts and thin or loose tissue regions come out first.
+   A short time therefore gives a biased sample of the transcriptome as well as a weak one,
+   which is a second reason to avoid under-permeabilising.
+:::
+
+## E2. An archive block
+
+A collaborator offers 12-year-old formalin-fixed paraffin-embedded tumour blocks and wants a
+whole-transcriptome spatial map with Visium-type capture.
+
+a. Name two things formalin fixation and age do to RNA that threaten oligo-dT capture.
+b. What kind of capture would you ask for instead, and which property of the RNA does it
+   depend on?
+c. Why does the same chemistry do no harm in FISSEQ or STARmap, and in fact help?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. The RNA is cut into short pieces, and poly(A) tails are lost or crosslinked and
+   unavailable, so an oligo-dT oligo has little to catch. Whatever is caught is biased to the
+   3' ends that survived.
+b. Probe pairs that hybridise to short stretches of RNA, are ligated, and are then captured
+   on the array. They depend only on a short stretch of sequence surviving, not on the tail.
+c. In situ methods crosslink on purpose: the crosslinks anchor the cDNA or amplicon to the
+   cell's protein, so it stays where the RNA was. They also use probes, or primers that bind
+   anywhere, so degraded RNA is less of a problem.
+:::
+
+# Part 2 — Arrays and resolution
+
+## E3. Resolution against sensitivity
+
+A Visium spot is 55 µm across and yields a median of 5,000 UMIs. You move to 10 µm beads
+and assume the same capture density per area.
+
+a. How many UMIs do you expect per bead?
+b. A cell is about 10 µm across. About how many Stereo-seq positions (0.5 µm pitch) fall
+   inside one cell, and what would you do with them?
+c. Why do these numbers argue for judging a run on UMIs per area rather than per spot?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. Area ratio (55 / 10)² ≈ 30, so about 5,000 / 30 ≈ 170 UMIs. Real capture density differs
+   between methods, so treat this as the expected scale only.
+b. (10 / 0.5)² = 400 positions, each with very few UMIs. Individual positions are not
+   interpretable, so they are binned (into cell-sized bins or segmented cells).
+c. Per-spot UMIs fall with the square of the spot size by construction; the quantity that
+   carries over between methods is UMIs per unit area, together with how many UMIs your
+   analysis needs per unit of tissue to say something.
+:::
+
+## E4. Where the barcode gets its coordinate
+
+For each array, say when and how the coordinate of a barcode becomes known, and name one way
+it could go wrong.
+
+a. A printed Visium-type slide
+b. A Slide-seq bead pour
+c. A Stereo-seq chip
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. Known from manufacturing: the position of each barcode is a property of the printed slide.
+   Failure: a printing or spotting defect that cannot be recovered afterwards.
+b. Found after the beads settle, by sequencing the beads in place. Failure: beads that decode
+   badly or overlap are lost, and the density of the pour sets how much is usable.
+c. Found before the tissue touches the chip, by sequencing the coordinate identifier of every
+   nanoball. Failure: the chip is a fixed investment, and a decoding error is paid for by
+   every sample on it.
+:::
+
+# Part 3 — Barcoding in tissue and choosing regions
+
+## E5. A missing phosphate
+
+In DBiT-seq the A oligo has a 5' phosphate and the B oligo ends in a 3'-OH, with a splint
+holding both beside one nick. A batch of A oligos arrives **without** the 5' phosphate.
+
+a. What happens to the ligation?
+b. The PCR primers anneal to the handle on the B oligo. What do you see in the library?
+c. How would you tell this apart from a failed reverse transcription?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+What does T4 DNA ligase need on the two sides of a nick?
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. T4 DNA ligase needs a 5' phosphate and a 3'-OH at the nick. Without the phosphate the
+   nick stays open and B is never joined to A.
+b. The handle that PCR needs sits on B, so tagged cDNA that lacks B cannot be captured or
+   amplified: a weak or empty library, not a library with half the address.
+c. A failed reverse transcription gives little cDNA at all, which shows up when the cDNA is
+   first amplified. A missing phosphate gives normal cDNA that is lost only after the B
+   ligation. A tube test, ligating the A and B oligos on the splint without tissue, separates
+   the two; phosphorylating the A oligos with T4 polynucleotide kinase fixes the batch.
+:::
+
+## E6. Channels and barcodes
+
+You want to cover 5 mm × 5 mm of tissue with 20 µm pitch pixels using DBiT-style flows.
+
+a. How many A and B barcodes do you need, and how many pixels is that?
+b. If each barcode is 8 nt, how many are available, and what limits how many you can use?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. 5000 / 20 = 250 channels each way: 250 A barcodes, 250 B barcodes, 62,500 pixels.
+b. 4⁸ = 65,536 sequences, so there are enough in principle. What limits the usable set is
+   that barcodes must differ from each other in several positions, so that a sequencing error
+   does not turn one barcode into another. That set is much smaller than 65,536.
+:::
+
+## E7. Regions or a grid?
+
+A tumour section has ten glands of interest, each a few hundred cells. You must choose
+between GeoMx and a capture array with 55 µm spots.
+
+a. State one reason for each.
+b. What does GeoMx give up?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. GeoMx collects all the tags from each gland into one sample, so every region has many
+   cells' worth of signal, and probes tolerate formalin-fixed tissue. The grid would give
+   you every part of the tissue, including regions you did not anticipate.
+b. Everything inside a region is averaged. You cannot ask about structure within it, and
+   regions must be chosen before you know what the data would show.
+:::
+
+# Part 4 — Reading in place
+
+## E8. Why crosslink the cDNA?
+
+In FISSEQ the cDNA contains aminoallyl-dUTP and is crosslinked to cellular protein before
+circularisation. What would the image look like if that step were left out, and what
+chemical property makes the step possible?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+The cDNA copies are free molecules and would diffuse out of the cell during the many washes
+that sequencing needs. Rolonies would be missing or smeared, and the image would not
+correspond to the cell it came from. The modified nucleotide carries a primary amine that a
+bifunctional amine-reactive crosslinker can tie to protein amines of the cell.
+:::
+
+# Self-check
+
+1. Why is imaging done before permeabilisation in a Visium workflow?
+2. What is the UMI for in a spatial spot?
+3. Name two ways a method can make a coordinate become a sequence.
+4. Which methods do not produce a library at all?
+5. Why does fixation affect which capture chemistry is possible?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Answers
+1. After permeabilisation and reverse transcription the section no longer looks like the
+   tissue; the image must come from the intact section.
+2. It counts molecules rather than reads, so PCR duplicates are not mistaken for expression,
+   which matters when a spot holds a few hundred molecules.
+3. A barcode on a printed, bead or DNB array whose position is known or decoded, or a pair of
+   barcodes laid down by perpendicular flows in the tissue.
+4. FISSEQ and STARmap: the amplicons are read under a microscope.
+5. Poly(A) capture needs intact tails; fixation and age damage them, so probe-based or in
+   situ chemistry is needed.
+:::

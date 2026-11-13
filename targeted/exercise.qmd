@@ -1,0 +1,121 @@
+---
+title: "Exercises — Targeted sequencing"
+---
+
+Pen and paper. Try each one before opening the **Hint**, and the hint before the **Solution**.
+
+# Part 1 — Designing
+
+## E1. Track a tumour in plasma
+
+A patient with lung cancer has had her tumour sequenced and has 20 somatic mutations. You will draw 10 mL of blood at intervals and want to see whether tumour DNA falls below 0.1% of cell-free DNA. Design the assay: selection method, fragmentation, tags, and what limits sensitivity.
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Cell-free DNA is already about nucleosome-sized. Think about how many molecules 10 mL of blood contains.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+Do not shear. Repair ends, ligate adapters that carry a UMI (ideally with a duplex scheme), capture with baits for the 20 patient-specific loci (or a population selector as in CAPP-Seq plus patient-specific baits), then PCR. Sensitivity is limited by input molecules: a few ng of cell-free DNA is only a few thousand genome copies, so at 0.1% you have a handful of mutant molecules per locus. Pooling 20 loci helps because the evidence is summed across mutations.
+:::
+
+## E2. Choose the method
+
+You must genotype 40 genes in 96 samples with 10 ng each and call SNVs and small indels at 5% allele fraction. Compare multiplex amplicons and hybrid capture, and choose one.
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+At 5% VAF no UMIs are needed. Amplicons are cheaper, faster and fit 10 ng; the risks are allele dropout under primers and uneven depth, so use overlapping amplicons and check the primer sites for common variants. Capture is more uniform and tolerant of variants, but takes longer and more input. For 40 genes in 96 samples, amplicons are a reasonable first choice; capture is preferable if dropout or structural variants matter.
+:::
+
+## E3. Enrichment arithmetic
+
+A 2 Mb panel in a 3.1 Gb genome gives 60% on-target reads. Calculate the fold enrichment and the sequencing needed for 500x on-target depth.
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+Random on-target fraction is 2 / 3100 = 0.065%. Enrichment is 60% / 0.065% = about 930-fold. For 500x: 500 × 2 Mb = 1 Gb on target, so 1 / 0.6 = 1.7 Gb in total. (Unique molecules also have to exist; see E5.)
+:::
+
+# Part 2 — Rare variants
+
+## E4. The UMI that came too late
+
+A colleague adds a random UMI to the PCR primer in the final amplification cycle of a library that had 14 cycles before. Why does this not help?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+What does one UMI group contain after 14 cycles of PCR with no tag?
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+After 14 cycles the original molecule has become many copies, and the late tag is assigned to those copies independently. Copies from one original now carry different tags, and errors made early are in many tagged molecules. The tag must be present before the first amplification.
+:::
+
+## E5. How many mutant molecules?
+
+(a) 30 ng of cell-free DNA at a variant allele fraction of 0.1%: how many mutant molecules? (b) 5 ng at 0.05%: what is the probability that none is in the tube? Use 3.3 pg per haploid genome.
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+(a) 30 ng / 3.3 pg is about 9000 copies; 0.1% is 9 mutant molecules. (b) 5 ng is about 1500 copies; 0.05% gives 0.75 expected; $P(0)=e^{-0.75}=0.47$. Nearly half of such samples contain no mutant molecule, whatever the sequencing depth.
+:::
+
+## E6. A lesion on one strand
+
+A sample has oxidative damage that converts a G to 8-oxoG on one strand before library preparation; it is read as a G to T change. Would a single-strand UMI consensus remove it? Would duplex sequencing?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+No for the UMI: the lesion is present on the original strand, so every copy carries the error and the reads agree. Duplex sequencing compares the two strands of the same molecule: the opposite strand is normal, so the call is rejected.
+:::
+
+## E7. Reading the family-size histogram
+
+After a run, 60% of UMI families have exactly one read. What are the two possible explanations, and how would you tell them apart?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+Either the library has many more molecules than the reads can cover (shallow sequencing; add reads), or the molecules are real singletons because PCR was short or inefficient. Compare the number of families with the expected number of input molecules: if the families are as many as the input molecules, depth is the problem; if far fewer, input or conversion is.
+:::
+
+# Part 3 — Selection by chemistry
+
+## E8. RRBS adapters
+
+RRBS adapters carry 5-methylcytosine instead of cytosine. What would happen with ordinary adapters?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+Bisulfite is applied after ligation. Unmethylated cytosines in an ordinary adapter would convert to uracil, then thymine, so the adapter would no longer match the PCR and sequencing primers, and few molecules would amplify.
+:::
+
+## E9. What does RRBS see?
+
+You want methylation at distal enhancers. Is RRBS a good choice? What else could you use?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+Not good: MspI sites are concentrated in CpG-rich DNA such as promoters and CpG islands, so enhancers are poorly covered. Whole-genome bisulfite or an enzymatic conversion approach reaches them; capture-based methylation panels are another route.
+:::
+
+# Self-check
+
+1. What three families of selection exist, and what does each give up?
+2. Why is hybridisation capture a Tm question?
+3. What limits sensitivity for 0.1% variants: reads or molecules?
+4. Why must a UMI be added before amplification?
+5. What does duplex tagging remove that a plain UMI does not?
+6. Why does a restriction enzyme sample the same fragments in every sample?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Answers
+1. Amplification (primer interactions, dropout), hybridisation (time, input, adapter-blocking) and circularising probes (probe design cost).
+2. All baits anneal in one reaction at one temperature, so they must have comparable melting behaviour.
+3. Molecules: a few thousand input genomes bound the number of mutant molecules.
+4. Otherwise copies of one molecule cannot be told from independent molecules.
+5. Lesions or errors present on one strand before tagging.
+6. Cut sites are defined by sequence, so the same sites are cut each time.
+:::

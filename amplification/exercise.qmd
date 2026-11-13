@@ -1,0 +1,261 @@
+---
+title: "Exercises — Amplification"
+---
+
+Pen and paper. Try each one before opening the **Hint**, and the hint before the
+**Solution** — the reasoning is the point, not the answer.
+
+Have the [NEB selection charts](https://www.neb.com/en/tools-and-resources/selection-charts)
+open for the enzyme questions.
+
+# Part 1 — PCR
+
+## E1. Errors and cycles
+
+A 300 bp amplicon is made in 15 cycles. Take the error rate as 10^-5 per base per doubling for a
+proofreading enzyme and 10^-4 for one without proofreading (illustrative values; read your own
+datasheet). The mean number of errors per final molecule is approximately rate x length x
+doublings / 2.
+
+a. What fraction of molecules carries an error with each enzyme (treat the mean as a probability)?
+b. Is a change from 15 to 10 cycles or a change of enzyme worth more?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+The factor 2 is there because half of the strands in the final pool are the original templates.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. Proofreading: 10^-5 x 300 x 15 / 2 = 0.0225, about **2 %**. Without proofreading: 10 times
+   that, **22 %** (and the approximation starts to break down, since a molecule can carry more
+   than one error).
+b. Ten cycles instead of 15 cuts the proofreading figure by a third (to 1.5 %). The enzyme change
+   cuts it ten-fold. Both help; the enzyme is the larger lever, but cycles are free and also
+   reduce bias, duplicates and chimeras.
+:::
+
+## E2. The cycle budget
+
+You have 5 ng of fragmented human DNA. Adapter ligation converts about 25 % of it into amplifiable
+library, and you want 100 ng. Each cycle multiplies by (1 + E).
+
+a. How many cycles at E = 0.9?
+b. How many at E = 0.7?
+c. Which result tells you to be more careful with the reaction?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+Library after ligation: 0.25 x 5 = 1.25 ng, so the required gain is 100 / 1.25 = 80.
+a. ln 80 / ln 1.9 = 4.38 / 0.642 = 6.8, so **7 cycles**.
+b. ln 80 / ln 1.7 = 4.38 / 0.531 = 8.3, so **8 or 9 cycles**.
+c. The second: inhibitors or poor primer design make you take more cycles, and each extra
+   cycle brings more bias and more duplicates. A drop in efficiency is itself a signal to
+   investigate.
+:::
+
+## E3. Saturation
+
+A library has 20 million distinct molecules. Expected distinct reads from M reads is
+N(1 - e^(-M/N)).
+
+a. How many distinct reads, and what duplicate fraction, from 40 million reads?
+b. What do you gain by doubling to 80 million reads?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. 20 x (1 - e^-2) = 20 x 0.865 = **17.3 million** distinct. Duplicate fraction:
+   1 - 17.3/40 = **57 %**.
+b. 20 x (1 - e^-4) = 19.6 million distinct, a gain of 2.3 million for 40 million more reads. More
+   sequencing cannot fix a library that is already exhausted: you need more input molecules.
+:::
+
+## E4. A bubble
+
+Your library has a fluorometric concentration that looks fine but a qPCR concentration far lower.
+The trace shows the peak at about 800 bp, although the inserts are 400 bp. You used 20 cycles from 1 ng.
+What happened, and what do you do?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Which assay counts molecules that have both adapter ends fully double-stranded?
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+The PCR ran past the plateau. Products of different inserts annealed through their shared adapters
+and made bubble heteroduplexes, which migrate slower (so 800 bp) and have unpaired single-strand
+regions that fluorescence counts but that do not amplify well in qPCR or cluster. Fix: re-amplify
+with one cycle in fresh master mix to convert the heteroduplexes to duplex, and start again with
+fewer cycles or more input.
+:::
+
+# Part 2 — Other ways to copy
+
+## E5. Choose the amplification
+
+Pick one method for each case, and name the property that decides it.
+
+a. Variants in a single human cell, called with high specificity
+b. Where did a lentiviral vector integrate in a transduced human cell line?
+c. Detecting a virus in saliva in a place with no thermal cycler
+d. A 16.6 kb human mitochondrial genome from 1 ng of DNA, on a short-read machine
+e. Transcriptome from 200 cells where relative abundance matters more than length
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. **PTA** (or MALBAC): copies stay primary, so false variants from copy-of-copy errors are
+   fewer than with MDA.
+b. **LAM-PCR, inverse PCR or splinkerette PCR**: each reads from the known vector end into the
+   unknown flank.
+c. **LAMP**: isothermal, one temperature, visual or simple readout.
+d. **Tiled multiplex amplicons in two pools**: overlapping products cover the whole genome and
+   adjacent amplicons never share a tube.
+e. **IVT-based linear amplification** (for example CEL-seq): each RNA is copied from the
+   original, so abundance is preserved.
+:::
+
+## E6. Why linear keeps ratios
+
+Two transcripts, A and B, are present at 10:1. Amplification efficiency is 90 % for A and 80 % for B.
+
+a. After 20 PCR cycles, what is the ratio?
+b. Under linear amplification in which each template produces 100 copies, give or take 10 %, what
+   is the largest distortion you can expect?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. The ratio is multiplied by (1.9 / 1.8)^20 = 1.0556^20 ≈ 2.95. A:B becomes about **30 : 1**.
+b. The copy number varies at most 10 % either way, so the ratio is distorted by at most about
+   1.1 / 0.9 = 1.2-fold, and it does not compound with cycles.
+:::
+
+## E7. Designing an inverse PCR
+
+You know 600 bp of a lentiviral vector and want to map its integration sites in human cells.
+
+a. What must be true of the enzyme you digest with?
+b. A 4-cutter cuts about every 256 bp; a 6-cutter every 4 096 bp. What does each do to the
+   circle you make?
+c. Why is the ligation done in a large volume?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Think about what is the largest circle PCR can handle, and what a circle of 100 bp looks like to a polymerase.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. It must not cut between the two primer sites inside the known sequence, so the primers stay on one
+   fragment, and it should cut near the junction on at least the unknown side. Check the vector
+   sequence with the NEB charts.
+b. A 4-cutter gives circles of a few hundred bases or fewer: some are too small to close, and the
+   product holds little flank. A 6-cutter gives circles of several kb, which may be too long to amplify
+   well and are often outside what the polymerase handles easily. Many protocols use a 4- or 5-base
+   enzyme with a long-range polymerase, or two digests in parallel.
+c. Dilution favours the fragment joining to its own other end (intramolecular), rather than to
+   another fragment, which would give concatemers and chimeric junctions.
+:::
+
+## E8. The phosphate on a splinkerette
+
+A splinkerette adapter is supplied without a 5'-phosphate on its hairpin strand, and a colleague
+phosphorylates it to improve ligation efficiency. Predict the effect.
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Which strand of the adapter ligates to the genomic fragment when it is unphosphorylated, and
+which does not?
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+Without a phosphate, only the recessed strand ligates to the genomic 5' phosphate; the hairpin
+strand stays nicked from the genomic 3' end. The adapter primer site therefore appears only after
+a vector-specific primer has copied through the junction. A phosphorylated adapter lets the
+hairpin strand ligate too, so the primer site is present on the original strand, and every
+fragment with adapters becomes a template for the adapter primer: the one-sided background the
+design was supposed to prevent returns. (This follows the logic of the published design; check the
+protocol notes for the sequences.)
+:::
+
+## E9. Droplets
+
+An emulsion PCR makes droplets that each contain one bead. The templates are Poisson distributed
+with mean lambda per droplet. P(0) = e^-lambda, P(1) = lambda e^-lambda.
+
+a. For lambda = 0.1, what share of droplets that contain any template contain more than one?
+b. The same for lambda = 1.
+c. Why not choose lambda = 0.01?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. P(0) = 0.905, P(1) = 0.0905, P(2 or more) = 1 - 0.905 - 0.0905 = 0.0047. Among occupied
+   droplets: 0.0047 / 0.0952 = **4.9 %** mixed.
+b. P(0) = 0.368, P(1) = 0.368, P(2 or more) = 0.264. Among occupied: 0.264 / 0.632 = **42 %**
+   mixed.
+c. At 0.01 only about 1 % of beads carry any DNA, so almost all the capacity of the emulsion is
+   wasted. The choice is a balance, and beads with DNA can be enriched afterwards.
+:::
+
+## E10. Consensus from a circle
+
+Each read of a base is wrong with probability p = 10^-3, independently. A rolling-circle product
+gives three reads of the same base.
+
+a. What is the chance that the majority (at least 2 of 3) is wrong?
+b. Which errors does this not remove?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. 3 p^2 (1 - p) + p^3 ≈ 3 x 10^-6, a reduction of about 300-fold from 10^-3.
+b. Errors made when the circle itself was first copied, and in the first round of rolling-circle
+   synthesis, which are present in every repeat. Also damage in the original molecule. Consensus
+   removes independent errors only.
+:::
+
+## E11. Uracil and the polymerase
+
+Your USER-adapter library is amplified with a proofreading polymerase of the Pfu type, and nothing
+amplifies. The adapter U was not cut because the USER enzyme was left out by mistake. Explain and
+suggest two fixes.
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+Family B proofreading polymerases stall on uracil in the template, so the strand carrying the
+adapter uracil is not copied. Fixes: treat with USER (uracil excision) before PCR, as the protocol
+intends, or amplify with a uracil-tolerant polymerase listed as such on the datasheet.
+:::
+
+# Self-check
+
+Answer without looking anything up.
+
+1. Why does an error in an early cycle matter more than one in a late cycle?
+2. What causes the plateau in PCR?
+3. Why does an over-amplified library run high on a gel?
+4. Which amplifications do not copy from copies?
+5. How does a nested PCR reject mispriming products?
+6. Why is the splinkerette adapter hairpin-shaped?
+7. Why does an emulsion not use a high template concentration?
+8. What errors can rolling-circle consensus not remove?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Answers
+1. The error is copied into all descendants, so it reaches a bigger share of the final pool.
+2. Primers and polymerase are used up, and products reanneal to each other instead.
+3. Bubble heteroduplexes form between different molecules that share adapter ends.
+4. IVT and single-primer linear amplification, and in a looser sense PTA, where terminators keep
+   the copies primary.
+5. Wrong products rarely carry the inner primer sites.
+6. Its primer site is created only by a copy running through from the vector-specific primer.
+7. Many droplets would hold two or more templates, and the beads would be mixed.
+8. Errors in the first copy of the circle and damage in the original molecule.
+:::
+
+# Going further
+
+- Take a PCR recipe you use and compute the maximum number of molecules it can make before primers
+  run out. How far from the plateau are you at your normal cycle number?
+- Find the polymerase in your lab freezer and record its fidelity, uracil tolerance and
+  strand-displacement activity from the datasheet.

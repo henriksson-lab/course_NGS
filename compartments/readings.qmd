@@ -1,0 +1,74 @@
+---
+title: "Readings — Compartments"
+---
+
+Reading is optional but each item is here for a reason. Start with the two marked **start
+here** if you read nothing else.
+
+## Droplets and beads
+
+**Macosko EZ, Basu A, Satija R, et al. (2015).** *Highly parallel genome-wide expression
+profiling of individual cells using nanoliter droplets.* Cell 161:1202–1214.
+[doi:10.1016/j.cell.2015.05.002](https://doi.org/10.1016/j.cell.2015.05.002) — **start here**
+
+> Drop-seq. Find the species-mixing experiment, the bead design (barcode, UMI, poly-dT) and
+> what the authors say about cell and bead loading.
+
+**Klein AM, Mazutis L, Akartuna I, et al. (2015).** *Droplet barcoding for single-cell
+transcriptomics applied to embryonic stem cells.* Cell 161:1187–1201.
+[doi:10.1016/j.cell.2015.04.044](https://doi.org/10.1016/j.cell.2015.04.044)
+
+> inDrop, published back to back with Drop-seq. Compare how the two deliver barcodes to
+> droplets, which is the difference that matters for efficiency.
+
+**Zheng GXY, Terry JM, Belgrader P, et al. (2017).** *Massively parallel digital
+transcriptional profiling of single cells.* Nature Communications 8:14049.
+[doi:10.1038/ncomms14049](https://doi.org/10.1038/ncomms14049)
+
+> The 10x Chromium system. Read the sections on multiplet rate against the number of cells
+> loaded, and compare them with your own Poisson calculation.
+
+## Split-and-pool
+
+**Rosenberg AB, Roco CM, Muscat RA, et al. (2018).** *Single-cell profiling of the developing
+mouse brain and spinal cord with split-pool barcoding.* Science 360:176–182.
+[doi:10.1126/science.aam8999](https://doi.org/10.1126/science.aam8999) — **start here**
+
+> SPLiT-seq. The key idea is fixed cells as their own compartments. Look for the barcode-collision
+> estimate and how it was checked.
+
+**Cusanovich DA, Daza R, Adey A, et al. (2015).** *Multiplex single-cell profiling of
+chromatin accessibility by combinatorial cellular indexing.* Science 348:910–914.
+[doi:10.1126/science.aab1601](https://doi.org/10.1126/science.aab1601)
+
+> Nuclei as compartments, with the barcode added inside by Tn5.
+
+**Datlinger P, Rendeiro AF, Boenke T, et al. (2021).** *Ultra-high-throughput single-cell RNA
+sequencing and perturbation screening with combinatorial fluidic indexing.* Nature Methods
+18:635–642. [doi:10.1038/s41592-021-01153-z](https://doi.org/10.1038/s41592-021-01153-z)
+
+> Two-stage encapsulation: pre-indexed nuclei loaded into droplets at a high rate.
+
+## Doublets
+
+**Stoeckius M, Zheng S, Houck-Loomis B, et al. (2018).** *Cell Hashing with barcoded
+antibodies enables multiplexing and doublet detection for single cell genomics.* Genome
+Biology 19:224. [doi:10.1186/s13059-018-1603-1](https://doi.org/10.1186/s13059-018-1603-1)
+
+> A wet-lab fix for doublets and for sample multiplexing in one step.
+
+## Reference material to keep open
+
+- **[NGS 101](https://henriksson-lab.github.io/NGS_101/)** pages for Drop-seq, inDrop, Seq-Well,
+  Microwell-seq, SPLiT-seq, sci-RNA-seq3 and sci-ATAC-seq show each barcode construct and which
+  reads carry the compartment barcode.
+- **Your vendor's loading table** — a table of cells loaded against expected recovery and
+  multiplet rate is the Poisson calculation with measured losses. Compare it to the arithmetic
+  from the lecture.
+
+## If you want to go further
+
+- Semi-permeable capsules and particle-templated emulsification (Clark et al. 2023,
+  [doi:10.1038/s41587-023-01685-z](https://doi.org/10.1038/s41587-023-01685-z)).
+- SPRITE, which uses split-pool tagging of crosslinked complexes (Quinodoz et al. 2018,
+  [doi:10.1016/j.cell.2018.05.024](https://doi.org/10.1016/j.cell.2018.05.024)).

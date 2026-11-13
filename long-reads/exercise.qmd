@@ -1,0 +1,215 @@
+---
+title: "Exercises — Long-read library preparation"
+---
+
+Pen and paper. Molarity arithmetic is part of several problems; use 650 g/mol per base pair.
+
+# Part 1 — Molecules and handling
+
+## E1. How much DNA is enough
+
+A kit asks for 100 fmol of DNA. Your sample is 60 kb on average.
+
+a. How many micrograms is that?
+b. How many micrograms would you need for 8 kb DNA?
+c. What does this say about a protocol written with a mass in micrograms?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Mass equals moles times length in base pairs times 650.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. 100 fmol is 1.0 x 10^-13 mol. Times 60 000 bp times 650 g/mol is 3.9 x 10^-6 g, so 3.9 µg.
+b. 1.0 x 10^-13 mol times 8000 times 650 is 5.2 x 10^-7 g, so 0.52 µg.
+c. A mass rule fits one length. For longer DNA, the same mass is fewer molecules, and the
+   library has fewer ends to adapt. Ultra-HMW preparations are therefore specified by
+   starting cells, or by a total amount that already allows for the length.
+:::
+
+## E2. The clean sample with short reads
+
+Your HMW DNA has a 260/280 ratio of 1.85 and a good yield. The run gives an N50 of 15 kb,
+while a pulsed-field gel of the same stock showed most molecules above 100 kb. List three
+places where the length could have been lost, and one measurement for each.
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+1. Mixing: vortexing or fast pipetting with narrow tips after the gel was run. Repeat the gel
+   from the tube you actually used.
+2. Cleanup: bead binding and elution, especially if the elution was cold or short. Compare the
+   gel before and after cleanup.
+3. Storage and freeze-thaw between the gel and the library. Run a gel again on the stock at
+   the time of library preparation.
+Absorbance ratios report purity, not integrity, so they cannot find any of these.
+:::
+
+## E3. Short molecules take over
+
+A SMRTbell library is 90% by mass 20 kb fragments and 10% by mass 2 kb fragments. What is the
+molar share of the 2 kb fragments? Why does it matter for loading?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+For 1 µg, the 20 kb fraction is 0.9 µg, which is 0.9 x 10^-6 divided by 20 000 x 650, or about
+69 fmol. The 2 kb fraction is 0.1 µg, which is 0.1 x 10^-6 divided by 2000 x 650, or about
+77 fmol. So the 2 kb molecules are about 53% of all molecules, from 10% of the mass. Short
+molecules are loaded preferentially, so they would take most of the reads. This is why size
+selection is not optional.
+:::
+
+# Part 2 — PacBio
+
+## E4. Skipping the nuclease
+
+A colleague proposes dropping the nuclease step from SMRTbell prep to save 15 minutes. What
+molecules would be in the library, and what would they do on the instrument?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+List every molecule that ligation can leave with a free end.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+Unligated inserts, inserts with only one hairpin, and leftover adapter would stay. Open
+inserts cannot be read round and round, so they give single-pass reads of poor accuracy, and
+adapter molecules produce reads with no insert. They compete for polymerase loading with the
+good molecules, so the run yields less useful data for the same cost.
+:::
+
+## E5. Read classes in Iso-Seq
+
+A cDNA is made with an oligo-dT primer and a TSO, then amplified with barcoded primers. For
+each read, decide whether to keep it as full length: (a) 5' primer, cDNA, poly(A), 3' primer;
+(b) cDNA, poly(A), 3' primer; (c) 5' primer, cDNA, 3' primer, 5' primer, cDNA, poly(A), 3' primer.
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. Keep: both ends are present, so the RT reached the 5' end.
+b. Discard as full length. The RT started at the tail but stopped early, or the RNA was cut,
+   so the 5' end is not the transcript start.
+c. Discard or split: two cDNAs are joined into one molecule, which cannot be a transcript.
+   Chimeras like this arise in the library, not in the cell.
+:::
+
+## E6. Why arrays
+
+A cDNA library has a mean transcript length of 2 kb. Explain why a standard SMRTbell of such
+cDNA uses a polymerase read poorly, and how an array of 8 transcripts helps.
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+Each reaction well holds one molecule, and the polymerase can read far longer than 2 kb. A 2 kb
+insert gives one transcript per well, with many passes over the same short insert. An array of
+8 transcripts is about 16 kb, so the same well returns up to eight transcripts. Transcripts
+are separated again in software, using the adapters between them. The saving is in sequencing
+cost per transcript. The prices are the extra PCR and ligation steps, and a longer chain of
+steps in which a transcript can be lost.
+:::
+
+# Part 3 — Nanopore
+
+## E7. Pick the kit
+
+Choose a kit for each case and say which property decides.
+
+a. 150 ng of HMW DNA from a clinical sample, and a result is wanted the same day.
+b. 6 million cultured human cells, and you want reads that cross a 400 kb satellite array.
+c. 24 patient samples, each 500 ng, to be run on one flow cell.
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Vendor selection charts list input, hands-on time, and typical read length for each kit.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. Rapid kit, RAD114: 100 to 150 ng and almost no hands-on time. It has no cleanup, so reads
+   are shorter and yield lower; that is accepted for speed.
+b. Ultra-long kit, ULK114: it starts from millions of cells and keeps the cut density low so
+   that reads reach hundreds of kb. Length is the deciding property.
+c. Native barcoding, NBD114.24: barcodes are ligated per sample, then pooled and loaded. It
+   fits the sample number and it does not need PCR.
+:::
+
+## E8. Ethanol after ligation
+
+A student finishes the adapter ligation and then performs the usual bead cleanup with 80%
+ethanol washes. The library does not sequence. Why, and what should the washes have been?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+The adapter carries a motor protein. Ethanol can denature it, so the adapted DNA no longer
+engages the pore properly. The ligation cleanup uses the kit's fragment buffers instead:
+long-fragment buffer to enrich molecules of roughly 3 kb and longer, or short-fragment buffer
+to keep all sizes. Ethanol is fine before the ligation, when there is no protein on the DNA.
+:::
+
+## E9. RNA: cDNA or direct
+
+You want to know whether m6A sits on the same transcript copy as a specific splice variant,
+using 400 ng of total RNA from human cells. Which route, and why does direct RNA still do an RT?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+Direct RNA, since modifications are read from the signal of the native strand, which cDNA
+discards. The RNA004 kit accepts 1 µg of total RNA, so 400 ng is on the low side and a
+poly(A) selection would be needed, or the yield will be modest. The RT is still done: it
+makes a cDNA strand that supports the RNA through the pore, and the cDNA strand is not
+sequenced.
+:::
+
+# Part 4 — Enrichment
+
+## E10. Cas9 enrichment
+
+In Cas9 enrichment, all ends in the DNA are dephosphorylated before Cas9 is added.
+
+a. What happens if you skip it?
+b. What happens if the guide pair flanks the target on only one side?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. Every free end in the sample, which is every molecule's end, accepts an adapter. The target
+   is then one of the many molecules and enrichment is lost.
+b. Only one new end exists, so adapters ligate on one side and reads start at the cut and run
+   outwards through the target. Coverage of the target is one-sided, but the method still
+   works; two flanking guides give both strands.
+:::
+
+## E11. Adaptive sampling arithmetic
+
+The target is 1% of the molecules. A read that is kept takes 10 s of pore time, and a read that
+is ejected takes 1 s. Compare on-target reads per pore hour with and without adaptive sampling.
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+Without it, every molecule takes 10 s: 360 molecules per hour, 1% on target, so 3.6 on-target
+reads. With it, the mean time per molecule is 0.01 x 10 + 0.99 x 1, which is 1.09 s. That is
+about 3300 molecules per hour, 1% on target, so about 33 on-target reads. The enrichment is
+about 9 fold. The gain is bounded by the ratio of the two times: no target density can give more
+than a 10 fold gain in this example.
+:::
+
+# Self-check
+
+1. Why is mass a poor way to specify input for HMW DNA?
+2. What does the SMRTbell nuclease step select?
+3. Why does a shorter insert give a more accurate PacBio read?
+4. What is the difference between a rapid and an ultra-long library?
+5. Why does barcoding come before the adapter in native barcoding?
+6. What does direct RNA sequence, and what is the cDNA strand for?
+7. Name one wet-lab and one software way to enrich a locus.
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Answers
+1. The same mass is fewer molecules as length increases, so fewer ends are available to adapt.
+2. Closed molecules: those with no free end.
+3. The polymerase passes around it more times, giving more consensus support.
+4. Both use a transposase. The ultra-long kit is diluted so that each molecule is cut only a few times, and it uses precipitation instead of beads.
+5. The adapter is added to the pool, so each sample must be marked first.
+6. The RNA strand. The cDNA strand supports it through the pore but is not sequenced.
+7. Cas9 enrichment, and adaptive sampling.
+:::

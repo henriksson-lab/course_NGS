@@ -37,6 +37,8 @@ Each has its own ends, and therefore its own library prep.
 ![](fig13-dnbseq.svg){width=92%}
 
 - No on-slide PCR, so no cluster duplicates and no index hopping of the Illumina kind
+- The nanoball is a rolling circle, the same copying step used in the lab
+  ([amplification](../amplification/lec.qmd))
 
 [Drmanac et al. 2010, doi:10.1126/science.1181498]{.small}
 
@@ -52,7 +54,8 @@ Each has its own ends, and therefore its own library prep.
 
 ![](fig15-smrtbell.svg){width=83%}
 
-- Hairpin adapters close the duplex into one single-stranded circle
+- Hairpin adapters close the duplex into one single-stranded circle: a molecule with no free
+  end left to ligate, extend or digest ([end chemistry](../end-chemistry/lec.qmd))
 
 ## One polymerase, watched in real time
 
@@ -81,7 +84,7 @@ Each has its own ends, and therefore its own library prep.
   index reads.
 
 The whole prep is shorter than an Illumina one, and far more sensitive to how you handled the
-sample.
+sample; [long reads](../long-reads/lec.qmd) is that prep, kit by kit.
 
 ## Nanopore: the molecule is the signal
 
@@ -108,13 +111,15 @@ sample.
   growing list on RNA including m6A and pseudouridine.
 
 This is the one capability that no amount of clever library chemistry gives you on a
-short-read instrument — there you must convert the modification into a base change first.
+short-read instrument — there you must first convert the modification into a base change
+([converting chemistry into sequence](../chemistry-to-sequence/lec.qmd)).
 
 ## Basecalling and error
 
 ![](fig20-error-profiles.svg){width=80%}
 
 - Decides whether you need UMIs, duplex reads or consensus to trust a variant call
+  ([barcodes and UMIs](../barcodes-umis/lec.qmd))
 
 [Nanopore review: Wang et al. 2021, doi:10.1038/s41587-021-01108-x]{.small}
 
@@ -127,8 +132,8 @@ A nanopore can decide, part-way through a molecule, that it does not want it —
 - Enrichment without any wet-lab capture step
 
 It is a reminder that on these platforms, some of what used to be library chemistry has moved
-into software. When you design a prep, ask whether the selection step you are planning could
-be done at the pore instead.
+into software. When you design a prep, ask whether the wet-lab enrichment you are planning
+([selection](../selection/lec.qmd)) could be done at the pore instead.
 
 ## Choosing a platform
 
@@ -148,9 +153,24 @@ be done at the pore instead.
 The chemistry in the rest of this course is largely shared. What changes between platforms is
 the handle you put on the ends — and how much you must protect the molecule to get there.
 
-## Where this goes next
+## Where this connects
 
-- **Anatomy of a library molecule** — the construct in detail, and how to read one
-- **The building blocks** — the steps that get a handle onto an unknown molecule
-- Every protocol in [NGS 101](https://henriksson-lab.github.io/NGS_101/) names its platform;
-  look at how the first and last steps change when the platform does
+**Read this next**
+
+- [Anatomy of a library molecule](../library-molecule/lec.qmd) — the construct in detail; the
+  same drawing habit works on a SMRTbell
+
+**What changes between platforms**
+
+- [Attaching a handle](../handles/lec.qmd) — the ends are the part a platform dictates
+- [Fragmentation and size control](../fragmentation/lec.qmd) — size selection sets HiFi
+  accuracy, and on nanopore the thing you must *not* do
+- [Cleanup and QC](../qc/lec.qmd) — long-read loading is counted in molecules, not nanograms
+
+**Where native reading pays off**
+
+- [Modifications and damage](../modifications/lec.qmd) — the conversion chemistries these
+  platforms let you skip
+
+Every protocol in [NGS 101](https://henriksson-lab.github.io/NGS_101/) names its platform;
+look at how the first and last steps change when the platform does.

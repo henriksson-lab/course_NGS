@@ -1,0 +1,250 @@
+---
+title: "Exercises — RNA libraries"
+---
+
+Pen and paper. The problems follow the two decks: choosing a route, strandedness, small RNA,
+and tag against full length.
+
+# Part 1 — Choosing a route
+
+## E1. A degraded tumour sample
+
+You have total RNA from archived FFPE human tumour sections, with most molecules under 200 nt.
+You want gene expression, including lncRNAs and histone genes.
+
+a. Poly(A) selection or rRNA depletion?
+b. What does the coverage along transcripts look like in each case?
+c. Which primer would you use for the first strand, and why not the other?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Ask what each method needs the RNA to still have, and what is left on a fragment that has been cut.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. rRNA depletion. Cut RNA has lost its tail unless it is the 3' piece, so selection would keep
+   only the 3' fragments. Histone mRNA and many lncRNAs have no tail at all.
+b. Poly(A) selection gives a steep 3' bias. Depletion gives coverage along the whole transcript,
+   though it is lower for long transcripts because short fragments do not span the sequence.
+c. Random hexamers. Oligo-dT needs the tail and would reproduce the 3' bias that depletion is
+   meant to avoid. Hexamers cost some composition bias at read starts and will prime on any
+   remaining rRNA.
+:::
+
+## E2. A missing gene family
+
+A poly(A)-selected library from human cells shows almost no reads on the replication-dependent
+histone genes, yet a depleted library from the same cells does. Explain.
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+Replication-dependent histone mRNAs end in a stem-loop and carry no poly(A) tail. Oligo-dT beads
+cannot hold them, so they are washed away with the rRNA. A depletion library keeps every RNA
+except those with probe sites.
+:::
+
+## E3. Which depletion method
+
+Your lab studies a human cell line and wants to remove rRNA, and also remove three abundant
+mitochondrial-derived transcripts that take 15% of reads. Compare RNase H depletion, biotin
+probes with beads, and Cas9 on cDNA, and say which property decides.
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Think about what must be designed for a new target, and at what step the removal happens.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+All three need a sequence-specific reagent per target: DNA oligos, biotin probes, or guide RNAs.
+The deciding property is how easily you can add targets and how early the removal acts. Adding
+three more targets to an oligo or guide set is cheap in each case. Cas9 on cDNA acts last, on
+the final adapter-flanked library, so it can remove targets that you only discover are abundant
+after a first run. RNase H and probe methods act on RNA, before RT, so they also save the
+reverse-transcription reagent that would otherwise be spent on the target.
+:::
+
+# Part 2 — Strand
+
+## E4. Counting the damage
+
+Two genes overlap by 2 kb on opposite strands. Gene A produces 800 read-pairs in the overlap
+and gene B produces 200. An unstranded library is sequenced and reads in the overlap are
+counted for any gene they fall on.
+
+a. What counts do A and B get in the overlap?
+b. How far off is each?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. 1000 reads in the overlap, counted for both genes: A gets 1000 and B gets 1000.
+b. A is 25% too high, since 1000 against 800. B is five times too high, since 1000 against 200.
+   The weaker gene is hit hardest.
+:::
+
+## E5. Strandedness is 88%, not 99%
+
+A dUTP library from human liver has 12% of reads on the wrong strand. List three possible causes
+and say how you would tell them apart.
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Each cause acts at a different step. Think of one in first strand, one in second strand and one
+after ligation.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+- The RT copied DNA: actinomycin D was left out or too dilute, giving antisense first strand.
+  The wrong-strand reads scale with expression, so they are highest on abundant genes.
+- dUTP was not incorporated in the second strand, for example because of dTTP carry-over. The
+  U-marked strand is then amplified. The wrong-strand fraction would be uniform across all
+  genes.
+- The silencing step did not act: the polymerase read through, or USER did not cut. The same
+  uniform signature as the previous cause; compare with an earlier lot or a different
+  polymerase.
+:::
+
+## E6. The wrong polymerase
+
+A colleague swaps the PCR polymerase in a dUTP protocol for one that copies through uracil,
+because it is cheaper. The library yield is fine. What happens to the data?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+Both strands now amplify, so half of the molecules come from the marked second strand. The
+library is no longer stranded: half of the reads are on the wrong strand, and the antisense
+signal in the previous exercise returns. Yield and quality metrics will look normal, which is
+why this goes unnoticed. A strandedness check is the only way to see it.
+:::
+
+# Part 3 — Small RNA
+
+## E7. Why pre-adenylated
+
+You ligate a normal 5' phosphorylated DNA adapter to a miRNA with T4 RNA ligase 1 and ATP.
+Describe the products, and say what the pre-adenylated, 3'-blocked adapter with a truncated
+ligase changes.
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+With ATP present, any 5' phosphate and 3' hydroxyl in the tube is a substrate.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+The ligase uses ATP to adenylate any 5' phosphate end. The miRNA has both a 5' phosphate and a
+3' OH, so it can ligate to itself, forming circles and concatemers, and the adapter can ligate
+to itself too. With a pre-adenylated adapter the activated end already exists and ATP is
+omitted, so the truncated ligase cannot activate the miRNA's own 5' phosphate. The 3' block on
+the adapter stops it from ligating to itself. The only joint that can form is miRNA 3' OH to
+adapter 5' App.
+:::
+
+## E8. A dimer peak
+
+The Bioanalyzer trace of your small-RNA library shows a large peak slightly below the miRNA
+peak. You have very little RNA. Propose three changes, in order of how early they act, and
+say what each one costs.
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+1. Reduce the adapter concentration in the ligation. Fewer leftovers form dimers, but ligation
+   efficiency falls, which matters most when RNA is scarce.
+2. Enzymatic removal of free 3' adapter before the second ligation, as in kits that include it.
+   It costs a step, but acts before the dimer can form.
+3. Size selection after PCR. It works on the product, so it always helps, but the dimer is only
+   a few tens of bases shorter, so the gel must be high resolution and some product is lost.
+:::
+
+## E9. Footprints with the wrong ends
+
+An RNase I digest leaves ribosome footprints with a 5' hydroxyl and a 3' phosphate. If you ligate
+a pre-adenylated 3' linker directly, what happens, and what step would you add?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+The ligase needs a 3' hydroxyl, and the footprint has a 3' phosphate, so almost nothing ligates
+and the library is empty. Treating with T4 PNK, which removes the 3' phosphate, fixes this.
+The 5' hydroxyl does not matter here, because the footprint's 5' end is never ligated: the RT
+copies it, and the cDNA is circularised afterwards.
+:::
+
+# Part 4 — Tag against full length
+
+## E10. Three questions, three routes
+
+Pick one protocol and one reason for each:
+
+a. Gene counts from 5000 single cells, lowest cost per cell.
+b. Which isoform of one gene is expressed in 40 individual cells.
+c. The exact transcription start sites in human liver.
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. A 3' tag protocol with the barcode in the RT primer, such as CEL-Seq2: cells are pooled
+   before amplification, so cost per cell is low, and one end is enough for counting.
+b. A full-length protocol such as SMART-seq2: reads must cover the exons that distinguish the
+   isoforms. 40 cells is few enough that the cost per cell is acceptable.
+c. A cap-selected 5' protocol such as CAGE or STRT-seq. Cap selection ensures reads start at
+   the true 5' end.
+:::
+
+## E11. Template switching is not a proof of full length
+
+A SMART-seq2 library shows read starts spread across many internal positions of a gene. Your
+collaborator concludes that there are many alternative promoters. What is the alternative
+explanation, and what would you do?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Which RNA molecules can receive the extra Cs?
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+The RT also adds extra Cs to any RNA end it reaches, including fragments of degraded RNA that
+have no cap, so a TSO can attach there too. Internal starts may be degradation products rather
+than promoters. Check RNA integrity, compare with a cap-selected dataset, or use a method that
+selects through the cap, such as cap trapping, before calling start sites.
+:::
+
+## E12. How many cycles
+
+You have 20 pg of cDNA from one cell and need about 2 ng before tagmentation. Assume the PCR
+efficiency is 85% per cycle, so each cycle multiplies by 1.85.
+
+a. How many cycles?
+b. What goes wrong if you run five more?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. The fold needed is 2 ng over 20 pg, which is 100. Cycles = ln 100 divided by ln 1.85, which
+   is 4.605 divided by 0.615, about 7.5, so 8 cycles. In practice the first cycles are less
+   efficient and kits use more, so use the number the protocol gives and check the yield.
+b. Extra cycles add little mass, since the reaction runs out of primers and enzyme. They do add
+   more PCR duplicates, more bias against difficult templates, and more chimeric products
+   between molecules. With no UMI there is no way to remove the duplicates later.
+:::
+
+# Self-check
+
+1. Why does poly(A) selection give 3' bias on degraded RNA?
+2. What does RNase H depletion need that a poly(A) selection does not?
+3. What marks the second strand, and what is different between TruSeq and NEBNext in using it?
+4. Which of the two ligases in a small-RNA protocol needs ATP, and why does the order matter?
+5. Why is circularisation used in Ribo-seq?
+6. What does a TSO contain, and what extra bases on the RNA does it pair with?
+7. Which type of protocol would you choose for counting, and which for isoforms?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Answers
+1. Cutting removes the tail from all but the 3' piece, so only the 3' piece is kept.
+2. A set of DNA oligos covering the rRNA of the species, plus RNase H and a DNase step.
+3. dUTP in the second strand. TruSeq relies on a polymerase that stalls at dU; NEBNext uses USER enzyme to cut at dU.
+4. T4 RNA ligase 1 with ATP, for the 5' adapter. The 3' adapter is pre-adenylated and uses no ATP. The order ensures that the 5' step acts only on molecules that already carry a 3' adapter.
+5. It places the end that has no adapter next to the linker, so one primer pair amplifies across the junction without a second ligation.
+6. A 5' blocker, a PCR handle, an optional barcode or UMI, and a 3' run of G; it pairs with the extra Cs added by the RT.
+7. A 3' tag protocol for counting; a full-length protocol for isoforms.
+:::

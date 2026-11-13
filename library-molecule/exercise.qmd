@@ -1,0 +1,197 @@
+---
+title: "Exercises — Anatomy of a library molecule"
+---
+
+Pen and paper. Draw the molecule first in every problem; most of the answers fall out of the
+drawing. Sequences are from the TruSeq and Nextera adapters used in the deck.
+
+# Part 1 — Reading a construct
+
+## E1. Label this sequence
+
+This is the 5′ end of the top strand of a TruSeq library, 70 bases long, before the insert:
+
+`AATGATACGGCGACCACCGAGATCTACACTAGATCGCACACTCTTTCCCTACACGACGCTCTTCCGATCT`
+
+a. Which part is the P5 region, which the index, which the Read 1 site? Give base positions.
+b. At which position does the insert begin, and at which cycle does Read 1 first read it?
+c. The adapter has a Y shape. Which letters of this strand take part in the stem?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+The P5 region is 29 bases and the index is 8. The stem is the last stretch of the Read 1 site
+that is complementary to the other arm: the 12 bp stem plus the T overhang.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. P5 is positions 1–29 (`AATGATACGGCGACCACCGAGATCTACAC`), the index is 30–37 (`TAGATCGC`), and
+   the Read 1 site is 38–70 (`ACACTCTTTCCCTACACGACGCTCTTCCGATCT`, 33 bases).
+b. The insert begins at position 71. Read 1 starts right after the primer site, so cycle 1
+   reads base 71 of this strand, the first base of the insert.
+c. The last 13 bases, `GCTCTTCCGATCT`: 12 pair with the other arm, and the final T is the 3′
+   overhang that pairs with the insert's A.
+:::
+
+## E2. From construct to read structure
+
+A construct reads, left to right:
+P5 – i5 (8) – Read 1 site – cell barcode (12) – UMI (8) – insert – Read 2 site – i7 (8) – P7.
+
+You want the cell barcode, the UMI and 56 bases of insert in Read 1, 56 bases of insert in
+Read 2, and both sample indexes. Give the read structure as R1 / I1 / I2 / R2.
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+Read 1 runs from the primer site over the barcode, the UMI and into the insert:
+12 + 8 + 56 = 76 cycles. Index 1 is i7: 8. Index 2 is i5: 8. Read 2 is 56.
+Read structure `76 / 8 / 8 / 56`. The first 20 bases of Read 1 are not genome, and the
+analysis must be told so.
+:::
+
+## E3. From read structure to construct
+
+A protocol is run as `20 / 10 / 10 / 80`. Read 1 is an 8-base well barcode followed by a
+12-base UMI. Draw the construct. Where does the insert have to be read from?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+P5 – i5 (10) – Read 1 site – well barcode (8) – UMI (12) – insert – Read 2 site – i7 (10) – P7.
+Read 1 covers only the barcode and the UMI and stops before the insert, so the **whole
+insert information comes from Read 2**, read from the Read 2 side. Read 1 contains
+nothing from the genome, and the pipeline must be told so.
+:::
+
+# Part 2 — Why the architecture looks like this
+
+## E4. Why not two straight adapters?
+
+A colleague proposes ligating a mixture of a P5-type adapter A and a P7-type adapter B, instead
+of a Y adapter, "to save on oligo cost". Both are added in equal amounts and ligate at random.
+
+a. What fraction of molecules has P5 at one end and P7 at the other?
+b. What does this predict for the yield of clusterable library?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. Each end is A or B with probability ½, independently: A/A ¼, B/B ¼, A/B or B/A ½.
+   Only the mixed molecules carry both a P5 and a P7 end.
+b. At most half the library clusters, even in the ideal case. The Y adapter makes every
+   end carry both arms, so no molecule is lost to the wrong combination.
+:::
+
+## E5. How many Nextera fragments are usable?
+
+Tn5 is loaded with tag A and tag B in a ratio of 1 : 1 and tags each end independently.
+Only A/B fragments become P5 … P7 molecules.
+
+a. What fraction is usable?
+b. What if the loading is 3 : 1?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+If a fraction p of ends carries tag A, a fragment is A/B with probability 2p(1 − p).
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. p = ½, so 2 × ½ × ½ = 50 %.
+b. p = ¾, so 2 × ¾ × ¼ = 37.5 %.
+Even loading is best. The real kit does not say what its ratio is, so treat these as the
+shape of the problem, not a prediction.
+:::
+
+## E6. Why does Nextera XT start its PCR with 72 °C?
+
+After tagmentation, each strand carries a tag on its 5′ end and the DNA has a 9-nt gap. A
+primer for tag A has the sequence of the tag. Why must the 3′ ends be extended before
+the first denaturation, and what happens if you skip it?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+A primer with the sequence of the tag anneals to the **complement** of the tag. That complement
+does not exist yet: the tag is a single-stranded 5′ flap on one strand, and the opposite strand
+ends 9 bases short of it. The 72 °C step lets the polymerase extend the recessed 3′ end across
+the gap and copy the tag, which creates the primer binding site. Without it the first PCR
+cycles have no template for the primers and yield falls.
+:::
+
+## E7. Full adapters or truncated adapters?
+
+Choose, and say which property of the molecule decides it.
+
+a. 2 µg of human genomic DNA, 30× coverage, no wish for PCR duplicates or GC bias.
+b. 96 samples of 1–5 ng each, from a plate.
+c. The same as (b), but you must be certain that no index is swapped.
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. **Full adapters, PCR-free** (TruSeq DNA PCR-free): the input is high enough and the
+   ligation delivers the finished molecule. Quantify by qPCR.
+b. **Truncated adapters or tagmentation with index PCR**: the input is far too low to go
+   without amplification, and the indexes are installed by the PCR primers.
+c. Still (b), with **unique dual indexes** and a thorough clean-up: swapping comes from free
+   adapter or primer in the pool, whichever architecture is used.
+:::
+
+# Part 3 — What goes wrong
+
+## E8. A peak at 135 bp
+
+A library Bioanalyzer trace shows the expected 400 bp peak and a clear peak at about 135 bp.
+The library is a TruSeq-style one with 8-base indexes.
+
+a. Which molecule is it? Explain the size from the parts of the molecule.
+b. What do the reads from these clusters look like?
+c. Why is a *small* amount of it harmful?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. An adapter dimer: both adapter oligos ligated with no insert. P5 (29) + i5 (8) + Read 1
+   site (33) on one arm and 33 + 8 + 24 on the other: 70 + 65 = 135 bp.
+b. Adapter from the first cycle: Read 1 runs straight into the other arm's sequence,
+   past the index and into P7′, and Read 2 does the same. The molecule ends well before
+   the read does.
+c. Short molecules cluster more efficiently, so the dimers take a bigger share of the
+   clusters than of the molecules.
+:::
+
+## E9. An index inside Read 1
+
+In a pool of short fragments, many Read 1 sequences end in
+`…AGATCGGAAGAGCACACGTCTGAACTCCAGTCACTTAGGCATCTCGTATGCC`.
+
+a. Which part of the construct has Read 1 reached?
+b. Which index does it contain, and what will the Index 1 read of that cluster show?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. The insert is shorter than the read, so Read 1 has run through the Read 2 site
+   (`AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC`), then the index, then the P7 end.
+b. The index is `TTAGGC`, between the Read 2 site and `ATCTCGTATGCC`. The Index 1 read of the
+   same cluster shows `TTAGGC` as well, in the same orientation. It is a free check that the
+   demultiplexing used the right orientation.
+:::
+
+# Self-check
+
+1. Name the seven parts of an Illumina library molecule in order.
+2. Which of them are fixed by the platform, which are chosen per sample, and which are yours?
+3. What would go wrong with a straight adapter, and how does the Y adapter prevent it?
+4. Why does Tn5 waste half of the fragments, and how is the rest recovered?
+5. Given a construct, how do you derive the read structure, and how do you go back?
+6. Which molecules in a tube do not cluster, and which cluster but give nothing?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Answers
+1. P5, i5, Read 1 site, insert, Read 2 site, i7, P7.
+2. Fixed: P5, P7 and the two primer sites. Per sample: i5 and i7. Yours: the insert.
+3. A straight adapter gives the same flow-cell end twice, so the molecule cannot bridge.
+   The Y adapter has two different arms on every end, so every strand is P5 … P7.
+4. Tags go on at random, so half of the fragments are A/A or B/B; only A/B pick up both an i5
+   and an i7 primer in the tailed PCR. The rest does not cluster.
+5. List the parts in order, draw a read arrow from each primer site, and count the bases it
+   covers; the reverse is the same drawing read the other way.
+6. No cluster: same end twice, one end only. Cluster but useless: adapter dimers, and
+   inserts shorter than the read (adapter read-through). Poor: inserts that are too long.
+:::

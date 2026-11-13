@@ -1,0 +1,72 @@
+---
+title: "Readings — Amplification"
+---
+
+Reading is optional but each item is here for a reason. Start with the two marked **start
+here** if you read nothing else.
+
+## Papers
+
+**Saiki RK, Gelfand DH, Stoffel S, et al. (1988).** *Primer-directed enzymatic amplification of
+DNA with a thermostable DNA polymerase.* Science 239:487–491.
+[doi:10.1126/science.2448875](https://doi.org/10.1126/science.2448875)
+
+> The paper that made PCR practical by replacing the heat-labile enzyme. Read it for the
+> reasoning behind the thermal cycle, which every other method in this deck is a reply to.
+
+**Aird D, Ross MG, Chen WS, et al. (2011).** *Analyzing and minimizing PCR amplification bias
+in Illumina sequencing libraries.* Genome Biology 12:R18.
+[doi:10.1186/gb-2011-12-2-r18](https://doi.org/10.1186/gb-2011-12-2-r18) — **start here**
+
+> Measures what PCR does to coverage and shows how changing the protocol reduces it. Look at the
+> GC-content plots.
+
+**Kebschull JM, Zador AM (2015).** *Sources of PCR-induced distortions in high-throughput
+sequencing data sets.* Nucleic Acids Research, article gkv717.
+[doi:10.1093/nar/gkv717](https://doi.org/10.1093/nar/gkv717) — **start here**
+
+> Separates the kinds of damage PCR does: errors, template switching and chimeras, and
+> amplification bias. Look at which of them grow with cycle number.
+
+**Dean FB, Hosono S, Fang L, et al. (2002).** *Comprehensive human genome amplification using
+multiple displacement amplification.* PNAS 99:5261–5266.
+[doi:10.1073/pnas.082089499](https://doi.org/10.1073/pnas.082089499)
+
+> The human-DNA case for phi29 and random primers. Compare the coverage evenness it reports with
+> what you would expect from PCR.
+
+**Zong C, Lu S, Chapman AR, Xie XS (2012).** *Genome-wide detection of single-nucleotide and
+copy-number variations of a single human cell.* Science 338:1622–1626.
+[doi:10.1126/science.1229164](https://doi.org/10.1126/science.1229164)
+
+> MALBAC, designed to make the amplification quasi-linear. Compare the amplification diagram
+> with the branching picture of MDA.
+
+**Schmidt M, Schwarzwaelder K, Bartholomae C, et al. (2007).** *High-resolution insertion-site
+analysis by linear amplification-mediated PCR (LAM-PCR).* Nature Methods 4:1051–1057.
+[doi:10.1038/nmeth1103](https://doi.org/10.1038/nmeth1103)
+
+> Linear amplification used to find where a vector went in human cells. Look at why the first
+> step is a single-primer reaction.
+
+**Potter CJ, Luo L (2010).** *Splinkerette PCR for mapping transposable elements in
+Drosophila.* PLoS ONE 5:e10168.
+[doi:10.1371/journal.pone.0010168](https://doi.org/10.1371/journal.pone.0010168)
+
+> The splinkerette design, and a comparison with the inverse PCR it replaces. The organism is
+> the fly; the molecular logic applies to any genome.
+
+**Lou DI, Hussmann JA, McBee RM, et al. (2013).** *High-throughput DNA sequencing errors are
+reduced by orders of magnitude using circle sequencing.* PNAS 110:19872–19877.
+[doi:10.1073/pnas.1319590110](https://doi.org/10.1073/pnas.1319590110)
+
+> Rolling-circle consensus. Look at the error rate before and after, and at which errors
+> consensus cannot remove.
+
+## Reference material to keep open
+
+- Your polymerase's datasheet: error rate, proofreading, and uracil tolerance
+- [NEB selection charts](https://www.neb.com/en/tools-and-resources/selection-charts) for
+  strand-displacing and uracil-tolerant polymerases
+- [NGS 101](https://henriksson-lab.github.io/NGS_101/): the protocol collection this course
+  draws its examples from

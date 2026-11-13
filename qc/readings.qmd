@@ -1,0 +1,51 @@
+---
+title: "Readings — Cleanup, quantification and quality control"
+---
+
+Much of this subject lives in protocol notes and vendor documents, not papers. The papers below are the ones that explain why a step works, and give numbers you can check against your own bench.
+
+## Start here
+
+**Rohland N, Reich D (2012).** *Cost-effective, high-throughput DNA sequencing libraries for multiplexed target capture.* Genome Research 22:939–946.
+[doi:10.1101/gr.128124.111](https://doi.org/10.1101/gr.128124.111) — **start here**
+
+> A homemade bead mix and a careful look at how PEG concentration sets what binds. Look for the bead-to-sample ratios and how the size cut-off moves.
+
+**Buehler B, Hogrefe HH, Scott G, et al. (2010).** *Rapid quantification of DNA libraries for next-generation sequencing.* Methods 50:S15–S18.
+[doi:10.1016/j.ymeth.2010.01.004](https://doi.org/10.1016/j.ymeth.2010.01.004) — **start here**
+
+> Why qPCR is the right measure for loading and what it counts that absorbance and fluorescence do not.
+
+## Cleanup
+
+**DeAngelis MM, Wang DG, Hawkins TL (1995).** *Solid-phase reversible immobilization for the isolation of PCR products.* Nucleic Acids Research 23:4742–4743.
+[doi:10.1093/nar/23.22.4742](https://doi.org/10.1093/nar/23.22.4742)
+
+> The origin of SPRI. Two pages: read what PEG and salt do to binding.
+
+**Meyer M, Kircher M (2010).** *Illumina sequencing library preparation for highly multiplexed target capture and sequencing.* Cold Spring Harbor Protocols 2010:pdb.prot5448.
+[doi:10.1101/pdb.prot5448](https://doi.org/10.1101/pdb.prot5448)
+
+> A full bench protocol with each clean-up spelled out, and the reasons. Notice where beads are used instead of columns.
+
+## Amplification and what goes wrong
+
+**Aird D, Ross MG, Chen W-S, et al. (2011).** *Analyzing and minimizing PCR amplification bias in Illumina sequencing libraries.* Genome Biology 12:R18.
+[doi:10.1186/gb-2011-12-2-r18](https://doi.org/10.1186/gb-2011-12-2-r18)
+
+> Which parts of a genome are lost to PCR, and how much cycle number and polymerase matter.
+
+**Kozarewa I, Ning Z, Quail MA, et al. (2009).** *Amplification-free Illumina sequencing-library preparation facilitates improved mapping and assembly of (G+C)-biased genomes.* Nature Methods 6:291–295.
+[doi:10.1038/nmeth.1311](https://doi.org/10.1038/nmeth.1311)
+
+> What coverage looks like when PCR is removed. Compare GC bias curves.
+
+**Costello M, Fleharty M, Abreu J, et al. (2018).** *Characterization and remediation of sample index swaps by non-redundant dual indexing on massively parallel sequencing platforms.* BMC Genomics 19.
+[doi:10.1186/s12864-018-4703-0](https://doi.org/10.1186/s12864-018-4703-0)
+
+> Why free adapter and pooling practice matter after the library is made.
+
+## Reference material to keep open
+
+- Head SR, et al. (2014), *Library construction for next-generation sequencing*, BioTechniques 56:61–77, [doi:10.2144/000114133](https://doi.org/10.2144/000114133)
+- Your instrument's loading guide and your bead supplier's size-selection table

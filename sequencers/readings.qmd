@@ -72,7 +72,7 @@ bioinformatics and applications.* Nature Biotechnology 39:1348–1365.
 
 ## Indexes and what goes wrong with them
 
-**Kircher M, Sawyer S, Meyer M (2011).** *Double indexing overcomes inaccuracies in multiplex
+**Kircher M, Sawyer S, Meyer M (2012).** *Double indexing overcomes inaccuracies in multiplex
 sequencing on the Illumina platform.* Nucleic Acids Research 40:e3.
 [doi:10.1093/nar/gkr771](https://doi.org/10.1093/nar/gkr771)
 

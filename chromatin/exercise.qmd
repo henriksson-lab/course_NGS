@@ -1,0 +1,266 @@
+---
+title: "Exercises — Chromatin and protein–DNA"
+---
+
+Pen and paper. Try each one before opening the **Hint**, and the hint before the
+**Solution**. The reasoning is the point, not the answer.
+
+Have the [NEB selection charts](https://www.neb.com/en/tools-and-resources/selection-charts)
+open for the enzyme question, and the protocol pages on
+[NGS 101](https://henriksson-lab.github.io/NGS_101/) for the comparisons.
+
+# Part 1 — What the reads mean
+
+## E1. One read, one sentence
+
+For each method, complete the sentence "one read is ...": ATAC-seq, MNase-seq, ChIP-seq,
+CUT&RUN, DamID. Then say which of the five gives you a signal that is **not** the end of a
+DNA fragment the enzyme made.
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Ask for each method what happened to the DNA that is now at the start of the read, and what
+did that.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+- ATAC-seq: a Tn5 insertion point, so a base that was accessible.
+- MNase-seq: the edge of a stretch of DNA that a nucleosome protected from the nuclease.
+- ChIP-seq: the end of a sonicated fragment that carried the protein. The site is somewhere
+  inside the fragment, not at the read start.
+- CUT&RUN: the edge of DNA protected by the bound protein, where MNase was stopped.
+- DamID: a GATC site that was methylated on adenine, then cut by DpnI.
+
+DamID is the odd one out. The read start is a GATC cut by DpnI, but the information is the
+**methylation mark** the fusion protein wrote earlier. It reports where the protein had been,
+not where an enzyme cut because of it.
+:::
+
+## E2. A ladder that is missing
+
+An ATAC-seq library from 50,000 human cells gives a fragment-size trace with one tall peak
+below 100 bp and no peaks at about 200 and 400 bp. What are two possible explanations, and
+which change to the protocol would you try first?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+The ladder exists because Tn5 cuts only occasionally between nucleosomes. What would make it
+cut everywhere, and what would remove the nucleosomes?
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+1. **Over-transposition.** Too much Tn5 for the number of nuclei, for example because the
+   cells were counted wrongly or many were lost. Tn5 cuts every accessible stretch many times
+   and also reaches into more nucleosome-wrapped DNA, so only short pieces remain. Fix: count
+   nuclei carefully, scale the enzyme to the cell number, and shorten the reaction.
+2. **Damaged or lysed nuclei.** If the chromatin has been stripped or degraded, there is no
+   nucleosome pattern to protect the DNA, and Tn5 acts on naked DNA. Fix: gentler lysis, fresh
+   cells, avoid freeze-thaw of the cell pellet.
+
+Try the first: it is the cheapest change, and the other cause would also show as low viability
+before you start.
+:::
+
+## E3. Where the reads go
+
+A cell has about 6.2 billion bp of nuclear DNA (diploid). Suppose 3% of it is accessible to
+Tn5, and that Tn5 inserts equally often per base in every accessible region, including
+mitochondrial DNA. The mitochondrial genome is 16.6 kb long and fully accessible.
+
+What fraction of reads would be mitochondrial in a cell with 1,000 copies of mtDNA, and in
+one with 5,000? What does this tell you about Omni-ATAC's extra wash?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Compare the **accessible base pairs** from the two sources. Nuclear accessible DNA is 3% of
+6.2 Gb.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+Accessible nuclear DNA: 0.03 × 6.2 × 10⁹ ≈ 186 Mb.
+
+- 1,000 copies: 16.6 kb × 1,000 = 16.6 Mb; fraction = 16.6 / (186 + 16.6) ≈ **8%**.
+- 5,000 copies: 83 Mb; fraction = 83 / (186 + 83) ≈ **31%**.
+
+The assumptions are illustrative: copy number differs between cell types, and the nuclear
+share of accessible DNA is not exactly 3%. The point is that mitochondrial DNA has no
+nucleosomes, so it takes a large share of reads in cells with many copies. Omni-ATAC washes
+with detergent-containing buffer before transposition, so mitochondria released by lysis are
+removed rather than carried into the reaction.
+:::
+
+# Part 2 — Design problems
+
+## E4. Choose the enzyme
+
+You want to profile a transcription factor from 10,000 human cells. You have a good rabbit
+antibody. Compare pA-MNase and pA-Tn5 as the tethered enzyme. State which property of each
+decides the choice, and which you would use for a first attempt.
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Look at the NEB charts for what each enzyme leaves at the ends. Then think about what the
+washes do to a protein that binds DNA weakly and briefly.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+- **pA-MNase** (CUT&RUN): works in physiological salt, so weakly bound factors stay. It
+  releases short fragments that mirror the protein's footprint. The cost is a library step
+  after extraction.
+- **pA-Tn5** (CUT&Tag): the library is made in the same reaction, so it is more economical at
+  low input. The usual high-salt washes remove Tn5 that is bound non-specifically, but they can
+  also remove a weakly bound transcription factor. Tn5 also prefers open DNA, which creates
+  background at accessible sites.
+
+For a first attempt on a transcription factor I would choose CUT&RUN: it is the better
+established method for TFs, and the salt conditions are gentler. For histone marks, CUT&Tag.
+Both need an IgG control.
+:::
+
+## E5. The control that is missing
+
+You ChIP an unrelated factor and get strong peaks at the promoters of highly expressed genes.
+A colleague says the factor is a general activator. What is your alternative explanation, and
+what two controls would settle it?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Remember what sonication does to open versus closed chromatin.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+Open chromatin shears more easily and is over-represented in the input of any ChIP, and
+highly expressed loci can be pulled down non-specifically. The peaks may reflect the
+chromatin, not the factor.
+
+Controls: (1) a **sequenced input** (sonicated, no antibody) to see the baseline at those
+promoters, and (2) an **IgG or knock-out/knock-down control** to see what the antibody pulls
+down without its target. Biological replicates, and a second antibody if available, add
+further confidence.
+:::
+
+## E6. Footprints
+
+You want to ask whether a transcription factor occupies its motif in ATAC-seq data from one
+human cell type. List what you need in the data and in the analysis for a footprint to be
+believable.
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+A footprint is a few tens of bases. How many insertions fall there? And what else could make a
+dip?
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+- **Depth**: a footprint is a dip in the number of insertions over a few tens of bases, so you
+  need many insertions aggregated over many sites of the same motif.
+- **Insertion positions**, not fragments or read centres, shifted for the Tn5 offset.
+- **Bias correction**: Tn5 has a sequence preference, so a dip can be a sequence effect. Compare
+  with Tn5 on naked genomic DNA, or use a model of the cutting bias.
+- **Orthogonal evidence**: a ChIP or CUT&RUN profile of the same factor.
+
+Bulk accessibility data do not show which of two alleles or cells carried the factor.
+:::
+
+## E7. The step that restores the molecule
+
+After tagmentation, the DNA is purified and the PCR begins with 5 minutes at 72 °C before the
+first denaturation. Why? What happens if you leave it out, and will you get an error message?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Tn5 transfers one strand of each adapter. What does the other strand look like at the 9 nt gap?
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+Tn5 joins one strand of each adapter to the 5' end of the fragment; the other strand is left
+with a 9 nt gap. During the 72 °C step the polymerase extends the 3' end of the fragment's
+other strand across the gap, copying the adapter sequence, so that both strands become full
+templates for the primers.
+
+Without it the first cycles are much less efficient and the library is poor in yield. There
+is no error message: the PCR runs, and the result is a weak or absent library.
+:::
+
+## E8. Count the marks
+
+DamID depends on GATC sites. In a random genome of 3.1 Gb, how many GATC sites do you expect,
+and what is the average spacing? What does this imply for resolution, and why must a Dam-only
+control be run?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+A 4 bp site appears once per 4⁴ bases in random sequence.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+4⁴ = 256, so one site per 256 bp on average: 3.1 × 10⁹ / 256 ≈ **12 million** sites. The real
+number differs because the genome is not random.
+
+The average spacing is a few hundred bp, but the methylation from a tethered Dam extends
+beyond one site, and the reads are placed at the fragments between GATC sites. As a result
+resolution is in the range of kilobases rather than base pairs.
+
+A free Dam methylates open, accessible DNA on its own, so without a Dam-only control you would
+mistake accessibility for binding.
+:::
+
+## E9. A reversal that was forgotten
+
+A student performs ChIP-seq but accidentally skips the overnight 65 °C step. They still
+proceed with proteinase K and column purification. What do they see, and why?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Which bonds does the heat break, and what does proteinase K do on its own?
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+Formaldehyde crosslinks are reversed by heat, not by protease. Proteinase K digests the
+protein, but peptide remnants stay covalently attached to the DNA. Such DNA tends to be lost
+in the purification and to inhibit the enzymes of library construction, so the yield is very
+low. The loss falls on the immunoprecipitated DNA, since that is the DNA with protein attached.
+You would see an empty or failed ChIP library, with no error message to explain it.
+:::
+
+# Self-check
+
+Answer without looking anything up.
+
+1. What is the difference between "cut and keep" and "pull down" methods?
+2. Why does ATAC-seq need paired-end reads to show a nucleosome ladder?
+3. What does protein A do in pA-MNase?
+4. Why does CUT&RUN have lower background than ChIP?
+5. What is the 72 °C step in ATAC and CUT&Tag libraries for?
+6. What does a calling-card read represent?
+7. Which two controls does every ChIP-like experiment need?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Answers
+1. In cut and keep, the enzyme cuts and the cut ends are the library (DNase, ATAC, MNase).
+   In pull down, the DNA is cut everywhere and an antibody selects (ChIP, DAP-seq).
+2. The ladder is in the fragment **length**, which needs both ends of each fragment.
+3. It binds the constant region of the antibody, bringing the enzyme to the target.
+4. Only the DNA released at the target leaves the nucleus; the rest is never in solution.
+5. It fills the gap left by Tn5, so the adapter sequence can be copied.
+6. A transposon insertion site, left near where the TF was bound while it was expressed.
+7. A sequenced input or IgG control for background, and replicates.
+:::
+
+# Going further
+
+- Open the [Omni-ATAC](https://henriksson-lab.github.io/NGS_101/omni-atac__10.1038+nmeth.4396/omni-atac.html)
+  and [CUT&Tag](https://henriksson-lab.github.io/NGS_101/cut-tag__10.1038+s41467-019-09982-5/cut-tag.html)
+  pages. Both end in the same Tn5 library. Write down, step by step, where the adapters come
+  from and which steps could be skipped in each.
+- Take a published track of a histone mark and ask, before looking at the methods, which of the
+  methods in this unit made it. What features would give it away?

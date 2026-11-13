@@ -71,8 +71,9 @@ protocol step: what is the state of the ends now?
 
 - A **nick** is a broken backbone with every base present: a ligase can seal it
 - A **gap** is missing bases: a polymerase must fill it in first, then a ligase seals
-- Several protocols depend on this distinction — Tn5 leaves a 9 nt gap, nick translation
-  walks a nick along the molecule
+- Several protocols depend on this distinction — Tn5 leaves a 9 nt gap
+  ([transposases](../enzymes/lec-transposases.qmd)), nick translation walks a nick along the
+  molecule
 
 ## What a ligase actually requires
 
@@ -82,6 +83,8 @@ protocol step: what is the state of the ends now?
 - Forgetting a 5'-phosphate is one of the most common silent failures in library prep:
   no error, no warning, just no product
 - It is also used deliberately — leave the phosphate off and only one strand gets joined
+- Which ligase will accept which substrate is a chart you can read
+  ([ligases, kinases, phosphatases](../enzymes/lec-ligases.qmd))
 
 [Lehman 1974, *DNA ligase: structure, mechanism, and function*, doi:10.1126/science.186.4166.790]{.small}
 
@@ -90,6 +93,10 @@ protocol step: what is the state of the ends now?
 ![](fig06-end-to-enzyme.svg){width=88%}
 
 Read every protocol step as a transformation: **which end state goes in, which comes out.**
+
+This deck names the end states and says which enzyme cares about which. Making a chosen end
+state on purpose — and switching an end off so that only one reaction can happen — is the
+whole of [end chemistry](../end-chemistry/lec.qmd).
 
 ## Worked example: why end repair and A-tailing exist
 
@@ -123,7 +130,7 @@ Where it bites:
 - **Primer annealing** — two primers in one reaction should have similar Tm, or one dominates
 - **Bead washes** — wash too warm or too low-salt and your captured material comes off
 - **Hybridisation capture** — hours at a fixed temperature; the bait set must be designed to
-  work at one temperature
+  work at one temperature ([selection](../selection/lec.qmd))
 - **Poly(A) capture** — oligo-dT–RNA duplexes are weak and AT-only; this is why poly(A)
   selection uses cold binding and warm elution
 
@@ -145,7 +152,8 @@ They are short, perfectly formed, and amplify better than anything else in the t
   take over a sequencing run
 - Prevention: keep adapter concentration matched to the amount of input DNA, use A/T
   overhangs so adapters cannot self-ligate, remove them by size selection
-- Detection: a sharp low peak on a fragment-analyser trace, or a flood of adapter-only reads
+- Detection: a sharp low peak on a fragment-analyser trace ([QC](../qc/lec.qmd)), or a flood
+  of adapter-only reads
 
 [Head et al. 2014, *Library construction for NGS: overviews and challenges*, doi:10.2144/000114133]{.small}
 
@@ -162,10 +170,11 @@ They are short, perfectly formed, and amplify better than anything else in the t
 ![](fig10-iupac.svg){width=61%}
 
 - `N` means the synthesiser used all four bases at that position: one tube, many molecules
-- This is how **UMIs** and **random hexamers** are made
+- This is how **UMIs** and **random hexamers** are made; how long a random stretch has to be,
+  and where it may sit, is [barcodes and UMIs](../barcodes-umis/lec.qmd)
 - `VN` anchors an oligo-dT primer at the start of the poly(A) tail
 
-[UMIs: Kivioja et al. 2011, doi:10.1038/nmeth.1778]{.small}
+[UMIs: Kivioja et al. 2012, doi:10.1038/nmeth.1778]{.small}
 
 ## An oligo is more than its sequence
 
@@ -198,7 +207,9 @@ long one.
 
 ![](fig13-rna-ends.svg){width=78%}
 
-The end a transcript happens to have determines which chemistry can attach anything to it.
+The end a transcript happens to have determines which chemistry can attach anything to it —
+a small RNA library is built around nothing else
+([small RNA and tag protocols](../rna/lec-small-rna.qmd)).
 
 ## Working with RNA
 
@@ -224,11 +235,20 @@ Ask these about any molecule at any step of any protocol:
 
 If you can answer these after every step, you can read any protocol in the collection.
 
-## Where this goes next
+## Where this connects
 
-- **How sequencers read DNA** — what the finished molecule must look like
-- **Anatomy of a library molecule** — P5, index, read primer sites, insert
-- **The enzyme toolbox** — the enzymes that perform the transformations in this deck
+**Read these next**
+
+- [How sequencers read DNA](../sequencers/lec.qmd) — what the finished molecule must look like
+- [Anatomy of a library molecule](../library-molecule/lec.qmd) — P5, index, primer sites, insert
+
+**Where this vocabulary is used**
+
+- [The enzyme toolbox](../enzymes/lec.qmd) — the enzymes that perform the transformations above
+- [Attaching a handle](../handles/lec.qmd) — the five ways to join a known sequence to an
+  unknown one; each demands a different end
+- [Fragmentation](../fragmentation/lec.qmd) — where ragged, damaged ends come from in the first place
+- [Design patterns](../design/lec.qmd) — the five questions become a ledger kept step by step
 
 Reference while you work: [NGS 101](https://henriksson-lab.github.io/NGS_101/) draws every
-protocol in the collection base by base, with the end states at every step.
+protocol base by base, with the end states at every step.

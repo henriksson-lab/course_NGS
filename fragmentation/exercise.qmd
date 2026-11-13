@@ -1,0 +1,306 @@
+---
+title: "Exercises — Fragmentation and size control"
+---
+
+Pen and paper. Try each one before opening the **Hint**, and the hint before the
+**Solution** — the reasoning is the point, not the answer.
+
+Have the [NEB selection charts](https://www.neb.com/en/tools-and-resources/selection-charts)
+open for the enzyme questions.
+
+# Part 1 — Cutting
+
+## E1. Pick the cut
+
+For each goal, pick a fragmentation method and say which property of the method decides it.
+
+a. Whole-genome sequencing of a human blood sample, 10 ng of DNA, PE150
+b. Methylation at CpG-rich promoters in many patient samples, with the same loci in every sample
+c. Which parts of the genome are open in primary human T cells, from 50 000 cells
+d. Transcriptome of total RNA from a human cell line, with even coverage along the transcripts
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Ask three questions for each: what do I start with (DNA, RNA, chromatin), do I need the same ends
+in every sample, and do I want the fragments to report on the sample?
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. **Tagmentation or enzymatic fragmentation.** Low input and one tube decide it. Acoustic shearing
+   at 10 ng works but loses more in handling.
+b. **Restriction digest** (a CpG-cutting enzyme such as MspI), as in reduced-representation
+   bisulfite sequencing. The deciding property is that every fragment starts at a recognition
+   site, so the same loci appear in every sample.
+c. **Tagmentation in nuclei** (ATAC-seq), or DNase I. The deciding property is that the cut falls
+   where the chromatin is open, so the fragments are themselves the measurement.
+d. **Metal-ion hydrolysis of the RNA before reverse transcription.** It is near-random, and the
+   fragmentation happens before the cDNA is made, so coverage is not tied to the 3' end.
+:::
+
+## E2. The wrong DNA concentration
+
+A tagmentation kit asks for 1 ng of human genomic DNA. Your absorbance reading gave 5 ng/ul and
+you used 0.2 ul. A fluorescence assay later shows 1.3 ng/ul in the same stock. The library
+trace comes out with most of the DNA below 150 bp.
+
+Explain the result and say which reading to trust.
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Tn5 cuts until it runs out of enzyme. What happens when there is more enzyme per molecule of DNA
+than intended?
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+The absorbance reading counts anything that absorbs at 260 nm: RNA, free nucleotides and
+single-stranded DNA as well as double-stranded genomic DNA. The fluorescence assay is specific for
+double-stranded DNA. The tube held 0.2 x 1.3 = 0.26 ng, a quarter of the intended 1 ng.
+The enzyme was therefore in four-fold excess, every molecule was cut many times, and the
+fragments are too short. Trust the fluorescence reading, and quantify tagmentation input with it
+every time.
+:::
+
+## E3. RNA fragments that will not ligate
+
+You fragment RNA with magnesium at 94 degrees, purify it, and try to ligate a 3' adapter
+directly with T4 RNA ligase. Almost nothing ligates. Why, and what are two ways round it?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Look back at the end chemistry in the nucleic-acids unit. What does a ligase need on the RNA's
+3' end?
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+Metal-ion hydrolysis leaves a **2',3'-cyclic phosphate** on the 3' end and a **5'-OH** on the
+5' end. The ligase needs a free 3'-OH on the acceptor, and the cyclic phosphate does not offer
+one.
+
+Ways round: (1) treat with T4 polynucleotide kinase, whose 3' phosphatase activity opens the
+cyclic phosphate and gives a 3'-OH, and which also phosphorylates 5'-OH ends; (2) change the order
+of the steps and make cDNA from intact RNA first, then fragment and ligate to DNA, accepting some
+3' bias if you prime with oligo-dT.
+:::
+
+## E4. Bisulfite and adapters
+
+You attach standard Illumina adapters to sheared human DNA and then bisulfite-convert it. The
+library fails: nothing amplifies. A colleague suggests either methylated adapters or adding the
+adapters after the conversion. Explain why the library failed and compare the two fixes.
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+What does bisulfite do to an unmethylated cytosine, and what does that do to a primer binding
+site that contains cytosines? Bisulfite is also harsh on DNA.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+Bisulfite converts unmethylated cytosines to uracil, which reads as thymine. The adapter
+sequences contain cytosines, so after conversion they no longer match the primers, and the
+library does not amplify. The treatment also fragments DNA by itself, so much of the library is
+destroyed before it can be amplified.
+
+**Methylated adapters** keep their cytosines through conversion, but the DNA is still fragmented
+and damaged after adapters have been put on. **Adding adapters after conversion** (post-bisulfite
+adapter tagging) puts the fragile step first and the adapters last, so the adapters are never
+exposed to bisulfite. The price is that the converted template is single-stranded and has to be
+tagged by a different chemistry.
+:::
+
+# Part 2 — Size
+
+## E5. Read length against insert
+
+You run 2 x 150 paired-end reads. A library has three populations of insert: 90 bp, 250 bp and
+500 bp. For each, say what the sequencer reads. How many bases of a 150 base read are adapter
+for the 90 bp insert, and how much do the two reads overlap for the 250 bp insert?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+- **90 bp**: each read goes 150 - 90 = 60 bases into the adapter. That is 40 % of every read,
+  and the same for both reads. The adapter must be trimmed.
+- **250 bp**: the reads cover 300 bases of a 250 base molecule, so they overlap by 50 bases.
+- **500 bp**: the reads cover 300 of 500 bases, leaving a 200 base unsequenced middle.
+:::
+
+## E6. Bead arithmetic
+
+Your ligation reaction is 60 ul, cleaned to remove adapters, and you want to keep inserts of
+roughly 300 to 500 bp with a double-sided selection at 0.55x and 0.7x.
+
+a. How many ul of beads do you add in each step, and what do you keep each time?
+b. Assuming the bead stock holds 20 % PEG, what is the final PEG concentration in each step?
+c. A colleague computed the second addition as 0.15x of the supernatant. Which way does the
+   edge move?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Both ratios are counted against the original 60 ul. The second addition is what is missing from
+the total. Final PEG is the stock concentration multiplied by the beads' share of the total volume.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. First: 0.55 x 60 = **33 ul**; keep the **supernatant** (the long tail is on the beads and
+   is discarded). Second: total 0.7 x 60 = 42 ul, so add **9 ul**; keep the **beads** and
+   discard the supernatant.
+b. First step: 20 x 0.55 / 1.55 = 7.1 %. Second: 20 x 0.7 / 1.7 = 8.2 %.
+c. The supernatant is 60 + 33 = 93 ul. 0.15 x 93 = 14 ul, not 9, so the total is 47 ul of
+   beads, 0.78x of the original sample. The ratio is higher, so the lower edge moves to
+   shorter fragments and more short material is kept.
+:::
+
+## E7. PEG in the sample
+
+You clean up 30 ul of a ligation that contains 5 % PEG with 24 ul of beads (0.8x), expecting the
+same cut-off as 0.8x in water. The bead stock is 20 % PEG.
+
+a. What is the final PEG concentration, and what is the equivalent ratio in water?
+b. How many ul of beads would give the intended concentration of 0.8x in water?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+The final concentration is the total PEG divided by the total volume. In water, 0.8x gives
+20 x 0.8 / 1.8 = 8.9 %.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. Total PEG: 30 x 5 + 24 x 20 = 630 units in 54 ul, so 11.7 %. In water, ratio r gives
+   20r/(1 + r) = 11.7 %, so r = 1.4. The clean-up behaves like 1.4x, and keeps much shorter
+   fragments than planned.
+b. Solve (30 x 5 + V x 20) / (30 + V) = 8.9: 150 + 20V = 267 + 8.9V, so V = 10.5 ul, about
+   0.35x. The cleaner choice is to remove the PEG first or dilute the reaction, then use the
+   standard ratio.
+:::
+
+## E8. What went wrong
+
+A double-sided selection of 0.6x then 0.8x is meant to give a 300 to 500 bp library. The trace
+after the clean-up shows the right peak, but with a tail of 150 to 250 bp fragments, and a small
+adapter dimer peak. The elution volume and the ethanol are fine. The bench notes say the second
+addition was 16 ul to a sample that started at 50 ul. What happened, and what is the effect?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+The second addition should have been 10 ul (0.8 x 50 = 40 ul total, 30 ul already added). 16 ul
+brings the total to 46 ul, or 0.92x. The higher ratio moved the lower edge to shorter fragments:
+they bound the beads and were kept. That explains the shoulder at 150 to 250 bp and the dimer.
+The fix is to count against the original volume.
+:::
+
+# Part 3 — Tricks
+
+## E9. Counting cells with shear points
+
+In an HTLV-1 infected T-cell clone assay, each integration site is sequenced from the junction
+to a random shear point. Assume shear lengths from 150 to 450 bp can be resolved to 1 bp, so 300
+distinct lengths, all equally likely.
+
+a. Expected distinct lengths from a clone of 40 cells?
+b. From a clone of 300 cells?
+c. Which gives the worse count, and what are two ways to improve it?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+The chance that a given length is missed by all n cells is (1 - 1/300)^n. Use
+(1 - 1/300)^n ≈ e^(-n/300).
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. 300 x (1 - e^(-40/300)) = 300 x (1 - 0.875) = **37.5**: a 6 % undercount.
+b. 300 x (1 - e^(-1)) = 300 x 0.632 = **190**: a 37 % undercount.
+c. The large clone. Two remedies: widen the range of shear lengths, which adds possible
+   labels, or model the collisions statistically and recover the abundance from the observed
+   length counts (the approach of Berry et al. 2012). Splitting the sample into aliquots before
+   amplification is a third: it keeps each aliquot well below the number of possible lengths.
+:::
+
+## E10. Pick the enzyme, and spot the trap
+
+You want a short, fixed-length tag from the 5' end of every transcript, cut from a linker you
+attach to the cDNA. Use the NEB charts.
+
+a. Which two properties of a Type IIS or IIG enzyme do you check first?
+b. The enzyme's recognition site has 6 bases. Roughly how often will it occur inside a
+   human transcript, and what does that do to your tags?
+c. How do you make sure that only the cut next to the linker is read?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+A given 6 base site occurs by chance about once every 4^6 bases. Then think about what a streptavidin
+capture could keep.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. The **cut offset** (how many bases from the site, which sets the tag length) and whether the
+   cut is **sensitive to methylation** of the DNA you will digest. Also check the end it leaves.
+b. About once every 4 096 bases, but many sites are degenerate or have the two possible
+   orientations, so more often. A 2 kb transcript has a good chance of one internal site, which
+   cuts it in the middle and gives a tag that is not from the 5' end.
+c. Put a biotin on the linker and capture with streptavidin after the cut. Internally cut
+   fragments lack the linker and wash away. Tags from the linker side are the only ones kept.
+:::
+
+## E11. Keeping a long molecule long
+
+You want 50 kb reads from human blood. A good extraction gives you molecules whose breakage is
+a Poisson process: each handling step puts, on average, 0.5 breaks into every 50 kb of DNA. The
+protocol has four such steps: lysis mixing, a transfer, a purification and a tube change.
+
+a. What fraction of 50 kb molecules survives all four steps intact?
+b. If you cut the number of steps to two, what is it?
+c. Which steps do you remove first?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. The probability of no break in one step is e^(-0.5) = 0.61. After four steps:
+   e^(-2) = **0.135**, about 14 %.
+b. e^(-1) = **0.37**, about 37 %.
+c. The steps that put in the most shear: vortexing or vigorous pipetting first, then column
+   clean-up and any syringe step. Use wide-bore tips, gentle inversion and, where possible, a
+   single transfer.
+:::
+
+# Self-check
+
+Answer without looking anything up.
+
+1. Which methods in this unit give a random cut, and which cut where the sequence or chromatin
+   decides?
+2. Why does Tn5 fragment size depend on the amount of DNA?
+3. Why is DNA stable in alkali while RNA is not?
+4. Does a higher bead ratio keep shorter or longer fragments?
+5. In a double-sided selection, which fraction do you keep after the first addition?
+6. Why must the second addition be counted against the original sample volume?
+7. Why does PEG in the sample change a size cut-off?
+8. Why do random shear points act as molecular labels?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Answers
+1. Acoustic shearing, enzymatic fragmentation and metal-ion hydrolysis are near-random. Restriction
+   enzymes, MNase, DNase I and (to a degree) tagmentation depend on sequence or chromatin.
+2. Tn5 cuts until the enzyme is used up, so the more DNA per enzyme, the fewer cuts per molecule.
+3. RNA has a 2'-OH that can attack the neighbouring phosphate; DNA has none.
+4. Shorter ones: a higher ratio means more PEG, so shorter DNA binds too.
+5. The supernatant. The long fragments are on the beads.
+6. Because the final PEG concentration depends on the bead volume relative to the original
+   solution: what you want is a total of 0.8x of the original sample, not 0.2x of what is left.
+7. The beads respond to the total PEG concentration, and the PEG in the sample adds to what
+   the beads bring.
+8. Each molecule is cut at a different place, so reads from different cells have different
+   lengths, while PCR copies of one molecule keep one length.
+:::
+
+# Going further
+
+- Take a kit you use and write down, for each step, what the volume of beads is relative to
+  the sample. Compute the final PEG concentration for each.
+- Run your own bead ladder: a DNA ladder cleaned at 0.6x, 0.8x and 1.0x, then a trace for each.
+  Compare to the curves in the deck.

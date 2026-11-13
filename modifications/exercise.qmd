@@ -1,0 +1,234 @@
+---
+title: "Exercises — Modifications, damage and dynamics"
+---
+
+Pen and paper. Most problems are of the kind you meet when a result looks wrong, or when you have to choose a method before ordering reagents.
+
+# Part 1 — DNA methylation
+
+## E1. Reading a bisulfite experiment
+
+At one CpG, 30 reads cover the site: 21 show C and 9 show T. The unmethylated lambda spike-in was sequenced as well: 12,000 cytosines were counted, and 60 of them were read as C.
+
+a. What is the raw methylation level at the CpG?
+b. What is the conversion failure rate?
+c. Correct the estimate, and say whether the correction matters here.
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Every cytosine in lambda is unmethylated, so any C that survives is a failure of conversion. A fraction e of the unmethylated molecules at the CpG will also read as C.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. 21 / 30 = 70%.
+
+b. e = 60 / 12,000 = 0.5%.
+
+c. Observed = m + (1 - m) e, so m = (observed - e) / (1 - e) = (0.70 - 0.005) / 0.995 = 69.8%. The correction is negligible here. The real limit is coverage: with 30 reads the standard error of 70% is sqrt(0.7 x 0.3 / 30), about 8 points. The correction matters at a site with a low raw level, where a fixed 0.5% is a large share: a raw 3% becomes (0.03 - 0.005) / 0.995 = 2.5%.
+:::
+
+## E2. Pick the method and say which property decides
+
+For each project, name the method you would use and the property that decides.
+
+a. 5 ng of cell-free DNA from plasma, genome-wide 5mC.
+b. Brain tissue: you need 5mC and 5hmC separately.
+c. 400 patient samples, 500 ng of DNA each, promoter methylation only.
+d. A repeat-rich region where reads must be phased over 20 kb.
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. **EM-seq** (or TAPS). Bisulfite fragments and destroys much of a small, already short sample; enzymatic conversion does not damage the DNA. Input and fragment length decide.
+
+b. **TAB-seq or oxBS-seq** (or TAPS with protection of 5hmC). Bisulfite reads both as C; the extra step protects one and converts the other. What decides is the ability to separate the two marks. oxBS needs a subtraction of two noisy measurements, TAB-seq reads 5hmC directly.
+
+c. **RRBS.** MspI digestion plus size selection concentrates reads on CpG-rich regions, so many samples can be run at low cost. Cost per sample decides; the price is that CpG-poor regions are not seen.
+
+d. **Nanopore sequencing**, which reads modified bases from the current without conversion and gives long reads. Read length decides, and no chemistry step breaks the DNA.
+:::
+
+## E3. A trap: standard adapters in a bisulfite library
+
+A student ligates ordinary TruSeq-type adapters to sheared DNA, treats the library with bisulfite, and amplifies. The yield is close to zero.
+
+a. What happened to the adapters?
+b. Give two ways to design around it.
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. Every cytosine in the adapter is unmethylated, so bisulfite converted it to uracil. The primer sites no longer match the PCR primers and the flow-cell oligos, and the DNA is also fragmented by the treatment, so molecules cut between their adapters cannot be amplified.
+
+b. Use adapters in which every C is replaced by 5-methylcytosine, which resists conversion, as in the original RRBS protocol; or tag after conversion (PBAT-type protocols), which puts adapters on the single-stranded DNA that survived. Enzymatic conversion (EM-seq) avoids the problem by converting the library after adapters are on, with adapters that tolerate the enzymes.
+:::
+
+## E4. Subtracting two noisy numbers
+
+At site 1, BS-seq reads 80% C and oxBS-seq reads 55% C. At site 2, BS-seq reads 40% C (50 reads) and oxBS-seq reads 46% C (50 reads).
+
+a. Estimate 5mC and 5hmC at site 1.
+b. What does site 2 imply, and what do you conclude?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Which of the two experiments reports 5mC alone, and which reports both?
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. oxBS reads 5mC alone: 55%. BS reads 5mC + 5hmC: 80%. So 5hmC = 80 - 55 = 25%.
+
+b. The subtraction gives 40 - 46 = -6%, which is impossible. The standard errors are sqrt(0.4 x 0.6 / 50) = 6.9 points and sqrt(0.46 x 0.54 / 50) = 7.0 points, so the difference has a standard error of about 9.9 points. A value of -6 is within one standard error of 0: site 2 has little or no 5hmC, and the data cannot say more. Subtracting noisy numbers needs high coverage.
+:::
+
+## E5. RRBS arithmetic
+
+MspI cuts at C^CGG. In a region, the cut sites lie at 100, 160, 300, 330, 700 and 1500 bp. The library keeps fragments of 40-220 bp.
+
+a. Which fragments are kept, and what share of the 1,400 bp is covered?
+b. Why does the CpG at each cut carry no methylation information?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. The fragments are 60, 140, 30, 370 and 800 bp. Those of 60 and 140 bp are kept, covering 200 of 1,400 bp, about 14%. The 30 bp fragment is too short; 370 and 800 bp are too long. This is why RRBS reaches regions where cut sites are dense, such as CpG islands.
+
+b. MspI cuts regardless of methylation, and end repair fills in the cut with unmethylated cytosine, so the first base of each read reflects the fill-in and not the original DNA. It is trimmed during analysis.
+:::
+
+# Part 2 — Damage and replication
+
+## E6. Why biotin on the first adapter
+
+A diploid human cell has 6.2 Gb of DNA. END-seq sonicates it to 200 bp. Suppose the treatment gives 40 double-strand breaks per cell.
+
+a. How many sonication ends are there, and how many break ends?
+b. What would the reads look like if the first hairpin carried no biotin?
+c. Why are the cells embedded in agarose?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. 6.2 x 10^9 / 200 = 3.1 x 10^7 fragments, so 6.2 x 10^7 sonication ends. 40 breaks give 80 break ends: one in about 780,000.
+
+b. Without biotin selection, the second adapter goes on all 6.2 x 10^7 sonication ends and the library is a random genome library. Almost every read is background, with coverage that is roughly uniform, and the breaks hide in the noise.
+
+c. DNA in solution is sheared by pipetting and handling, which would create new breaks. In agarose the long DNA is protected while proteins are digested and enzymes are added.
+:::
+
+## E7. A site reported by one method and not the other
+
+CHANGE-seq reports 120 off-target sites for a guide. GUIDE-seq in a human cell line, using the same guide, finds 15, all of which are among the 120.
+
+a. Give three reasons the other 105 were not found by GUIDE-seq.
+b. What could a site found only by GUIDE-seq mean?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. The CHANGE-seq reaction uses naked DNA with no chromatin, so it reports where the nuclease can cut, not where it does. In cells many sites are closed or cut too rarely to be detected; the tag integrates only into breaks that are repaired by NHEJ; and the tag must be delivered into the cell.
+
+b. It is cut in the cell for a reason the in vitro assay could not reproduce: a sequence variant in the cell line that is not in the DNA used for CHANGE-seq, a break produced by something other than the nuclease (the tag also marks spontaneous breaks), or a very rare site below the in vitro sensitivity. Check it with amplicon sequencing.
+:::
+
+## E8. Reading a repair outcome
+
+The target, with the Cas9 cut in the six-base middle segment, is:
+
+`CCTAGAC GATC AAGTCC GATC TTGCA`
+
+(spaces are for reading). A read of the cut site from an edited cell is `CCTAGACGATCTTGCA`.
+
+a. How many bases were lost?
+b. Which repair pathway fits, and why can you not say which copy of GATC was lost?
+c. What fraction of the library would you expect to look like this if the pathway were knocked down?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. The target is 7 + 4 + 6 + 4 + 5 = 26 bp and the read is 16 bp, so 10 bp are lost: AAGTCC and one copy of GATC.
+
+b. A deletion flanked by a repeat, leaving one copy, is the pattern of microhomology-mediated end joining. The joined sequence is the same whichever copy is lost, so the alignment cannot tell: a caller reports one of the two equivalent descriptions.
+
+c. It should fall, and the other outcomes (for example one-base insertions or perfect rejoining) should rise to fill the total. A change in the mix of outcomes is the readout, as in Repair-seq.
+:::
+
+## E9. Replication timing from counts
+
+In three genomic windows, normalised read counts from the early and late S-phase fractions are: window A, 800 early and 200 late; window B, 100 early and 400 late; window C, 300 early and 300 late.
+
+a. Compute log2(early / late) for each window and classify it.
+b. A copy-number experiment compares S-phase with G1 cells and gives a ratio of 1.6 for one window. What fraction of the S-phase cells had replicated it?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. A: log2(800 / 200) = log2(4) = 2, early. B: log2(100 / 400) = log2(0.25) = -2, late. C: log2(1) = 0, ambiguous, in the middle of S phase or a transition region.
+
+b. A region has 2 copies before replication and 4 after, so the ratio is 1 + f, where f is the fraction replicated. A ratio of 1.6 means 60% of the cells had replicated the window. This also shows why the ratio only spans 1 to 2.
+:::
+
+# Part 3 — RNA
+
+## E10. Which A could be m6A?
+
+An m6A antibody pull-down gives a peak over a 100 nt region that contains these five-mers (5' to 3'): GGACU, UGACA, AGACC, GAACC, CGACU, GGCCU, UUACG. The motif is DRACH, where D is A, G or U, R is A or G, and H is A, C or U.
+
+a. Which five-mers fit DRACH?
+b. What experiment would tell you which one is methylated?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. D, R, A, C, H at positions 1 to 5. GGACU, UGACA, AGACC and GAACC fit. CGACU fails at position 1 (C is not D); GGCCU fails at position 3 (must be A); UUACG fails at position 2 (U is not R) and position 5 (G is not H).
+
+b. A single-base method: miCLIP (the crosslink gives a truncation or a mutation at the site), or an antibody-free chemistry such as GLORI, where the fraction of A that survives deamination at each site is the methylation level.
+:::
+
+## E11. From a labelling time course to a half-life
+
+RNA Y shows 12% labelled after 2 h of 4sU. Assume steady state.
+
+a. Compute its decay rate and half-life.
+b. Would a 15-minute pulse be a good design for RNA Y?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+The labelled fraction after t hours is 1 - exp(-k t).
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. 0.12 = 1 - exp(-2k), so k = -ln(0.88) / 2 = 0.128 / 2 = 0.064 per hour. The half-life is ln 2 / 0.064 = 10.8 h.
+
+b. No. After 15 minutes only 1 - exp(-0.064 x 0.25) = 1.6% would be labelled, which is difficult to measure above the background. Long-lived RNAs need a longer pulse, or a pulse-chase, while 4sU at long exposure becomes a stress on the cell: a balance is needed.
+:::
+
+## E12. A CLIP library with lost signal
+
+A lab runs iCLIP for an RNA-binding protein, but its library preparation keeps only cDNAs longer than 100 nt, to avoid adapter dimers.
+
+a. What happens to the signal?
+b. Which readout would be less affected, and what does it need?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. The signal in iCLIP is the truncated cDNA that stops at the crosslinked peptide, which is often short. A length filter throws away a large share of the informative molecules, so the read starts no longer pile up one base after the crosslink, and the sites are blurred or lost.
+
+b. A mutation readout, as in PAR-CLIP, because the cDNA reads through the crosslink and carries a T-to-C change, so it does not have to be short. It needs cells labelled with 4-thiouridine. A better fix in iCLIP is to keep the short cDNAs and remove dimers by other means.
+:::
+
+# Self-check
+
+1. In one sentence, what does bisulfite do, and which base ends up as C in the data?
+2. Why does EM-seq tolerate low input better than bisulfite?
+3. TAPS converts the modified base instead of the unmodified one. What follows for sequence complexity?
+4. What is the purpose of a size-matched input in eCLIP?
+5. Why does PRO-seq give single-nucleotide resolution and GRO-seq less?
+6. What does the end of a read mean in each of: iCLIP, PRO-seq, END-seq?
+7. How can reverse transcriptase report a chemical mark, and what are the three readouts?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Answers
+1. It deaminates unmethylated cytosine to uracil; methylated cytosine resists, so C in the read marks the methylated (or hydroxymethylated) base.
+2. It converts with enzymes instead of harsh chemistry, so the DNA is not fragmented and few molecules are lost.
+3. Unmodified C stays C, so the genome keeps four letters: alignment is easier and coverage more even than after bisulfite.
+4. It carries the same background of sticky and abundant RNA through the same gel region and steps, so a peak must exceed it.
+5. A biotinylated nucleotide is a poor substrate for the next addition, so the polymerase usually stops after one base and the 3' end is its active site; BrUTP labels a longer stretch.
+6. iCLIP: the base after the crosslink. PRO-seq: the polymerase position. END-seq: the end of the DNA after resection.
+7. As a stop (truncation), as a mismatch (mutation), or after a chemical conversion of the base.
+:::

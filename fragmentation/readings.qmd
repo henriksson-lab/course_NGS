@@ -1,0 +1,75 @@
+---
+title: "Readings — Fragmentation and size control"
+---
+
+Reading is optional but each item is here for a reason. Start with the two marked **start
+here** if you read nothing else.
+
+## Papers
+
+**Rohland N, Reich D (2012).** *Cost-effective, high-throughput DNA sequencing libraries for
+multiplexed target capture.* Genome Research 22:939–946.
+[doi:10.1101/gr.128124.111](https://doi.org/10.1101/gr.128124.111) — **start here**
+
+> A home-made bead clean-up written out in full, with the PEG and salt concentrations given.
+> Read it to see that a "bead ratio" is a recipe you can write down and change, not a property
+> of a brand.
+
+**DeAngelis MM, Wang DG, Hawkins TL (1995).** *Solid-phase reversible immobilization for the
+isolation of PCR products.* Nucleic Acids Research 23:4742–4743.
+[doi:10.1093/nar/23.22.4742](https://doi.org/10.1093/nar/23.22.4742)
+
+> Two pages that introduce the carboxyl-bead, PEG and salt method that SPRI is named after. Look
+> for how DNA is released again in low salt.
+
+**Lis JT, Schleif R (1975).** *Size fractionation of double-stranded DNA by precipitation with
+polyethylene glycol.* Nucleic Acids Research 2:383–390.
+[doi:10.1093/nar/2.3.383](https://doi.org/10.1093/nar/2.3.383)
+
+> The older, bead-free observation underneath it all: the PEG concentration needed to
+> precipitate DNA depends on its length. Look at how the figures relate PEG and size.
+
+**Adey A, Morrison HG, Asan, et al. (2010).** *Rapid, low-input, low-bias construction of
+shotgun fragment libraries by high-density in vitro transposition.* Genome Biology 11:R119.
+[doi:10.1186/gb-2010-11-12-r119](https://doi.org/10.1186/gb-2010-11-12-r119) — **start here**
+
+> The paper that turned transposition into a fragmentation method. Look at how fragment size
+> follows the enzyme-to-DNA ratio, and what the authors say about bias.
+
+**Poptsova MS, Il'icheva IA, Nechipurenko DY, et al. (2014).** *Non-random DNA fragmentation in
+next-generation sequencing.* Scientific Reports 4:4532.
+[doi:10.1038/srep04532](https://doi.org/10.1038/srep04532)
+
+> Evidence that "random" fragmentation methods are not quite random. Useful when a coverage
+> dip or peak seems to follow the sequence.
+
+**Boyle AP, Davis S, Shulha HP, et al. (2008).** *High-resolution mapping and characterization
+of open chromatin across the genome.* Cell 132:311–322.
+[doi:10.1016/j.cell.2007.12.014](https://doi.org/10.1016/j.cell.2007.12.014)
+
+> A DNase I digest in human cells whose cut ends are the data. Look at how the digestion is
+> limited and how tags are captured.
+
+**Gillet NA, Malani N, Melamed A, et al. (2011).** *The host genomic environment of the
+provirus determines the abundance of HTLV-1–infected T-cell clones.* Blood 117:3113–3122.
+[doi:10.1182/blood-2010-10-312926](https://doi.org/10.1182/blood-2010-10-312926)
+
+> Shows shear-point lengths used as a count of cells carrying an integration. Compare with the
+> statistical treatment in Berry et al. 2012,
+> [doi:10.1093/bioinformatics/bts004](https://doi.org/10.1093/bioinformatics/bts004).
+
+**Velculescu VE, Zhang L, Vogelstein B, Kinzler KW (1995).** *Serial analysis of gene
+expression.* Science 270:484–487.
+[doi:10.1126/science.270.5235.484](https://doi.org/10.1126/science.270.5235.484)
+
+> The classic fixed-length tag from a Type IIS enzyme. The method is obsolete, the idea is not:
+> see where the tag is cut relative to the recognition site.
+
+## Reference material to keep open
+
+- [NEB selection charts](https://www.neb.com/en/tools-and-resources/selection-charts):
+  recognition sequence, end type, and for Type IIS and IIG enzymes the cut offset
+- Your bead supplier's size-selection application note, for the ratio-to-size table. Treat it
+  as a starting point and calibrate on a ladder
+- [NGS 101](https://henriksson-lab.github.io/NGS_101/): the protocol collection that this
+  course draws its examples from

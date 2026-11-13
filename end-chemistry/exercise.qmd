@@ -1,0 +1,116 @@
+---
+title: "Exercises — End chemistry"
+---
+
+Pen and paper. Try each problem before opening the **Hint**, and the hint before the **Solution**.
+
+Have the [NEB selection charts](https://www.neb.com/en/tools-and-resources/selection-charts) open for the enzyme questions.
+
+# Part 1 — Reading ends
+
+## E1. What is this end?
+
+Name the 5' and 3' end states, and the first enzyme you would need, for DNA cut with (a) EcoRI, (b) micrococcal nuclease, (c) Cas9 in vitro, and for RNA cut with (d) RNase A. The goal is ligation of a DNA adapter at the 3' end.
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Use the table of end sources in the deck. Which of them has a 3' end that is not OH?
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+(a) 5'-P and 3'-OH: ligatable directly. (b) 5'-OH and 3'-phosphate: needs T4 PNK, which removes the 3'-P and, with ATP, adds a 5'-P. (c) Blunt, 5'-P and 3'-OH: ligatable. (d) 5'-OH and a 2',3'-cyclic phosphate: needs T4 PNK without ATP (3' phosphatase) to make the 3'-OH before the 3' adapter.
+:::
+
+## E2. Does it ligate?
+
+Say whether each pair ligates, and if not what is missing.
+
+a. A 5'-OH blunt end to a 5'-P blunt end of a double-stranded adapter, both 3'-OH.
+b. Two ends with identical 5' GATC overhangs, one with no 5' phosphate.
+c. A nick in a duplex where the upstream strand ends in a 3'-phosphate and the downstream strand starts with a 5'-phosphate.
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. Only the strand where the 5'-P meets a 3'-OH is joined; the other strand stays nicked. b. One strand is joined; the other remains nicked until the phosphate is supplied. c. No: the upstream end must be a 3'-OH; a phosphatase or PNK must first remove the 3'-phosphate.
+:::
+
+# Part 2 — Repair
+
+## E3. Why dATP only?
+
+An A-tailing reaction is accidentally run with all four dNTPs and an exonuclease-deficient polymerase. What happens?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+The polymerase can extend a blunt end by the non-templated addition of any base, so a mixed set of tails forms and the T overhang adapter pairs with only some of them. A is the base polymerases add most readily (Clark 1988), but the others are added to some extent, so ligation efficiency drops. Giving only dATP makes the product uniform.
+:::
+
+## E4. Trap: the wrong polymerase
+
+End repair is done with a polymerase that lacks 3'-5' exonuclease activity and no kinase. The library yield is low. Which ends were left unrepaired?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+3' overhangs are not removed, so they stay unligatable in a blunt reaction; and 5'-OH ends are not phosphorylated, so only one strand of each junction can be joined. Fill-in of 5' overhangs would still work.
+:::
+
+# Part 3 — Designing with ends
+
+## E5. Mask the old ends
+
+You want to adapter-tag only the ends made by Cas9 in genomic DNA. Design the end-state sequence of events.
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+What needs to be absent from every old end?
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+Dephosphorylate with a phosphatase so old 5' ends cannot ligate; optionally add a dideoxy block with TdT and ddNTP to the old 3' ends; cut with Cas9, which makes new 5'-P and 3'-OH; repair and ligate the adapter. Remove the phosphatase (heat or a column) before cutting so that it does not undo the new ends.
+:::
+
+## E6. Order of kinase steps
+
+A small-RNA protocol treats the RNA with T4 PNK and ATP, then ligates the 3' adapter with a ligase that needs a 3'-OH and a 5'-adenylated adapter. Predict the problem and give the fix.
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+The RNA's 5' end is phosphorylated early, so the RNA can ligate to itself or to the 5' adapter before the 3' adapter is on. Use PNK without ATP first (only the 3' phosphatase acts), ligate the 3' adapter, then add ATP to phosphorylate 5' ends.
+:::
+
+## E7. USER or Y?
+
+You have to make a forked adapter. Compare using two annealed oligos with a mismatched arm and using a dU hairpin plus USER. Give one advantage for each.
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+The mismatched duplex is cheap and needs no extra enzyme. The dU hairpin is a single oligo, so the two arms always come in equal amounts. It needs a USER step after ligation, and the polymerase for PCR is chosen with uracil in mind.
+:::
+
+## E8. Dilute or not?
+
+You want to circularise a 40-bp cDNA with a ligase. Will dilution help? What else matters?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+Dilution favours circles over concatemers, but a 40-bp duplex is too stiff to bend into a circle. Single-stranded DNA is flexible, which is why circularisation is done on single strands with an ssDNA ligase.
+:::
+
+# Self-check
+
+1. Which end states can a ligase use?
+2. Why is a 3'-phosphate worse than a 5'-OH for library preparation?
+3. How does PNK behave differently with and without ATP?
+4. Why does a bisulfite protocol need methylated adapters?
+5. What does dilution change in a ligation?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Answers
+1. A 5'-phosphate donor with a 3'-OH acceptor.
+2. It blocks both ligation and extension on that end, and only a phosphatase removes it; a 5'-OH can be fixed with a kinase.
+3. Without ATP only the 3' phosphatase acts; with ATP it also phosphorylates 5'-OH.
+4. Ordinary C in the adapter would be converted and primers would stop pairing.
+5. The rate between molecules, which falls with concentration, while the rate within a molecule does not.
+:::

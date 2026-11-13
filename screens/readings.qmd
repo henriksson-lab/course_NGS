@@ -1,0 +1,87 @@
+---
+title: "Readings — Pooled screens and synthetic libraries"
+---
+
+Two decks, one reading list. Read the screening papers for the library: how the pool was made,
+how many cells carried each member, and how the counts were turned into a sequencing library.
+The biology comes second.
+
+## Building and delivering a pool
+
+**Shalem O, et al. (2014).** *Genome-scale CRISPR-Cas9 knockout screening in human cells.*
+Science 343:84–87.
+[doi:10.1126/science.1247005](https://doi.org/10.1126/science.1247005) — **start here**
+
+> The lentiCRISPR pooled screen in human cells. Look at how the library was synthesised, how
+> coverage was kept, and how the readout was done.
+
+**Sanjana NE, Shalem O, Zhang F (2014).** *Improved vectors and genome-wide libraries for
+CRISPR screening.* Nature Methods 11:783–784.
+[doi:10.1038/nmeth.3047](https://doi.org/10.1038/nmeth.3047)
+
+> lentiCRISPR v2 and the GeCKO v2 libraries. Short, and the supplement has the pooled cloning
+> procedure with the array primers.
+
+## Reading a screen out
+
+**Joung J, et al. (2017).** *Genome-scale CRISPR-Cas9 knockout and transcriptional activation
+screening.* Nature Protocols 12:828–863.
+[doi:10.1038/nprot.2017.016](https://doi.org/10.1038/nprot.2017.016) — **start here**
+
+> A full protocol, including the one-PCR readout. Study the primer tables: which parts bind the
+> vector, which are the sequencer handles, and why there are ten forward primers.
+
+**Hart T, et al. (2015).** *High-resolution CRISPR screens reveal fitness genes and
+genotype-specific cancer liabilities.* Cell 163:1515–1526.
+[doi:10.1016/j.cell.2015.11.015](https://doi.org/10.1016/j.cell.2015.11.015)
+
+> The screens that the Moffat-laboratory library and two-step readout were built for. Compare its
+> readout with Joung's.
+
+**Hiatt JB, et al. (2013).** *Single molecule molecular inversion probes for targeted,
+high-accuracy detection of low-frequency variation.* Genome Research 23:843–854.
+[doi:10.1101/gr.147686.112](https://doi.org/10.1101/gr.147686.112)
+
+> The random tag that makes counting absolute. The idea transfers to any capture-then-count design.
+
+## Screens with other readouts
+
+**Datlinger P, et al. (2017).** *Pooled CRISPR screening with single-cell transcriptome readout.*
+Nature Methods 14:297–301.
+[doi:10.1038/nmeth.4177](https://doi.org/10.1038/nmeth.4177)
+
+> CROP-seq: the LTR duplication used as a design tool. Trace exactly where the guide ends up.
+
+**Tsai SQ, et al. (2015).** *GUIDE-seq enables genome-wide profiling of off-target cleavage by
+CRISPR-Cas nucleases.* Nature Biotechnology 33:187–197.
+[doi:10.1038/nbt.3117](https://doi.org/10.1038/nbt.3117)
+
+> A one-end-known mapping problem solved with a tag and an adapter. Follow the library
+> construction figure in the supplement.
+
+**Melnikov A, et al. (2012).** *Systematic dissection and optimization of inducible enhancers in
+human cells using a massively parallel reporter assay.* Nature Biotechnology 30:271–277.
+[doi:10.1038/nbt.2137](https://doi.org/10.1038/nbt.2137)
+
+> MPRA: how a tag links each synthesised sequence to its read-out.
+
+## Reference material to keep open
+
+- Gibson DG, et al. (2009), Nature Methods 6:343–345,
+  [doi:10.1038/nmeth.1318](https://doi.org/10.1038/nmeth.1318); Engler C, et al. (2008), PLoS ONE 3:e3647,
+  [doi:10.1371/journal.pone.0003647](https://doi.org/10.1371/journal.pone.0003647) — the two cloning methods
+- Kosuri S, Church GM (2014), Nature Methods 11:499–507,
+  [doi:10.1038/nmeth.2918](https://doi.org/10.1038/nmeth.2918) — oligo synthesis on arrays
+- Ochman H, et al. (1988), Genetics 120:621–623,
+  [doi:10.1093/genetics/120.3.621](https://doi.org/10.1093/genetics/120.3.621) — inverse PCR
+- Potter CJ, Luo L (2010), PLoS ONE 5:e10168,
+  [doi:10.1371/journal.pone.0010168](https://doi.org/10.1371/journal.pone.0010168) — splinkerette (fly; read for the adapter design)
+- Kivioja T, et al. (2012), Nature Methods 9:72–74,
+  [doi:10.1038/nmeth.1778](https://doi.org/10.1038/nmeth.1778) — absolute counting with UMIs
+- Protocol pages in [NGS 101](https://henriksson-lab.github.io/NGS_101/):
+  [lentiCRISPR v2](https://henriksson-lab.github.io/NGS_101/lenticrispr-v2-screening__10.1038+nmeth.3047/lenticrispr-v2-screening.html),
+  [Joung](https://henriksson-lab.github.io/NGS_101/joung-one-pcr-crispr-screen-readout__10.1038+nprot.2017.016/joung-one-pcr-crispr-screen-readout.html),
+  [Moffat](https://henriksson-lab.github.io/NGS_101/moffat-two-step-crispr-screen-readout/moffat-two-step-crispr-screen-readout.html),
+  [Perturb-seq](https://henriksson-lab.github.io/NGS_101/perturb-seq-original-barcode-proxy__10.1016+j.cell.2016.11.038/chem.html),
+  [CROP-seq](https://henriksson-lab.github.io/NGS_101/crop-seq__10.1038+nmeth.4177/crop-seq.html),
+  [GUIDE-seq](https://henriksson-lab.github.io/NGS_101/guide-seq__10.1038+nbt.3117/guide-seq.html)

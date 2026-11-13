@@ -1,0 +1,160 @@
+---
+title: "Exercises — Cleanup, quantification and quality control"
+---
+
+Pen and paper, and a calculator. Show the units.
+
+# Part 1 — Clean-up
+
+## E1. Double-sided selection
+
+You have 150 µL of sheared and ligated DNA and want to keep roughly 300 to 600 bp. You use a first bead ratio of 0.55× and a final ratio of 0.75×. How much bead suspension do you add at each step, and what do you keep?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+The second ratio is relative to the **original** sample volume, and the supernatant from the first step is what you keep.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+First: 0.55 × 150 = 82.5 µL. Keep the supernatant (232.5 µL), discard the beads: they hold the long fragments. Final bead volume 0.75 × 150 = 112.5 µL, so add 112.5 − 82.5 = **30 µL**. Keep the beads, wash and elute: they hold the window between the two cut-offs.
+:::
+
+## E2. Pick the clean-up
+
+Choose bead, column, precipitation or gel, and justify:
+
+a. Remove 25 nt primers from a 300 bp PCR product, 50 µL volume
+b. Concentrate 0.5 ng of DNA from 500 µL
+c. Isolate exactly 200–250 bp from a broad smear
+d. Many plates, automated, with a wish for a size cut-off
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. Beads at about 1.0×, or a column; both remove short oligos.
+b. Precipitation with a carrier (glycogen), since beads or columns would give a low yield from a large volume.
+c. A gel slice: the only exact window.
+d. Beads, because the ratio sets the cut-off and the step scales.
+:::
+
+## E3. A trap: the PEG in the ligation mix
+
+A kit says "add 0.8× beads to the ligation reaction". The reaction contains PEG. You dilute it with water to 100 µL first, then add 0.8× of 100 µL. What changes?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+The kit ratio is calibrated for the original volume, with its PEG. Diluting the mix lowers the PEG that the beads see, and adding a different volume of beads sets a different final PEG. The cut-off moves, usually to longer fragments, and adapter dimers may be kept or lost differently. Follow the kit's volume, or calibrate with a ladder.
+:::
+
+# Part 2 — Quantification and pooling
+
+## E4. Convert
+
+a. 1.2 ng/µL, mean length 380 bp: concentration in nM?
+b. 25 nM, 500 bp: concentration in ng/µL?
+c. 4.0 ng/µL by Qubit, a 300 bp insert with 120 bp of adapter: concentration in nM?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. 1.2 × 10^6 / (660 × 380) = 1.2 × 10^6 / 250,800 = **4.8 nM**.
+b. 25 × 660 × 500 / 10^6 = **8.3 ng/µL**.
+c. L = 420: 4.0 × 10^6 / (660 × 420) = **14.4 nM**.
+:::
+
+## E5. Pool three libraries
+
+| Library | ng/µL | mean length (bp) |
+|---|---|---|
+| A | 6.0 | 500 |
+| B | 2.5 | 350 |
+| C | 12 | 700 |
+
+You want 10 fmol of each in the pool. a. Give the nM of each. b. Give the volumes. c. Which volumes are impractical, and what do you do?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+1 nM is 1 fmol/µL.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. A: 6.0 × 10^6 / 330,000 = 18.2 nM. B: 2.5 × 10^6 / 231,000 = 10.8 nM. C: 12 × 10^6 / 462,000 = 26.0 nM.
+b. A: 10 / 18.2 = 0.55 µL. B: 10 / 10.8 = 0.92 µL. C: 10 / 26.0 = 0.38 µL.
+c. A and C are below what a pipette delivers accurately. Dilute A 1 in 4 (4.55 nM, take 2.2 µL) and C 1 in 5 (5.2 nM, take 1.9 µL).
+:::
+
+## E6. The disagreement
+
+A library of 450 bp reads 5.0 ng/µL on Qubit, and 3.1 nM by qPCR. What does Qubit predict in nM, what fraction is qPCR-detectable, and what could explain the gap?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+Qubit: 5.0 × 10^6 / 297,000 = 16.8 nM. qPCR is 3.1 / 16.8 = about 18%. The rest is DNA without both adapters (one-sided products, unligated fragments), or an artefact of over-amplification; a trace shows which. Load by qPCR, not Qubit.
+:::
+
+# Part 3 — Reading traces
+
+## E7. How much of the sequencing is dimer?
+
+A trace shows a main peak at 420 bp holding 85% of the mass, and a dimer peak at 130 bp holding 15%. What fraction of the molecules is dimer?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Molecules = mass / length.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+Main: 0.85 / 420 = 0.00202. Dimer: 0.15 / 130 = 0.00115. Dimer fraction = 0.00115 / (0.00202 + 0.00115) = **36% of molecules**, and clustering favours short molecules even more, so the read share is higher. A 15% mass peak is a bigger problem than it looks.
+:::
+
+## E8. A shoulder after PCR
+
+After 14 PCR cycles the trace shows the expected peak at 400 bp and a second hump around 1,500 bp. qPCR gives a molarity five times lower than the Qubit prediction. What has happened, and what do you do?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+Over-amplification: primers were exhausted, so strands annealed through the common adapter regions and formed partly single-stranded, larger products that run slowly and do not prime in qPCR. Quantify by qPCR (the five-fold lower number is the useful one), reduce cycles next time (use a diagnostic qPCR), or add two cycles of fresh primer to convert the heteroduplexes.
+:::
+
+# Part 4 — Tricks
+
+## E9. How many more cycles?
+
+You pre-amplify cDNA for 5 cycles, then run 5 µL (10% of the 50 µL reaction) in a qPCR. The aliquot reaches one third of its maximum signal at cycle 7. How many extra cycles do you give the remaining 45 µL?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+7 cycles. The aliquot is only a smaller volume of the same concentration, so it needs the same number of cycles. Total PCR is 5 + 7 = 12 cycles. Stopping at one third of maximum keeps the library from reaching the plateau.
+:::
+
+## E10. PhiX tells you the quantification was wrong
+
+You spiked 5% PhiX into a run (so 95% library by loading). The run returns 12% PhiX reads. By what factor did you over-estimate the library concentration?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Compare the PhiX:library ratio of what you loaded with what you got.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+Loaded 5:95 = 0.053. Got 12:88 = 0.136. The library produced 0.053/0.136 = 0.39 of the expected clusters, so its concentration was over-estimated about **2.6-fold**: typical of a Qubit-based loading of a library with unclusterable DNA.
+:::
+
+# Self-check
+
+1. Why does a higher bead ratio keep shorter fragments?
+2. What does qPCR count that Qubit does not?
+3. Why do you pool by moles, not mass?
+4. Why is a small adapter-dimer peak more serious than its area suggests?
+5. Why must a diagnostic qPCR use an aliquot of the same reaction?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Answers
+1. More PEG in the mixture crowds shorter DNA onto the beads.
+2. Only molecules with both adapters, which are the ones that can cluster.
+3. Equal mass gives more molecules of short libraries, so they would take too many reads.
+4. Dimers are short, so mass underestimates their molecule count, and they cluster efficiently.
+5. It reports the real concentration and state of that reaction, so the cycle count transfers.
+:::

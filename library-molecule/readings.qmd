@@ -1,0 +1,79 @@
+---
+title: "Readings — Anatomy of a library molecule"
+---
+
+The papers here are about the parts of the molecule and about what each part was invented to
+solve. Read them with the construct from the deck beside you, and label every sequence they
+print.
+
+## The molecule and its parts
+
+**Meyer M, Kircher M (2010).** *Illumina sequencing library preparation for highly
+multiplexed target capture and sequencing.* Cold Spring Harbor Protocols 2010:pdb.prot5448.
+[doi:10.1101/pdb.prot5448](https://doi.org/10.1101/pdb.prot5448) — **start here**
+
+> A bench protocol that spells out every part of the library: adapters, index PCR primers,
+> what each oligo is for. Find P5, P7, the primer sites and the index in the oligo table and
+> draw the product.
+
+**Kircher M, Sawyer S, Meyer M (2012).** *Double indexing overcomes inaccuracies in
+multiplex sequencing on the Illumina platform.* Nucleic Acids Research 40:e3.
+[doi:10.1093/nar/gkr771](https://doi.org/10.1093/nar/gkr771) — **start here**
+
+> Why a single index is not enough, shown with data. Look for how two indexes catch
+> misassigned reads, and for what the index reads cost in cycles.
+
+**Costello M, et al. (2018).** *Characterization and remediation of sample index swaps by
+non-redundant dual indexing on massively parallel sequencing platforms.* BMC Genomics
+19:332. [doi:10.1186/s12864-018-4703-0](https://doi.org/10.1186/s12864-018-4703-0)
+
+> Index swapping measured, and where it comes from: free adapter or primer in the pool.
+> Connects the architecture of the molecule to the clean-up steps that protect it.
+
+## Transposase-based libraries
+
+**Adey A, et al. (2010).** *Rapid, low-input, low-bias construction of shotgun fragment
+libraries by high-density in vitro transposition.* Genome Biology 11:R119.
+[doi:10.1186/gb-2010-11-12-r119](https://doi.org/10.1186/gb-2010-11-12-r119)
+
+> The paper behind Nextera. Note how the transposon end becomes part of the Read 1 and Read 2
+> sites, and what the gap-filling and PCR have to do afterwards.
+
+**Picelli S, et al. (2014).** *Tn5 transposase and tagmentation procedures for massively
+scaled sequencing projects.* Genome Research 24:2033–2040.
+[doi:10.1101/gr.177881.114](https://doi.org/10.1101/gr.177881.114)
+
+> The do-it-yourself version: loading Tn5 with two different adapters, and the consequences
+> for the fraction of usable fragments.
+
+## Information in the reads
+
+**Zheng GXY, et al. (2017).** *Massively parallel digital transcriptional profiling of
+single cells.* Nature Communications 8:14049.
+[doi:10.1038/ncomms14049](https://doi.org/10.1038/ncomms14049)
+
+> The 10x 3′ construct: find the barcode, the UMI, the poly(dT) and the read structure.
+
+**Kivioja T, et al. (2012).** *Counting absolute numbers of molecules using unique molecular
+identifiers.* Nature Methods 9:72–74.
+[doi:10.1038/nmeth.1778](https://doi.org/10.1038/nmeth.1778)
+
+> What a UMI does and where it has to sit. Short.
+
+**Parkhomchuk D, et al. (2009).** *Transcriptome analysis by strand-specific sequencing of
+complementary DNA.* Nucleic Acids Research 37:e123.
+[doi:10.1093/nar/gkp596](https://doi.org/10.1093/nar/gkp596)
+
+> dUTP marking of the second strand: how strand information survives in a library.
+
+## Reference material to keep open
+
+- **[NGS 101](https://henriksson-lab.github.io/NGS_101/)**, protocol pages for
+  [TruSeq DNA PCR-free](https://henriksson-lab.github.io/NGS_101/truseq-dna-pcr-free/truseq-dna-pcr-free.html),
+  [Nextera XT](https://henriksson-lab.github.io/NGS_101/nextera-xt-dna-library-prep/nextera-xt.html),
+  [Illumina DNA Prep](https://henriksson-lab.github.io/NGS_101/illumina-dna-prep/illumina-dna-prep.html)
+  and [10x 3′ v3](https://henriksson-lab.github.io/NGS_101/10x-chromium-single-cell-3-ge-v3/01_10x-3prime-v3.html)
+- **[Annotate sequence](https://henriksson-lab.github.io/NGS_101/annotate.html)** and
+  **[Sample-sheet indexes](https://henriksson-lab.github.io/NGS_101/samplesheet.html)**: paste
+  a sequence or an index primer, and see its parts
+- Illumina's *Adapter Sequences* document: the table of every adapter, primer and index set

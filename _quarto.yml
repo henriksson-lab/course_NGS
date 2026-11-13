@@ -51,6 +51,214 @@ website:
                 href: sequencers/readings.qmd
               - text: "Exercise"
                 href: sequencers/exercise.qmd
+          - section: "Anatomy of a library molecule"
+            contents:
+              - text: "Lecture (slides)"
+                href: library-molecule/lec.qmd
+              - text: "Readings"
+                href: library-molecule/readings.qmd
+              - text: "Exercise"
+                href: library-molecule/exercise.qmd
+      - section: "Building blocks"
+        contents:
+          - section: "The enzyme toolbox"
+            contents:
+              - text: "Lecture (slides): polymerases and reverse transcriptases"
+                href: enzymes/lec.qmd
+              - text: "Lecture (slides): ligases, kinases and phosphatases"
+                href: enzymes/lec-ligases.qmd
+              - text: "Lecture (slides): nucleases"
+                href: enzymes/lec-nucleases.qmd
+              - text: "Lecture (slides): transposases and modifying enzymes"
+                href: enzymes/lec-transposases.qmd
+              - text: "Readings"
+                href: enzymes/readings.qmd
+              - text: "Exercise"
+                href: enzymes/exercise.qmd
+          - section: "Attaching a handle — the five ways"
+            contents:
+              - text: "Lecture (slides)"
+                href: handles/lec.qmd
+              - text: "Readings"
+                href: handles/readings.qmd
+              - text: "Exercise"
+                href: handles/exercise.qmd
+          - section: "End chemistry"
+            contents:
+              - text: "Lecture (slides)"
+                href: end-chemistry/lec.qmd
+              - text: "Readings"
+                href: end-chemistry/readings.qmd
+              - text: "Exercise"
+                href: end-chemistry/exercise.qmd
+          - section: "Fragmentation and size control"
+            contents:
+              - text: "Lecture (slides)"
+                href: fragmentation/lec.qmd
+              - text: "Readings"
+                href: fragmentation/readings.qmd
+              - text: "Exercise"
+                href: fragmentation/exercise.qmd
+          - section: "Amplification"
+            contents:
+              - text: "Lecture (slides)"
+                href: amplification/lec.qmd
+              - text: "Readings"
+                href: amplification/readings.qmd
+              - text: "Exercise"
+                href: amplification/exercise.qmd
+          - section: "Selection — keeping what you want"
+            contents:
+              - text: "Lecture (slides)"
+                href: selection/lec.qmd
+              - text: "Readings"
+                href: selection/readings.qmd
+              - text: "Exercise"
+                href: selection/exercise.qmd
+          - section: "Barcodes, UMIs and where information lives"
+            contents:
+              - text: "Lecture (slides)"
+                href: barcodes-umis/lec.qmd
+              - text: "Readings"
+                href: barcodes-umis/readings.qmd
+              - text: "Exercise"
+                href: barcodes-umis/exercise.qmd
+          - section: "Converting chemistry into sequence"
+            contents:
+              - text: "Lecture (slides)"
+                href: chemistry-to-sequence/lec.qmd
+              - text: "Readings"
+                href: chemistry-to-sequence/readings.qmd
+              - text: "Exercise"
+                href: chemistry-to-sequence/exercise.qmd
+          - section: "Compartments"
+            contents:
+              - text: "Lecture (slides)"
+                href: compartments/lec.qmd
+              - text: "Readings"
+                href: compartments/readings.qmd
+              - text: "Exercise"
+                href: compartments/exercise.qmd
+      - section: "Use cases"
+        contents:
+          - section: "Genomic DNA"
+            contents:
+              - text: "Lecture (slides)"
+                href: genomic-dna/lec.qmd
+              - text: "Readings"
+                href: genomic-dna/readings.qmd
+              - text: "Exercise"
+                href: genomic-dna/exercise.qmd
+          - section: "RNA"
+            contents:
+              - text: "Lecture (slides): mRNA and total RNA"
+                href: rna/lec.qmd
+              - text: "Lecture (slides): small RNA, tag protocols and low input"
+                href: rna/lec-small-rna.qmd
+              - text: "Readings"
+                href: rna/readings.qmd
+              - text: "Exercise"
+                href: rna/exercise.qmd
+          - section: "Targeted sequencing"
+            contents:
+              - text: "Lecture (slides)"
+                href: targeted/lec.qmd
+              - text: "Readings"
+                href: targeted/readings.qmd
+              - text: "Exercise"
+                href: targeted/exercise.qmd
+          - section: "Chromatin and protein–DNA"
+            contents:
+              - text: "Lecture (slides)"
+                href: chromatin/lec.qmd
+              - text: "Readings"
+                href: chromatin/readings.qmd
+              - text: "Exercise"
+                href: chromatin/exercise.qmd
+          - section: "Three-dimensional genome and contacts"
+            contents:
+              - text: "Lecture (slides)"
+                href: 3d-genome/lec.qmd
+              - text: "Readings"
+                href: 3d-genome/readings.qmd
+              - text: "Exercise"
+                href: 3d-genome/exercise.qmd
+          - section: "Modifications, damage and dynamics"
+            contents:
+              - text: "Lecture (slides): DNA"
+                href: modifications/lec.qmd
+              - text: "Lecture (slides): RNA"
+                href: modifications/lec-rna.qmd
+              - text: "Readings"
+                href: modifications/readings.qmd
+              - text: "Exercise"
+                href: modifications/exercise.qmd
+          - section: "Single cells"
+            contents:
+              - text: "Lecture (slides): plates, droplets and microwells"
+                href: single-cell/lec.qmd
+              - text: "Lecture (slides): combinatorial indexing and multimodal assays"
+                href: single-cell/lec-combinatorial.qmd
+              - text: "Readings"
+                href: single-cell/readings.qmd
+              - text: "Exercise"
+                href: single-cell/exercise.qmd
+          - section: "Spatial"
+            contents:
+              - text: "Lecture (slides)"
+                href: spatial/lec.qmd
+              - text: "Readings"
+                href: spatial/readings.qmd
+              - text: "Exercise"
+                href: spatial/exercise.qmd
+          - section: "Pooled screens and synthetic libraries"
+            contents:
+              - text: "Lecture (slides): building the library"
+                href: screens/lec.qmd
+              - text: "Lecture (slides): reading the library out"
+                href: screens/lec-readout.qmd
+              - text: "Readings"
+                href: screens/readings.qmd
+              - text: "Exercise"
+                href: screens/exercise.qmd
+          - section: "Long reads"
+            contents:
+              - text: "Lecture (slides)"
+                href: long-reads/lec.qmd
+              - text: "Readings"
+                href: long-reads/readings.qmd
+              - text: "Exercise"
+                href: long-reads/exercise.qmd
+      - section: "Tricks"
+        contents:
+          - section: "The trick catalogue"
+            contents:
+              - text: "Lecture (slides): 1: ligation, clean-up, handles and the read"
+                href: tricks/lec.qmd
+              - text: "Lecture (slides): 2: counting, low input, compartments and bases"
+                href: tricks/lec-more.qmd
+              - text: "Readings"
+                href: tricks/readings.qmd
+              - text: "Exercise"
+                href: tricks/exercise.qmd
+      - section: "Quality control and designing your own"
+        contents:
+          - section: "Cleanup, quantification and QC"
+            contents:
+              - text: "Lecture (slides)"
+                href: qc/lec.qmd
+              - text: "Readings"
+                href: qc/readings.qmd
+              - text: "Exercise"
+                href: qc/exercise.qmd
+          - section: "Design patterns, failure modes and the capstone"
+            contents:
+              - text: "Lecture (slides)"
+                href: design/lec.qmd
+              - text: "Readings"
+                href: design/readings.qmd
+              - text: "Exercise"
+                href: design/exercise.qmd
 
 format:
   html:

@@ -1,0 +1,55 @@
+---
+title: "Readings — Single-cell libraries"
+---
+
+Eight papers, four for each deck. They are the primary descriptions of the methods that the lectures compare. Read each one asking the same question: where does the compartment barcode enter the molecule, and what has to stay intact until it is there?
+
+## Plates, droplets and microwells
+
+**Ziegenhain C, et al. (2017).** *Comparative analysis of single-cell RNA sequencing methods.* Molecular Cell 65:631–643.
+[doi:10.1016/j.molcel.2017.01.023](https://doi.org/10.1016/j.molcel.2017.01.023) — **start here**
+
+> The same cells run through several protocols. Read it for the comparison of sensitivity, accuracy and cost per cell, and notice which differences come from the barcode strategy and which from the amplification.
+
+**Picelli S, et al. (2013).** *Smart-seq2 for sensitive full-length transcriptome profiling in single cells.* Nature Methods 10:1096–1098.
+[doi:10.1038/nmeth.2639](https://doi.org/10.1038/nmeth.2639)
+
+> Template switching and one PCR primer for both ends. A short paper: follow what each step adds to the molecule, and what is left for the index PCR to do.
+
+**Macosko EZ, et al. (2015).** *Highly parallel genome-wide expression profiling of individual cells using nanoliter droplets.* Cell 161:1202–1214.
+[doi:10.1016/j.cell.2015.05.002](https://doi.org/10.1016/j.cell.2015.05.002) — **start here**
+
+> Drop-seq. Read the method for split-pool bead synthesis and the species-mixing experiment, and work out for yourself how the loading concentration was chosen.
+
+**Zheng GXY, et al. (2017).** *Massively parallel digital transcriptional profiling of single cells.* Nature Communications 8:14049.
+[doi:10.1038/ncomms14049](https://doi.org/10.1038/ncomms14049)
+
+> The first Chromium paper. Compare its bead and droplet design with Drop-seq: what is the same, what does the gel bead change, and how are the barcode, UMI and sample index read.
+
+## Combinatorial indexing and multimodal assays
+
+**Cao J, et al. (2019).** *The single-cell transcriptional landscape of mammalian organogenesis.* Nature 566:496–502.
+[doi:10.1038/s41586-019-0969-x](https://doi.org/10.1038/s41586-019-0969-x)
+
+> sci-RNA-seq3 at the scale of millions of nuclei. Look for the three levels of barcode, how many nuclei go into each well, and how the collision rate was measured.
+
+**Rosenberg AB, et al. (2018).** *Single-cell profiling of the developing mouse brain and spinal cord with split-pool barcoding.* Science 360:176–182.
+[doi:10.1126/science.aam8999](https://doi.org/10.1126/science.aam8999)
+
+> SPLiT-seq, in which barcodes are ligated onto the RT primer while the cells stay intact. Compare the barcode arithmetic and the role of fixation with sci-RNA-seq3.
+
+**Stoeckius M, et al. (2017).** *Simultaneous epitope and transcriptome measurement in single cells.* Nature Methods 14:865–868.
+[doi:10.1038/nmeth.4380](https://doi.org/10.1038/nmeth.4380)
+
+> CITE-seq, the template for every feature-barcoding method. Notice how little new chemistry there is: a poly(A) tail on an oligo is enough.
+
+**Datlinger P, et al. (2017).** *Pooled CRISPR screening with single-cell transcriptome readout.* Nature Methods 14:297–301.
+[doi:10.1038/nmeth.4177](https://doi.org/10.1038/nmeth.4177)
+
+> CROP-seq. The design problem is how to make the guide visible to oligo(dT) capture; follow how the LTR duplication solves it, and what the authors did to check that the guide in the transcript is the guide in the cell.
+
+## Reference material to keep open
+
+- The [NGS 101 collection](https://henriksson-lab.github.io/NGS_101/) has a page for each protocol, drawn with its read structure: [Drop-seq](https://henriksson-lab.github.io/NGS_101/drop-seq__10.1016+j.cell.2015.05.002/drop-seq.html), [10x 3' v3](https://henriksson-lab.github.io/NGS_101/10x-chromium-single-cell-3-ge-v3/01_10x-3prime-v3.html), [MARS-seq](https://henriksson-lab.github.io/NGS_101/mars-seq__10.1126+science.1247651/mars-seq.html), [sci-RNA-seq3](https://henriksson-lab.github.io/NGS_101/sci-rna-seq3__10.1038+s41586-019-0969-x/sci-rna-seq3.html), [SPLiT-seq](https://henriksson-lab.github.io/NGS_101/split-seq__10.1126+science.aam8999/split-seq.html), [SHARE-seq](https://henriksson-lab.github.io/NGS_101/share-seq__10.1016+j.cell.2020.09.056/share-seq.html), [CITE-seq](https://henriksson-lab.github.io/NGS_101/cite-seq__10.1038+nmeth.4380/cite-seq.html), [10x Multiome](https://henriksson-lab.github.io/NGS_101/10x-chromium-single-cell-multiome-atac-gene-expression/multiome.html).
+- Original methods behind the lectures: Hashimshony et al. 2012, CEL-seq, [doi:10.1016/j.celrep.2012.08.003](https://doi.org/10.1016/j.celrep.2012.08.003); Jaitin et al. 2014, MARS-seq, [doi:10.1126/science.1247651](https://doi.org/10.1126/science.1247651); Klein et al. 2015, inDrop, [doi:10.1016/j.cell.2015.04.044](https://doi.org/10.1016/j.cell.2015.04.044); Gierahn et al. 2017, Seq-Well, [doi:10.1038/nmeth.4179](https://doi.org/10.1038/nmeth.4179); Hagemann-Jensen et al. 2020, Smart-seq3, [doi:10.1038/s41587-020-0497-0](https://doi.org/10.1038/s41587-020-0497-0).
+- Combinatorial and multimodal: Cusanovich et al. 2015, sci-ATAC-seq, [doi:10.1126/science.aab1601](https://doi.org/10.1126/science.aab1601); Ma et al. 2020, SHARE-seq, [doi:10.1016/j.cell.2020.09.056](https://doi.org/10.1016/j.cell.2020.09.056); Stoeckius et al. 2018, cell hashing, [doi:10.1186/s13059-018-1603-1](https://doi.org/10.1186/s13059-018-1603-1); Dixit et al. 2016, Perturb-seq, [doi:10.1016/j.cell.2016.11.038](https://doi.org/10.1016/j.cell.2016.11.038); Han et al. 2014, paired TCR and phenotype, [doi:10.1038/nbt.2938](https://doi.org/10.1038/nbt.2938); Mimitou et al. 2019, ECCITE-seq, [doi:10.1038/s41592-019-0392-0](https://doi.org/10.1038/s41592-019-0392-0).

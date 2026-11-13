@@ -1,0 +1,60 @@
+---
+title: "Readings — Targeted sequencing"
+---
+
+Reading is optional but each item is here for a reason. Start with the two marked **start here**.
+
+## Papers
+
+**Mamanova L, et al. (2010).** *Target-enrichment strategies for next-generation sequencing.*
+Nature Methods 7:111–118.
+[doi:10.1038/nmeth.1419](https://doi.org/10.1038/nmeth.1419) — **start here**
+
+> A map of the whole field: PCR, capture, circularising probes. Use it to place each method in the three-way split from the lecture.
+
+**Gnirke A, et al. (2009).** *Solution hybrid selection with ultra-long oligonucleotides for massively
+parallel targeted sequencing.* Nature Biotechnology 27:182–189.
+[doi:10.1038/nbt.1523](https://doi.org/10.1038/nbt.1523)
+
+> The solution-phase capture that SureSelect-type kits descend from. Note the role of blockers and of the hybridisation conditions.
+
+**Hiatt JB, et al. (2013).** *Single molecule molecular inversion probes for targeted, high-accuracy
+detection of low-frequency variation.* Genome Research 23:843–854.
+[doi:10.1101/gr.147686.112](https://doi.org/10.1101/gr.147686.112)
+
+> How a random tag in a circularising probe gives molecule-level consensus. Compare the error suppression with the untagged case.
+
+**Kinde I, et al. (2011).** *Detection and quantification of rare mutations with massively parallel
+sequencing.* PNAS 108:9530–9535.
+[doi:10.1073/pnas.1105422108](https://doi.org/10.1073/pnas.1105422108) — **start here**
+
+> Safe-SeqS: the clearest statement of why unique identifiers beat depth. Look at what the error rate was before and after.
+
+**Schmitt MW, et al. (2012).** *Detection of ultra-rare mutations by next-generation sequencing.*
+PNAS 109:14508–14513.
+[doi:10.1073/pnas.1208715109](https://doi.org/10.1073/pnas.1208715109)
+
+> Duplex sequencing. Follow how the two strands are linked and what is rejected.
+
+**Newman AM, et al. (2014).** *An ultrasensitive method for quantitating circulating tumor DNA with
+broad patient coverage.* Nature Medicine 20:548–554.
+[doi:10.1038/nm.3519](https://doi.org/10.1038/nm.3519)
+
+> CAPP-Seq: a population-informed selector. The question to ask is how a design for the cancer type, not the patient, still works for most patients.
+
+**Meissner A, et al. (2008).** *Genome-scale DNA methylation maps of pluripotent and differentiated cells.*
+Nature 454:766–770.
+[doi:10.1038/nature07107](https://doi.org/10.1038/nature07107)
+
+> RRBS as it was introduced. Read the methods for the order of digest, adapter ligation and bisulfite.
+
+**Gilpatrick T, et al. (2020).** *Targeted nanopore sequencing with Cas9-guided adapter ligation.*
+Nature Biotechnology 38:433–438.
+[doi:10.1038/s41587-020-0407-5](https://doi.org/10.1038/s41587-020-0407-5)
+
+> Cas9 as a selection step with no amplification.
+
+## Reference material to keep open
+
+- [NGS_101 collection](https://henriksson-lab.github.io/NGS_101/): CAPP-Seq, SureSelect XT HS2, smMIP, Safe-SeqS, Duplex Sequencing, RRBS, ARTIC tiled amplicons
+- [NEB selection charts](https://www.neb.com/en/tools-and-resources/selection-charts)

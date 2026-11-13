@@ -1,0 +1,164 @@
+---
+title: "Exercises — The trick catalogue"
+---
+
+Pen and paper. Most ask you to name the trick, or to see what happens when it is used in the wrong place.
+
+# Part 1 — Ligation and clean-up
+
+## E1. Dephosphorylate the insert
+
+You dephosphorylate sheared human DNA, then ligate it to blunt adapters that carry a 5'-phosphate.
+
+a. Which products form?
+b. Which unwanted product remains?
+c. How would you remove it without changing the adapter?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Ligation needs a 5'-P donor and a 3'-OH acceptor. List what each end carries.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. Adapter to insert, on the strand where the adapter provides the 5'-P and the insert provides the 3'-OH. The other strand keeps a nick, closed later in PCR.
+b. Adapter–adapter dimers: both carry 5'-P and 3'-OH. Insert–insert is blocked.
+c. Titrate the adapter to the insert amount and size-select after ligation, because dimers are about 130 bp.
+:::
+
+## E2. Which dilution makes a circle?
+
+500 bp DNA at 10 ng/µL is diluted tenfold. Give the molar concentration before and after, and explain why the second condition favours circles.
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+nM = (ng/µL × 10^6) / (660 × length in bp).
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+Before: 10 × 10^6 / (660 × 500) = 30.3 nM. After: 3.03 nM. The competition is between the partner end on the same molecule (a fixed local concentration set by the length) and ends on other molecules (set by the bulk concentration). Lowering the bulk concentration tenfold lowers the second without changing the first, so more ligations are intramolecular.
+:::
+
+## E3. Design a splint
+
+Molecule 1 ends 5'-...GCTAGCTA-3'. Molecule 2 starts 5'-P-TTGACCGG...-3'. Write a 16-nt splint, 5' to 3', that joins them.
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+The joined sequence is GCTAGCTATTGACCGG. The splint is its reverse complement: 5'-CCGGTCAATAGCTAGC-3'. It pairs 8 nt with each end, and the nick sits in the middle.
+:::
+
+# Part 2 — Counting
+
+## E4. How long must the UMI be?
+
+You expect up to 20,000 molecules of one abundant transcript in a pool. With 8-nt UMIs, how many distinct UMIs do you expect to see, and what is the under-count? What UMI length keeps it below 1%?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Distinct = K(1 − e^(−N/K)), K = 4^L. For small N/K the under-count is about N/(2K).
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+K = 65,536. N/K = 0.305, so distinct = 65,536 × (1 − 0.737) = about 17,200. The under-count is about 14%. For below 1%, K must exceed 20,000/0.02 = 10^6, so L = 10 (K = 1,048,576) is the shortest that works.
+:::
+
+## E5. Droplet loading
+
+You load a droplet device at an average of 0.2 cells per droplet. Using the Poisson distribution, what fraction of droplets is empty, holds one cell, holds two or more, and what fraction of occupied droplets are doublets?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+P0 = e^(−0.2) = 0.819. P1 = 0.2 × 0.819 = 0.164. P2+ = 1 − 0.819 − 0.164 = 0.018. Occupied = 0.181. Doublets among occupied = 0.018 / 0.181 = about 9.7%. At 0.1 cells per droplet the same sum gives 4.9%, so doubling the loading doubles the doublet rate while only doubling the yield.
+:::
+
+## E6. Split-and-pool collisions
+
+A split-pool design has four rounds of 48 wells and 50,000 cells. How many barcode combinations exist, and roughly what fraction of cells share a combination with another cell?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+48^4 = 5,308,416. Fraction sharing ≈ 1 − e^(−(N−1)/K) = 1 − e^(−0.0094) = about 0.9%.
+:::
+
+## E7. How much cell-free DNA do you need?
+
+You want to call a variant at 0.1% allele fraction, with at least 5 mutant molecules observed. About 30% of input molecules end up in a usable library. 1 haploid genome is 3.3 pg. How much input DNA is needed?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Start from the number of mutant molecules you need to see, work back to input copies, then to ng.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+5 mutant molecules at 0.1% means 5,000 unique molecules observed at that locus. At 30% conversion that needs 16,700 input copies, or 16,700 × 3.3 pg = about 55 ng. No number of PCR cycles substitutes for this: they add reads, not molecules.
+:::
+
+# Part 3 — Choosing the trick
+
+## E8. Name the trick
+
+For each problem, name the trick and say why it works:
+
+a. 85% of your RNA-seq reads map to rRNA, and the RNA is partly degraded
+b. A pool of CRISPR-screen amplicons gives poor base quality in the first ten cycles
+c. A 3' end of damaged cell-free DNA has a single-strand nick every 50 bases
+d. You need transcription start sites rather than whole transcripts
+e. After reverse transcription, free primers are making primer dimers in PCR
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. RNase H depletion with tiled DNA oligos (oligo-dT would fail on degraded RNA).
+b. Staggered primers, or PhiX, to restore base diversity.
+c. Single-strand ligation: duplex methods lose nicked molecules.
+d. Cap trapping (CAGE).
+e. Exonuclease I on the single-stranded primers, then heat inactivation.
+:::
+
+## E9. A trap: the carrier that primes
+
+To rescue a low-input RNA sample you add poly(A) RNA as carrier, then use oligo-dT reverse transcription. What goes wrong?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+The oligo-dT primers anneal to the carrier, which is in vast excess over the sample, so almost all cDNA and reads come from the carrier. A carrier must be inert to every enzyme and primer in the protocol: use one without a poly(A) tail, or no adapter sites.
+:::
+
+## E10. Read the cytosines
+
+At three cytosines in human DNA, BS-seq and oxBS-seq give these C fractions:
+
+| Site | BS-seq | oxBS-seq |
+|---|---|---|
+| 1 | 95% C | 94% C |
+| 2 | 90% C | 8% C |
+| 3 | 4% C | 3% C |
+
+a. What is each cytosine?
+b. What would TAB-seq give at sites 1 and 2?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. Site 1: 5mC (survives both). Site 2: 5hmC (reads C in BS-seq, oxidised and converted in oxBS-seq). Site 3: unmodified.
+b. TAB-seq protects 5hmC and oxidises 5mC away: site 1 reads T, site 2 reads C.
+:::
+
+# Self-check
+
+1. Why does a single base overhang block both insert–insert and adapter–adapter joins?
+2. What does a UMI protect against, and what does it not?
+3. Why must a UMI be added before amplification?
+4. Why does Cas9 depletion work on a finished library?
+5. Name two tricks that move the start of the read.
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Answers
+1. The overhangs are A and T: identical ends face the same base and cannot pair.
+2. It collapses amplification duplicates; it does not correct for bias in capture or for sequencing errors in the insert.
+3. Copies made before tagging would carry different tags and be counted as separate molecules.
+4. A cut molecule loses one adapter, so it cannot amplify or cluster.
+5. Staggered primers and dark cycles (also custom primers).
+:::

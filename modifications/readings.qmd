@@ -1,0 +1,55 @@
+---
+title: "Readings — Modifications, damage and dynamics"
+---
+
+Eight papers, four for each deck. Each is the primary description of a method you will meet in the exercises. Read them for the library structure, and for the control experiment that tells the authors how far to trust their own numbers.
+
+## DNA methylation and damage
+
+**Vaisvila R, et al. (2021).** *Enzymatic methyl sequencing detects DNA methylation at single-base resolution from picograms of DNA.* Genome Research 31:1280–1289.
+[doi:10.1101/gr.266551.120](https://doi.org/10.1101/gr.266551.120) — **start here**
+
+> EM-seq, the enzymatic replacement for bisulfite. Look for the comparison with bisulfite libraries (insert size, coverage evenness, input) and for which spike-ins they use to measure conversion and protection.
+
+**Liu Y, et al. (2019).** *Bisulfite-free direct detection of 5-methylcytosine and 5-hydroxymethylcytosine at base resolution.* Nature Biotechnology 37:424–429.
+[doi:10.1038/s41587-019-0041-2](https://doi.org/10.1038/s41587-019-0041-2)
+
+> TAPS changes the modified base rather than the unmodified one. Notice what that does to sequence complexity and to the number of cycles of damage the DNA sees, and how the two variants (with and without protection of 5hmC) separate the marks.
+
+**Tsai SQ, et al. (2015).** *GUIDE-seq enables genome-wide profiling of off-target cleavage by CRISPR-Cas nucleases.* Nature Biotechnology 33:187–197.
+[doi:10.1038/nbt.3117](https://doi.org/10.1038/nbt.3117)
+
+> A tag that integrates into breaks, and a PCR that starts in the tag. Read it for how the authors check that a reported site is real, and for the sites that other methods report but this one does not.
+
+**Canela A, et al. (2016).** *DNA breaks and end resection measured genome-wide by end sequencing.* Molecular Cell 63:898–911.
+[doi:10.1016/j.molcel.2016.06.034](https://doi.org/10.1016/j.molcel.2016.06.034)
+
+> END-seq: agarose plugs, biotinylated hairpins, and exonuclease trimming. Follow the figure that shows the construct, then work out why read 1 begins where it does.
+
+## RNA modifications and nascent RNA
+
+**Dominissini D, et al. (2012).** *Topology of the human and mouse m6A RNA methylomes revealed by m6A-seq.* Nature 485:201–206.
+[doi:10.1038/nature11112](https://doi.org/10.1038/nature11112)
+
+> The antibody pull-down map of m6A. Look at how a peak is defined against the input library, and what the authors can and cannot say about the fraction of molecules that is methylated.
+
+**Van Nostrand EL, et al. (2016).** *Robust transcriptome-wide discovery of RNA-binding protein binding sites with enhanced CLIP (eCLIP).* Nature Methods 13:508–514.
+[doi:10.1038/nmeth.3810](https://doi.org/10.1038/nmeth.3810) — **start here**
+
+> The CLIP workflow written as a series of design decisions. Pay attention to the size-matched input, the random-base adapter, and the ligation to cDNA that keeps truncated molecules.
+
+**Kwak H, et al. (2013).** *Precise maps of RNA polymerase reveal how promoters direct initiation and pausing.* Science 339:950–953.
+[doi:10.1126/science.1229386](https://doi.org/10.1126/science.1229386)
+
+> PRO-seq and PRO-cap. Look at why a biotinylated nucleotide is the handle and what the 3' end of a read means.
+
+**Herzog VA, et al. (2017).** *Thiol-linked alkylation of RNA to assess expression dynamics.* Nature Methods 14:1198–1204.
+[doi:10.1038/nmeth.4435](https://doi.org/10.1038/nmeth.4435)
+
+> SLAM-seq: 4sU labelling read as a T-to-C change, with no enrichment. Compare how a labelling time course is turned into a half-life with the worked example in the lecture.
+
+## Reference material to keep open
+
+- The [NGS 101 collection](https://henriksson-lab.github.io/NGS_101/) has a page for each protocol used here, drawn with its read structure: [RRBS](https://henriksson-lab.github.io/NGS_101/rrbs-illumina__10.1038+nature07107/rrbs-illumina.html), [EM-seq](https://henriksson-lab.github.io/NGS_101/nebnext-enzymatic-methyl-seq-v2/nebnext-em-seq-v2.html), [TAB-seq](https://henriksson-lab.github.io/NGS_101/tab-seq__10.1016+j.cell.2012.04.027/tab-seq.html), [END-seq](https://henriksson-lab.github.io/NGS_101/end-seq__10.1016+j.molcel.2016.06.034/end-seq.html), [E/L Repli-seq](https://henriksson-lab.github.io/NGS_101/e-l-repli-seq__10.1038+nprot.2017.148/el-repli-seq.html), [eCLIP](https://henriksson-lab.github.io/NGS_101/eclip__10.1038+nmeth.3810/eclip.html), [GRO-seq](https://henriksson-lab.github.io/NGS_101/gro-seq__10.1126+science.1162228/gro-seq.html).
+- Original methods behind the lecture: Meissner et al. 2008, RRBS, [doi:10.1038/nature07107](https://doi.org/10.1038/nature07107); Booth et al. 2012, oxBS-seq, [doi:10.1126/science.1220671](https://doi.org/10.1126/science.1220671); Yu et al. 2012, TAB-seq, [doi:10.1016/j.cell.2012.04.027](https://doi.org/10.1016/j.cell.2012.04.027); Marchal et al. 2018, E/L Repli-seq, [doi:10.1038/nprot.2017.148](https://doi.org/10.1038/nprot.2017.148); Hussmann et al. 2021, Repair-seq, [doi:10.1016/j.cell.2021.10.002](https://doi.org/10.1016/j.cell.2021.10.002).
+- For RNA: Linder et al. 2015, miCLIP, [doi:10.1038/nmeth.3453](https://doi.org/10.1038/nmeth.3453); Core et al. 2008, GRO-seq, [doi:10.1126/science.1162228](https://doi.org/10.1126/science.1162228); Siegfried et al. 2014, SHAPE-MaP, [doi:10.1038/nmeth.3029](https://doi.org/10.1038/nmeth.3029); Liu et al. 2023, GLORI, [doi:10.1038/s41587-022-01487-9](https://doi.org/10.1038/s41587-022-01487-9).

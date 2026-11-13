@@ -1,0 +1,58 @@
+---
+title: "Readings — The trick catalogue"
+---
+
+The tricks in the two decks come from many papers. These are the ones that either introduced a trick cleanly or show it doing real work in human or mammalian material. Read the methods, not just the results: the trick is in the first figure.
+
+## Start here
+
+**Head SR, et al. (2014).** *Library construction for next-generation sequencing: overviews and challenges.* BioTechniques 56:61–77.
+[doi:10.2144/000114133](https://doi.org/10.2144/000114133) — **start here**
+
+> A survey of the steps in a library preparation and the choices at each one. Use it as a map: for each step, note which trick in the catalogue fits.
+
+**Kivioja T, Vähärautio A, Karlsson K, et al. (2012).** *Counting absolute numbers of molecules using unique molecular identifiers.* Nature Methods 9:72–74.
+[doi:10.1038/nmeth.1778](https://doi.org/10.1038/nmeth.1778) — **start here**
+
+> The UMI idea in its plainest form. Look for how many labels are needed and how they handle collisions.
+
+## Ligation, handles and ends
+
+**Zhu YY, Machleder EM, Chenchik A, Li R, Siebert PD (2001).** *Reverse transcriptase template switching: a SMART approach for full-length cDNA library construction.* BioTechniques 30:892–897.
+[doi:10.2144/01304pf02](https://doi.org/10.2144/01304pf02)
+
+> The template-switching trick before next-generation sequencing. Notice that nothing in it depends on the sequencer.
+
+**König J, Zarnack K, Rot G, et al. (2010).** *iCLIP reveals the function of hnRNP particles in splicing at individual nucleotide resolution.* Nature Structural & Molecular Biology 17:909–915.
+[doi:10.1038/nsmb.1838](https://doi.org/10.1038/nsmb.1838)
+
+> Circularisation and position as information in one protocol. Trace where the truncated end of each cDNA ends up.
+
+**Gansauge M-T, Meyer M (2013).** *Single-stranded DNA library preparation for the sequencing of ancient or damaged DNA.* Nature Protocols 8:737–748.
+[doi:10.1038/nprot.2013.038](https://doi.org/10.1038/nprot.2013.038)
+
+> Ligation to single strands, on beads. Ask what a double-stranded method would lose from the same sample.
+
+## Counting and compartments
+
+**Schmitt MW, Kennedy SR, Salk JJ, et al. (2012).** *Detection of ultra-rare mutations by next-generation sequencing.* PNAS 109:14508–14513.
+[doi:10.1073/pnas.1208715109](https://doi.org/10.1073/pnas.1208715109)
+
+> Duplex tags. Find where the error rate is argued from, and what the method cannot detect.
+
+**Rosenberg AB, Roco CM, Muscat RA, et al. (2018).** *Single-cell profiling of the developing mouse brain and spinal cord with split-pool barcoding.* Science 360:176–182.
+[doi:10.1126/science.aam8999](https://doi.org/10.1126/science.aam8999)
+
+> Split-and-pool in fixed cells. Check how the collision rate is estimated.
+
+## Turning a property into a base
+
+**Booth MJ, Branco MR, Ficz G, et al. (2012).** *Quantitative sequencing of 5-methylcytosine and 5-hydroxymethylcytosine at single-base resolution.* Science 336:934–937.
+[doi:10.1126/science.1220671](https://doi.org/10.1126/science.1220671)
+
+> Protect-then-convert on mouse embryonic stem cell DNA. Work out the table for each cytosine by hand.
+
+## Reference material to keep open
+
+- The [NGS 101](https://henriksson-lab.github.io/NGS_101/) protocol pages: every protocol named in the decks links to its construct diagram
+- A vendor selection chart for enzymes (for example NEB's polymerase, ligase and nuclease selection tools), for the property that decides each choice

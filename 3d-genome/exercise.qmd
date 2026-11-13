@@ -1,0 +1,257 @@
+---
+title: "Exercises — The three-dimensional genome"
+---
+
+Pen and paper. Try each one before opening the **Hint**, and the hint before the
+**Solution**. The reasoning is the point, not the answer.
+
+Have the protocol pages on [NGS 101](https://henriksson-lab.github.io/NGS_101/) open for the
+comparisons, and the [NEB selection charts](https://www.neb.com/en/tools-and-resources/selection-charts)
+for the enzyme questions.
+
+# Part 1 — The junction
+
+## E1. Write the junction
+
+A restriction enzyme cuts `^GATC` (MboI). Fragment A ends, on its top strand, with
+`...CCTT` after the cut, and fragment B starts with `GATCAAGG...`. The 5' overhangs are filled
+in with a biotinylated nucleotide and the ends are ligated. Write the top strand across the
+junction. Is the restriction site restored?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Fill-in extends the recessed 3' end of fragment A by the four bases of the overhang.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+Fragment A's top strand is extended by `GATC`, giving `...CCTTGATC`. Fragment B's top strand
+starts with `GATCAAGG`. After blunt ligation: `...CCTTGATC GATCAAGG...` = **`CCTTGATCGATCAAGG`**.
+
+The junction contains `GATC`, so an MboI site is restored; in fact two sites sit side by
+side. For HindIII, by contrast, the filled-in junction carries a new NheI site but no
+HindIII site. Either way the junction is recognisable by its sequence and by its biotin.
+:::
+
+## E2. What if there were no pull-down?
+
+You skip the streptavidin step and sequence the whole library. What kinds of molecules would
+dominate, and what is the practical consequence?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Think about all the ways a digested fragment can end up in the tube.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+Most fragments are unligated, or have joined their own other end to form circles that were
+linearised, or carry dangling ends. None is a contact between different places. The
+junction-containing molecules are a minority, so the sequencing budget goes mostly to
+uninformative reads. The pull-down on the biotin at the junction removes them before sequencing.
+:::
+
+## E3. High inter-chromosomal fraction
+
+A Hi-C library gives an unusually high fraction of read pairs between different chromosomes.
+What is the likely cause, and why does it point there?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Chromosomes occupy separate territories, so contacts between them are rare in the real structure.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+Random ligation. Ends that float free in the reaction find a partner anywhere, including on
+other chromosomes, whereas a true contact is almost always on the same chromosome and nearby.
+Possible causes: nuclei lysed before ligation, too concentrated a ligation in a protocol that
+should be dilute, or poorly crosslinked material. The inter-chromosomal fraction is a standard
+way of estimating how much of the signal is noise.
+:::
+
+# Part 2 — Calculations
+
+## E4. How many fragments, how many cells in the matrix?
+
+The haploid human genome is 3.1 × 10⁹ bp. With a six-cutter (one site per 4,096 bp) and a
+four-cutter (one site per 256 bp), how many fragments do you expect? Assume that the map has
+one cell per pair of fragments, so about N²/2 cells. If you have 10⁹ valid read pairs, how
+many pairs fall in each cell on average? What does that mean for a fragment-level map?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Number of fragments = genome size / spacing. Then divide the read pairs by the number of cells.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+- Six-cutter: 3.1 × 10⁹ / 4,096 ≈ 7.6 × 10⁵ fragments. N²/2 ≈ 2.9 × 10¹¹ cells; 10⁹ pairs give
+  about 0.003 pairs per cell.
+- Four-cutter: 3.1 × 10⁹ / 256 ≈ 1.2 × 10⁷ fragments. N²/2 ≈ 7.3 × 10¹³ cells; 10⁹ pairs give
+  about 0.00001 per cell.
+
+Both are far below one pair per cell: a map at single-fragment resolution is empty almost
+everywhere. In practice you add up neighbouring fragments into bins, and the usable resolution
+depends on how many contacts you collect. A finer cutter allows finer bins but needs far more
+reads. The numbers are for random sequence on a haploid genome; the real situation differs, and
+diploid genomes double the fragment count.
+:::
+
+## E5. SPRITE collisions
+
+A SPRITE library is made from 10⁶ crosslinked complexes. Each round splits over 96 wells. How
+many tag chains are possible after four rounds and after five? How many pairs of complexes would
+be expected to receive the same chain by chance (use N²/2 divided by the number of chains)?
+Why does it matter?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Each round multiplies the number of chains by 96.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+- Four rounds: 96⁴ ≈ 8.5 × 10⁷. Pairs: 10¹² / 2 / 8.5 × 10⁷ ≈ **5,900** colliding pairs.
+- Five rounds: 96⁵ ≈ 8.2 × 10⁹. Pairs: 5 × 10¹¹ / 8.2 × 10⁹ ≈ **61** colliding pairs.
+
+Two complexes with the same chain are read as one cluster, so they create false multi-way
+contacts. Collisions are uncommon in the five-round case but not negligible in the four-round
+case, which is why the number of rounds is tuned to the number of complexes. A usable number of
+tags per round also depends on how much material each well must contain.
+:::
+
+# Part 3 — Design problems
+
+## E6. Pick the method
+
+For each question, choose a method from this unit and justify the choice in one sentence:
+
+(a) Does this enhancer contact its candidate target gene in 50,000 primary human T cells?
+(b) Are there loops at kilobase scale in a new cell line?
+(c) Which regions contact the nucleolus and which do not?
+(d) Which RNAs are bound to chromatin at this locus?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Decide first whether you want everything, one viewpoint, or one protein, and whether a ligation is needed.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+(a) **4C-seq** or Capture-C from the gene promoter or enhancer: a single viewpoint is cheap and
+needs few cells. If the enhancer is marked by H3K27ac, **HiChIP** with that antibody is
+an alternative.
+
+(b) **In situ Hi-C** with deep sequencing, or **Micro-C** if you want nucleosome-scale features.
+
+(c) **SPRITE** (or GAM), because a body contacts many loci at once and the question is
+multi-way, which pairwise ligation represents poorly.
+
+(d) **ChAR-seq** or a related RNA–DNA method, because the question is about RNA joined to DNA
+and needs a bridge.
+:::
+
+## E7. Design a HiChIP experiment
+
+You have 5 million human cells and want enhancer–promoter loops that involve active enhancers.
+Which antibody would you choose, and why do you do the contact step **before** the
+immunoprecipitation? What control would you want?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+What would the antibody capture if you did the pull-down first, and where would the junction come from?
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+An antibody to an active-enhancer histone mark such as **H3K27ac**, or to a factor that sits at
+loop anchors such as cohesin. Contacts must be made first because the ligation happens in
+intact, crosslinked nuclei while the chromatin is still as folded as in the cell. If you
+immunoprecipitated first, you would have fragmented the structure and left nothing to ligate
+into a contact.
+
+Controls: a Hi-C map or an input from the same cells, to separate loops that exist from peaks
+that the antibody enriches. Replicates are needed to separate real loops from noise at low
+counts.
+:::
+
+## E8. Read the bridge
+
+In ChAR-seq a bridge has a 5'-adenylated end that joins the 3'-OH of fragmented RNA, and a
+3' end blocked with a C3 spacer. The other end of the bridge is compatible with DpnII ends in
+DNA. Explain the role of each of the three features, using what you know about ligases.
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+What does a ligase need on the two sides of the join, and what happens to a free end that is
+not blocked?
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+- **5'-adenylated end**: the activated 5' end is what an RNA ligase can join to a free RNA
+  3'-OH without needing ATP, so the bridge ligates only to the 3' end of RNA fragments and
+  not to other bridges.
+- **3' C3 spacer**: removes the 3'-OH of the bridge, so it cannot ligate to anything else at
+  that end or close into a circle.
+- **DpnII-compatible DNA end**: lets T4 DNA ligase join the bridge to nearby DNA, cut by
+  DpnII in the nucleus, through the matching overhang.
+
+The three features make the order of events fixed: RNA first, DNA second, and no other
+products.
+:::
+
+## E9. GAM
+
+In GAM the nuclear slice is about 220 nm thick and a nucleus is about 10 µm across. Suppose
+two loci far apart in the nucleus each appear in 10% of slices, independently. How often would
+you expect to find both in the same slice? How would that change if they were always
+in the same place?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Independent events: multiply the probabilities.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+Independent: 0.10 × 0.10 = **1%** of slices. If the loci were always together, then wherever one
+is found the other is too, so both are found in about **10%** of slices (the same slices as
+the single locus). The excess over 1% is the signal. The numbers are illustrative: real
+detection rates depend on the locus and the slice thickness relative to the nucleus, which is
+why many hundreds of slices are collected.
+:::
+
+# Self-check
+
+Answer without looking anything up.
+
+1. What are the four steps of the proximity-ligation block?
+2. Why is biotin placed at the junction?
+3. What limits the resolution of Hi-C with a restriction enzyme?
+4. What does a 4C primer pair look like, compared with a 3C primer pair?
+5. What does HiChIP select for?
+6. Why does SPRITE not need proximity ligation?
+7. Why is every method here compared by the fraction of valid read pairs?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Answers
+1. Crosslink, digest, ligate, pull down the junctions.
+2. So that streptavidin can capture the junction molecules and nothing else.
+3. The spacing of restriction sites: the fragment is the smallest unit of the map.
+4. A 3C pair faces inwards on two known fragments. A 4C pair is in the viewpoint and faces
+   outwards, reading into the unknown partner.
+5. Contacts anchored at the sites where a chosen protein sits.
+6. Complexes are tagged with the same chain of barcodes because they remain together through
+   split-and-pool.
+7. Because artefact pairs (unligated, self-circles, random joins) differ between libraries,
+   and they decide how many informative reads you get for the money.
+:::
+
+# Going further
+
+- Open the [in situ Hi-C](https://henriksson-lab.github.io/NGS_101/in-situ-hi-c__10.1016+j.cell.2014.11.021/in-situ-hi-c.html)
+  page and mark, in the protocol, the step that corresponds to each of the four moves.
+- Compare the [Micro-C](https://henriksson-lab.github.io/NGS_101/micro-c__10.1016+j.cell.2015.05.048/micro-c.html)
+  page with it, and list the steps that had to be added because MNase leaves heterogeneous ends.

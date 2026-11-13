@@ -1,0 +1,169 @@
+---
+title: "Exercises — Compartments"
+---
+
+Pen and paper. Try each one before opening the **Hint**, and the hint before the
+**Solution** — the reasoning is the point, not the answer. A calculator with an exponential
+key helps; $e^{-x}\approx 1-x+x^2/2$ is good enough for small $x$.
+
+# Part 1 — Poisson loading
+
+## E1. Droplets by hand
+
+You load a droplet generator so that the mean is 0.2 cells per droplet. What fraction of all
+droplets hold no cell, exactly one cell, and two or more? What fraction of the occupied
+droplets are multiplets?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+$P(0)=e^{-\lambda}$, $P(1)=\lambda P(0)$, and "two or more" is what remains.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+$P(0)=e^{-0.2}=0.819$. $P(1)=0.2\times0.819=0.164$. Two or more: $1-0.819-0.164=0.017$.
+Occupied droplets are $1-0.819=0.181$, so multiplets are $0.017/0.181\approx 9.7\%$ of them, so about 90% of occupied droplets are
+singletons. About 82% of the droplets are empty.
+:::
+
+## E2. How many cells do I have to load?
+
+You want about 5,000 singlet cells and your system makes droplets in large excess. Using the
+numbers for $\lambda=0.1$ (9.05% of droplets hold exactly one cell), how many droplets must
+receive cells, and how many cells in total pass into droplets?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+Singlets are 9.05% of droplets, so you need 5,000 / 0.0905 ≈ 55,000 droplets. The mean is 0.1
+cells per droplet, so about 5,500 cells in total enter, of which 5,000 are in singlets and the rest are in
+multiplets (about 260 droplets with two or more cells, holding roughly 520 cells). Real systems
+also lose cells before encapsulation, so the number to load is higher.
+:::
+
+## E3. Two draws
+
+A bead-based droplet system loads cells at $\lambda_c=0.1$ and beads at $\lambda_b=0.3$ per
+droplet, independently. What fraction of droplets hold exactly one cell and at least one bead?
+Why might more than one bead still be a problem?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Multiply the two probabilities. For beads, "at least one" is $1-P(0)$.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+One cell: 0.0905. At least one bead: $1-e^{-0.3}=0.259$. Product: 0.0905 × 0.259 ≈ 2.3% of droplets.
+Droplets with two or more beads give one cell two barcodes, so its RNA is split over two
+apparent cells, which inflates cell numbers and lowers per-cell depth.
+:::
+
+## E4. Reading a barnyard plot
+
+In a human–mouse mixing experiment at 1:1, 2.4% of barcodes are clearly mixed-species. Estimate
+the total doublet fraction. Then state what changes if the mix is 9 human to 1 mouse.
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+A doublet is mixed-species only if the two cells differ in species. What is the chance of that at 1:1?
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+At 1:1 a doublet is mixed half of the time, so the total is about 2 × 2.4% = 4.8%. At 9:1 the
+chance that two cells differ in species is $2\times0.9\times0.1=0.18$, so only 18% of doublets
+are visible and you must multiply the observed fraction by about 5.6 (and the number is small and noisy). A 1:1 mix is the
+most efficient design for this reason.
+:::
+
+# Part 2 — Choosing and designing
+
+## E5. Split-pool arithmetic
+
+A three-round split-pool design uses 48 wells in each round. How many distinct barcodes are
+there? You recover 20,000 cells. What fraction share a barcode with another cell? How many
+rounds of 48 would be needed to bring that below 1%?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+The fraction sharing a barcode is about $1-e^{-n/N}$.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+$48^3=110{,}592$. $\lambda=20{,}000/110{,}592=0.181$, so about $1-e^{-0.181}=16.5\%$ of cells share a barcode
+(counting cells that have at least one partner by chance). With four rounds, $N=48^4=5.3$ million, so
+$\lambda=0.0038$ and about 0.4%. Four rounds are enough.
+:::
+
+## E6. Why fix?
+
+Your tissue is dissociated with a process that stresses cells, and you are worried that gene
+expression changes while cells wait in the loading queue. Name two things fixation changes in
+the design and one thing it costs.
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+Fixation freezes the transcript profile at the moment of fixation, so waiting does not matter,
+and it lets you collect many samples over time and process them together. It also lets the cell act
+as its own compartment, so no droplet is needed. The cost is chemistry: crosslinks make RNA
+harder to reverse-transcribe and reduce sensitivity per cell, and the permeabilisation step must
+be tuned so that molecules stay in while enzymes get in.
+:::
+
+## E7. Two-stage loading
+
+A two-stage design pre-indexes nuclei into 384 wells and then loads droplets at 10 nuclei per
+droplet on average. What fraction of nuclei share a droplet with another nucleus of the same
+index? How does the answer change if you use 96 indexes?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Other nuclei in the droplet are Poisson with mean 10. Those with the same index are Poisson with mean $10/N_{index}$.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+With 384 indexes: $1-e^{-10/384}=2.6\%$. With 96 indexes: $1-e^{-10/96}=9.9\%$. Both stay manageable even
+though the droplets are heavily overloaded: a one-stage droplet at the same load would
+have almost all droplets as multiplets. The index is what turns overload into a manageable
+collision rate.
+:::
+
+## E8. What went wrong?
+
+A single-cell run returns a barcode-rank plot with no clear knee: reads fall off smoothly from
+the first barcode to the last. Give two explanations and say which control or measurement
+distinguishes them.
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+A knee appears when cells hold much more RNA than empty droplets. What would blur that?
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+(1) Heavy ambient RNA, for example from dead cells in the suspension, so empty droplets have nearly as many reads as cells; check cell viability and the fraction of reads in mitochondrial genes. (2) A sample with a very wide range of cell
+sizes or RNA content, so no clean separation exists; compare the profiles of low-count barcodes
+with those of cells. A species-mix control would show how many reads of the other species
+sit in each barcode, which measures the ambient fraction directly.
+:::
+
+# Self-check
+
+1. What is the one thing that a compartment must keep attached to a molecule?
+2. What is $P(0)$ at $\lambda=0.1$, and what does it say about cost?
+3. Why does a species-mixing experiment under-count doublets?
+4. In split-pool, what takes the place of the droplet?
+5. How does two-stage encapsulation make overloaded droplets usable?
+6. Why does a nucleus keep nascent RNA but lose cytoplasmic RNA?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Answers
+1. A barcode that names the compartment, written into the molecule.
+2. $e^{-0.1}=0.905$: about 90% of droplets are empty, so most reagent volume is spent on nothing.
+3. Doublets of two cells of the same species look like one cell.
+4. The cell itself, fixed and permeabilised, with a barcode path built over several rounds.
+5. A first-stage index makes cells in one droplet distinguishable, so only same-index collisions are a problem.
+6. The nuclear membrane keeps what is inside the nucleus; cytoplasm is removed when the cell is lysed.
+:::

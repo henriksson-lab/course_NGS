@@ -1,0 +1,84 @@
+---
+title: "Readings — Chromatin and protein–DNA"
+---
+
+Reading is optional, but each item is here for a reason. Start with the two marked **start
+here**.
+
+## Papers
+
+**Boyle AP, et al. (2008).** *High-resolution mapping and characterization of open chromatin
+across the genome.* Cell 132:311–322.
+[doi:10.1016/j.cell.2007.12.014](https://doi.org/10.1016/j.cell.2007.12.014)
+
+> The first genome-wide DNase-seq in human cells. Look at how the linker and the MmeI site turn
+> a DNase cut into a short sequence tag, and at what the authors say about hypersensitive
+> sites and regulatory elements.
+
+**Buenrostro JD, et al. (2013).** *Transposition of native chromatin for fast and sensitive
+epigenomic profiling of open chromatin, DNA-binding proteins and nucleosome position.* Nature
+Methods 10:1213–1218.
+[doi:10.1038/nmeth.2688](https://doi.org/10.1038/nmeth.2688) — **start here**
+
+> The ATAC-seq paper. Read Figure 1 for the fragment-length ladder, and the Methods for how
+> little the protocol asks of the sample. Compare to Boyle et al. step by step.
+
+**Corces MR, et al. (2017).** *An improved ATAC-seq protocol reduces background and enables
+interrogation of frozen tissues.* Nature Methods 14:959–962.
+[doi:10.1038/nmeth.4396](https://doi.org/10.1038/nmeth.4396)
+
+> What changed between ATAC and Omni-ATAC, and the data that show each change matters. A good
+> model for how a protocol is improved by adjusting one step at a time.
+
+**Johnson DS, et al. (2007).** *Genome-wide mapping of in vivo protein–DNA interactions.*
+Science 316:1497–1502.
+[doi:10.1126/science.1141319](https://doi.org/10.1126/science.1141319)
+
+> The first ChIP-seq paper, mapping a transcription factor in human cells. Note how the read
+> counts are turned into a peak at the binding site.
+
+**Teytelman L, et al. (2013).** *Highly expressed loci are vulnerable to misleading ChIP
+localization of multiple unrelated proteins.* PNAS 110:18602–18607.
+[doi:10.1073/pnas.1316064110](https://doi.org/10.1073/pnas.1316064110)
+
+> A warning about ChIP. It is in yeast, but the lesson of background that follows expression
+> level carries to human data. Read it before you interpret any ChIP peak at an active gene.
+
+**Skene PJ, Henikoff S (2017).** *An efficient targeted nuclease strategy for high-resolution
+mapping of DNA binding sites.* eLife 6:e21856.
+[doi:10.7554/eLife.21856](https://doi.org/10.7554/eLife.21856) — **start here**
+
+> The tethered-enzyme idea in its CUT&RUN form. Pay attention to why calcium is the switch, why
+> the fragments leave the nucleus, and what the short fragments tell you.
+
+**Kaya-Okur HS, et al. (2019).** *CUT&Tag for efficient epigenomic profiling of small samples
+and single cells.* Nature Communications 10:1930.
+[doi:10.1038/s41467-019-09982-5](https://doi.org/10.1038/s41467-019-09982-5)
+
+> The same idea with Tn5, so that the library is made in the cut. Look at the salt washes and
+> the comparison with ChIP-seq at low cell numbers.
+
+**Stergachis AB, et al. (2020).** *Single-molecule regulatory architectures captured by
+chromatin fiber sequencing.* Science 368:1449–1454.
+[doi:10.1126/science.aaz1646](https://doi.org/10.1126/science.aaz1646)
+
+> Methyltransferase footprinting read on long molecules. Look at what is visible on one
+> molecule that an average of many molecules hides.
+
+## Reference material to keep open
+
+- **[NGS 101](https://henriksson-lab.github.io/NGS_101/)** — the protocols from this unit are
+  drawn there: [ATAC-seq](https://henriksson-lab.github.io/NGS_101/atac-seq__10.1038+nmeth.2688/atac-seq.html),
+  [Omni-ATAC](https://henriksson-lab.github.io/NGS_101/omni-atac__10.1038+nmeth.4396/omni-atac.html),
+  [ChIP-seq](https://henriksson-lab.github.io/NGS_101/chip-seq__10.1038+nmeth1068/chip-seq.html),
+  [CUT&RUN](https://henriksson-lab.github.io/NGS_101/cut-run__10.7554+eLife.21856/cut-run.html),
+  [CUT&Tag](https://henriksson-lab.github.io/NGS_101/cut-tag__10.1038+s41467-019-09982-5/cut-tag.html),
+  [DNase-seq](https://henriksson-lab.github.io/NGS_101/dnase-seq-boyle-2008__10.1016+j.cell.2007.12.014/dnase-seq-boyle-2008.html).
+- **ChIP-seq guidelines** — Landt et al. 2012,
+  [doi:10.1101/gr.136184.111](https://doi.org/10.1101/gr.136184.111). What a ChIP experiment must
+  include before its peaks are believed: controls, replicates, antibody validation.
+- **Tn5 preparation** — Picelli et al. 2014,
+  [doi:10.1101/gr.177881.114](https://doi.org/10.1101/gr.177881.114). How an in-house Tn5 is loaded
+  with adapters; the same block as the one in commercial kits.
+- **Nucleosome fingerprints in ATAC data** — Schep et al. 2015,
+  [doi:10.1101/gr.192294.115](https://doi.org/10.1101/gr.192294.115).

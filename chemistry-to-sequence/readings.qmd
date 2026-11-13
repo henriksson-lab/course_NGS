@@ -1,0 +1,88 @@
+---
+title: "Readings — Turning chemistry into sequence"
+---
+
+Reading is optional but each item is here for a reason. Start with the two marked **start
+here** if you read nothing else.
+
+## Base conversion
+
+**Frommer M, McDonald LE, Millar DS, et al. (1992).** *A genomic sequencing protocol that
+yields a positive display of 5-methylcytosine residues in individual DNA strands.* PNAS
+89:1827–1831. [doi:10.1073/pnas.89.5.1827](https://doi.org/10.1073/pnas.89.5.1827)
+
+> The origin of the idea that a methyl group can be written into the sequence. Look for how
+> the authors argue that an unconverted C is the methylated one, and what they had to do to
+> show that conversion was complete.
+
+**Booth MJ, Branco MR, Ficz G, et al. (2012).** *Quantitative sequencing of
+5-methylcytosine and 5-hydroxymethylcytosine at single-base resolution.* Science 336:934–937.
+[doi:10.1126/science.1220671](https://doi.org/10.1126/science.1220671)
+
+> Why bisulfite alone cannot tell the two marks apart, and the subtraction that fixes it.
+> A clear example of a chemical step added to change what a later step converts.
+
+**Vaisvila R, Ponnaluri VKC, Sun Z, et al. (2021).** *Enzymatic methyl sequencing detects DNA
+methylation at single-base resolution from picograms of DNA.* Genome Research 31:1280–1289.
+[doi:10.1101/gr.266551.120](https://doi.org/10.1101/gr.266551.120) — **start here**
+
+> The enzymatic replacement for bisulfite. Compare the figures on fragment size and coverage
+> evenness with bisulfite, and note which enzymes protect and which convert.
+
+**Liu Y, Siejka-Zielińska P, Velikova G, et al. (2019).** *Bisulfite-free direct detection of
+5-methylcytosine and 5-hydroxymethylcytosine at base resolution.* Nature Biotechnology
+37:424–429. [doi:10.1038/s41587-019-0041-2](https://doi.org/10.1038/s41587-019-0041-2)
+— **start here**
+
+> The conversion inverted: only the modified base changes. Read for why this leaves the
+> genome four-letter, and for the cost in sequencing per informative base.
+
+## Reduced representation
+
+**Meissner A, Gnirke A, Bell GW, et al. (2005).** *Reduced representation bisulfite
+sequencing for comparative high-resolution DNA methylation analysis.* Nucleic Acids Research
+33:5868–5877. [doi:10.1093/nar/gki901](https://doi.org/10.1093/nar/gki901)
+
+> The cost argument in one paper. Find how much of the genome the size-selected fragments
+> cover and which regions are over-represented.
+
+## Labels, crosslinks and native readout
+
+**Herzog VA, Reichholf B, Neumann T, et al. (2017).** *Thiol-linked alkylation of RNA to
+assess expression dynamics.* Nature Methods 14:1198–1204.
+[doi:10.1038/nmeth.4435](https://doi.org/10.1038/nmeth.4435)
+
+> A label read by conversion and not by enrichment. Look at how the T to C fraction is turned
+> into a half-life.
+
+**Hafner M, Landthaler M, Burger L, et al. (2010).** *Transcriptome-wide identification of
+RNA-binding protein and microRNA target sites by PAR-CLIP.* Cell 141:129–141.
+[doi:10.1016/j.cell.2010.03.009](https://doi.org/10.1016/j.cell.2010.03.009)
+
+> The mutation signature of a crosslink. Compare with the truncation signature used by iCLIP
+> and ask which one suits your protein.
+
+**Simpson JT, Workman RE, Zuzarte PC, et al. (2017).** *Detecting DNA cytosine methylation
+using nanopore sequencing.* Nature Methods 14:407–410.
+[doi:10.1038/nmeth.4184](https://doi.org/10.1038/nmeth.4184)
+
+> A modification read from the signal of a single native molecule. Look at what they needed
+> as a training set, and what would happen with a mark that has none.
+
+## Reference material to keep open
+
+- **[NGS 101](https://henriksson-lab.github.io/NGS_101/)** — pages for TAB-seq, oxBS-seq, TAPS,
+  SLAM-seq, iCLIP, PAR-CLIP, DMS-MaPseq and RRBS show each construct and where the signal
+  ends up in the read.
+- **NEB EM-seq documentation** — the kit manual lists the spike-in controls that ship with the
+  kit and the conversion rates you should expect.
+- **Bismark** and similar aligners' manuals — for what "three-letter alignment" means in
+  practice, even if you never run one.
+
+## If you want to go further
+
+- Pacific Biosciences kinetics for DNA and RNA modifications, beginning with Flusberg et al.
+  2010 ([doi:10.1038/nmeth.1459](https://doi.org/10.1038/nmeth.1459)).
+- Fiber-seq, which uses a methyltransferase to write accessibility onto single DNA molecules
+  and reads it natively (Stergachis et al. 2020,
+  [doi:10.1126/science.aaz1646](https://doi.org/10.1126/science.aaz1646)).

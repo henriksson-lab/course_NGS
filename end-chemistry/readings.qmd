@@ -1,0 +1,57 @@
+---
+title: "Readings — End chemistry"
+---
+
+Reading is optional, but each item is here for a reason. Start with the two marked **start here**.
+
+## Papers
+
+**Lehman IR (1974).** *DNA ligase: structure, mechanism, and function.* Science 186:790–797.
+[doi:10.1126/science.186.4166.790](https://doi.org/10.1126/science.186.4166.790)
+
+> Why ligation needs a 5'-phosphate and a 3'-OH, in its original mechanistic form. Keep the
+> adenylation steps in mind for the pre-adenylated adapters.
+
+**Clark JM (1988).** *Novel non-templated nucleotide addition reactions catalyzed by procaryotic and eucaryotic DNA polymerases.* Nucleic Acids Research 16:9677–9686.
+[doi:10.1093/nar/16.20.9677](https://doi.org/10.1093/nar/16.20.9677)
+
+> The origin of the A-tail. Look at which polymerases do it and which base they add.
+
+**Meissner A, et al. (2008).** *Genome-scale DNA methylation maps of pluripotent and differentiated cells.* Nature 454:766–770.
+[doi:10.1038/nature07107](https://doi.org/10.1038/nature07107)
+
+> RRBS in human and mouse cells: restriction ends, fill-in and methylated adapters in one
+> method. Read the methods to see why each end step is there.
+
+**Gu H, et al. (2011).** *Preparation of reduced representation bisulfite sequencing libraries for genome-scale DNA methylation profiling.* Nature Protocols 6:468–481.
+[doi:10.1038/nprot.2010.190](https://doi.org/10.1038/nprot.2010.190) — **start here**
+
+> The protocol version. The end repair, A-tailing and adapter steps are spelt out, with
+> reasoning for each.
+
+**Bitinaite J, et al. (2007).** *USER friendly DNA engineering and cloning method by uracil excision.* Nucleic Acids Research 35:1992–2002.
+[doi:10.1093/nar/gkm041](https://doi.org/10.1093/nar/gkm041)
+
+> The uracil excision reaction, as a cloning tool. The same chemistry opens hairpin adapters
+> in library preparation.
+
+**Gansauge M-T, Meyer M (2013).** *Single-stranded DNA library preparation for the sequencing of ancient or damaged DNA.* Nature Protocols 8:737–748.
+[doi:10.1038/nprot.2013.038](https://doi.org/10.1038/nprot.2013.038) — **start here**
+
+> A library with no duplex ends needed. Compare each step with a standard ligation library.
+
+**Picelli S, et al. (2014).** *Tn5 transposase and tagmentation procedures for massively scaled sequencing projects.* Genome Research 24:2033–2040.
+[doi:10.1101/gr.177881.114](https://doi.org/10.1101/gr.177881.114)
+
+> The gap left by tagmentation and how it is filled.
+
+**Luo C, et al. (2018).** *Robust single-cell DNA methylome profiling with snmC-seq2.* Nature Communications 9.
+[doi:10.1038/s41467-018-06355-2](https://doi.org/10.1038/s41467-018-06355-2)
+
+> Adaptase and random priming on bisulfite-converted human brain nuclei, so the end chemistry
+> of single-strand tagging is seen in a human application.
+
+## Reference material to keep open
+
+- [NEB selection charts](https://www.neb.com/en/tools-and-resources/selection-charts) for polymerases, ligases, kinases and phosphatases.
+- [NGS 101](https://henriksson-lab.github.io/NGS_101/) shows the end state at each step of every protocol.

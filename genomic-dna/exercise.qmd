@@ -1,0 +1,126 @@
+---
+title: "Exercises — Genomic DNA libraries"
+---
+
+Pen and paper. Try each one before opening the **Hint**, and the hint before the **Solution**.
+
+# Part 1 — Designing and comparing
+
+## E1. Design the library
+
+You have 1.5 µg of high-molecular-weight DNA from a patient's blood and want germline variants and copy number across the whole genome. Write the sequence of steps, say whether you use PCR, and say how you will quantify the result.
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Run through the five blocks. Ask what the sample allows, and what you lose if you amplify.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+Shear or enzymatically fragment to about 350 bp; end repair and A-tail; ligate full-length adapters (P5/P7 plus index already on the adapter); bead size-select; no PCR. Quantify by qPCR, because only molecules with an adapter at each end count. This matches TruSeq DNA PCR-Free and NEBNext Ultra II FS PCR-free. Input is ample, so flat coverage and absence of PCR duplicates cost nothing.
+:::
+
+## E2. Compare with the field
+
+An Illumina DNA Prep run on the same DNA would use bead-linked tagmentation and 5 PCR cycles at 100 to 500 ng. Name two things you gain and two you lose compared with E1.
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+Gain: fewer hands-on steps and lower input; libraries normalised by bead capacity so they pool without individual quantification. Lose: PCR-free coverage flatness (some GC bias returns) and the absence of PCR duplicates; Tn5 also has a sequence preference at insertion sites.
+:::
+
+## E3. Why does a PCR-free library need qPCR?
+
+Your PCR-free library measures 5 nM on a fluorescence assay, but the run gives few clusters. Explain.
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Which molecules does a fluorescent dye count, and which can make clusters?
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+The dye counts all double-stranded DNA, including inserts with an adapter on one end only, adapter-less fragments and adapter dimers. Only molecules with a P5 end and a P7 end form clusters. qPCR with primers against both flow-cell sequences counts exactly those.
+:::
+
+# Part 2 — Numbers
+
+## E4. Complexity at low input
+
+Use 3.3 pg per haploid human genome and assume that 20% of fragments become library molecules. You have 20 ng and want 30x coverage. Estimate the molecules per locus and the fraction of unique reads, using unique fraction = $(1-e^{-x})/x$. Repeat for 200 pg.
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+20 ng is about 6000 copies; 20% gives about 1200 molecules per locus. $x = 30/1200 = 0.025$: about 99% unique. 200 pg is about 60 copies, 12 molecules; $x = 2.5$: $(1-e^{-2.5})/2.5 = 0.37$, so only about 37% unique. The 20% is an assumption; real efficiency depends on the protocol.
+:::
+
+## E5. Compounding
+
+Two fragments amplify with efficiencies 0.95 and 0.85 per cycle for 8 cycles. What is the ratio of their yields? How does the ratio change at 4 cycles?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+$(1.95/1.85)^8 = 1.054^8 \approx 1.5$, and $(1.054)^4 \approx 1.23$. Halving the cycles roughly halves the log of the bias.
+:::
+
+## E6. Allelic dropout
+
+In a single cell each allele is captured and amplified with probability 0.7, independently. What fraction of heterozygous sites look homozygous? What fraction have no data?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+Exactly one allele captured: $2 \times 0.7 \times 0.3 = 0.42$, called homozygous. Neither: $0.3^2 = 0.09$. Both: 0.49. So the true heterozygote is seen only about half the time, which is why single-cell variant callers need prior information.
+:::
+
+# Part 3 — Damaged DNA and single cells
+
+## E7. Pick the polymerase
+
+Your ancient-DNA library was not UDG treated. For the indexing PCR you can choose a proofreading archaeal polymerase or one that reads through uracil. Which and why?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Archaeal family B polymerases have a uracil-binding pocket that senses template uracil.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+Use a polymerase that reads through uracil. A proofreading archaeal enzyme stalls on uracil in the template, so damaged molecules, which are the ones you want, would be under-amplified. There is no error message; the library simply loses the damaged strands.
+:::
+
+## E8. UDG and methylation
+
+A colleague fully UDG-treats an ancient library and finds C-to-T changes remain at CpG sites. Why?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+Deamination of 5-methylcytosine gives thymine, not uracil. UDG removes only uracil, so these changes remain. They appear mostly at CpGs.
+:::
+
+## E9. Choose the single-cell method
+
+You want copy-number profiles of 500 tumour cells, and separately somatic point mutations in 20 neurons. Which amplification would you start from for each, and what would you check?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+Copy number needs even depth, so MALBAC or PTA fits; high depth is not needed since you bin the genome. Point mutations need few false positives and low dropout, so PTA is the design aimed at that, and you would check amplification uniformity and call rate on a bulk-matched control. Look at each paper's own benchmark rather than trusting a summary.
+:::
+
+# Self-check
+
+1. Why does a PCR-free adapter have to be full length?
+2. How does a PCR duplicate differ from a chance coincidence, and which can a UMI separate?
+3. Why can sequencing deeper not fix a high duplicate rate?
+4. What does partial UDG preserve, and why does that matter?
+5. Why is a single-stranded library better for nicked DNA?
+6. What does MALBAC do to limit bias that MDA does not?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Answers
+1. It must carry P5, P7 and the index before ligation, since there is no PCR to add them.
+2. PCR duplicates come from one original molecule; coincidences from two. Coordinates cannot tell them apart, a UMI can.
+3. The number of distinct molecules is fixed by the library; extra reads re-sample them.
+4. Terminal damage, so that authenticity can still be tested.
+5. Each strand is ligated on its own, so a nick does not destroy the template.
+6. Looping of full copies keeps them from being re-amplified exponentially during the preamplification.
+:::

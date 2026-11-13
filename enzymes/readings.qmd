@@ -1,0 +1,74 @@
+---
+title: "Readings — The enzyme toolbox"
+---
+
+Reading is optional but each item is here for a reason. Start with the two marked **start
+here** if you read nothing else, and keep a vendor selection chart open while you do.
+
+## Papers
+
+**Lehman IR (1974).** *DNA ligase: structure, mechanism, and function.* Science 186:790–797.
+[doi:10.1126/science.186.4166.790](https://doi.org/10.1126/science.186.4166.790)
+
+> The three-step mechanism (enzyme–AMP, adenylated 5'-phosphate, attack by the 3'-OH). Read it
+> to see why a missing 5'-phosphate fails *silently*: the step that needs it never starts.
+
+**Clark JM (1988).** *Novel non-templated nucleotide addition reactions catalyzed by
+procaryotic and eucaryotic DNA polymerases.* Nucleic Acids Research 16:9677–9686.
+[doi:10.1093/nar/16.20.9677](https://doi.org/10.1093/nar/16.20.9677) — **start here**
+
+> The observation behind A-tailing: which polymerases add a 3' A, and which do not. Compare the
+> table with the 3'→5' exonuclease column of a selection chart.
+
+**Greagg MA, Fogg MJ, Panayotou G, Evans SJ, Connolly BA, Pearl LH (1999).** *A read-ahead
+function in archaeal DNA polymerases detects promutagenic template-strand uracil.* PNAS
+96:9045–9050. [doi:10.1073/pnas.96.16.9045](https://doi.org/10.1073/pnas.96.16.9045)
+
+> Why Pfu-like enzymes stall at uracil. This is the origin of the "dU tolerance" column, and of
+> the uracil-tolerant variants that were built to get around it.
+
+**Gubler U, Hoffman BJ (1983).** *A simple and very efficient method for generating cDNA
+libraries.* Gene 25:263–269.
+[doi:10.1016/0378-1119(83)90230-5](https://doi.org/10.1016/0378-1119(83)90230-5)
+
+> Second-strand synthesis by RNase H nicking and Pol I extension. Look for how RNA primer
+> extension, nick extension and 5'→3' exonuclease each appear as a requirement.
+
+**Dean FB, Hosono S, Fang L, Wu X, et al. (2002).** *Comprehensive human genome amplification
+using multiple displacement amplification.* PNAS 99:5261–5266.
+[doi:10.1073/pnas.082089499](https://doi.org/10.1073/pnas.082089499)
+
+> Strand displacement turned into a method, on human DNA. Note what the paper says about
+> product length and amplification bias.
+
+**Viollet S, Fuchs RT, Munafo DB, Zhuang F, Robb GB (2011).** *T4 RNA ligase 2 truncated
+active site mutants: improved tools for RNA analysis.* BMC Biotechnology 11:72.
+[doi:10.1186/1472-6750-11-72](https://doi.org/10.1186/1472-6750-11-72)
+
+> Why the small-RNA 3' adapter is pre-adenylated and the ligase is truncated: both remove
+> side reactions. Look at the by-products the mutants avoid.
+
+**Picelli S, Björklund ÅK, Reinius B, Sagasser S, Winberg G, Sandberg R (2014).** *Tn5
+transposase and tagmentation procedures for massively scaled sequencing projects.* Genome
+Research 24:2033–2040. [doi:10.1101/gr.177881.114](https://doi.org/10.1101/gr.177881.114)
+— **start here**
+
+> A practical account of tagmentation: how the transposome is loaded, how the amount of enzyme
+> sets the fragment size, and why the adapters are completed by PCR.
+
+**Vaisvila R, Ponnaluri VKC, Sun Z, Langhorst BW, et al. (2021).** *Enzymatic methyl sequencing
+detects DNA methylation at single-base resolution from picograms of DNA.* Genome Research
+31:1280–1289. [doi:10.1101/gr.266551.120](https://doi.org/10.1101/gr.266551.120)
+
+> Four enzymes in a row (TET2, T4-BGT, APOBEC3A, and the polymerase), each chosen for one
+> property. Compare with bisulfite and note what the gentler chemistry buys.
+
+## Reference material to keep open
+
+- [NEB selection charts](https://www.neb.com/en/tools-and-resources/selection-charts): the
+  polymerase, ligase, restriction-enzyme and modifying-enzyme tools. The site refuses
+  automated tools, so open it in a browser.
+- The datasheet of any enzyme you actually use: it states the end it leaves, the cofactor,
+  and how to inactivate it. Read those three lines first.
+- [NGS 101](https://henriksson-lab.github.io/NGS_101/): the enzymes named in each protocol,
+  step by step.

@@ -1,0 +1,99 @@
+---
+title: "Exercises — Design patterns, failure modes and the capstone"
+---
+
+The first three problems are warm-ups. The last, the **capstone**, is the exercise of the whole course: design a library preparation of your own.
+
+# Part 1 — Reading and diagnosing
+
+## E1. Draw the construct
+
+A protocol says: shear human DNA; end repair and A-tail; ligate adapters with a T overhang; clean up with beads at 0.8×; amplify with indexed primers for 8 cycles. Draw the molecule after each step. Mark each 5' and 3' end as OH, phosphate or overhang, and say what could go wrong at each step.
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Use the ledger from the deck: ends, strands, what can prime, what is removed.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+1. Sheared: ragged ends, mixed phosphate and OH, overhangs. 2. After repair: blunt, 5'-P, 3'-OH, then a single 3' A on each end. Failure: a proofreading polymerase would remove the A. 3. Adapter on each end: a T-overhang adapter pairs the A; the nick on the lower strand stays unsealed if the adapter lacks a 5'-P at that position. Failure: adapter dimers when insert is scarce. 4. Beads at 0.8× remove free adapter and fragments below about 200 bp; dimers survive in part. 5. PCR fills the nicks and adds indexes and flow-cell ends. Failure: over-amplification at too many cycles.
+:::
+
+## E2. Diagnose from the data
+
+A run returns: (a) 25% of reads are adapter, (b) 1.5% of reads in a blank well, (c) first cycles show 80% of one base. Qubit was 6 ng/µL (450 bp), qPCR was 4 nM. For each observation, name the failure, the likely cause, and the control that would confirm it.
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. Adapter dimers or insert shorter than the read: check the trace for a 130 bp peak, and run an adapter-only reaction. b. Index hopping or contamination: unique dual indexes, a blank carried through the whole protocol. c. Low complexity: PhiX, staggered primers. Qubit predicts 6 × 10^6 / (660 × 450) = 20 nM, qPCR says 4 nM: only 20% of the DNA can cluster, so a one-sided or adapter-free fraction exists: load by qPCR.
+:::
+
+## E3. Choose the control
+
+Your method joins two inserts on purpose (a proximity-ligation protocol). How do you tell the real contacts from random joins made in the tube?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+Mix cells of two species (human and mouse) before the ligation. Joins between a human and a mouse piece can only be random. Their frequency estimates the random-join rate in the human data, and is the reason to ligate in situ or in dilute solution.
+:::
+
+# Part 2 — The capstone
+
+## E4. Design a library preparation
+
+**Choose a question** you can answer with sequencing in human or mammalian material. It should need a library that no standard kit makes, or a kit used in an unusual way. Examples:
+
+- Which transcription start sites are used in primary human T cells?
+- Where are the cut sites of a Cas9 guide in iPSCs, at all off-targets?
+- How much of the 5hmC in brain tissue is at enhancers?
+- Which TCR pairs occur in a single-cell sample?
+
+**Hand in** one document containing:
+
+1. **The question** and what result would answer it.
+2. **The blocks**, in order, each a verb from the block list.
+3. **The construct**, drawn after every step, with the 5' and 3' ends marked.
+4. **Oligos**: sequences you write out or describe, with the purpose of each part (flow-cell ends, read sites, indexes, UMIs or barcodes).
+5. **Enzymes**: for each, name the deciding property from a vendor selection chart, and why a neighbour in the chart does not do.
+6. **The read structure** in cycles per read, and which read holds each part.
+7. **Controls**: at least three, each with the failure it reveals.
+8. **Expected failure modes**: three or more, with signature and fix, from the deck.
+9. **The closest protocol** in the NGS 101 collection: link it, list what you took from it, and what you changed and why.
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Start from the question's readout: is it a count, a position, a base, a pair of sequences? That selects the tricks (UMI, conversion, junction, template switch) before you choose the enzymes. Then choose the platform and fix the read structure, and work backwards to the oligos.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+A worked outline, for the question "which regions are accessible in 500 human CD34+ cells?"
+
+1. Readout: positions of transposition events, counted per region.
+2. Blocks: nuclei isolation; tagmentation; gap fill; pre-amplify; select by qPCR; index PCR; clean up; pool; load.
+3. Constructs: nucleus; stub-tagged open DNA with a 9-bp gap; gap-filled; indexed with P5/P7.
+4. Oligos: transposome carrying the read-primer stubs; index primers adding i5/i7 with P5/P7.
+5. Enzymes: Tn5 (tags and cuts in one step), a strand-displacement-free polymerase for gap fill, and a high-fidelity PCR polymerase.
+6. Read structure: 50 / 8 / 8 / 50.
+7. Controls: a no-transposase reaction, a reference cell line, deproteinised DNA, a blank in the pool.
+8. Failures: mitochondrial reads, over-tagmentation (short fragments only), over-amplification.
+9. Closest protocol: Omni-ATAC, with the cycle choice from ATAC-seq; changes: smaller input and fewer cycles, justified from the molecule budget.
+
+Your design should give a similar level of detail, and be about a different question.
+:::
+
+# Self-check
+
+1. What do you write beside the drawing at every step?
+2. Which control separates a chimera from a real junction?
+3. Why does unique dual indexing make hopping visible?
+4. What goes wrong if the read structure does not match the construct?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Answers
+1. 5' and 3' chemistry, strand state, what can prime, and what is removed.
+2. A species-mix control.
+3. A hopped read falls in an unused index combination, so it is not mistaken for a sample.
+4. The reads stop short of, or run through, the parts you want, and barcodes land in the wrong read.
+:::

@@ -1,0 +1,139 @@
+---
+title: "Exercises — Attaching a handle: the five ways"
+---
+
+Pen and paper. Try each problem before opening the **Hint**, and the hint before the **Solution**.
+
+Have the [NEB selection charts](https://www.neb.com/en/tools-and-resources/selection-charts) open for the enzyme questions.
+
+# Part 1 — Choosing a way
+
+## E1. Pick the way
+
+For each sample, pick the way of attaching a handle and say which property of the material decides it:
+
+a. 2 ng of human genomic DNA, intact, and the result is wanted the same day.
+b. 5 µg of human genomic DNA, sheared, and no PCR is wanted.
+c. 10 pg of total RNA from a single human cell, with full-length transcripts wanted.
+d. Total RNA from human plasma, mostly 20–30 nt.
+e. 10 ng of ancient or heavily degraded DNA, partly single-stranded.
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Ask: is the starting molecule DNA or RNA, how much is there, and how long is it? Does the method need the end to be free?
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. Transposition. Tagmentation works from nanogram amounts and combines cutting and tagging in one step.
+b. Ligation with a PCR-free workflow: repair, A-tail, ligate. A transposase would need amplification to finish the adapters.
+c. RT with template switching. It adds the handle at the 5' end of the cDNA without a ligation, which is inefficient at this amount.
+d. RNA ligation: a 3' pre-adenylated adapter then a 5' adapter. Short RNAs are too short for random priming to work well and have free ends.
+e. Single-strand ligation or tailing. The molecules are too damaged for duplex end repair and A/T ligation. See the end-chemistry deck.
+:::
+
+## E2. What did the handle come from?
+
+In [SMART-seq2](https://henriksson-lab.github.io/NGS_101/smart-seq2__10.1038+nmeth.2639/smart-seq2.html) the final library has an adapter at each end. List the ways by which handles were added across the whole protocol.
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+- RT primer tail: the oligo-dT primer carries a known sequence that ends up at the 3' end of the cDNA.
+- Template switching: the TSO provides the handle at the other end.
+- Primer tails again: the PCR primers match those two handles.
+- Transposition: Tn5 adds the sequencing adapters to the amplified cDNA.
+
+Four steps, three of the five ways.
+:::
+
+# Part 2 — Ligation
+
+## E3. Why an A and a T?
+
+You have sheared DNA that is end-repaired, with a blunt-ended adapter available. Give two things that will happen in the tube and one thing that will not, if you do not A-tail the insert.
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+Inserts ligate to each other, giving chimeric molecules. Adapters ligate to each other and give dimers. Insert-adapter ligation happens too, but it competes with both. What will not happen is selection for the desired joint: a blunt ligase does not distinguish. With an A on the insert and T on the adapter, an A cannot pair with an A and a T cannot pair with a T.
+:::
+
+## E4. A half-useful library
+
+You make a library with two different adapters, A and B, mixed in equal amounts. What fraction of the product has the right combination and what happens to the rest? What design avoids the loss?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Each end is independently A or B. Count the four cases.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+Four equally likely combinations: AA, AB, BA and BB. Half carry both handles. The rest have the same handle at both ends and cannot be sequenced. A forked (Y) adapter provides both arms at each end, so every molecule has the pair of different handles after the first copy.
+:::
+
+# Part 3 — RNA ligation
+
+## E5. A dimer instead of a library
+
+A small-RNA library gives a strong band at about 120 bp and almost nothing at the insert size. Suggest the cause and say which reagent to change.
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Which two oligos could ligate to each other in the second reaction?
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+Too much 3' adapter, or too little RNA. Free 3' adapter has a 5' end that the 5' adapter can use, so the two ligate. Reduce adapter, or remove free adapter before the 5' step. A smaller RNA input also makes this worse. Size selection afterwards removes the dimer.
+:::
+
+## E6. The trap of ATP
+
+A 3'-blocked, pre-adenylated adapter is meant to be ligated to RNA with a 5'-P and a 3'-OH. A colleague swaps the truncated RNA ligase 2 for full-length T4 RNA ligase 1 and keeps ATP in the buffer. What new products can form?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Which ends on the RNA are now usable by an ATP-dependent enzyme?
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+An ATP-dependent ligase can use the RNA's own 5'-P and 3'-OH. RNA molecules can circularise or join into concatemers, and neither takes up the adapter. The 3' block and the 5'-App on the adapter stop adapter-adapter joins, but they do not protect the RNA. Leaving ATP out and using the truncated enzyme is the design that prevents this.
+:::
+
+# Part 4 — Tailing and switching
+
+## E7. Where did the junk reads come from?
+
+A template-switching library has many reads that start with the TSO sequence followed by the middle of a gene. Give two explanations.
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+The TSO can pair with internal runs of C or G and give the handle in the middle of a transcript. Premature RT stops are another plausible source: if RT falls off inside the transcript, the switch can happen there. Either way a read that starts at the TSO is not proof of a transcription start.
+:::
+
+## E8. Fixing a noisy amplicon library
+
+You amplify an exon with 60-nt primers that carry both an index and P5/P7. Many reads are primer dimers. Redesign the PCR.
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+Use two steps. In step 1 use the gene-specific primers with short universal tails for a few cycles. Clean up with beads. In step 2 use universal primers carrying the index and P5/P7. The long primers never meet a gene-specific sequence, so they cannot mispair with each other through one.
+:::
+
+# Self-check
+
+1. Name the five ways of attaching a handle.
+2. What does a primer tail add, and what does it not change?
+3. Why is the transposase's cut not always productive?
+4. Why does a pre-adenylated adapter need no ATP?
+5. What is the purpose of a forked adapter?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Answers
+1. DNA ligation, RNA ligation, primer tails, transposition, template switching.
+2. It adds sequence at the 5' end of the product; the annealing part still decides specificity.
+3. Both ends of a fragment are independent. A fragment with the same adapter at both ends does not amplify as well.
+4. The AMP is already attached to the adapter's 5' end, which provides the energy for the joint.
+5. Different arms at each end, from a single oligo pair.
+:::

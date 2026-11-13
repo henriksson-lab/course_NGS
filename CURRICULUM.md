@@ -88,7 +88,7 @@ the rules.
 - Papers: Sanger 1977; Bentley et al. 2008 (Illumina SBS); Eid et al. 2009 (PacBio);
   Drmanac et al. 2010 (DNA nanoballs); Clarke et al. 2009 / Jain et al. 2016 (nanopore)
 
-### A3. Anatomy of a library molecule
+### A3. Anatomy of a library molecule  ✅ built
 Deck A3 (~25 slides)
 - ★ P5 – i5 – Read 1 primer site – insert – Read 2 primer site – i7 – P7
 - ★ TruSeq Y-adapter vs Nextera (Tn5 mosaic end, S5/S7) architecture
@@ -110,7 +110,7 @@ base), the enzymes and oligos it needs, what it requires of the ends, what it co
 fails, the *tricks* practitioners use, and which use cases (Part C) and collection protocols
 rely on it.
 
-### B1. The enzyme toolbox
+### B1. The enzyme toolbox  ✅ built
 Decks: B1a polymerases and reverse transcriptases · B1b ligases, kinases and phosphatases ·
 B1c nucleases · B1d transposases and modifying enzymes
 - ★ Polymerases, taught along the axes NEB's selection chart actually compares, because these
@@ -150,7 +150,7 @@ B1c nucleases · B1d transposases and modifying enzymes
 - Tricks: exploiting an activity the enzyme was not sold for (Taq's A-addition, Tn5 on
   RNA:DNA hybrids, RT template switching, phi29's strand displacement for RCA)
 
-### B2. Attaching a handle — the five ways
+### B2. Attaching a handle — the five ways  ✅ built
 Deck B2 (~30 slides). The central idea of the course: there are only a few ways to put a known
 sequence onto an unknown molecule.
 - ★ DNA ligation (blunt, TA, cohesive, splinted)
@@ -162,7 +162,7 @@ sequence onto an unknown molecule.
 - Tricks: partial/truncated adapters finished by index PCR; two-step PCR to cut noise;
   nested handles; asymmetric adapters; bead-bound handles
 
-### B3. End chemistry
+### B3. End chemistry  ✅ built
 Deck B3 (~30 slides)
 - ★ End states: 5'-P vs 5'-OH, 3'-OH vs 3'-P vs 3'-blocked, overhangs, nicks, gaps
 - ★ End repair and blunting; dA-tailing; fill-in; gap repair after tagmentation
@@ -171,7 +171,7 @@ Deck B3 (~30 slides)
   methylated adapters surviving bisulfite; hairpin adapters; inverted-dT; adaptase and
   single-strand ligation for degraded input; dilute ligation to favour intramolecular events
 
-### B4. Fragmentation and size control
+### B4. Fragmentation and size control  ✅ built
 Deck B4 (~25 slides)
 - ★ Acoustic shearing, enzymatic fragmentation, tagmentation, restriction digest, MNase, DNase I,
   chemical and alkaline hydrolysis
@@ -182,7 +182,7 @@ Deck B4 (~25 slides)
   site with Type IIS/IIG enzymes to produce fixed-length tags; avoiding fragmentation altogether
   for long reads
 
-### B5. Amplification
+### B5. Amplification  ✅ built
 Deck B5 (~30 slides)
 - ★ PCR: fidelity, cycle number, GC and length bias, duplicates, over-amplification, PCR-free
 - ★ Linear amplification: IVT (T7), single-primer extension
@@ -192,7 +192,7 @@ Deck B5 (~30 slides)
   suppressing adapter-dimer amplification; splinkerettes to kill one-sided background;
   rolling-circle consensus for error correction
 
-### B6. Selection — keeping what you want
+### B6. Selection — keeping what you want  ✅ built
 Deck B6 (~30 slides)
 - ★ Affinity: streptavidin–biotin, antibodies, oligo-dT, hybridisation capture with baits
 - ★ Depletion: RNase H with DNA oligos, Cas9 cutting, blocking oligos, duplex-specific nuclease
@@ -202,7 +202,7 @@ Deck B6 (~30 slides)
 - Tricks: suppression PCR; select by end structure rather than by sequence; carrier nucleic acid
   for low input; spike-in standards
 
-### B7. Barcodes, UMIs and where information lives
+### B7. Barcodes, UMIs and where information lives  ✅ built
 Deck B7 (~30 slides)
 - ★ Sample indexes, unique dual indexes, barcode design (edit distance, colour balance)
 - ★ Cell barcodes: bead-bound, split-pool, plate-based
@@ -211,7 +211,7 @@ Deck B7 (~30 slides)
 - Tricks: hashing with antibodies or lipids; combinatorial barcodes from a small oligo set;
   staggered/phased primers for base diversity; UMI plus duplex tags for consensus
 
-### B8. Converting chemistry into sequence
+### B8. Converting chemistry into sequence  ✅ built
 Deck B8 (~30 slides). The trick that makes anything measurable: turn a non-sequence property
 into a base change, an end, or a ligation event.
 - ★ Base conversion: bisulfite, enzymatic conversion, TAPS, APOBEC; conversion seen as a change
@@ -223,7 +223,7 @@ into a base change, an end, or a ligation event.
 - Tricks: reduced representation to cut cost; controls that must be run alongside a conversion;
   protect-then-convert strategies
 
-### B9. Compartments
+### B9. Compartments  ✅ built
 Deck E1 (~25 slides)
 - ★ Why compartments: keeping molecules from one cell, one fragment or one complex together
 - Wells and plates, droplets, nuclei as compartments, semi-permeable capsules, hydrogels,
@@ -240,15 +240,18 @@ Each module takes a biological question, derives the protocol from the blocks in
 reads real protocols from the collection and asks why they differ. The recurring exercise:
 *given this question and this sample, design the library; then compare with what the field does.*
 
-### C1. Genomic DNA
+### C1. Genomic DNA  ✅ built
 Deck C1 (~25 slides). Blocks: B4 fragmentation + B3 end chemistry + B2 handle (ligation or
 Tn5) + B5 amplification + E1 QC.
 - Whole-genome shotgun, PCR-free, degraded and ancient DNA, low input, single-cell WGA
 - Why PCR-free when input allows; duplicate rates; coverage uniformity and GC bias
 - Collection: TruSeq DNA PCR-free, NEBNext Ultra II, Illumina DNA Prep, Nextera XT, MALBAC, PTA
 
-### C2. RNA
-Deck C2a: mRNA and total RNA · Deck C2b: small RNA, 3'/5' tag and low input · Deck C2c: full-length and isoforms
+### C2. RNA  ✅ built
+Deck C2a: mRNA and total RNA · Deck C2b: small RNA, 3'/5' tag and low input
+(Built as two decks, not three. The planned C2c full-length/isoform deck was absorbed:
+SMART-seq full-length cDNA is taught in `single-cell/lec.qmd`, and Iso-Seq and long-read
+isoform work in `long-reads/lec.qmd`.)
 - Choosing by RNA class: length, poly(A), cap, abundance
 - rRNA depletion strategies; RT priming; second-strand synthesis; dUTP strandedness;
   template switching; tag vs full-length
@@ -256,47 +259,49 @@ Deck C2a: mRNA and total RNA · Deck C2b: small RNA, 3'/5' tag and low input · 
   NEBNext small RNA, Ribo-seq, FLAM-seq
 - Reuses the 2026 RNA-seq lecture
 
-### C3. Targeted sequencing
+### C3. Targeted sequencing  ✅ built
 Deck C3 (~25 slides)
 - Amplicons and tiled panels, hybrid capture, MIPs and padlocks, Cas9-guided enrichment,
   reduced representation (RRBS for human methylation; RAD/ddRAD/GBS as the same idea in genotyping)
 - Rare-variant detection and why it forces UMIs or duplex tags
 - Collection: CAPP-Seq, SureSelect, smMIPs, Safe-SeqS, RRBS, tiled amplicon panels
 
-### C4. Chromatin and protein–DNA
+### C4. Chromatin and protein–DNA  ✅ built
 Deck C4 (~30 slides)
 - Accessibility (DNase-seq, ATAC-seq, MNase-seq, methyltransferase footprinting)
 - Binding (ChIP-seq, CUT&RUN, CUT&Tag, DamID, calling cards, DAP-seq)
 - Crosslinking and reversal; the tethered-enzyme idea (pA-MNase, pA-Tn5) as a block
 - Collection: ATAC-seq, Omni-ATAC, ChIP-seq, CUT&RUN, CUT&Tag, DNase-seq
 
-### C5. Three-dimensional genome and contacts
+### C5. Three-dimensional genome and contacts  ✅ built
 Deck C5 (~25 slides)
 - Proximity ligation as a block: crosslink, digest, ligate, pull down the junction
 - 3C → 4C → Hi-C → in situ Hi-C → Micro-C; viewpoint methods; HiChIP; bridge linkers;
   ligation-free approaches (SPRITE, GAM); RNA–chromatin contacts
 - Collection: Hi-C, in situ Hi-C, HiChIP, 4C-seq, ChAR-seq, SPRITE (all human/mammalian)
 
-### C6. Modifications, damage and dynamics
+### C6. Modifications, damage and dynamics  ✅ built
 Deck C6a: DNA methylation and damage · Deck C6b: RNA modifications and nascent RNA
 - Bisulfite and its successors; break mapping; replication timing; repair outcomes
 - m6A and other RNA marks; CLIP family; metabolic labelling; GRO-seq and PRO-seq;
   TSS mapping; structure probing
 - Collection: RRBS, EM-seq, TAB-seq, GUIDE-seq, END-seq, Repli-seq, m6A-seq, eCLIP, PAR-CLIP, GRO-seq
 
-### C7. Single cells
-Deck C7a: plates, droplets, microwells · Deck C7b: combinatorial indexing · Deck C7c: multimodal and VDJ
+### C7. Single cells  ✅ built
+Deck C7a: plates, droplets, microwells · Deck C7b: combinatorial indexing and multimodal
+(Built as two decks, not three: `single-cell/lec-combinatorial.qmd` carries both the
+combinatorial-indexing and the multimodal/VDJ material.)
 - The same blocks, but every molecule must carry a compartment barcode
 - Collection: 10x 3' v3, Drop-seq, inDrop, MARS-seq, sci-RNA-seq3, SPLiT-seq, SHARE-seq,
   CITE-seq, 10x Multiome, 10x VDJ
 
-### C8. Spatial
+### C8. Spatial  ✅ built
 Deck C8 (~25 slides)
 - Array capture (Visium, Slide-seq, Stereo-seq, HDST), microfluidic barcoding (DBiT-seq),
   region selection (GeoMx), in situ sequencing (FISSEQ, STARmap)
 - Fixation and permeabilisation as the limiting chemistry
 
-### C9. Pooled screens and synthetic libraries
+### C9. Pooled screens and synthetic libraries  ✅ built
 Deck C9a: building pooled libraries · Deck C9b: reading screens out
 - Oligo pools, pooled cloning, lentiviral delivery and integration into the human genome
 - Readout as a library-prep problem: inverse PCR, splinkerettes, two-step index PCR,
@@ -308,7 +313,7 @@ Deck C9a: building pooled libraries · Deck C9b: reading screens out
   integration sites in human cells
 - Reuses the 2025 screening lecture
 
-### C10. Long reads
+### C10. Long reads  ✅ built
 Deck C10 (~30 slides)
 - HMW DNA handling and what shears it; PacBio SMRTbell, Iso-Seq, Kinnex; ONT ligation, rapid,
   ultra-long, native barcoding, cDNA and direct RNA; Cas9 enrichment and adaptive sampling
@@ -320,35 +325,35 @@ A cross-cutting reference, indexed by the problem rather than by the block. Each
 problem, the trick, the molecular reason it works, and protocols that use it. Decks here are
 short and can be read in any order; this is also the part a practising student returns to.
 
-### D1. Making the right thing ligate
+### D1. Making the right thing ligate  ✅ built
 - Blocked and inverted ends, dephosphorylation, A/T overhangs, splints, one-sided ligation,
   dilute ligation for intramolecular events, PEG crowding
 
-### D2. Killing what you do not want
+### D2. Killing what you do not want  ✅ built
 - Adapter-dimer suppression, suppression PCR, exonuclease clean-up of unligated species,
   blocking oligos, RNase H depletion, Cas9 depletion, methylation-sensitive digestion
 
-### D3. Getting a handle onto an impossible end
+### D3. Getting a handle onto an impossible end  ✅ built
 - Template switching, tailing with TdT or poly(A) polymerase, adaptase and single-strand
   ligation, cap trapping, circularisation to turn an end into an internal position
 
-### D4. Squeezing information into the read
+### D4. Squeezing information into the read  ✅ built
 - Truncated adapters completed by index PCR, custom sequencing primers, dark cycles,
   barcodes in the index read vs inline, staggered primers for base diversity
 
-### D5. Counting honestly
+### D5. Counting honestly  ✅ built
 - UMIs and where they may be added, duplex tags, RCA consensus, spike-ins, PCR-free when
   input allows, limiting cycle number by diagnostic qPCR
 
-### D6. Working with very little, or very degraded, material
+### D6. Working with very little, or very degraded, material  ✅ built
 - Carrier nucleic acid, single-strand library prep, pre-amplification then splitting,
   bead-bound handles to avoid transfer losses, low-volume reactions
 
-### D7. Keeping molecules together
+### D7. Keeping molecules together  ✅ built
 - Nuclei as compartments, droplets, split-and-pool, fix-and-permeabilise instead of isolating,
   in-situ reactions, two-stage encapsulation
 
-### D8. Turning a property into a base
+### D8. Turning a property into a base  ✅ built
 - Base conversion chemistries, protect-then-convert, position-as-information (stops, cuts,
   junctions), affinity for a modification, native signal readout
 
@@ -356,7 +361,7 @@ short and can be read in any order; this is also the part a practising student r
 
 ## Part E — Quality control and designing your own
 
-### E1. Cleanup, quantification and QC
+### E1. Cleanup, quantification and QC  ✅ built
 Deck E1 (~25 slides)
 - ★ SPRI beads: how the ratio sets the cut-off; columns, precipitation, gels
 - ★ Quantification: Qubit vs qPCR vs fragment analyser, and what each actually measures
@@ -365,7 +370,7 @@ Deck E1 (~25 slides)
 - Tricks: double-sided selection; diagnostic qPCR to pick a cycle number; small analytical
   aliquots before committing the sample
 
-### E2. Design patterns and failure modes
+### E2. Design patterns and failure modes  ✅ built
 Deck E2 (~30 slides)
 - Reading a protocol as a sequence of blocks; drawing the construct after every step
 - Failure modes and their signatures: adapter dimers, one-sided products, chimeras, index
@@ -373,7 +378,7 @@ Deck E2 (~30 slides)
 - The controls that distinguish them
 - Demos: the NGS_101 *Annotate*, *Anneal* and *Sample-sheet* tools run on real constructs
 
-### E3. Capstone
+### E3. Capstone  ✅ built
 - Design a library prep for a question of your choosing: state the blocks, draw the construct
   at each step, specify the oligos and the enzymes (with a justification from the selection
   charts), predict the read structure, name the controls and the expected failure modes.
@@ -401,6 +406,22 @@ Deck E2 (~30 slides)
 - **Every named protocol links to its NGS_101 page.** `planning/protocol_links.tsv` maps all
   840 protocols to name, DOI, citation count and URL.
 - **Repo-only:** this file, `planning/` and `oldpres/` (gitignored) never publish to the site.
+
+## What was built
+
+All 33 planned units are written: 29 unit folders, 32 decks, with readings and exercises for
+each. Part D's eight trick entries are two decks in `tricks/`, and E2 and E3 share `design/`.
+
+Mechanically checked across the whole course:
+
+- `tools/check_course.py` passes on all 84 files (deck length, figure ratio, no picture-only
+  slide, no clipped slide, no code in exercises).
+- Every DOI cited anywhere — 272 unique, 904 occurrences — resolves to the paper the text
+  names, verified against Crossref.
+- Every sidebar link and every `index.qmd` link resolves, and no page is orphaned.
+
+Unverified claims flagged by the authors are collected in `planning/review-notes.md`, which
+is the to-do list for a subject-matter review. It is not empty and should be worked through.
 
 ## Still open
 

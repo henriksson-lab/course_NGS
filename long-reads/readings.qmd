@@ -1,0 +1,86 @@
+---
+title: "Readings — Long-read library preparation"
+---
+
+The papers here are the ones that define the protocols in the deck. Read the methods sections:
+the length of the molecule you get is decided there, and the exercises ask you to reason about it.
+
+## PacBio
+
+**Wenger AM, et al. (2019).** *Accurate circular consensus long-read sequencing improves variant
+detection and assembly of a human genome.* Nature Biotechnology 37:1155–1162.
+[doi:10.1038/s41587-019-0217-9](https://doi.org/10.1038/s41587-019-0217-9) — **start here**
+
+> HiFi reads. Look at how insert size and accuracy trade off, and which library choices the
+> authors varied to find the balance.
+
+**Travers KJ, et al. (2010).** *A flexible and efficient template format for circular consensus
+sequencing and SNP detection.* Nucleic Acids Research 38:e159.
+[doi:10.1093/nar/gkq543](https://doi.org/10.1093/nar/gkq543)
+
+> The SMRTbell. Short and exact about the topology: find where the nuclease treatment is used
+> and what it removes.
+
+**Sharon D, et al. (2013).** *A single-molecule long-read survey of the human transcriptome.*
+Nature Biotechnology 31:1009–1014.
+[doi:10.1038/nbt.2705](https://doi.org/10.1038/nbt.2705)
+
+> The first long-read isoform survey in human samples, and the origin of Iso-Seq. Read the cDNA
+> preparation and note how full-length reads are defined.
+
+**Al'Khafaji AM, et al. (2024).** *High-throughput RNA isoform sequencing using programmed cDNA
+concatenation.* Nature Biotechnology 42:582–586.
+[doi:10.1038/s41587-023-01815-7](https://doi.org/10.1038/s41587-023-01815-7)
+
+> The array idea behind Kinnex: why it was needed, and what it does to the throughput of
+> isoform sequencing.
+
+## Nanopore
+
+**Jain M, et al. (2018).** *Nanopore sequencing and assembly of a human genome with ultra-long
+reads.* Nature Biotechnology 36:338–345.
+[doi:10.1038/nbt.4060](https://doi.org/10.1038/nbt.4060) — **start here**
+
+> How a human genome was sequenced with reads of hundreds of kilobases. The extraction and
+> library methods are the point: find the steps that the authors changed to avoid shearing.
+
+**Workman RE, et al. (2019).** *Nanopore native RNA sequencing of a human poly(A)
+transcriptome.* Nature Methods 16:1297–1305.
+[doi:10.1038/s41592-019-0617-2](https://doi.org/10.1038/s41592-019-0617-2)
+
+> Direct RNA on human samples. Look at the adapter chemistry and at what the authors say about
+> input requirements and yield.
+
+## Enrichment
+
+**Gilpatrick T, et al. (2020).** *Targeted nanopore sequencing with Cas9-guided adapter
+ligation.* Nature Biotechnology 38:433–438.
+[doi:10.1038/s41587-020-0407-5](https://doi.org/10.1038/s41587-020-0407-5)
+
+> Cas9 enrichment from native DNA. Find the dephosphorylation step and check the reasoning in
+> exercise E10 against the authors' own.
+
+**Payne A, et al. (2021).** *Readfish enables targeted nanopore sequencing of gigabase-sized
+genomes.* Nature Biotechnology 39:442–450.
+[doi:10.1038/s41587-020-00746-x](https://doi.org/10.1038/s41587-020-00746-x)
+
+> Adaptive sampling in practice on a large genome. Compare what the authors gain in enrichment
+> with what they spend in pore time.
+
+## Reference material to keep open
+
+- The protocol pages for [SMRTbell prep kit 3.0](https://henriksson-lab.github.io/NGS_101/pacbio-smrtbell-prep-kit-3-0/smrtbell-prep-kit-3-0.html),
+  [Iso-Seq](https://henriksson-lab.github.io/NGS_101/pacbio-isoseq-smrtbell-prep-kit-3-0/pacbio-isoseq.html),
+  [Kinnex](https://henriksson-lab.github.io/NGS_101/pacbio-kinnex-full-length-rna/kinnex-full-length-rna.html),
+  [LSK114](https://henriksson-lab.github.io/NGS_101/oxford-nanopore-ligation-sequencing-v14/nanopore-ligation-v14.html),
+  [RAD114](https://henriksson-lab.github.io/NGS_101/oxford-nanopore-rapid-sequencing-v14/rapid-sequencing-v14.html),
+  [ULK114](https://henriksson-lab.github.io/NGS_101/oxford-nanopore-ultra-long-v14/ultra-long-v14.html) and
+  [RNA004](https://henriksson-lab.github.io/NGS_101/oxford-nanopore-direct-rna-sequencing-rna004/direct-rna.html)
+- Also cited in the deck: Jain M, et al. 2016, Genome Biology 17:239,
+  [doi:10.1186/s13059-016-1103-0](https://doi.org/10.1186/s13059-016-1103-0) (MinION overview);
+  Garalde DR, et al. 2018, Nature Methods 15:201–206,
+  [doi:10.1038/nmeth.4577](https://doi.org/10.1038/nmeth.4577) (direct RNA);
+  Loose M, et al. 2016, Nature Methods 13:751–754,
+  [doi:10.1038/nmeth.3930](https://doi.org/10.1038/nmeth.3930) (selective sequencing);
+  Logsdon GA, Vollger MR, Eichler EE 2020, Nature Reviews Genetics 21:597–614,
+  [doi:10.1038/s41576-020-0236-x](https://doi.org/10.1038/s41576-020-0236-x) (review of long-read human genome sequencing)

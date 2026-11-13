@@ -1,0 +1,63 @@
+---
+title: "Readings — Selection: keeping what you want"
+---
+
+Each paper below is a worked example of one family of selection. Read them for the control that shows the selection worked, not only for the headline result.
+
+## Affinity and capture
+
+**Gnirke A, et al. (2009).** *Solution hybrid selection with ultra-long oligonucleotides for massively parallel targeted sequencing.* Nature Biotechnology 27:182–189.
+[doi:10.1038/nbt.1523](https://doi.org/10.1038/nbt.1523) — **start here**
+
+> The solution-capture format used by most exome and panel kits: biotinylated baits, streptavidin beads, a wash. Look at how on-target fraction and coverage uniformity are reported, and what happens at the edges of a bait.
+
+**Newman AM, et al. (2014).** *An ultrasensitive method for quantitating circulating tumor DNA with broad patient coverage.* Nature Medicine 20:548–554.
+[doi:10.1038/nm.3519](https://doi.org/10.1038/nm.3519)
+
+> Capture applied to a hard sample, where the target is a small fraction of the cell-free DNA. Note how the panel is designed so that one set of baits serves many patients.
+
+## Depletion
+
+**Adiconis X, et al. (2013).** *Comparative analysis of RNA sequencing methods for degraded or low-input samples.* Nature Methods 10:623–629.
+[doi:10.1038/nmeth.2483](https://doi.org/10.1038/nmeth.2483) — **start here**
+
+> Puts poly(A) selection, rRNA depletion and capture side by side on difficult RNA. Look at which methods lose the same transcripts, and why.
+
+**Morlan JD, Qu K, Sinicropi DV (2012).** *Selective depletion of rRNA enables whole transcriptome profiling of archival fixed tissue.* PLoS ONE 7:e42882.
+[doi:10.1371/journal.pone.0042882](https://doi.org/10.1371/journal.pone.0042882)
+
+> Depletion by RNase H and DNA oligos on fixed human tissue, where oligo-dT is a poor choice. Check what fraction of reads is still ribosomal after depletion.
+
+**Gu W, et al. (2016).** *Depletion of Abundant Sequences by Hybridization (DASH): using Cas9 to remove unwanted high-abundance species in sequencing libraries and molecular counting applications.* Genome Biology 17:41.
+[doi:10.1186/s13059-016-0904-5](https://doi.org/10.1186/s13059-016-0904-5)
+
+> Cas9 as a library-stage scissors. Look at how the cut is turned into non-amplification, and how guides are chosen.
+
+## Enzymatic selection
+
+**Tsai SQ, et al. (2017).** *CIRCLE-seq: a highly sensitive in vitro screen for genome-wide CRISPR–Cas9 nuclease off-targets.* Nature Methods 14:607–614.
+[doi:10.1038/nmeth.4278](https://doi.org/10.1038/nmeth.4278)
+
+> Circularise human genomic DNA, digest all linear DNA with exonuclease, then let Cas9 open only the circles it cuts. A clean example of selecting by topology.
+
+**Hiatt JB, et al. (2013).** *Single molecule molecular inversion probes for targeted, high-accuracy detection of low-frequency variation.* Genome Research 23:843–854.
+[doi:10.1101/gr.147686.112](https://doi.org/10.1101/gr.147686.112)
+
+> Selective circularisation with a UMI in the probe. Compare its error handling with capture.
+
+**Meissner A, et al. (2008).** *Genome-scale DNA methylation maps of pluripotent and differentiated cells.* Nature 454:766–770.
+[doi:10.1038/nature07107](https://doi.org/10.1038/nature07107)
+
+> The reduced-representation bisulfite method: MspI digestion plus size selection to cover CpG-rich regions at a fraction of the cost.
+
+## Standards
+
+**Jiang L, et al. (2011).** *Synthetic spike-in standards for RNA-seq experiments.* Genome Research 21:1543–1551.
+[doi:10.1101/gr.121095.111](https://doi.org/10.1101/gr.121095.111)
+
+> What a good spike-in looks like and what it can and cannot calibrate. Look at the dose-response plot.
+
+## Reference material to keep open
+
+- [NGS 101](https://henriksson-lab.github.io/NGS_101/) draws every protocol named in the lecture.
+- Your enzyme supplier's selection chart for exonucleases and restriction enzymes: polarity, strand preference and methylation sensitivity decide the choice.

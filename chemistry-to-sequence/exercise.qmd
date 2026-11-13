@@ -1,0 +1,204 @@
+---
+title: "Exercises — Turning chemistry into sequence"
+---
+
+Pen and paper. Try each one before opening the **Hint**, and the hint before the
+**Solution** — the reasoning is the point, not the answer.
+
+# Part 1 — Reading conversions
+
+## E1. Read the methylation
+
+A reference reads `ACGTCCGATCGA` (all three CpGs are at positions 2–3, 6–7 and 10–11). After
+bisulfite and PCR, one molecule reads `ACGTTTGATCGA`. Which CpGs were methylated on that
+molecule? Which of the Cs outside CpG did the data tell you about, and what did they say?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Compare each reference C with the read. C stays C only if it was protected.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+The Cs at positions 2 and 10 stayed C: those two CpGs were methylated. The C at position 6 became
+T, so that CpG was unmethylated. The C at position 5 (outside CpG) also became T, which is what
+you expect for a non-CpG C in human DNA. All four reference Cs are informative; a T opposite a
+reference T would not have been.
+:::
+
+## E2. How much can you trust a low number?
+
+You add unmethylated lambda DNA to your sample. Lambda has 12,000 cytosines in the reads, and
+108 of them read C. A promoter CpG in the sample is called 2% methylated. What is the
+conversion rate, and what does it say about the 2%?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Failed conversion shows up as unmethylated C that reads C.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+108/12,000 = 0.9% read C, so the conversion rate is 99.1% and the false methylation rate is about 0.9%.
+A call of 2% is only about twice that background, so it is weak evidence of methylation; you
+would want replicates, higher depth, or a better conversion. Subtracting the background gives roughly
+1.1% real methylation, but with such small numbers that subtraction is not reliable on its own.
+:::
+
+## E3. A trap: a SNP that looks like a conversion
+
+At one position your reference has C and a sample has a C to T germline SNP. In bisulfite data
+the position reads T. Why is this a problem, and how can the data on the other strand help?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Which strand's base is changed by bisulfite? What is on the opposite strand at this position?
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+Unmethylated C and a C to T SNP both give T, so the position looks unmethylated when it is
+actually a different genotype. The opposite strand carries G at that position if the base was
+C, and A if it was T. Bisulfite does not change G or A, so the opposite strand gives the true
+genotype. A G there means the C was present and the T was conversion; an A means a SNP. Calling
+variants from converted data needs both strands.
+:::
+
+# Part 2 — Choosing a chemistry
+
+## E4. 5mC or 5hmC?
+
+At one CpG in brain DNA, bisulfite reads 60% C and oxBS-seq reads 45% C. How much 5mC, 5hmC
+and unmodified C is there? What does the TAB-seq number at this site have to be, if the data are consistent?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Which of the two reads C for both marks, and which for only one?
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+Bisulfite reads C for 5mC and 5hmC together: 60%. oxBS reads C for 5mC only: 45%. So 5mC is 45%,
+5hmC is 60 minus 45, which is 15%, and the unmodified fraction is 40%. TAB-seq reads C for 5hmC
+only, so it should be about 15%. The subtraction of two noisy percentages carries both errors, so
+at low 5hmC the difference can be smaller than the noise.
+:::
+
+## E5. Picking between bisulfite and an enzymatic method
+
+You have cell-free DNA from 2 ml of plasma, a few nanograms, and want methylation at base
+resolution. List what bisulfite does to the material, why that matters at this input, and
+which of the methods in the lecture you would choose.
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Cell-free DNA is already about 170 bp long. What does a harsh treatment do to what is left?
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+Bisulfite is acidic and hot: it fragments DNA and damages part of it, so a good fraction of the
+few nanograms cannot be amplified. EM-seq is the natural choice because the conversion is enzymatic,
+with less loss. TAPS is also gentle and keeps the read four-letter. Either way, include the spike-ins. Which of the two to pick
+is a matter of kit availability, input and whether you want 5hmC separated.
+:::
+
+## E6. Read a label or enrich it
+
+You want to measure RNA synthesis in cultured cells over one hour with 4-thiouridine. Compare
+(a) a T to C conversion readout with (b) biotinylating the labelled RNA and pulling it down.
+Which problems does each have?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Think about what happens to RNA that is not labelled, and what bias a pull-down introduces.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+(a) Conversion reads the label per molecule and needs no pull-down, so old and new RNA come from
+the same library and ratios are direct. It needs enough Ts and enough label for a mismatch to
+show, and sequencing errors give a background, so a no-label control is required.
+(b) Enrichment concentrates the new RNA and so works with little label, but captured and
+unbound fractions are two libraries with different efficiencies, and RNA can stick non-specifically
+to beads. A no-label pull-down shows how large that background is.
+:::
+
+# Part 3 — Positions
+
+## E7. Where does the iCLIP read start?
+
+A protein is crosslinked to nucleotide 100 of an RNA. Reverse transcription proceeds from the 3'
+end towards the 5' end. Where does the cDNA end? Why is that a feature, and what do reads that
+read through the site do to your peak?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Remember that the peptide left on the base is a physical obstacle for the enzyme.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+Truncated cDNAs end at nucleotide 101 (one base 3' of the crosslink), so the first base of the
+read is the nucleotide next to the crosslink. Because the reverse transcriptase stops there, each truncated
+molecule marks the position, which is the signal. Reads that pass through carry the peptide
+without stopping and add noise elsewhere; they do not move the peak. A size-matched input without
+the antibody shows how much of the pattern comes from unrelated truncations.
+:::
+
+## E8. Reduced representation: cost and failure
+
+You want methylation at CpG-rich regions across 96 samples. Whole-genome bisulfite at 30x costs
+about 93 Gb per sample. Suppose that RRBS covers 2% of a 3.1 Gb genome at 20x. Estimate the sequencing per
+sample and say what you lose. Then say what goes wrong in the first bases of the read.
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Multiply genome size by the fraction covered and by the depth. For the first bases, what does
+the restriction enzyme cut leave at every fragment end?
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+3.1 Gb × 2% × 20 = about 1.2 Gb per sample, under 2% of the whole-genome cost, so 96 samples
+need about 120 Gb in total. You lose everything outside the fragments that MspI produces in
+the size window, which is largely CpGs outside islands and promoters. All fragments begin with
+the same cut-site sequence, and after conversion the next bases are mostly T, so the first cycles
+are low in diversity and the base calling (and cluster calling) suffers. Spike in PhiX or use a
+library design that avoids the constant start.
+:::
+
+## E9. Pick the readout
+
+For each question, choose conversion, antibody enrichment or native readout, and give the
+property that decides: (a) fraction of 5mC at a single CpG in 5 ng of DNA; (b) regions enriched
+for 5mC in about 1000 cells of DNA; (c) whether two methylations on the
+same 20 kb molecule occur together.
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+(a) Conversion (an enzymatic or TAPS-type method), because only conversion gives a fraction at one
+base and these methods tolerate low input. (b) Antibody enrichment, because the question is where,
+at region resolution, and it needs no conversion. (c) Native long reads, because only a single
+molecule read through carries the relation between sites; short converted reads lose it.
+:::
+
+# Self-check
+
+1. Why does a methyl group not show up in a copy by a polymerase?
+2. What does the unmethylated spike-in measure, and what does the methylated one?
+3. Which cytosine reads as C in oxBS-seq? In TAB-seq? In TAPS?
+4. What does the 5' end of an iCLIP read mark?
+5. Why do native readouts keep information that conversion loses?
+6. What is the arithmetic that makes reduced representation cheaper?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Answers
+1. The polymerase pairs the base, and a methyl group on C does not change which base pairs with it.
+2. The unmethylated one gives the failure rate of conversion; the methylated one shows whether
+   the real signal survived.
+3. 5mC in oxBS-seq; 5hmC in TAB-seq; unmodified C in TAPS.
+4. The nucleotide next to the crosslink: reverse transcriptase stops there.
+5. They read the original molecule, and many sites on it, rather than a converted copy.
+6. Genome size × fraction covered × depth, with the fraction small.
+:::

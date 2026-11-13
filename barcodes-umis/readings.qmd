@@ -1,0 +1,61 @@
+---
+title: "Readings — Barcodes, UMIs and where information lives"
+---
+
+Read these for the design argument in each: what the label has to survive, and what the authors checked to show that it did.
+
+## Sample indexes and barcode design
+
+**Hamady M, Walker JJ, Harris JK, Gold NJ, Knight R (2008).** *Error-correcting barcoded primers for pyrosequencing hundreds of samples in multiplex.* Nature Methods 5:235–237.
+[doi:10.1038/nmeth.1184](https://doi.org/10.1038/nmeth.1184) — **start here**
+
+> Short and clear on why barcodes must be a minimum distance apart, and how a Hamming-code-style set lets an error be corrected rather than merely noticed.
+
+**Buschmann T, Bystrykh LV (2013).** *Levenshtein error-correcting barcodes for multiplexed DNA sequencing.* BMC Bioinformatics 14:272.
+[doi:10.1186/1471-2105-14-272](https://doi.org/10.1186/1471-2105-14-272)
+
+> The same idea when the errors include insertions and deletions. Look at why the Hamming design fails when a base is lost.
+
+**Kircher M, Sawyer S, Meyer M (2012).** *Double indexing overcomes inaccuracies in multiplex sequencing on the Illumina platform.* Nucleic Acids Research 40:e3.
+[doi:10.1093/nar/gkr771](https://doi.org/10.1093/nar/gkr771)
+
+> The case for reading two indexes. Compare with the sequencer deck's treatment of index hopping.
+
+**Costello M, et al. (2018).** *Characterization and remediation of sample index swaps by non-redundant dual indexing on massively parallel sequencing platforms.* BMC Genomics 19:332.
+[doi:10.1186/s12864-018-4703-0](https://doi.org/10.1186/s12864-018-4703-0)
+
+> Measures the swap rate and shows what unique dual indexes remove. Look at the rates for the different flow cells.
+
+## Cell barcodes
+
+**Macosko EZ, et al. (2015).** *Highly parallel genome-wide expression profiling of individual cells using nanoliter droplets.* Cell 161:1202–1214.
+[doi:10.1016/j.cell.2015.05.002](https://doi.org/10.1016/j.cell.2015.05.002)
+
+> Bead-bound barcodes with a UMI on every oligo. The read structure in the methods is a good one to draw.
+
+**Rosenberg AB, et al. (2018).** *Single-cell profiling of the developing mouse brain and spinal cord with split-pool barcoding.* Science 360:176–182.
+[doi:10.1126/science.aam8999](https://doi.org/10.1126/science.aam8999)
+
+> Cell identity as a path through wells. Note how many cells can be labelled and how collisions are handled.
+
+## UMIs and consensus
+
+**Kivioja T, et al. (2012).** *Counting absolute numbers of molecules using unique molecular identifiers.* Nature Methods 9:72–74.
+[doi:10.1038/nmeth.1778](https://doi.org/10.1038/nmeth.1778) — **start here**
+
+> The founding argument for UMIs. Look at how the number of molecules is recovered from the number of distinct tags observed.
+
+**Smith T, Heger A, Sudbery I (2017).** *UMI-tools: modeling sequencing errors in unique molecular identifiers to improve quantification accuracy.* Genome Research 27:491–499.
+[doi:10.1101/gr.209601.116](https://doi.org/10.1101/gr.209601.116)
+
+> Why UMIs need error handling and how the network methods compare.
+
+**Schmitt MW, et al. (2012).** *Detection of ultra-rare mutations by next-generation sequencing.* PNAS 109:14508–14513.
+[doi:10.1073/pnas.1208715109](https://doi.org/10.1073/pnas.1208715109)
+
+> Duplex tags: a mutation must appear on both strands of the original molecule. Look at the error rate before and after.
+
+## Reference material to keep open
+
+- [NGS 101](https://henriksson-lab.github.io/NGS_101/) draws the read structure of every protocol named in the lecture.
+- Your instrument's index-adapter guide: it states the colour-balance rules for your flow cell.

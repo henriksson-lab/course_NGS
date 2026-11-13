@@ -1,0 +1,83 @@
+---
+title: "Readings — The three-dimensional genome"
+---
+
+Reading is optional, but each item is here for a reason. Start with the two marked **start
+here**.
+
+## Papers
+
+**Dekker J, Rippe K, Dekker M, Kleckner N (2002).** *Capturing chromosome conformation.* Science
+295:1306–1311. [doi:10.1126/science.1067799](https://doi.org/10.1126/science.1067799)
+
+> The origin of proximity ligation as a method. See how the controls (random ligation, PCR
+> efficiency) are built; they remain the template for every later method.
+
+**Lieberman-Aiden E, et al. (2009).** *Comprehensive mapping of long-range interactions
+reveals folding principles of the human genome.* Science 326:289–293.
+[doi:10.1126/science.1181369](https://doi.org/10.1126/science.1181369)
+
+> Hi-C: biotin at the junction, a pull-down, and the sequencer. Look at Figure 1 for the
+> chemistry, and at the first appearance of compartments.
+
+**Belton J-M, et al. (2012).** *Hi-C: a comprehensive technique to capture the conformation of
+genomes.* Methods 58:268–276.
+[doi:10.1016/j.ymeth.2012.05.001](https://doi.org/10.1016/j.ymeth.2012.05.001) — **start here**
+
+> The step-by-step version, with the reason for each step and the controls to run on the
+> library. Read it before the protocol pages.
+
+**Rao SSP, et al. (2014).** *A 3D map of the human genome at kilobase resolution reveals
+principles of chromatin looping.* Cell 159:1665–1680.
+[doi:10.1016/j.cell.2014.11.021](https://doi.org/10.1016/j.cell.2014.11.021) — **start here**
+
+> In situ Hi-C. Compare it with the original protocol, change by change, and see what the
+> changes buy. Also the paper that defined loops as a feature.
+
+**Krietenstein N, et al. (2020).** *Ultrastructural details of mammalian chromosome
+architecture.* Molecular Cell 78:554–565.
+[doi:10.1016/j.molcel.2020.03.003](https://doi.org/10.1016/j.molcel.2020.03.003)
+
+> Micro-C applied to human cells, with the crosslinking and digestion details that matter for
+> mammals. Look at the features that restriction enzymes could not resolve.
+
+**Mumbach MR, et al. (2016).** *HiChIP: efficient and sensitive analysis of protein-directed
+genome architecture.* Nature Methods 13:919–922.
+[doi:10.1038/nmeth.3999](https://doi.org/10.1038/nmeth.3999)
+
+> Contacts and ChIP joined, with Tn5 as the library step. Check how many cells and reads it
+> needs compared with Hi-C.
+
+**Quinodoz SA, et al. (2018).** *Higher-order inter-chromosomal hubs shape 3D genome
+organization in the nucleus.* Cell 174:744–757.
+[doi:10.1016/j.cell.2018.05.024](https://doi.org/10.1016/j.cell.2018.05.024)
+
+> SPRITE: split-and-pool barcoding in place of ligation. Notice what it finds, nuclear hubs,
+> that a pairwise method could not describe directly.
+
+**Bell JC, et al. (2018).** *Chromatin-associated RNA sequencing (ChAR-seq) maps genome-wide
+RNA-to-DNA contacts.* eLife 7:e27024.
+[doi:10.7554/eLife.27024](https://doi.org/10.7554/eLife.27024)
+
+> A bridge linker joining RNA to DNA. Look at the design of the bridge: which end carries the
+> RNA, which carries the DNA, and why one end is blocked.
+
+## Reference material to keep open
+
+- **[NGS 101](https://henriksson-lab.github.io/NGS_101/)** — the protocols from this unit:
+  [Hi-C](https://henriksson-lab.github.io/NGS_101/hi-c-original__10.1126+science.1181369/hi-c-original.html),
+  [in situ Hi-C](https://henriksson-lab.github.io/NGS_101/in-situ-hi-c__10.1016+j.cell.2014.11.021/in-situ-hi-c.html),
+  [Micro-C](https://henriksson-lab.github.io/NGS_101/micro-c__10.1016+j.cell.2015.05.048/micro-c.html),
+  [HiChIP](https://henriksson-lab.github.io/NGS_101/hichip__10.1038+nmeth.3999/hichip.html),
+  [4C-seq](https://henriksson-lab.github.io/NGS_101/4c-seq__10.1016+j.ymeth.2019.07.014/4c-seq.html),
+  [ChAR-seq](https://henriksson-lab.github.io/NGS_101/char-seq__10.7554+eLife.27024/char-seq.html),
+  [SPRITE](https://henriksson-lab.github.io/NGS_101/sprite__10.1016+j.cell.2018.05.024/sprite.html),
+  [GAM](https://henriksson-lab.github.io/NGS_101/gam__10.1038+nature21411/gam.html).
+- **Loop extrusion** — Sanborn et al. 2015,
+  [doi:10.1073/pnas.1518552112](https://doi.org/10.1073/pnas.1518552112), and Fudenberg et al.
+  2016, [doi:10.1016/j.celrep.2016.04.085](https://doi.org/10.1016/j.celrep.2016.04.085): the
+  model that explains why loops and TADs look the way they do.
+- **Genome architecture mapping** — Beagrie et al. 2017,
+  [doi:10.1038/nature21411](https://doi.org/10.1038/nature21411). A map without ligation.
+- **TADs** — Dixon et al. 2012,
+  [doi:10.1038/nature11082](https://doi.org/10.1038/nature11082).

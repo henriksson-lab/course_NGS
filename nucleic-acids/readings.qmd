@@ -36,7 +36,7 @@ nearest-neighbor thermodynamics.* PNAS 95:1460–1465.
 > derivations, but you should know that Tm is a property of a duplex in a buffer, not of an
 > oligo on its own.
 
-**Kivioja T, et al. (2011).** *Counting absolute numbers of molecules using unique molecular
+**Kivioja T, et al. (2012).** *Counting absolute numbers of molecules using unique molecular
 identifiers.* Nature Methods 9:72–74.
 [doi:10.1038/nmeth.1778](https://doi.org/10.1038/nmeth.1778)
 

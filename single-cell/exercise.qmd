@@ -1,0 +1,226 @@
+---
+title: "Exercises — Single-cell libraries"
+---
+
+Pen and paper. The recurring question is the one from the lectures: where does the compartment barcode enter the molecule, and what can go wrong between there and the sequencer?
+
+# Part 1 — Plates, droplets and microwells
+
+## E1. Loading a droplet device
+
+Cells enter droplets at random, so the number of cells per droplet is Poisson with mean lambda. For 100,000 droplets, compute at lambda = 0.1 and at lambda = 0.3: the number of empty droplets, single-cell droplets, droplets with two or more cells, and the doublet fraction among occupied droplets. Which setting would you choose for a rare-cell sample, and which for a sample where doublets are costly?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+P(0) = exp(-lambda), P(1) = lambda exp(-lambda), P(2 or more) = 1 - P(0) - P(1). The doublet fraction is P(2 or more) divided by P(1 or more).
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+At lambda = 0.1: P(0) = 0.9048, P(1) = 0.0905, P(2 or more) = 0.0047. In 100,000 droplets that is about 90,484 empty, 9,048 single-cell and 468 with two or more; the doublet fraction is 0.0047 / 0.0952 = 4.9%.
+
+At lambda = 0.3: P(0) = 0.7408, P(1) = 0.2222, P(2 or more) = 0.0369. That is 74,082 empty, 22,224 single-cell and 3,694 multi-cell droplets; the doublet fraction is 0.0369 / 0.2592 = 14.3%.
+
+The higher setting gives 2.5 times as many single cells but triples the doublet fraction. For a precious sample where every cell counts, accept more doublets and remove them computationally; where doublets would be mistaken for a new cell type, load low.
+:::
+
+## E2. UMI length and collisions
+
+A very abundant gene has 5,000 molecules in one cell. With N possible UMIs and n molecules the expected number of distinct UMIs is N (1 - exp(-n / N)). Compute the expected number of distinct UMIs, and the undercount, for an 8-nt and for a 10-nt UMI.
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+A UMI of length L has 4^L values. For small n / N, N (1 - exp(-n / N)) is close to n - n^2 / (2N).
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+8 nt: N = 4^8 = 65,536 and n / N = 0.0763, so expected distinct UMIs = 65,536 x (1 - 0.9265) = 4,814: an undercount of about 3.7%.
+
+10 nt: N = 4^10 = 1,048,576 and n / N = 0.00477, so expected distinct UMIs = 4,988: an undercount of 0.24%.
+
+The undercount only matters for very abundant genes, and a longer UMI removes it, at the price of more cycles of Read 1 and more chances of a sequencing error within the UMI.
+:::
+
+## E3. Why barcode whitelists are far apart
+
+Cell barcodes are 12 nt long. A read barcode with one error has 12 x 3 = 36 possible one-mismatch neighbours. A lab builds a whitelist of one million barcodes by picking 12-mers at random.
+
+a. How many of the 36 neighbours would you expect to be on the whitelist?
+b. What does this do to error correction?
+c. How does the situation change for 16-nt barcodes?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. There are 4^12 = 16,777,216 possible 12-mers, so a fraction of 1,000,000 / 16,777,216 = 0.06 is on the whitelist, and 36 x 0.06 = 2.1 neighbours are expected.
+
+b. A corrupted barcode usually has more than one plausible origin, so it cannot be corrected (it is dropped), and a real barcode corrupted into another valid one is assigned to the wrong cell. Many reads are lost, and some are misassigned.
+
+c. With 16 nt the space is 4^16 = 4.3 x 10^9, and the whitelist fills 2.3 x 10^-4 of it: 48 neighbours x 2.3 x 10^-4 = 0.011 expected on the whitelist. Almost every one-mismatch barcode has a unique origin. Whitelists should also be designed with a minimum distance between entries.
+:::
+
+## E4. Pick the protocol
+
+For each project, say which family of protocol you would use and what decides.
+
+a. 60 human cells, picked by FACS, from a rare population; you need splice isoforms.
+b. PBMC from 12 patients, about 5,000 cells each, with the goal of finding which cell types change.
+c. Frozen human brain biopsies, where whole cells cannot be recovered.
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. A plate-based **full-length** protocol (SMART-seq2 or 3). Cell number is small, so cost per cell is acceptable, and isoforms need reads across the whole transcript, which a 3' tag cannot give.
+
+b. A **droplet** 3' protocol, with hashing to pool the 12 samples in a few lanes. Many cells are needed, and a 3' tag is enough to identify cell types and states; hashing removes batch effects and flags doublets.
+
+c. **Nuclei** from frozen tissue, in a droplet or combinatorial protocol. Whole cells would not survive, and nuclei hold the RNA needed; expect more intronic reads, so use a reference that includes introns.
+:::
+
+## E5. Diagnose from a barcode rank plot
+
+A droplet run gives 10^6 barcodes. About 6,000 have more than 5,000 UMIs; the rest follow a tail below 100. After clustering, a red-blood-cell gene (haemoglobin) is present at a low level in every cluster.
+
+a. What are the many low-count barcodes?
+b. What explains the haemoglobin signal in cell types that do not make it?
+c. What can you do?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. Droplets with no cell, which captured free RNA. The plateau is the cells; the tail is empty droplets.
+
+b. Ambient RNA: haemoglobin mRNA released by lysed red blood cells is in the suspension and is captured in every droplet, including those with other cells.
+
+c. Wash the cells and keep viability high before loading; estimate the ambient profile from the empty droplets and subtract it computationally (for example with a tool such as SoupX); and be careful about claiming expression of a gene in a cell type where it is a likely contaminant.
+:::
+
+# Part 2 — Combinatorial indexing and multimodal assays
+
+## E6. Collisions in split-pool barcoding
+
+A split-pool experiment uses three rounds of 96 wells, B = 96^3 = 884,736 paths. The chance that a given cell shares its path with another is 1 - exp(-n / B).
+
+a. What fraction of cells collide with 50,000 cells?
+b. How many cells can you load for at most 1%?
+c. What is the rate for 100,000 cells if the rounds have 384 wells each?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+For part b, invert the formula: n = -ln(1 - p) x B.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. 1 - exp(-50,000 / 884,736) = 1 - exp(-0.0565) = 5.5%.
+
+b. n = -ln(0.99) x B = 0.01005 x 884,736 = about 8,900 cells.
+
+c. B = 384^3 = 56.6 million. 1 - exp(-100,000 / 56.6 x 10^6) = 0.18%. Adding wells to each round is a very effective way of keeping collisions down, and a sublibrary index adds a further level at no extra splitting.
+:::
+
+## E7. Reading a barnyard plot
+
+A mixed human and mouse experiment gives 1,000 called cells: 470 with only human reads, 470 with only mouse reads and 60 with reads from both.
+
+a. What is the observed mixed rate?
+b. Estimate the real collision rate, and say what assumption you make.
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. 60 / 1,000 = 6%.
+
+b. If the two species were mixed in equal proportions, a collision between two cells is mixed in half of the cases (one human and one mouse) and same-species in the other half, so the real rate is about twice the observed mixed rate: 12%. The assumptions are an equal mix and random collisions. If the mix is 4:1, the visible fraction is 2 x 0.2 x 0.8 = 32% of all collisions, and the correction is larger.
+:::
+
+## E8. Cell hashing and hidden doublets
+
+Six samples of equal size are hashed and pooled. In the pooled run, 10% of called cells are doublets.
+
+a. What fraction of the doublets can be identified from their hashtags?
+b. What fraction of all called cells remain as undetected doublets?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. A doublet carries two tags. If the two cells came from different samples (5 of 6 cases, since the second cell is from the same sample with probability 1/6) the doublet has two tags and is identified: 5/6, or 83%.
+
+b. The remaining 1/6 of the doublets have one tag, because both cells came from one sample: 10% x 1/6 = 1.7% of all called cells. More samples lower this fraction, which is why hashing and overloading are combined.
+:::
+
+## E9. A trap: antibody oligos without a poly(A) tail
+
+A lab orders antibody-oligo conjugates for a 3' droplet kit, but the oligos have a PCR handle and a barcode and no poly(A) tail. Cells are stained and the run proceeds normally.
+
+a. What does the antibody library show?
+b. Name two design changes.
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. Almost no antibody counts, while the gene-expression library looks fine. The bead oligo captures by oligo(dT), and an oligo without poly(A) is not captured, so it is washed away.
+
+b. Add a poly(A) tail to the antibody oligo (the original CITE-seq design); or use a capture sequence on the oligo that the bead in the kit carries (a feature-barcoding kit). The antibody library is also kept apart from the cDNA by size, and indexed separately.
+:::
+
+## E10. Why the 3' library cannot read the receptor
+
+A T-cell receptor beta mRNA has its CDR3 about 600 nt upstream of the poly(A) tail (assume 600 nt for this problem). A 3' gene-expression library has Read 2 of 90 nt.
+
+a. How far does Read 2 get from the poly(A) tail, and how far short of the CDR3 is it?
+b. Describe a library that reads it, and which part of the existing barcoded cDNA it reuses.
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. Read 2 reads the 90 nt closest to the tail, so it falls about 510 nt short of the CDR3; the read lies in the constant region or the 3' UTR.
+
+b. Amplify the barcoded cDNA from the constant region with nested primers (one set for TCR, another for BCR), fragment, and sequence paired-end with enough read length to cover the junction. With 5' capture the cell barcode is on the template-switch oligo, so it is next to the variable region; both chains of a cell then share one barcode, and alpha and beta are paired.
+:::
+
+## E11. Assigning guides to cells
+
+In a CROP-seq experiment, the guide counts (UMIs) in three cells are: cell A has guide 1 with 35 and guide 2 with 3; cell B has guide 1 with 20 and guide 4 with 18; cell C has guide 2 with 1.
+
+Assign each cell and say how you decide.
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+Cell A: guide 1. The 3 UMIs of guide 2 are most likely from ambient guide transcripts or PCR chimeras; set a rule such as a minimum count and a minimum share of the cell's guide UMIs.
+
+Cell B: two guides with similar counts. The cell has either two integrations or is a doublet. Do not assign it to one guide; exclude it or handle it as a double perturbation (and check the doublet score).
+
+Cell C: one UMI is too little to call. Leave it unassigned.
+
+Thresholds are set from the distribution over all cells, not by eye, and the effect of each guide is judged against cells carrying non-targeting guides.
+:::
+
+## E12. A read budget with several libraries
+
+An experiment profiles 10,000 cells with three libraries: gene expression at 20,000 reads per cell, antibody tags at 3,000 and V(D)J at 5,000.
+
+a. How many reads are needed in total, and in what proportions?
+b. Why is the antibody library a risk for the sequencing run if it is loaded alone?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. 28,000 reads per cell x 10,000 cells = 280 million reads: 71% for gene expression, 11% antibody tags and 18% V(D)J. Pool the libraries by molarity so that each gets its share.
+
+b. The antibody library has a short barcode of the same few sequences at the same position in every read, so it has low diversity: the first cycles give a single colour and the run can fail the focus and base-calling. A common remedy is to mix it with other libraries or add PhiX.
+:::
+
+# Self-check
+
+1. Why must the cell barcode be attached before the cells or molecules are pooled?
+2. What is the compartment in plates, in droplets, in microwells and in split-pool methods?
+3. What does a UMI give you that a cell barcode does not?
+4. Why does a split-pool experiment load fewer cells than there are barcodes?
+5. How can antibodies, guide RNAs and receptor sequences all be read with a poly(A)-capture 3' or 5' library?
+6. Which step of a droplet method is done in bulk, and which must happen inside a droplet?
+7. When would you choose full-length SMART-seq over a 3' tag?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Answers
+1. After pooling, a mixture of molecules cannot be traced back to its cell; only a tag attached beforehand can.
+2. A well; a droplet with a bead; a well with a bead; the fixed cell itself, with the path through wells as barcode.
+3. It tags each molecule, so PCR copies can be collapsed and molecules counted; the cell barcode only says which cell.
+4. Each cell draws a barcode path at random, and a path shared by two cells is a collision; the chance rises with n / B, so the cells must be fewer than the paths.
+5. Each is given a handle that the capture chemistry recognises: a poly(A) tail on the antibody oligo, a guide placed in or captured through a polyadenylated transcript, constant-region primers on the barcoded cDNA.
+6. The reverse transcription that attaches the barcode must happen inside the droplet; amplification, fragmentation and indexing are done in bulk after the emulsion is broken.
+7. When isoforms, splice junctions, variants or allelic information in a small number of selected cells are the question.
+:::

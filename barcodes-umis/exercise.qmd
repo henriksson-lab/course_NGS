@@ -1,0 +1,181 @@
+---
+title: "Exercises — Barcodes, UMIs and where information lives"
+---
+
+Pen and paper. Count mismatches by hand; the sets are short on purpose. Use the two-colour rule: C is red, T is green, A is both, G is dark, and every cycle needs some red and some green signal in the pool.
+
+# Part 1 — Barcode design
+
+## E1. Can a one-base error be corrected?
+
+Four sample barcodes: `ACGTAC`, `ACGTCA`, `TGCATG`, `TGCAGT`.
+
+a. Write down the number of mismatches between every pair. What is the minimum distance?
+b. A read arrives with the index `ACGTAA`. Which sample does it belong to?
+c. Replace two of the barcodes so the set reaches minimum distance 3, changing as few bases as you can.
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+There are six pairs. Two of them are much closer than the others.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. `ACGTAC`–`ACGTCA`: 2. `TGCATG`–`TGCAGT`: 2. Every other pair: 6. The minimum distance is 2.
+b. `ACGTAA` is 1 mismatch from `ACGTAC` and 1 from `ACGTCA`. It is tied: the set can detect the error but not correct it, so the read must go to *Undetermined*.
+c. For example `ACGTAC`, `ATGGCA`, `TGCATG`, `AACAGT`: the minimum distance is now 3 and a single error can be assigned. Any change that separates the two close pairs from each other works.
+:::
+
+## E2. Is the set balanced?
+
+On a two-colour instrument you pool four samples with barcodes `GCTAGA`, `GATCGT`, `GTCAGC`, `GAGTCG`.
+
+a. At which positions does the pool have a colour problem, and what is wrong at each?
+b. Change as few bases as possible to repair it without dropping below distance 3.
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+For each position, list the four bases and mark each as red, green, both or dark. You need at least one base with red (A or C) and at least one with green (A or T).
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. Position 1 is G in all four barcodes: dark in both colours. Position 5 reads G, G, G, C down the four barcodes: C gives red, but there is no A or T, so there is **no green**. All other positions have both colours.
+b. Make the first bases A for barcode 2 and T for barcode 3, which gives G, A, T, G and signal in both colours. Make barcode 3's fifth base C and barcode 4's fifth base T: the column becomes G, G, C, T. Result: `GCTAGA`, `AATCGT`, `TTCACC`, `GAGTTG`, minimum distance 4. Exact choices vary.
+:::
+
+## E3. How many barcodes can there be?
+
+a. How many 5-nt barcodes can you have at distance 3 at the very most?
+b. Why is the real number smaller?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Each barcode must keep every sequence within one error to itself.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. There are 4^5 = 1024 sequences. Each barcode claims itself plus 3 × 5 = 15 one-error neighbours, 16 in all, so at most 1024 / 16 = 64.
+b. The territories cannot be packed perfectly: neighbourhoods have awkward shapes, and the colour balance, GC and homopolymer rules remove more sequences. The bound is a ceiling.
+:::
+
+## E4. Combinatorial or unique dual?
+
+You are indexing 96 libraries in one pool. A kit offers either 8 i7 × 12 i5 combinatorial indexes, or 96 unique dual pairs.
+
+a. How many index oligos does each option need?
+b. A hopped read carries the i7 of sample 5 and the i5 of sample 40. What happens in each option?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. Combinatorial: 8 + 12 = 20. Unique dual: 96 pairs, so 192 oligos (96 i7 and 96 i5).
+b. In the combinatorial kit every i7 and i5 combination is a real sample, so the hopped read is silently assigned to a third sample. With unique dual indexes the pair belongs to no sample and is discarded. The extra oligos buy the ability to throw hops away.
+:::
+
+# Part 2 — Cell barcodes
+
+## E5. How many cells can the split-pool take?
+
+A split-pool design uses 96 wells in each of 3 rounds. The chance that a given cell shares its path with another is about 1 − e^(−*N*/*B*) for *N* cells and *B* paths.
+
+a. How many paths are there?
+b. You want at most 2% of cells to share a path. How many cells can you load?
+c. Why does adding a fourth round of 96 wells help so much?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. 96³ = 884,736.
+b. Solve 1 − e^(−*N*/*B*) = 0.02, so *N* = −*B* ln(0.98) ≈ 0.0202 × 884,736 ≈ 17,900 cells.
+c. Each round multiplies the number of paths by 96 while adding only 96 oligos. Four rounds give about 85 million paths, so collisions become negligible, at the price of an extra round of handling and loss.
+:::
+
+# Part 3 — UMIs
+
+## E6. A UMI in the PCR primer
+
+A colleague puts 10 random bases in the forward PCR primer "as a UMI", and amplifies for four cycles. Explain what happens to one starting molecule and what the counts will look like.
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+What does a PCR primer do in cycle 2 to the molecule it already tagged in cycle 1?
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+In every cycle the forward primer anneals to templates again and each extension carries a freshly drawn tag. The original molecule is tagged again and again, and tagged copies can be re-primed with new tags. One molecule ends up under several UMIs, and the number grows with cycle number. Counting distinct UMIs then **overcounts**, and does so more for molecules amplified more, which is the bias UMIs were meant to remove. Add the UMI at reverse transcription, ligation or template switching, where each molecule is tagged once.
+:::
+
+## E7. Collapsing a UMI list
+
+For one gene in one cell you observe the UMIs below with their read counts: `AACG` 40, `AACT` 3, `GGTA` 12, `GGTT` 1, `CTAG` 5. Apply this rule: a UMI one base from another is an error of it if the larger count is at least twice the smaller minus one.
+
+a. How many molecules are there?
+b. What if `AACT` had 25 reads?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. `AACT` is one base from `AACG`, and 40 ≥ 2 × 3 − 1 = 5, so it is merged. `GGTT` is one from `GGTA`, and 12 ≥ 1, so it is merged. `CTAG` is more than one base from everything. Result: 3 molecules (`AACG`, `GGTA`, `CTAG`), whereas counting strings gives 5.
+b. 40 ≥ 2 × 25 − 1 = 49 is false, so `AACT` is not an error of `AACG`: it is a real, separate UMI. The count is 4 molecules. A UMI with 25 reads is too abundant to be an error of one with 40.
+:::
+
+## E8. How long should the UMI be?
+
+You expect up to 5,000 molecules of one gene in a sample. Compare an 8 nt and a 10 nt UMI. For *m* molecules and *N* possible UMIs, the expected number of distinct UMIs is *N*(1 − e^(−*m*/*N*)).
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+8 nt: *N* = 65,536, *m*/*N* = 0.0763, distinct ≈ 4,814: about 186 molecules (3.7%) are lost to collisions. 10 nt: *N* = 1,048,576, distinct ≈ 4,988: about 12 lost (0.24%). The longer UMI is far safer for abundant molecules. You can also correct the observed count for the expected collisions, but the correction grows uncertain as the pool fills.
+:::
+
+# Part 4 — Read structure
+
+## E9. Budget the cycles
+
+Your construct holds a 16 nt cell barcode, a 10 nt UMI, two 8 nt unique dual indexes and 75 nt of cDNA to be read. Write the read structure in the form R1 / I1 / I2 / R2 for two designs, and total the cycles.
+
+a. UMI in Read 1.
+b. UMI in a longer index read.
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. 26 / 8 / 8 / 75, with R1 = 16 + 10. Total 117 cycles.
+b. 16 / 8 / 18 / 75: the UMI is read by the i5 read, which is lengthened by 10. Total 117 cycles. The total is the same. The differences are which read each label sits in, whether your kit and demultiplexing software allow a long index read, and that the i5 read has to be set up to cover the UMI. In either case the cDNA read is the full 75.
+:::
+
+## E10. Hashing
+
+You hash three samples with tags A, B and C and read the tag counts per cell barcode: cell 1 has A = 90, B = 3, C = 0; cell 2 has A = 45, B = 40, C = 2; cell 3 has A = 4, B = 2, C = 1.
+
+a. Call each cell.
+b. Two cells from the *same* sample end up in one droplet. Can hashing reveal that?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. Cell 1: sample A. Cell 2: two strong tags, a doublet to discard. Cell 3: no tag well above background, so an empty or unlabelled barcode.
+b. No. Both cells carry tag A, so the pair looks like one cell from sample A. Hashing finds doublets **between** samples only. The remaining within-sample doublets are estimated from the cross-sample rate or from expression.
+:::
+
+# Self-check
+
+1. What minimum distance corrects one error, and what does distance 2 give you?
+2. Why can a set with a large distance still fail on a two-colour instrument?
+3. What does a unique dual index discard that a combinatorial index cannot?
+4. Which three steps can carry a UMI, and why not PCR?
+5. How does collapsing treat a UMI one base from an abundant one?
+6. What does hashing add to a droplet experiment?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Answers
+1. Distance 3 corrects one error; distance 2 only detects it.
+2. Distance says nothing about base composition per cycle; a column of one colour or of G leaves a channel with no signal.
+3. Hopped reads whose index pair belongs to no sample.
+4. Ligation, reverse transcription and template switching, each once per molecule. PCR re-tags the template every cycle.
+5. It is read as an error of the abundant one and merged.
+6. Pooling of samples before the costly step, and visible cross-sample doublets.
+:::
+
+# Going further
+
+- Take the read structure of a protocol in [NGS 101](https://henriksson-lab.github.io/NGS_101/) and mark which read carries each label.
+- Design a 16 plate-well barcode set from two short index sets and check its colour balance by hand.

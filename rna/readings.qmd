@@ -1,0 +1,87 @@
+---
+title: "Readings — RNA libraries"
+---
+
+The papers below are the primary sources for the two decks. Read the methods first: each one is
+an argument for a choice of step, and the exercises ask you to make the same choices.
+
+## Strand, depletion and choosing a route
+
+**Parkhomchuk D, et al. (2009).** *Transcriptome analysis by strand-specific sequencing of
+complementary DNA.* Nucleic Acids Research 37:e123.
+[doi:10.1093/nar/gkp596](https://doi.org/10.1093/nar/gkp596) — **start here**
+
+> The dUTP method as first described. Find the step where the second strand is marked, and the
+> step where the mark is used. Everything in TruSeq Stranded mRNA and NEBNext Directional is a
+> variation on this.
+
+**Levin JZ, et al. (2010).** *Comprehensive comparative analysis of strand-specific RNA
+sequencing methods.* Nature Methods 7:709–715.
+[doi:10.1038/nmeth.1491](https://doi.org/10.1038/nmeth.1491) — **start here**
+
+> A side-by-side comparison of the strand-marking strategies. Look at which metrics the authors
+> chose, and why strand specificity and evenness of coverage can pull against each other.
+
+**Adiconis X, et al. (2013).** *Comparative analysis of RNA sequencing methods for degraded or
+low-input samples.* Nature Methods 10:623–629.
+[doi:10.1038/nmeth.2483](https://doi.org/10.1038/nmeth.2483)
+
+> Compares poly(A) selection, rRNA depletion and low-input methods on degraded material. The
+> 3' bias figures are the ones to study.
+
+**Morlan JD, et al. (2012).** *Selective depletion of rRNA enables whole
+transcriptome profiling of archival fixed tissue.* PLoS ONE 7:e42882.
+[doi:10.1371/journal.pone.0042882](https://doi.org/10.1371/journal.pone.0042882)
+
+> RNase H depletion applied to fixed tissue, the case where poly(A) selection fails. Note how
+> probe coverage of the rRNA is treated.
+
+## Small RNA and translation
+
+**Hafner M, et al. (2008).** *Identification of microRNAs and other small regulatory RNAs using
+cDNA library sequencing.* Methods 44:3–12.
+[doi:10.1016/j.ymeth.2007.09.009](https://doi.org/10.1016/j.ymeth.2007.09.009)
+
+> The ligation scheme for small RNAs in detail: adapters, order, size selection. Use it to
+> check what you drew for the first exercises.
+
+**Ingolia NT, et al. (2009).** *Genome-wide analysis in vivo of translation with nucleotide
+resolution using ribosome profiling.* Science 324:218–223.
+[doi:10.1126/science.1168978](https://doi.org/10.1126/science.1168978)
+
+> Ribo-seq. Read how the footprint becomes a library and where the three-base periodicity is
+> shown.
+
+## Tag and full-length protocols
+
+**Picelli S, et al. (2013).** *Smart-seq2 for sensitive full-length transcriptome profiling in
+single cells.* Nature Methods 10:1096–1098.
+[doi:10.1038/nmeth.2639](https://doi.org/10.1038/nmeth.2639) — **start here**
+
+> The template-switching protocol that became the standard. Compare it with the original
+> template-switching description for what was changed and why.
+
+**Hashimshony T, et al. (2016).** *CEL-Seq2: sensitive highly-multiplexed single-cell RNA-Seq.*
+Genome Biology 17:77.
+[doi:10.1186/s13059-016-0938-8](https://doi.org/10.1186/s13059-016-0938-8)
+
+> The 3' tag alternative with linear amplification. Find the step at which cells are pooled and
+> say why it is there.
+
+## Reference material to keep open
+
+- The protocol pages for [TruSeq Stranded mRNA](https://henriksson-lab.github.io/NGS_101/truseq-stranded-mrna/truseq-stranded-mrna.html),
+  [NEBNext Ultra II Directional RNA](https://henriksson-lab.github.io/NGS_101/nebnext-ultra-ii-directional-rna/nebnext-ultra-ii-directional-rna.html),
+  [NEBNext Low-bias Small RNA](https://henriksson-lab.github.io/NGS_101/nebnext-low-bias-small-rna/nebnext-low-bias-small-rna.html),
+  [SMART-seq2](https://henriksson-lab.github.io/NGS_101/smart-seq2__10.1038+nmeth.2639/smart-seq2.html),
+  [CEL-Seq2](https://henriksson-lab.github.io/NGS_101/cel-seq2__10.1186+s13059-016-0938-8/cel-seq2.html),
+  [STRT-seq](https://henriksson-lab.github.io/NGS_101/strt-seq__10.1101+gr.110882.110/strt-seq.html) and
+  [Ribo-seq](https://henriksson-lab.github.io/NGS_101/ribo-seq__10.1126+science.1168978/ribo-seq.html)
+- Also cited in the decks: Gu W, et al. 2016, Genome Biology 17:41,
+  [doi:10.1186/s13059-016-0904-5](https://doi.org/10.1186/s13059-016-0904-5) (Cas9 depletion);
+  Hagemann-Jensen M, et al. 2020, Nature Biotechnology 38:708–714,
+  [doi:10.1038/s41587-020-0497-0](https://doi.org/10.1038/s41587-020-0497-0) (Smart-seq3);
+  Di L, et al. 2020, PNAS 117:2886–2893,
+  [doi:10.1073/pnas.1919800117](https://doi.org/10.1073/pnas.1919800117) (Tn5 on RNA:DNA hybrids);
+  Carninci P, et al. 1996, Genomics 37:327–336,
+  [doi:10.1006/geno.1996.0567](https://doi.org/10.1006/geno.1996.0567) (cap trapping)

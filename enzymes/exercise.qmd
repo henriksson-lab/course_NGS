@@ -1,0 +1,316 @@
+---
+title: "Exercises — The enzyme toolbox"
+---
+
+Pen and paper. Try each one before opening the **Hint**, and the hint before the
+**Solution**: the reasoning is the point, not the answer.
+
+Have the [NEB selection charts](https://www.neb.com/en/tools-and-resources/selection-charts)
+open for every question. They list polymerase, ligase, nuclease and modifying-enzyme
+properties in the same columns the lectures use. (The site blocks automated tools, so use a
+browser.) Where an answer depends on the exact product, say so and name the column you would
+check.
+
+# Part 1 — Pick the enzyme and name the deciding column
+
+## E1. Fill in without displacing
+
+A fragment has a 5' overhang of four bases on each end and the other strand is a continuous
+backbone. You want to fill in the overhang so the end is blunt, and you must **not** displace
+or degrade anything. Which polymerase type, and which column decides?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Three enzymes could fill in. Two of them also do something to a strand that is in the way.
+The strand in front of the filling polymerase here is the end of the duplex itself.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+**T4 DNA polymerase.** The deciding column is **strand displacement**: T4 DNA polymerase has
+none, so it fills in and stops at the blunt end. Klenow also fills in, but it **displaces**,
+which would cause trouble if the end were part of a nick. Taq **degrades** the downstream
+strand through its 5'→3' exo, and also adds an A.
+
+The 3'→5' exonuclease column is a bonus rather than the decider: it lets the same enzyme
+trim a 3' overhang if there is one.
+:::
+
+## E2. Amplify a bisulfite-converted template
+
+After bisulfite treatment, every unmethylated cytosine in the template has become uracil. You
+want to PCR a short region. Which polymerase family can you use, and which column decides?
+Name one that will fail silently.
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+What does the template contain that it did not contain before the treatment? Which family
+detects that base?
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+The deciding column is **dU tolerance**. A Taq-type enzyme reads through uracil and works. A
+high-fidelity archaeal family-B polymerase (Pfu-like, which includes the common HiFi enzymes)
+has a read-ahead pocket that **stalls at uracil**, and gives little or no product. A
+**uracil-tolerant** variant of the HiFi enzyme works and keeps the fidelity.
+
+It fails "silently" in the sense that nothing is wrong with the reaction: the primers, the
+buffer and the cycling are fine, and the template is not copied. If the bisulfite
+control also fails, suspect the enzyme before the DNA.
+:::
+
+## E3. Copy an RNA:DNA hybrid
+
+You have first-strand cDNA still paired with its RNA. List what the second-strand
+polymerase must be able to do, and name the enzyme combination that does it.
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Something has to make primers. Something has to start at them. Something has to remove the
+RNA in front of the new strand.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+1. **RNase H** nicks the RNA, leaving short RNA pieces with 3'-OH ends: these are the primers
+2. **RNA primer extension**: the polymerase must start from an RNA 3'-OH. Pol I does
+3. **Nick extension and 5'→3' exo**: the polymerase must remove the RNA in front of it and
+   keep going, which is nick translation
+
+So the answer is **Pol I with RNase H** (the Gubler–Hoffman method). A HiFi enzyme fails the
+RNA-primer column, and T4 DNA polymerase fails the nick extension one.
+:::
+
+# Part 2 — Read the row
+
+## E4. What can this row do?
+
+A chart row reads: **3'→5' exo: no · 5'→3' exo: no · strand displacement: strong · RT
+activity: weak · 3' end: +A, partly · temperature: 60–65 °C · dU: tolerant**. For each of
+these steps say *can* or *cannot*, and why:
+a. end repair of sheared DNA
+b. LAMP-style amplification at constant temperature
+c. a proofreading library PCR
+d. one-base A-tailing
+e. copying a rolling-circle template
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+The row is a Bst-type large fragment. Think about which of its columns each step needs.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. **Cannot.** It displaces strands (strong) and leaves a mixed +A end, so the product is
+   neither blunt nor uniform; and there is no 3'→5' exo to trim a 3' overhang.
+b. **Can.** Strong displacement and 60–65 °C is the profile of isothermal amplification.
+c. **Cannot.** No 3'→5' exo means no proofreading: the error rate is moderate.
+d. **Partly.** It adds A, but incompletely. A dedicated A-tailing enzyme is more reliable.
+e. **Can.** Strong displacement lets it roll round a circle, though phi29 is better.
+:::
+
+## E5. And this one?
+
+A second row reads: **3'→5' exo: strong · 5'→3' exo: no · strand displacement: none · 3' end:
+blunt · temperature: 12–37 °C · dU: tolerant · RT: no**. What is the enzyme type, and which
+of the steps in E4 can it do?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+It is a **T4 DNA polymerase**. It can do (a) end repair, because it fills in and trims and
+leaves a blunt end without displacing anything. It cannot do (b), (c), (d) or (e): it is
+not thermostable, has no displacement, and leaves a blunt end rather than +A. It could be used
+for **gap filling** that must not disturb the neighbouring strand.
+:::
+
+## E6. When does fidelity matter?
+
+Library PCR runs 10 doublings on a 300 bp insert. Estimate the mean number of polymerase
+errors per molecule for a Taq-class enzyme at 1e-4 per base per doubling, and for a
+high-fidelity enzyme at 1e-6. Sequencing error is about 1e-3 per base. Which one dominates
+the differences you see in the reads, and for which application would you still choose the
+high-fidelity enzyme?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Mean errors ≈ length × rate × doublings.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+Taq-class: 300 × 1e-4 × 10 = **0.3** errors per molecule. High-fidelity: 300 × 1e-6 × 10 =
+**0.003**. Sequencing: 300 × 1e-3 = **0.3** errors per read.
+
+For counting reads, the three numbers say that the sequencer already contributes as many
+errors as the Taq-class PCR, so fidelity is not the bottleneck. You would still choose the
+high-fidelity enzyme for **low-frequency variants**, for **long amplicons** (more bases, more
+doublings) and for **cloning**, where the error you introduce becomes a sequence you keep.
+These are illustrative orders of magnitude and the real rates depend on the assay.
+:::
+
+# Part 3 — Traps and silent failures
+
+## E7. The blocker that started priming
+
+A PCR uses a 3'-C3-spacer "blocker" oligo to suppress amplification of a wild-type allele.
+With a standard Taq polymerase it works. After switching to a proofreading polymerase for
+better fidelity, the wild-type allele amplifies as well as the mutant. Why? Give two fixes.
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+What does a proofreading enzyme do to an unpaired or unusual 3' end?
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+The **3'→5' exonuclease** removes the spacer and the last bases of the blocker, exposing a
+3'-OH that the polymerase then extends. The block was chemical, and the enzyme has an
+activity that undoes chemistry at the 3' end.
+
+Fixes: (1) use a polymerase **without** 3'→5' exo for that reaction; (2) protect the 3' end
+of the blocker with **phosphorothioate bonds** so the exonuclease cannot chew in. A third
+option is a blocker whose 3' end has mismatches to the template, so it cannot be extended
+even after trimming.
+:::
+
+## E8. The strand information that vanished
+
+A stranded RNA-seq library uses dUTP in the second strand and a polymerase that cannot read
+uracil. After a supplier change the library still works, but about half of the reads align
+to the wrong strand. The library QC is normal. What changed, and why did nothing warn you?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+The new polymerase is **uracil-tolerant**. The dU strand is no longer excluded, so both
+strands amplify and the library is unstranded. Nothing warns you because both strands give
+perfectly good reads; the library concentration, size and yield all look right.
+
+The defence is a **strandedness check on a spike-in or a known gene** in every batch, and a
+rule that any change to the polymerase in a dUTP-marked protocol is a change to a critical
+property (the dU tolerance column).
+:::
+
+## E9. Which adapter strand needs the phosphate?
+
+You order the two strands of a double-stranded adapter with a single 3' T overhang. Strand X
+(the one carrying the 3' T) is ordered **with** a 5'-phosphate; strand Y (the other) is
+ordered **without**. The inserts are end-repaired and A-tailed, so they carry 5'-phosphates.
+Predict what happens at the junction on each strand. Then predict it again if the inserts
+have been dephosphorylated.
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Draw the junction. Which adapter 5' end meets the insert's 3'-A, and which adapter 3' end
+meets the insert's 5' end? A ligase needs a 5'-P on whichever strand supplies the 5' side.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+The adapter's **3'-T** (strand X) meets the insert's **5' end**: the phosphate comes from the
+insert, so this strand joins. Strand X's own 5'-phosphate is at the far end of the adapter
+and is not used. Strand Y's **5' end** meets the insert's **3'-A**: here the adapter must
+supply the phosphate and does not, so this strand is **not joined** and a **nick** remains.
+The molecule is a usable library template, and PCR melts the nick open.
+
+If the inserts are dephosphorylated as well, neither junction has a 5'-phosphate. Nothing
+joins covalently, the single A:T pairs fall apart, and you get almost no product with no
+error message. The strand that needs the phosphate is the one that supplies the 5' side of
+the junction, not the one with the overhang.
+:::
+
+## E10. The two enzymes that cancel
+
+A protocol dephosphorylates fragments with a phosphatase, adds adapters with a 5'-phosphate,
+then ligates. Yield is zero. The phosphatase's inactivation step is a 10-minute incubation
+at 37 °C "to save time". Explain the failure and a better design.
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+A heat-labile phosphatase needs about **65 °C** to be killed. At 37 °C it is still active
+when the adapters are added, and it removes the 5'-phosphate from the adapters as well as
+the fragments. No end can then act as a donor.
+
+Better: inactivate at the temperature the datasheet gives, or clean up on beads between the
+two steps. A pilot that skips the phosphatase would have shown the problem at once.
+:::
+
+## E11. Pick the ligase
+
+For each situation name a ligase type and the chart column that decides.
+a. Attach a 3' adapter to a 22-nt RNA without circularising the RNA
+b. Close a single-stranded DNA into a circle
+c. Join an RNA to a DNA oligo, using a bridging DNA oligo
+d. Join two blunt dsDNA ends at low concentration
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+For each, ask: what is the donor, and is it single or double stranded?
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. **Truncated T4 RNA ligase 2** with a pre-adenylated, 3'-blocked adapter. Deciding column:
+   *donor*: pre-adenylated, no ATP, so nothing else can join.
+b. A **single-strand circularising ligase** (CircLigase-type, or T4 RNA ligase 1). Deciding
+   column: *substrate* is single-stranded.
+c. A **ligase for RNA:DNA hybrids** (the Chlorella virus type) on a DNA splint. Deciding
+   column: *substrate*: a nick in a hybrid.
+d. **T4 DNA ligase with PEG**. Blunt ends are the slowest substrate, so crowding agents and
+   enzyme concentration decide. E. coli DNA ligase would not do it.
+:::
+
+## E12. The tagmentation library that would not amplify
+
+You tagment 50 ng of human DNA with a loaded Tn5 and go straight to PCR. The DNA is
+clearly fragmented on a gel, yet PCR gives almost no product. Name two causes tied to the
+mechanism of tagmentation.
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Two things are true of the product of the transposase immediately after the reaction. One
+concerns the enzyme, the other the structure of the ends.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+1. **Tn5 remains bound** to the product. It must be stripped (SDS, heat or a column) before
+   PCR; otherwise the polymerase meets a protein-covered template.
+2. There is a **9 nt gap** between each fragment's 3'-OH and the adapter beyond it. A
+   polymerase must fill it before the primer site exists as a duplex; a protocol that
+   skips the initial **72 °C extension** gives much less product.
+
+Check also whether the loaded Tn5 was in excess (fragments too short) and whether the
+adapters were loaded as two different types, since half the fragments are unproductive
+by design.
+:::
+
+# Self-check
+
+Answer without looking anything up.
+
+1. Which polymerase property decides whether an A-tail survives?
+2. Name the three things a polymerase does when it meets a strand in front of it.
+3. Which column explains why a stranded-RNA-seq library loses strand information?
+4. What are the two requirements for ligation to happen at a nick?
+5. Why is a rSAP step heat-inactivated?
+6. What does a Type IIS enzyme offer that a Type II enzyme does not?
+7. What does Tn5 leave behind in the target after cutting?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Answers
+1. The **3'→5' exonuclease**. If present, the A is removed; if absent, it stays.
+2. It **stops**, **displaces** the strand, or **degrades** it (5'→3' exo).
+3. **dU tolerance**: a polymerase that reads through uracil keeps the marked strand.
+4. A **5'-phosphate** on one side and a **3'-OH** on the other, in a duplex.
+5. So it does not remove the phosphate from the adapters added next.
+6. It cuts **outside** its recognition site, so the overhang can be designed.
+7. A **9 nt gap** beside each adapter, which a polymerase must fill.
+:::
+
+# Going further
+
+- Open a kit manual that you use. For every enzyme named, write down its end-state in and
+  out, and find the chart column that would break the step if it were wrong.
+- Take the walk-through slide of the transposase deck and replace each enzyme by a wrong one:
+  note which row breaks first and how you would notice.

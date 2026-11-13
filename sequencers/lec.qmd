@@ -73,7 +73,7 @@ signals. That has consequences you will meet constantly:
 - **One cluster, one read.** Two molecules seeding the same spot give a mixed signal and the
   read is filtered out.
 - **Loading concentration matters.** Too much library and clusters merge; too little and you
-  waste the run.
+  waste the run. Getting from ng/µL to a loading molarity is [QC](../qc/lec.qmd).
 - **Patterned flow cells** (NovaSeq, NextSeq 2000) have fixed wells and use a different
   amplification chemistry (ExAmp), which changes how duplicates and index hopping arise.
 
@@ -125,7 +125,7 @@ poly-G tails at the ends of reads.
 
 - The commonest cause of an "empty" run that was actually fine
 
-[Dual indexing: Kircher et al. 2011, doi:10.1093/nar/gkr771]{.small}
+[Dual indexing: Kircher et al. 2012, doi:10.1093/nar/gkr771]{.small}
 
 ## Insert size versus read length
 
@@ -133,12 +133,14 @@ poly-G tails at the ends of reads.
 
 - Adapter content in a QC report is a measure of your **fragment size**, not your sequencing
 - The practical rule: size-select so the insert is comfortably longer than the read
+  ([fragmentation and size control](../fragmentation/lec.qmd))
 
 ## Index hopping
 
 ![](fig11-index-hopping.svg){width=92%}
 
-- Fix in the library: unique dual indexes, and clean up free adapter properly
+- Fix in the library: unique dual indexes ([barcodes and UMIs](../barcodes-umis/lec.qmd)), and
+  clean up free adapter properly
 
 [Costello et al. 2018, doi:10.1186/s12864-018-4703-0]{.small}
 
@@ -160,7 +162,8 @@ Two tools worth knowing exist, because protocols in the collection rely on them:
   stretch — a linker, a fixed barcode scaffold — so the real read starts where you want it.
 
 Both are routine in single-cell and spatial protocols, and both are reasons a protocol's read
-structure may look impossible at first glance.
+structure may look impossible at first glance — see the entries in the
+[trick catalogue](../tricks/lec.qmd).
 
 ## Things that degrade a run
 
@@ -170,6 +173,7 @@ structure may look impossible at first glance.
 - **Low diversity** — see above; fix with PhiX or staggered primers
 - **Free adapter** — dimers cluster beautifully and index-hop
 - **Over-amplified library** — duplicates and skewed coverage, invisible until analysis
+  ([amplification](../amplification/lec.qmd))
 
 None of these are the sequencer's fault. All of them are set by the library.
 
@@ -193,8 +197,10 @@ A run is specified as cycles per read, for example `28 / 10 / 10 / 90`:
 | Index 2 (i5) | 10 | sample index |
 | Read 2 | 90 | the cDNA insert |
 
-You design the construct; the read structure follows from it. Getting them out of step is
-among the most expensive mistakes in this field, because you only find out after the run.
+You design the construct; the read structure follows from it — a barcode-plus-UMI Read 1 like
+this one is the signature of a droplet protocol ([single cells](../single-cell/lec.qmd)).
+Getting the two out of step is among the most expensive mistakes in this field, because you
+only find out after the run.
 
 ## What this imposes on every library you build
 
@@ -205,9 +211,24 @@ among the most expensive mistakes in this field, because you only find out after
 5. The first cycles must be diverse, or the run must be rescued with PhiX
 6. The molecule must be free of adapter dimers, and quantified, before it is loaded
 
-## Where this goes next
+## Where this connects
 
-- **The other platforms** — MGI, AVITI, Ultima, PacBio, Nanopore, and what they ask for instead
-- **Anatomy of a library molecule** — building the construct that satisfies the list above
-- The protocols in [NGS 101](https://henriksson-lab.github.io/NGS_101/) are drawn with their
-  read structure, so you can check any of them against this deck
+**Before this**
+
+- [Nucleic acids](../nucleic-acids/lec.qmd) — ends, hybridisation and what a ligase needs
+
+**Read these next**
+
+- [The other platforms](lec-platforms.qmd) — MGI, AVITI, Ultima, PacBio, Nanopore
+- [Anatomy of a library molecule](../library-molecule/lec.qmd) — the construct that satisfies
+  the six requirements above
+
+**Where these constraints bite**
+
+- [Attaching a handle](../handles/lec.qmd) — how the universal ends get onto unknown molecules
+- [Targeted sequencing](../targeted/lec.qmd) — amplicon panels, the classic low-diversity library
+- [Design patterns](../design/lec.qmd) — each run-level failure above, with the control that
+  identifies it
+
+The protocols in [NGS 101](https://henriksson-lab.github.io/NGS_101/) are drawn with their
+read structure, so you can check any of them against this deck.

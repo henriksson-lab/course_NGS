@@ -1,0 +1,50 @@
+---
+title: "Readings — Design patterns, failure modes and the capstone"
+---
+
+Failure modes are best learned from papers that measured them. These show the signature of each in real data; read them with the failure table from the deck beside you.
+
+## Start here
+
+**Head SR, et al. (2014).** *Library construction for next-generation sequencing: overviews and challenges.* BioTechniques 56:61–77.
+[doi:10.2144/000114133](https://doi.org/10.2144/000114133) — **start here**
+
+> The blocks, in the order of a typical protocol, with what goes wrong at each. Use it to check your block list for the capstone.
+
+**Kircher M, Sawyer S, Meyer M (2012).** *Double indexing overcomes inaccuracies in multiplex sequencing on the Illumina platform.* Nucleic Acids Research 40:e3.
+[doi:10.1093/nar/gkr771](https://doi.org/10.1093/nar/gkr771) — **start here**
+
+> The case for dual indexes, with measurements of how often a read carries the wrong one. Look for how the error is detected.
+
+## Failure modes
+
+**Costello M, et al. (2018).** *Characterization and remediation of sample index swaps by non-redundant dual indexing on massively parallel sequencing platforms.* BMC Genomics 19.
+[doi:10.1186/s12864-018-4703-0](https://doi.org/10.1186/s12864-018-4703-0)
+
+> Measured index hopping, and why unique dual indexes remove the problem. Note the rates.
+
+**van der Valk T, et al. (2019).** *Index hopping on the Illumina HiseqX platform and its consequences for ancient DNA studies.* Molecular Ecology Resources 20:1171–1181.
+[doi:10.1111/1755-0998.13009](https://doi.org/10.1111/1755-0998.13009)
+
+> What hopping does when samples are low in endogenous DNA: the contaminating signal can exceed the real one.
+
+**Aird D, et al. (2011).** *Analyzing and minimizing PCR amplification bias in Illumina sequencing libraries.* Genome Biology 12:R18.
+[doi:10.1186/gb-2011-12-2-r18](https://doi.org/10.1186/gb-2011-12-2-r18)
+
+> The signature of over-amplification: GC bias curves. Compare them with your own coverage plots.
+
+**Kebschull JM, Zador AM (2015).** *Sources of PCR-induced distortions in high-throughput sequencing data sets.* Nucleic Acids Research (2015).
+[doi:10.1093/nar/gkv717](https://doi.org/10.1093/nar/gkv717)
+
+> Chimeras and errors in PCR, separated by their cause.
+
+**Lasken RS, Stockwell TB (2007).** *Mechanism of chimera formation during the multiple displacement amplification reaction.* BMC Biotechnology 7:19.
+[doi:10.1186/1472-6750-7-19](https://doi.org/10.1186/1472-6750-7-19)
+
+> A mechanistic account of how a chimera forms; the same logic applies to other amplification steps.
+
+## Reference material to keep open
+
+- The [NGS 101](https://henriksson-lab.github.io/NGS_101/) *Annotate sequence*, *Anneal primers* and *Sample-sheet indexes* tabs
+- Ross MG, et al. (2013), *Characterizing and measuring bias in sequence data*, Genome Biology 14:R51, [doi:10.1186/gb-2013-14-5-r51](https://doi.org/10.1186/gb-2013-14-5-r51)
+- A vendor enzyme selection chart (polymerases, ligases, nucleases)
