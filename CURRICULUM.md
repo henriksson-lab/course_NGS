@@ -22,6 +22,11 @@ explain what each step does to the molecule, and design a new library prep.
   attribution.
 - **Citations:** every method named on a slide cites its original paper. DOIs for collection
   protocols come from `~/github/chem/catalogue/ours.tsv`.
+- **Scope:** all examples are framed in human (mammalian) biology. The chemistry is identical
+  whatever the source organism, so where a method was first published in bacteria or viruses
+  (Tn-seq, 16S, GBS, ARTIC, meta3C), we teach the underlying block with a human application
+  instead — transposon mapping as insertion-site mapping in human cells, tiled amplicons as a
+  human targeted panel, reduced representation as human methylation RRBS.
 
 Sources for this plan: `planning/concepts/` (concept lists from parallel agents over the
 collection, triaged by citation count; `sequencers.md` items tagged `[KB]` need checking
@@ -211,9 +216,9 @@ Deck C2a: mRNA and total RNA · Deck C2b: small RNA, 3'/5' tag and low input · 
 ### C3. Targeted sequencing
 Deck C3 (~25 slides)
 - Amplicons and tiled panels, hybrid capture, MIPs and padlocks, Cas9-guided enrichment,
-  reduced representation (RAD, ddRAD, GBS, 2b-RAD)
+  reduced representation (RRBS for human methylation; RAD/ddRAD/GBS as the same idea in genotyping)
 - Rare-variant detection and why it forces UMIs or duplex tags
-- Collection: Illumina 16S, ARTIC, CAPP-Seq, SureSelect, ddRAD-seq, GBS, smMIPs, Safe-SeqS
+- Collection: CAPP-Seq, SureSelect, smMIPs, Safe-SeqS, RRBS, tiled amplicon panels
 
 ### C4. Chromatin and protein–DNA
 Deck C4 (~30 slides)
@@ -227,7 +232,7 @@ Deck C5 (~25 slides)
 - Proximity ligation as a block: crosslink, digest, ligate, pull down the junction
 - 3C → 4C → Hi-C → in situ Hi-C → Micro-C; viewpoint methods; HiChIP; bridge linkers;
   ligation-free approaches (SPRITE, GAM); RNA–chromatin contacts
-- Collection: Hi-C, in situ Hi-C, HiChIP, 4C-seq, ChAR-seq, SPRITE
+- Collection: Hi-C, in situ Hi-C, HiChIP, 4C-seq, ChAR-seq, SPRITE (all human/mammalian)
 
 ### C6. Modifications, damage and dynamics
 Deck C6a: DNA methylation and damage · Deck C6b: RNA modifications and nascent RNA
@@ -250,12 +255,14 @@ Deck C8 (~25 slides)
 
 ### C9. Pooled screens and synthetic libraries
 Deck C9a: building pooled libraries · Deck C9b: reading screens out
-- Oligo pools, pooled cloning, lentiviral delivery, transposon mutagenesis
+- Oligo pools, pooled cloning, lentiviral delivery and integration into the human genome
 - Readout as a library-prep problem: inverse PCR, splinkerettes, two-step index PCR,
   MIPs with UMIs for absolute counting
 - MPRA and STARR-seq, deep mutational scanning, lineage recording, display libraries
-- Collection: lentiCRISPR v2, Tn-seq, Joung one-PCR readout, Moffat two-step readout,
-  STARR-seq, CROP-seq
+- Collection: lentiCRISPR v2, Joung one-PCR readout, Moffat two-step readout, STARR-seq,
+  CROP-seq, Perturb-seq, GUIDE-seq
+- Insertion-site mapping (the old Tn-seq material) taught as mapping lentiviral or transposon
+  integration sites in human cells
 - Reuses the 2025 screening lecture
 
 ### C10. Long reads
