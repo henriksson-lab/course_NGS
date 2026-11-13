@@ -1,3 +1,6 @@
 /.quarto/
 /_site/
 quarto-*.deb
+
+# Source slide decks, kept locally only (large .pptx)
+/oldpres/
