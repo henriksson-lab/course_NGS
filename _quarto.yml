@@ -1,0 +1,10 @@
+project:
+  title: "ngs-libprep"
+
+format:
+  html:
+    theme: yeti
+    embed-resources: true
+    toc: true
+    code-copy: true
+    code-overflow: wrap

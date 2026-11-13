@@ -1,0 +1,21 @@
+---
+title: "3 — Application-specific libraries"
+format:
+  html:
+    theme: yeti
+---
+
+## Topics
+
+- RNA-seq: poly(A) selection vs rRNA depletion, stranded libraries
+- ChIP-seq and ATAC-seq
+- Amplicon sequencing
+- Single-cell libraries: cell barcodes and UMIs
+
+## Readings
+
+- TODO
+
+## Hands-on exercise
+
+→ [Choosing a library type](../exercises/3_choosing.html)

@@ -1,0 +1,21 @@
+---
+title: "1 — Introduction to NGS"
+format:
+  html:
+    theme: yeti
+---
+
+## Topics
+
+- What "next-generation sequencing" means, and how it differs from Sanger sequencing
+- Short-read (Illumina) vs long-read (Nanopore, PacBio) platforms
+- What a sequencing *library* is: insert + adapters + indexes
+- Single-end vs paired-end reads, read length, insert size
+
+## Readings
+
+- TODO
+
+## Hands-on exercise
+
+→ [Anatomy of a library molecule](../exercises/1_library_anatomy.html)

@@ -1,0 +1,26 @@
+---
+title: "1 — Anatomy of a library molecule"
+format:
+  html:
+    theme: yeti
+---
+
+**Goal:** understand the parts of a sequencing-ready library molecule.
+
+## Exercises
+
+- **Q1** Sketch an Illumina library molecule from 5' to 3'. Label the flow-cell binding sites, the sequencing primer sites, the index and the insert.
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+There are two flow-cell binding sequences, one at each end (P5 and P7).
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+P5 — i5 index — Read 1 primer site — **insert** — Read 2 primer site — i7 index — P7.
+:::
+
+## Extra exercise material
+
+- TODO

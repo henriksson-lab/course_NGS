@@ -1,0 +1,36 @@
+---
+title: "NGS library preparation"
+title-block-banner: false
+---
+
+Course materials for a course on **next-generation sequencing (NGS) library preparation**: how to turn a tube of DNA or RNA into something a sequencer can read, and how to tell whether you did it right.
+
+Every exercise page has collapsible **Hint** and **Solution** callouts. Try first, then peek.
+
+## Module 1 — Introduction to NGS
+
+Sequencing platforms, what a "library" is, and the anatomy of a sequencing read.
+
+- Lecture: [Introduction to NGS](module1/lectures/1_intro.html)
+- Exercise: [Anatomy of a library molecule](module1/exercises/1_library_anatomy.html)
+
+## Module 2 — Core library preparation workflow
+
+Fragmentation, end repair, A-tailing, adapter ligation, PCR amplification and size selection.
+
+- Lecture: [The core workflow](module2/lectures/2_core_workflow.html)
+- Exercise: [Planning a library prep](module2/exercises/2_planning.html)
+
+## Module 3 — Application-specific libraries
+
+RNA-seq, ChIP-seq / ATAC-seq, amplicon and single-cell libraries — what changes and why.
+
+- Lecture: [Library types](module3/lectures/3_library_types.html)
+- Exercise: [Choosing a library type](module3/exercises/3_choosing.html)
+
+## Module 4 — Library QC, pooling and sequencing
+
+Quantification, fragment-size analysis, multiplexing with indexes, and checking the reads that come back.
+
+- Lecture: [QC and pooling](module4/lectures/4_qc_pooling.html)
+- Exercise: [Pooling calculations](module4/exercises/4_pooling.html)
