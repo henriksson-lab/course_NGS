@@ -254,3 +254,34 @@ overlap was intended, but this is duplication rather than a division of labour.
 Proposed: keep the mechanism and the calculation in `qc/` (E1 marks it ★), and leave
 `fragmentation/` the design decision — which size window, one-sided or two — with a link.
 Not done yet; `qc/` was still being edited.
+
+## Syllabus coverage audit
+
+Every named method, reagent and enzyme in `CURRICULUM.md` Parts A–E (225 terms), plus a
+phrase-level pass over the bullets, checked against all `.qmd` *and* the figure sources —
+several syllabus items are taught inside a figure rather than in deck text (KAPA HiFi, LNA,
+ddC, photocleavable linkers, 5'-PPP), so a `.qmd`-only search reports false gaps.
+
+Everything in Parts B, D and E is covered. What is not:
+
+| Item | Syllabus | Status |
+|---|---|---|
+| Ion Torrent | A2 platform list | **absent** — AVITI, Ultima, DNBSEQ and SOLiD are all covered |
+| Optical duplicates | A2 | **absent** — PCR duplicates are covered in nine decks; the instrument-side cause is not |
+| Acrydite | A1 oligo modifications | **absent** — matters for gel and bead-bound oligos |
+| Lipid-anchored oligos | A1 oligo modifications | partial — lipid *hashing* is in `barcodes-umis/`, but not as an oligo modification |
+| FLAM-seq | C2 collection | **absent** — it belonged to the unbuilt C2c deck |
+
+Deliberate and already recorded above: the C2c (full-length/isoform) and C7c (multimodal/VDJ)
+decks were absorbed into `long-reads/`, `single-cell/` and `single-cell/lec-combinatorial.qmd`
+rather than built separately.
+
+Items the syllabus explicitly says to teach *through a human application* rather than by name
+— Tn-seq, 16S, GBS, ARTIC, meta3C — are correctly absent as named protocols; insertion-site
+mapping is taught in `screens/lec-readout.qmd`.
+
+All five gaps are small: four are one line each, and FLAM-seq is one bullet in
+`rna/lec-small-rna.qmd` or `long-reads/lec.qmd`. The structural gap worth more thought is
+still crosslinking, recorded above.
+
+Note that `## Still open` in `CURRICULUM.md` is now stale: it asks where to start building.
