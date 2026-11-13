@@ -54,8 +54,7 @@ Legend: **★** core concept used by most protocols · *(rare)* specialised, exa
 ## Part A — What the sequencer needs
 
 ### A1. Nucleic acids as a building material  ✅ built
-`foundations/lectures/nucleic-acids.qmd` (22 slides, 13 with figures) ·
-`…-readings.qmd` · `foundations/exercises/nucleic-acids.qmd`
+`nucleic-acids/` — `lec.qmd` (22 slides, 13 with figures), `readings.qmd`, `exercise.qmd`
 
 This module is the template for the rest: generated SVG figures in `<part>/img/`, a deck
 capped at 30 slides, a separate readings page with DOIs checked against Crossref, and an
@@ -71,9 +70,8 @@ the rules.
 - Oligo pools from array synthesis (from the 2025 screening lecture)
 
 ### A2. How sequencers read DNA  ✅ built
-`foundations/lectures/sequencers-illumina.qmd` (22 slides, 12 with figures) ·
-`sequencers-other.qmd` (16 slides, 9 with figures) · `sequencers-readings.qmd` ·
-`foundations/exercises/sequencers.qmd`
+`sequencers/` — `lec.qmd` (22 slides, 12 with figures), `lec-platforms.qmd`
+(16 slides, 9 with figures), `readings.qmd`, `exercise.qmd`
 - ★ Sanger as the baseline: one primer, one clonal template. Why NGS needs universal ends.
 - ★ Illumina: P5/P7 lawn, only P5…P7 molecules cluster, bridge amplification vs ExAmp on
   patterned flow cells, SBS with reversible terminators, 4-, 2- and 1-colour chemistry
@@ -390,9 +388,10 @@ Deck E2 (~30 slides)
 - **Images are conceptual**, made to explain how a protocol works, not decorative and not
   photographs. The NGS_101 site renders constructs correctly, so its diagrams are a legitimate
   source to use and to adapt.
-- **No numbering on the site.** Directories are named: `foundations/`, `blocks/`, `usecases/`,
-  `tricks/`, `qc/`, `design/`. The A1/B2/C3 labels in this file are planning shorthand only and
-  do not appear in the material.
+- **Framework copied from `quantbio-3MB00A`.** One folder per unit at the repository root
+  (`lec*.qmd`, `readings.qmd`, `exercise.qmd`, `figNN-*.svg`), order set in the `_quarto.yml`
+  sidebar rather than in filenames, `theme.scss` for slides and `styles.css` for the site,
+  rendered into `docs/`. The A1/B2/C3 labels in this file are planning shorthand only.
 - **No Canvas quizzes.** Quizzes are self-check, on the page, behind collapsible callouts.
 - **No wet-lab exercises, but bench literacy is taught.** Students should finish knowing how a
   step is actually carried out: what is in the tube, volumes and molarities, incubation and

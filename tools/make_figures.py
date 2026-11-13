@@ -8,7 +8,7 @@ Writes: foundations/img/*.svg
 import os
 import re
 
-OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "foundations", "img")
+ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
 
 MONO = 'ui-monospace, "DejaVu Sans Mono", "Courier New", monospace'
 SERIF = '"Palatino Linotype", "Book Antiqua", Palatino, FreeSerif, serif'
@@ -164,14 +164,15 @@ def fit(content):
     return content
 
 
-def write(name, content):
+def write(unit, name, content):
     content = fit(content)
     lint(name, content)
-    os.makedirs(OUT, exist_ok=True)
-    p = os.path.join(OUT, name)
+    d = os.path.join(ROOT, unit)
+    os.makedirs(d, exist_ok=True)
+    p = os.path.join(d, name)
     with open(p, "w") as fh:
         fh.write(content)
-    print("wrote", os.path.relpath(p))
+    print("wrote", os.path.relpath(p, ROOT))
 
 
 # ---------------------------------------------------------------- figures
@@ -997,47 +998,50 @@ def fig_error_profiles():
 
 
 FIGURES = {
-    "polarity.svg": fig_polarity,
-    "end-types.svg": fig_end_types,
-    "end-chemistry.svg": fig_end_chemistry,
-    "nick-gap.svg": fig_nick_gap,
-    "ligation-requirements.svg": fig_ligation,
-    "tm.svg": fig_tm,
-    "hairpin-dimer.svg": fig_hairpin_dimer,
-    "revcomp.svg": fig_revcomp,
-    "iupac.svg": fig_iupac,
-    "oligo-mods.svg": fig_oligo_mods,
-    "rna-ends.svg": fig_rna_ends,
-    "dna-vs-rna.svg": fig_dna_rna,
-    "end-to-enzyme.svg": fig_end_to_enzyme,
-    # A2a - how Illumina reads DNA
-    "sanger.svg": fig_sanger,
-    "universal-ends.svg": fig_universal_ends,
-    "flowcell.svg": fig_flowcell,
-    "bridge.svg": fig_bridge,
-    "linearise.svg": fig_linearise,
-    "sbs.svg": fig_sbs,
-    "read-order.svg": fig_read_order,
-    "pe-turnaround.svg": fig_pe_turnaround,
-    "i5-orientation.svg": fig_i5_orientation,
-    "readthrough.svg": fig_readthrough,
-    "index-hopping.svg": fig_index_hopping,
-    "diversity.svg": fig_diversity,
-    # A2b - the other platforms
-    "dnbseq.svg": fig_dnbseq,
-    "other-shortread.svg": fig_other_shortread,
-    "smrtbell.svg": fig_smrtbell,
-    "zmw.svg": fig_zmw,
-    "ccs.svg": fig_ccs,
-    "nanopore.svg": fig_nanopore,
-    "ont-kits.svg": fig_ont_kits,
-    "platform-compare.svg": fig_platform_compare,
-    "error-profiles.svg": fig_error_profiles,
+    "nucleic-acids": [
+        ("polarity", fig_polarity),
+        ("end-chemistry", fig_end_chemistry),
+        ("end-types", fig_end_types),
+        ("nick-gap", fig_nick_gap),
+        ("ligation-requirements", fig_ligation),
+        ("end-to-enzyme", fig_end_to_enzyme),
+        ("tm", fig_tm),
+        ("hairpin-dimer", fig_hairpin_dimer),
+        ("revcomp", fig_revcomp),
+        ("iupac", fig_iupac),
+        ("oligo-mods", fig_oligo_mods),
+        ("dna-vs-rna", fig_dna_rna),
+        ("rna-ends", fig_rna_ends),
+    ],
+    "sequencers": [
+        ("sanger", fig_sanger),
+        ("universal-ends", fig_universal_ends),
+        ("flowcell", fig_flowcell),
+        ("bridge", fig_bridge),
+        ("linearise", fig_linearise),
+        ("sbs", fig_sbs),
+        ("read-order", fig_read_order),
+        ("pe-turnaround", fig_pe_turnaround),
+        ("i5-orientation", fig_i5_orientation),
+        ("readthrough", fig_readthrough),
+        ("index-hopping", fig_index_hopping),
+        ("diversity", fig_diversity),
+        ("dnbseq", fig_dnbseq),
+        ("other-shortread", fig_other_shortread),
+        ("smrtbell", fig_smrtbell),
+        ("zmw", fig_zmw),
+        ("ccs", fig_ccs),
+        ("nanopore", fig_nanopore),
+        ("ont-kits", fig_ont_kits),
+        ("error-profiles", fig_error_profiles),
+        ("platform-compare", fig_platform_compare),
+    ],
 }
 
 if __name__ == "__main__":
-    for name, fn in FIGURES.items():
-        write(name, fn())
+    for unit, figs in FIGURES.items():
+        for i, (name, fn) in enumerate(figs, start=1):
+            write(unit, "fig%02d-%s.svg" % (i, name), fn())
     if PROBLEMS:
         print("\ntext leaves the canvas:")
         print("\n".join(PROBLEMS))

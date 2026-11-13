@@ -1,13 +1,14 @@
-# The site is built and published by .github/workflows/pages.yml on every push
-# to main. These targets are for working locally.
+# Mirrors the quantbio-3MB00A course framework: a Quarto website rendered into
+# docs/, one folder per unit, figures generated as SVG.
 
-.PHONY: site preview check figures clean
+.PHONY: all render preview check figs clean
 
-# Render the whole site into _site/ (same command CI runs).
-site:
+all: check render
+
+render:
 	quarto render
+	@touch docs/.nojekyll
 
-# Live preview in a browser; re-renders as you edit.
 preview:
 	quarto preview
 
@@ -16,10 +17,9 @@ preview:
 check:
 	python3 tools/check_course.py
 
-# Regenerate the conceptual SVG figures (they are checked in; CI verifies they
-# match this generator).
-figures:
+# Re-generate the conceptual SVG figures (not run by quarto render).
+figs:
 	python3 tools/make_figures.py
 
 clean:
-	rm -rf .quarto _site
+	rm -rf .quarto docs

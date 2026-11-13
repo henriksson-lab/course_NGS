@@ -16,16 +16,17 @@ import re
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-PARTS = ["foundations", "blocks", "usecases", "tricks", "qc", "design"]
+SKIP = {"tools", "planning", "oldpres", "docs", "img", ".git", ".quarto", ".github"}
 MAX_SLIDES = 30
 MIN_IMAGE_FRACTION = 0.50
 
 # revealjs slide box and type scale, read from the generated quarto theme:
-#   --r-main-font-size: 40px, --r-heading2-size: 1.6em, slide 1200 x 700
-SLIDE_W, SLIDE_H = 1050.0, 700.0
-BODY_PX, HEAD_EM, SMALLER = 40.0, 1.6, 0.8
+#   theme.scss: $presentation-font-size-root 24px, $presentation-h2-font-size 1.7em,
+#   deck YAML: width 1280, height 720
+SLIDE_W, SLIDE_H = 1280.0, 720.0
+BODY_PX, HEAD_EM, SMALLER = 24.0, 1.7, 0.8
 CHAR_W = 0.50          # average glyph width as a fraction of font size
-LINE_H = 1.30
+LINE_H = 1.25
 
 IMG = re.compile(r"!\[[^\]]*\]\(([^)]+?)(?:\s+\"[^\"]*\")?\)|<img[^>]+src=\"([^\"]+)\"")
 
@@ -154,20 +155,27 @@ def check_exercises(path, problems):
 
 
 def main():
+    """One folder per unit at the repository root: lec*.qmd, readings.qmd,
+    exercise.qmd, and the unit's figNN-*.svg files."""
     problems, lines = [], []
-    for part in PARTS:
-        for sub, fn in (("lectures", check_deck), ("exercises", check_exercises)):
-            d = os.path.join(ROOT, part, sub)
-            if not os.path.isdir(d):
+    for unit in sorted(os.listdir(ROOT)):
+        d = os.path.join(ROOT, unit)
+        if not os.path.isdir(d) or unit in SKIP or unit.startswith("."):
+            continue
+        for name in sorted(os.listdir(d)):
+            if not name.endswith(".qmd"):
                 continue
-            for name in sorted(os.listdir(d)):
-                if not name.endswith(".qmd"):
+            path = os.path.join(d, name)
+            text = open(path).read()
+            if name.startswith("lec"):
+                if "revealjs" not in text:
+                    problems.append(f"{unit}/{name}: a lec*.qmd must be a revealjs deck")
                     continue
-                path = os.path.join(d, name)
-                if sub == "lectures" and "revealjs" not in open(path).read():
-                    lines.append(f"{os.path.relpath(path, ROOT)}: page (not a deck)")
-                    continue
-                lines.append(fn(path, problems))
+                lines.append(check_deck(path, problems))
+            elif name.startswith("exercise"):
+                lines.append(check_exercises(path, problems))
+            else:
+                lines.append(f"{unit}/{name}: page")
 
     for ln in lines:
         print("  " + ln)

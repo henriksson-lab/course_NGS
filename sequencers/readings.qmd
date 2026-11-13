@@ -1,8 +1,5 @@
 ---
 title: "Readings — How sequencers read DNA"
-format:
-  html:
-    theme: yeti
 ---
 
 The platform papers are worth reading as primary sources: each one is an argument for a

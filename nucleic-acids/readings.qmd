@@ -1,8 +1,5 @@
 ---
 title: "Readings — Nucleic acids as a building material"
-format:
-  html:
-    theme: yeti
 ---
 
 Reading is optional but each item is here for a reason. Start with the two marked **start

@@ -4,11 +4,19 @@ subtitle: "Foundations · NGS library preparation"
 author: "Johan Henriksson"
 format:
   revealjs:
-    theme: [serif, ../../custom.scss]
-    embed-resources: true
-    controls: true     # Quarto hides the arrows on linear decks; this shows them
-    slide-number: true
-    history: false     # one browser-history entry per deck, not one per slide
+    theme: [simple, ../theme.scss]
+    slide-number: c/t
+    width: 1280
+    height: 720
+    transition: none
+    history: false
+    highlight-style: github
+    code-overflow: wrap
+    code-line-numbers: false
+    incremental: false
+    chalkboard: false
+    menu: true
+    html-math-method: katex
 ---
 
 ## Design backwards from the instrument
@@ -25,34 +33,34 @@ its constraints shaped most of the protocols you will meet. The next deck covers
 The aim is that by the end, a student can say what every part of an Illumina adapter is for.
 :::
 
-## Sanger: the baseline {.smaller}
+## Sanger: the baseline
 
-![](../img/sanger.svg){width=80%}
+![](fig01-sanger.svg){width=83%}
 
 - One template, one primer, one reaction — chains terminated at random by ddNTPs
 - Still the right tool for checking a clone, a guide site or a PCR product
 
 [Sanger et al. 1977, doi:10.1073/pnas.74.12.5463]{.small}
 
-## What makes massively parallel sequencing possible {.smaller}
+## What makes massively parallel sequencing possible
 
-![](../img/universal-ends.svg){width=89%}
+![](fig02-universal-ends.svg){width=92%}
 
 - Give every fragment the **same ends**, and one primer can read all of them at once
 - The inserts stay unknown; only the ends are designed
 - This is why "library preparation" is a thing at all
 
-## The flow cell is a lawn of two oligos {.smaller}
+## The flow cell is a lawn of two oligos
 
-![](../img/flowcell.svg){width=90%}
+![](fig03-flowcell.svg){width=92%}
 
 - Two sequences, **P5** and **P7**, grafted to the surface by their 5' ends
 - Your molecule must carry the complement of one at each end
 - Same end at both ends → no bridge → no cluster → no read
 
-## Clustering: amplify in place {.smaller}
+## Clustering: amplify in place
 
-![](../img/bridge.svg){width=92%}
+![](fig04-bridge.svg){width=92%}
 
 - The free end bends over, finds a neighbouring lawn oligo, and is copied
 - Repeated, this makes ~1000 identical copies in a spot a micron across
@@ -71,17 +79,17 @@ signals. That has consequences you will meet constantly:
 
 A library is not just molecules — it is molecules at a known concentration.
 
-## One strand at a time {.smaller}
+## One strand at a time
 
-![](../img/linearise.svg){width=87%}
+![](fig05-linearise.svg){width=90%}
 
 - The cluster starts with both orientations; one kind is cut and washed away
 - Free 3' ends are blocked so nothing else can prime
 - The sequencing primer anneals to the adapter, pointing into the insert
 
-## Sequencing by synthesis {.smaller}
+## Sequencing by synthesis
 
-![](../img/sbs.svg){width=92%}
+![](fig06-sbs.svg){width=92%}
 
 - The 3' block is what makes it stepwise — one base per cycle, across the whole flow cell
 
@@ -99,44 +107,44 @@ The practical consequence: on two-colour instruments a long run of **G** is indi
 from a dead cluster, and a library with poly-G stretches or empty wells produces characteristic
 poly-G tails at the ends of reads.
 
-## Four reads, in this order {.smaller}
+## Four reads, in this order
 
-![](../img/read-order.svg){width=92%}
+![](fig07-read-order.svg){width=92%}
 
 - The indexes are sequence like any other, read by their own primers
 
-## Getting to the other end {.smaller}
+## Getting to the other end
 
-![](../img/pe-turnaround.svg){width=92%}
+![](fig08-pe-turnaround.svg){width=92%}
 
 - Read 2 is a fresh copy of the opposite strand, not the same molecule read backwards
 
-## The i5 index is read two different ways {.smaller}
+## The i5 index is read two different ways
 
-![](../img/i5-orientation.svg){width=83%}
+![](fig09-i5-orientation.svg){width=86%}
 
 - The commonest cause of an "empty" run that was actually fine
 
 [Dual indexing: Kircher et al. 2011, doi:10.1093/nar/gkr771]{.small}
 
-## Insert size versus read length {.smaller}
+## Insert size versus read length
 
-![](../img/readthrough.svg){width=81%}
+![](fig10-readthrough.svg){width=83%}
 
 - Adapter content in a QC report is a measure of your **fragment size**, not your sequencing
 - The practical rule: size-select so the insert is comfortably longer than the read
 
-## Index hopping {.smaller}
+## Index hopping
 
-![](../img/index-hopping.svg){width=92%}
+![](fig11-index-hopping.svg){width=92%}
 
 - Fix in the library: unique dual indexes, and clean up free adapter properly
 
 [Costello et al. 2018, doi:10.1186/s12864-018-4703-0]{.small}
 
-## Base diversity {.smaller}
+## Base diversity
 
-![](../img/diversity.svg){width=86%}
+![](fig12-diversity.svg){width=89%}
 
 - Amplicon libraries are the classic failure: every molecule starts with the same primer
 

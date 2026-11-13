@@ -16,8 +16,9 @@ base-by-base reference for about 840 published library chemistries. Protocols na
 to their page there.
 
 ::: {.callout-note}
-This site is being written: the first module is up, the rest is outlined below. The plan for
-all of it is in `CURRICULUM.md` in the repository.
+This site is being written: the Foundations units are going up first, and the rest is
+outlined below. Use the sidebar to navigate; the plan for the whole course is in
+`CURRICULUM.md` in the repository.
 :::
 
 ## Foundations — what the sequencer needs
@@ -29,18 +30,18 @@ a finished library molecule.
 actually requires, hybridisation and Tm, degenerate bases, oligo modifications, how RNA
 differs.
 
-- [Slides](foundations/lectures/nucleic-acids.html)
-- [Readings](foundations/lectures/nucleic-acids-readings.html)
-- [Exercises](foundations/exercises/nucleic-acids.html)
+- [Lecture (slides)](nucleic-acids/lec.qmd)
+- [Readings](nucleic-acids/readings.qmd)
+- [Exercise](nucleic-acids/exercise.qmd)
 
 **How sequencers read DNA** — clustering and sequencing by synthesis, the four reads and
 their order, i5 orientation, insert size versus read length, index hopping and base
 diversity; then MGI, AVITI, Ultima, PacBio and Nanopore, and what each asks of a library.
 
-- Slides: [How Illumina reads DNA](foundations/lectures/sequencers-illumina.html) ·
-  [The other sequencing platforms](foundations/lectures/sequencers-other.html)
-- [Readings](foundations/lectures/sequencers-readings.html)
-- [Exercises](foundations/exercises/sequencers.html)
+- Lectures (slides): [How Illumina reads DNA](sequencers/lec.qmd) ·
+  [The other sequencing platforms](sequencers/lec-platforms.qmd)
+- [Readings](sequencers/readings.qmd)
+- [Exercise](sequencers/exercise.qmd)
 
 *Coming: anatomy of a library molecule*
 

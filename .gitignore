@@ -1,10 +1,9 @@
 /.quarto/
-/_site/
 quarto-*.deb
 
 # Source slide decks, kept locally only (large .pptx)
 /oldpres/
 
-# Rendered output. The site is built and published by GitHub Actions from the
-# .qmd sources, so no HTML is committed.
-*.html
+# The rendered site. Built and published by GitHub Actions from the .qmd
+# sources, so it is not committed.
+/docs/

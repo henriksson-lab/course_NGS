@@ -1,53 +1,70 @@
 project:
   type: website
-  output-dir: _site
-  # Only these render, so CURRICULUM.md, planning/ and oldpres/ stay off the site.
+  output-dir: docs
   render:
+    # One folder per unit, one level deep. Order is set by the sidebar below,
+    # not by these globs. Teacher-only material is excluded from the site.
     - "index.qmd"
-    - "foundations/**/*.qmd"
-    - "blocks/**/*.qmd"
-    - "usecases/**/*.qmd"
-    - "tricks/**/*.qmd"
-    - "qc/**/*.qmd"
-    - "design/**/*.qmd"
+    - "*/*.qmd"
+    - "!planning/"
+    - "!oldpres/"
+    - "!tools/"
+    - "!CURRICULUM.md"
+    - "!AUDIENCE.md"
+    - "!README.md"
 
 website:
   title: "NGS library preparation"
-  search:
-    location: sidebar
-    type: textbox
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
   sidebar:
     style: docked
-    alignment: left
-    collapse-level: 3
+    search: true
     contents:
-      - href: index.qmd
-        text: Overview
+      - text: Home
+        href: index.qmd
+      # ----------------------------------------------------------------------
+      # Order is defined HERE, not in filenames. To reorder a unit, move its
+      # block; never rename its folder. The plan is in CURRICULUM.md.
+      # styles.css colours leaf links: lec* → green, readings → grey,
+      # exercises → italic.
+      # ----------------------------------------------------------------------
       - section: "Foundations"
         contents:
           - section: "Nucleic acids as a building material"
             contents:
-              - href: foundations/lectures/nucleic-acids.qmd
-                text: Slides
-              - href: foundations/lectures/nucleic-acids-readings.qmd
-                text: Readings
-              - href: foundations/exercises/nucleic-acids.qmd
-                text: Exercises
+              - text: "Lecture (slides)"
+                href: nucleic-acids/lec.qmd
+              - text: "Readings"
+                href: nucleic-acids/readings.qmd
+              - text: "Exercise"
+                href: nucleic-acids/exercise.qmd
           - section: "How sequencers read DNA"
             contents:
-              - href: foundations/lectures/sequencers-illumina.qmd
-                text: "Slides — Illumina"
-              - href: foundations/lectures/sequencers-other.qmd
-                text: "Slides — other platforms"
-              - href: foundations/lectures/sequencers-readings.qmd
-                text: Readings
-              - href: foundations/exercises/sequencers.qmd
-                text: Exercises
+              - text: "Lecture (slides): Illumina"
+                href: sequencers/lec.qmd
+              - text: "Lecture (slides): other platforms"
+                href: sequencers/lec-platforms.qmd
+              - text: "Readings"
+                href: sequencers/readings.qmd
+              - text: "Exercise"
+                href: sequencers/exercise.qmd
 
 format:
   html:
-    theme: yeti
-    embed-resources: true
     toc: true
     code-copy: true
     code-overflow: wrap
+    highlight-style: github
+    theme: cosmo
+    css: styles.css
+
+# reveal.js navigation arrows for every lecture deck (lec*.qmd). Plain top-level
+# keys, not a `format: revealjs:` block: html pages ignore them, so no page is
+# rendered as slides by accident. `controls: true` shows the arrows on desktop
+# too (Quarto's default `auto` shows them only on touch devices).
+controls: true
+controls-layout: edges
+controls-back-arrows: visible

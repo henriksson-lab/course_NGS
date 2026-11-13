@@ -1,8 +1,5 @@
 ---
 title: "Exercises — How sequencers read DNA"
-format:
-  html:
-    theme: yeti
 ---
 
 Pen and paper. Most of these are the kind of reasoning you will do when a run comes back

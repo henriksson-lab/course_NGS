@@ -1,0 +1,55 @@
+/* Sidebar tweaks for the course website (HTML pages only — slides use theme.scss). */
+
+/* Bold the collapsible section headers in the docked sidebar (the parts and
+   the unit names) so they stand out from the leaf-page entries below them. */
+.sidebar-item.sidebar-item-section > .sidebar-item-container,
+.sidebar-item.sidebar-item-section > .sidebar-item-container > a,
+.sidebar-item.sidebar-item-section > .sidebar-item-container > .sidebar-item-toggle,
+.sidebar-item.sidebar-item-section > .sidebar-item-container .sidebar-item-text {
+  font-weight: 700;
+}
+
+/* Colour sidebar leaf links by type so they're identifiable at a glance:
+   - Lectures (any file with "lec" in the name) → green
+   - Readings → grey
+   The exercises keep the default colour but are italic. */
+.sidebar a.sidebar-item-text[href*="lec"],
+.sidebar-item .sidebar-item-text > a[href*="lec"] {
+  color: #1a7a3b;       /* lecture green */
+}
+.sidebar a.sidebar-item-text[href*="lec"]:hover,
+.sidebar-item .sidebar-item-text > a[href*="lec"]:hover {
+  color: #105025;
+}
+
+.sidebar a.sidebar-item-text[href*="readings"],
+.sidebar-item .sidebar-item-text > a[href*="readings"] {
+  color: #5a6066;       /* readings grey */
+}
+
+.sidebar a.sidebar-item-text[href*="exercise"],
+.sidebar-item .sidebar-item-text > a[href*="exercise"] {
+  font-style: italic;
+}
+
+/* One colour per part: a stripe down the left of the whole block and a tinted
+   header, so the parts are easy to tell apart. Positional: top-level items are
+   Home (1), Foundations (2), then the later parts. Update if they change. */
+.sidebar-menu-container > ul > li.sidebar-item-section:nth-child(n+2) {
+  border-left: 4px solid var(--part-color);
+  padding-left: 0.35rem;
+  margin: 0.4rem 0;
+}
+.sidebar-menu-container > ul > li.sidebar-item-section:nth-child(n+2) > .sidebar-item-container {
+  background: var(--part-tint);
+  border-radius: 0 4px 4px 0;
+  padding-left: 0.3rem;
+}
+.sidebar-menu-container > ul > li.sidebar-item-section:nth-child(n+2) > .sidebar-item-container .menu-text {
+  color: var(--part-color);
+}
+.sidebar-menu-container > ul > li:nth-child(2) { --part-color: #2a7f8f; --part-tint: #e6f3f5; } /* Foundations teal */
+.sidebar-menu-container > ul > li:nth-child(3) { --part-color: #7a5ea8; --part-tint: #efeaf6; } /* Building blocks purple */
+.sidebar-menu-container > ul > li:nth-child(4) { --part-color: #b35900; --part-tint: #fbefe4; } /* Use cases orange */
+.sidebar-menu-container > ul > li:nth-child(5) { --part-color: #2a55c2; --part-tint: #e8ecfa; } /* Tricks blue */
+.sidebar-menu-container > ul > li:nth-child(6) { --part-color: #1a7a3b; --part-tint: #e7f4ec; } /* QC and design green */

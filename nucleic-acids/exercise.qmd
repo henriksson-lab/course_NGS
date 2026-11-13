@@ -1,8 +1,5 @@
 ---
 title: "Exercises — Nucleic acids as a building material"
-format:
-  html:
-    theme: yeti
 ---
 
 Pen and paper. Try each one before opening the **Hint**, and the hint before the
