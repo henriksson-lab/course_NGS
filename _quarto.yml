@@ -1,7 +1,8 @@
 project:
   title: "ngs-libprep"
+  output-dir: _site
   render:
-    - "*.qmd"
+    - "index.qmd"
     - "foundations/**/*.qmd"
     - "blocks/**/*.qmd"
     - "usecases/**/*.qmd"

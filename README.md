@@ -17,13 +17,19 @@ Scaffold copied from the 5MO115 *Bioinformatics and genome analysis* course.
 ## Build
 
 ```
-make          # render every .qmd to .html next to it
-make check    # enforce the deck rules (slide count, picture ratio, no code)
+make site     # render the whole site into _site/ (what CI runs)
+make preview  # live preview, re-rendering as you edit
+make check    # enforce the material rules (slide count, picture ratio, no code)
 make figures  # regenerate the conceptual SVG figures
-make site     # full quarto render into _site/
-make preview  # live preview
-make add      # stage everything needed for a deploy commit
+make clean    # remove _site/ and .quarto/
 ```
+
+No HTML is committed. `.github/workflows/pages.yml` renders the site on every push
+to `main` and publishes it to
+[henriksson-lab.github.io/course_NGS](https://henriksson-lab.github.io/course_NGS/).
+The workflow runs `make check` and verifies the checked-in figures still match
+`tools/make_figures.py` before it publishes, so a broken deck never reaches the site.
+Only `_site/` is published: `CURRICULUM.md`, `planning/` and `oldpres/` stay out of it.
 
 ## Slides
 

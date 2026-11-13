@@ -1,0 +1,58 @@
+name: Build and publish the course site
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# One deployment at a time; let a running one finish rather than cancelling it.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          version: 1.7.30
+
+      # The material rules: deck length, picture ratio, no clipped slides,
+      # no code in exercises. Fails the build before anything is published.
+      - name: Check the material
+        run: python3 tools/check_course.py
+
+      # Figures are checked in; regenerate them and fail if they are stale,
+      # so a published figure always matches its generator.
+      - name: Check the figures are up to date
+        run: |
+          python3 tools/make_figures.py
+          git diff --exit-code -- foundations/img || {
+            echo "::error::Figures differ from tools/make_figures.py output. Run 'make figures' and commit."
+            exit 1
+          }
+
+      - name: Render
+        run: quarto render
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
