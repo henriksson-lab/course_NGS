@@ -3,34 +3,46 @@ title: "NGS library preparation"
 title-block-banner: false
 ---
 
-Course materials for a course on **next-generation sequencing (NGS) library preparation**: how to turn a tube of DNA or RNA into something a sequencer can read, and how to tell whether you did it right.
+How to turn DNA or RNA into a molecule a sequencer can read — and how to design a new way of
+doing it when no existing protocol fits.
 
-Every exercise page has collapsible **Hint** and **Solution** callouts. Try first, then peek.
+Self-published course material by Johan Henriksson. It is written for late MSc and PhD
+students, and it is self-paced: take the parts you need, in the order you need them. There is
+no programming in this course. Exercises are design problems, quizzes and enzyme-selection
+tasks, with collapsible **Hint** and **Solution** callouts.
 
-## Module 1 — Introduction to NGS
+The companion to this course is [NGS 101](https://henriksson-lab.github.io/NGS_101/), a
+base-by-base reference for about 840 published library chemistries. Protocols named here link
+to their page there.
 
-Sequencing platforms, what a "library" is, and the anatomy of a sequencing read.
+::: {.callout-note}
+This site is being written. The plan for all of it is in `CURRICULUM.md` in the repository.
+:::
 
-- Lecture: [Introduction to NGS](module1/lectures/1_intro.html)
-- Exercise: [Anatomy of a library molecule](module1/exercises/1_library_anatomy.html)
+## Foundations — what the sequencer needs
 
-## Module 2 — Core library preparation workflow
+Nucleic acids as a building material; how each sequencing platform reads DNA; the anatomy of
+a finished library molecule.
 
-Fragmentation, end repair, A-tailing, adapter ligation, PCR amplification and size selection.
+## Building blocks
 
-- Lecture: [The core workflow](module2/lectures/2_core_workflow.html)
-- Exercise: [Planning a library prep](module2/exercises/2_planning.html)
+The core of the course. One module per step you can put into a protocol: the enzyme toolbox,
+attaching a handle, end chemistry, fragmentation, amplification, selection, barcodes and UMIs,
+converting chemistry into sequence, and compartments. Each covers what the step does to the
+molecule, how it fails, and the tricks practitioners use.
 
-## Module 3 — Application-specific libraries
+## Use cases
 
-RNA-seq, ChIP-seq / ATAC-seq, amplicon and single-cell libraries — what changes and why.
+Whole protocols read as combinations of blocks: genomic DNA, RNA, targeted sequencing,
+chromatin, the 3D genome, modifications, single cells, spatial, pooled screens, long reads.
 
-- Lecture: [Library types](module3/lectures/3_library_types.html)
-- Exercise: [Choosing a library type](module3/exercises/3_choosing.html)
+## The trick catalogue
 
-## Module 4 — Library QC, pooling and sequencing
+Cross-cutting reference, indexed by the problem rather than by the step: making the right
+thing ligate, killing what you do not want, getting a handle onto an impossible end, counting
+honestly, working with degraded material.
 
-Quantification, fragment-size analysis, multiplexing with indexes, and checking the reads that come back.
+## Quality control and designing your own
 
-- Lecture: [QC and pooling](module4/lectures/4_qc_pooling.html)
-- Exercise: [Pooling calculations](module4/exercises/4_pooling.html)
+Cleanups, quantification and reading a trace; design patterns and failure modes; a capstone
+where you design a library prep from scratch.

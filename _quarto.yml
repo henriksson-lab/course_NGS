@@ -1,5 +1,13 @@
 project:
   title: "ngs-libprep"
+  render:
+    - "*.qmd"
+    - "foundations/**/*.qmd"
+    - "blocks/**/*.qmd"
+    - "usecases/**/*.qmd"
+    - "tricks/**/*.qmd"
+    - "qc/**/*.qmd"
+    - "design/**/*.qmd"
 
 format:
   html:

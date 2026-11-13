@@ -18,7 +18,7 @@ add:
 	-git rm -f --ignore-unmatch index.md
 	git add Makefile _quarto.yml .nojekyll .gitignore custom.scss README.md AUDIENCE.md
 	git add index.qmd index.html
-	git add -A img module1 module2 module3 module4
+	git add -A img foundations blocks usecases tricks qc design
 
 %.html: %.qmd _quarto.yml
 	quarto render $<

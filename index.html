@@ -2143,10 +2143,11 @@ vertical-align: -.125em;
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#module-1-introduction-to-ngs" id="toc-module-1-introduction-to-ngs" class="nav-link active" data-scroll-target="#module-1-introduction-to-ngs">Module 1 — Introduction to NGS</a></li>
-  <li><a href="#module-2-core-library-preparation-workflow" id="toc-module-2-core-library-preparation-workflow" class="nav-link" data-scroll-target="#module-2-core-library-preparation-workflow">Module 2 — Core library preparation workflow</a></li>
-  <li><a href="#module-3-application-specific-libraries" id="toc-module-3-application-specific-libraries" class="nav-link" data-scroll-target="#module-3-application-specific-libraries">Module 3 — Application-specific libraries</a></li>
-  <li><a href="#module-4-library-qc-pooling-and-sequencing" id="toc-module-4-library-qc-pooling-and-sequencing" class="nav-link" data-scroll-target="#module-4-library-qc-pooling-and-sequencing">Module 4 — Library QC, pooling and sequencing</a></li>
+  <li><a href="#foundations-what-the-sequencer-needs" id="toc-foundations-what-the-sequencer-needs" class="nav-link active" data-scroll-target="#foundations-what-the-sequencer-needs">Foundations — what the sequencer needs</a></li>
+  <li><a href="#building-blocks" id="toc-building-blocks" class="nav-link" data-scroll-target="#building-blocks">Building blocks</a></li>
+  <li><a href="#use-cases" id="toc-use-cases" class="nav-link" data-scroll-target="#use-cases">Use cases</a></li>
+  <li><a href="#the-trick-catalogue" id="toc-the-trick-catalogue" class="nav-link" data-scroll-target="#the-trick-catalogue">The trick catalogue</a></li>
+  <li><a href="#quality-control-and-designing-your-own" id="toc-quality-control-and-designing-your-own" class="nav-link" data-scroll-target="#quality-control-and-designing-your-own">Quality control and designing your own</a></li>
   </ul>
 </nav>
 </div>
@@ -2171,39 +2172,41 @@ vertical-align: -.125em;
 </header>
 
 
-<p>Course materials for a course on <strong>next-generation sequencing (NGS) library preparation</strong>: how to turn a tube of DNA or RNA into something a sequencer can read, and how to tell whether you did it right.</p>
-<p>Every exercise page has collapsible <strong>Hint</strong> and <strong>Solution</strong> callouts. Try first, then peek.</p>
-<section id="module-1-introduction-to-ngs" class="level2">
-<h2 class="anchored" data-anchor-id="module-1-introduction-to-ngs">Module 1 — Introduction to NGS</h2>
-<p>Sequencing platforms, what a “library” is, and the anatomy of a sequencing read.</p>
-<ul>
-<li>Lecture: <a href="module1/lectures/1_intro.html">Introduction to NGS</a></li>
-<li>Exercise: <a href="module1/exercises/1_library_anatomy.html">Anatomy of a library molecule</a></li>
-</ul>
+<p>How to turn DNA or RNA into a molecule a sequencer can read — and how to design a new way of doing it when no existing protocol fits.</p>
+<p>Self-published course material by Johan Henriksson. It is written for late MSc and PhD students, and it is self-paced: take the parts you need, in the order you need them. There is no programming in this course. Exercises are design problems, quizzes and enzyme-selection tasks, with collapsible <strong>Hint</strong> and <strong>Solution</strong> callouts.</p>
+<p>The companion to this course is <a href="https://henriksson-lab.github.io/NGS_101/">NGS 101</a>, a base-by-base reference for about 840 published library chemistries. Protocols named here link to their page there.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This site is being written. The plan for all of it is in <code>CURRICULUM.md</code> in the repository.</p>
+</div>
+</div>
+<section id="foundations-what-the-sequencer-needs" class="level2">
+<h2 class="anchored" data-anchor-id="foundations-what-the-sequencer-needs">Foundations — what the sequencer needs</h2>
+<p>Nucleic acids as a building material; how each sequencing platform reads DNA; the anatomy of a finished library molecule.</p>
 </section>
-<section id="module-2-core-library-preparation-workflow" class="level2">
-<h2 class="anchored" data-anchor-id="module-2-core-library-preparation-workflow">Module 2 — Core library preparation workflow</h2>
-<p>Fragmentation, end repair, A-tailing, adapter ligation, PCR amplification and size selection.</p>
-<ul>
-<li>Lecture: <a href="module2/lectures/2_core_workflow.html">The core workflow</a></li>
-<li>Exercise: <a href="module2/exercises/2_planning.html">Planning a library prep</a></li>
-</ul>
+<section id="building-blocks" class="level2">
+<h2 class="anchored" data-anchor-id="building-blocks">Building blocks</h2>
+<p>The core of the course. One module per step you can put into a protocol: the enzyme toolbox, attaching a handle, end chemistry, fragmentation, amplification, selection, barcodes and UMIs, converting chemistry into sequence, and compartments. Each covers what the step does to the molecule, how it fails, and the tricks practitioners use.</p>
 </section>
-<section id="module-3-application-specific-libraries" class="level2">
-<h2 class="anchored" data-anchor-id="module-3-application-specific-libraries">Module 3 — Application-specific libraries</h2>
-<p>RNA-seq, ChIP-seq / ATAC-seq, amplicon and single-cell libraries — what changes and why.</p>
-<ul>
-<li>Lecture: <a href="module3/lectures/3_library_types.html">Library types</a></li>
-<li>Exercise: <a href="module3/exercises/3_choosing.html">Choosing a library type</a></li>
-</ul>
+<section id="use-cases" class="level2">
+<h2 class="anchored" data-anchor-id="use-cases">Use cases</h2>
+<p>Whole protocols read as combinations of blocks: genomic DNA, RNA, targeted sequencing, chromatin, the 3D genome, modifications, single cells, spatial, pooled screens, long reads.</p>
 </section>
-<section id="module-4-library-qc-pooling-and-sequencing" class="level2">
-<h2 class="anchored" data-anchor-id="module-4-library-qc-pooling-and-sequencing">Module 4 — Library QC, pooling and sequencing</h2>
-<p>Quantification, fragment-size analysis, multiplexing with indexes, and checking the reads that come back.</p>
-<ul>
-<li>Lecture: <a href="module4/lectures/4_qc_pooling.html">QC and pooling</a></li>
-<li>Exercise: <a href="module4/exercises/4_pooling.html">Pooling calculations</a></li>
-</ul>
+<section id="the-trick-catalogue" class="level2">
+<h2 class="anchored" data-anchor-id="the-trick-catalogue">The trick catalogue</h2>
+<p>Cross-cutting reference, indexed by the problem rather than by the step: making the right thing ligate, killing what you do not want, getting a handle onto an impossible end, counting honestly, working with degraded material.</p>
+</section>
+<section id="quality-control-and-designing-your-own" class="level2">
+<h2 class="anchored" data-anchor-id="quality-control-and-designing-your-own">Quality control and designing your own</h2>
+<p>Cleanups, quantification and reading a trace; design patterns and failure modes; a capstone where you design a library prep from scratch.</p>
 </section>
 
 </main>

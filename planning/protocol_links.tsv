@@ -1,0 +1,840 @@
+protocol	doi	citations	ngs101_url
+Gibson assembly	10.1038/nmeth.1318	10042	https://henriksson-lab.github.io/NGS_101/gibson-assembly__10.1038+nmeth.1318/gibson_assembly.html
+in situ Hi-C	10.1016/j.cell.2014.11.021	9209	https://henriksson-lab.github.io/NGS_101/in-situ-hi-c__10.1016+j.cell.2014.11.021/in-situ-hi-c.html
+Hi-C (original)	10.1126/science.1181369	8891	https://henriksson-lab.github.io/NGS_101/hi-c-original__10.1126+science.1181369/hi-c-original.html
+10x Chromium Single Cell 3' Gene Expression v1	10.1038/ncomms14049	7350	https://henriksson-lab.github.io/NGS_101/10x-chromium-single-cell-3-ge-v1__10.1038+ncomms14049/01_10x-3p-v1.html
+Drop-seq	10.1016/j.cell.2015.05.002	7108	https://henriksson-lab.github.io/NGS_101/drop-seq__10.1016+j.cell.2015.05.002/drop-seq.html
+GBS	10.1371/journal.pone.0019379	6531	https://henriksson-lab.github.io/NGS_101/gbs__10.1371+journal.pone.0019379/gbs.html
+ATAC-seq	10.1038/nmeth.2688	6420	https://henriksson-lab.github.io/NGS_101/atac-seq__10.1038+nmeth.2688/atac-seq.html
+lentiCRISPR v2 screening	10.1038/nmeth.3047	5238	https://henriksson-lab.github.io/NGS_101/lenticrispr-v2-screening__10.1038+nmeth.3047/lenticrispr-v2-screening.html
+lentiCRISPR v1 screening	10.1126/science.1247005	5234	https://henriksson-lab.github.io/NGS_101/lenticrispr-v1-screening__10.1126+science.1247005/lenticrispr-v1-screening.html
+m6A-seq	10.1038/nature11112	4881	https://henriksson-lab.github.io/NGS_101/m6a-seq__10.1038+nature11112/m6a-seq.html
+sci-RNA-seq3	10.1038/s41586-019-0969-x	4481	https://henriksson-lab.github.io/NGS_101/sci-rna-seq3__10.1038+s41586-019-0969-x/sci-rna-seq3.html
+Tang 2009	10.1038/nmeth.1315	3966	https://henriksson-lab.github.io/NGS_101/tang-2009__10.1038+nmeth.1315/tang-2009.html
+Ribo-seq	10.1126/science.1168978	3845	https://henriksson-lab.github.io/NGS_101/ribo-seq__10.1126+science.1168978/ribo-seq.html
+ddRAD-seq	10.1371/journal.pone.0037135	3683	https://henriksson-lab.github.io/NGS_101/ddrad-seq__10.1371+journal.pone.0037135/ddrad-seq.html
+RAD-seq	10.1371/journal.pone.0003376	3373	https://henriksson-lab.github.io/NGS_101/rad-seq__10.1371+journal.pone.0003376/rad-seq.html
+inDrop v1	10.1016/j.cell.2015.04.044	3355	https://henriksson-lab.github.io/NGS_101/indrop-v1__10.1016+j.cell.2015.04.044/indrop-v1.html
+CITE-seq	10.1038/nmeth.4380	3089	https://henriksson-lab.github.io/NGS_101/cite-seq__10.1038+nmeth.4380/cite-seq.html
+SOE-PCR	10.1016/0378-1119(89)90359-4	3020	https://henriksson-lab.github.io/NGS_101/soe-pcr__10.1016+0378-1119(89)90359-4/soe_pcr.html
+PAR-CLIP	10.1016/j.cell.2010.03.009	2873	https://henriksson-lab.github.io/NGS_101/par-clip__10.1016+j.cell.2010.03.009/par_clip.html
+RNAscope	10.1016/j.jmoldx.2011.08.002	2567	https://henriksson-lab.github.io/NGS_101/rnascope__10.1016+j.jmoldx.2011.08.002/rnascope.html
+RRBS (Illumina)	10.1038/nature07107	2536	https://henriksson-lab.github.io/NGS_101/rrbs-illumina__10.1038+nature07107/rrbs-illumina.html
+Omni-ATAC	10.1038/nmeth.4396	2495	https://henriksson-lab.github.io/NGS_101/omni-atac__10.1038+nmeth.4396/omni-atac.html
+Slide-seq	10.1126/science.aaw1219	2423	https://henriksson-lab.github.io/NGS_101/slide-seq__10.1126+science.aaw1219/slide-seq.html
+Golden Gate	10.1371/journal.pone.0003647	2398	https://henriksson-lab.github.io/NGS_101/golden-gate__10.1371+journal.pone.0003647/golden_gate.html
+SMART-seq2	10.1038/nmeth.2639	2357	https://henriksson-lab.github.io/NGS_101/smart-seq2__10.1038+nmeth.2639/smart-seq2.html
+GUIDE-seq	10.1038/nbt.3117	2266	https://henriksson-lab.github.io/NGS_101/guide-seq__10.1038+nbt.3117/guide-seq.html
+CAPP-Seq	10.1038/nm.3519	2219	https://henriksson-lab.github.io/NGS_101/capp-seq__10.1038+nm.3519/01_chem.html
+CUT&Tag	10.1038/s41467-019-09982-5	2185	https://henriksson-lab.github.io/NGS_101/cut-tag__10.1038+s41467-019-09982-5/cut-tag.html
+GRO-seq	10.1126/science.1162228	2029	https://henriksson-lab.github.io/NGS_101/gro-seq__10.1126+science.1162228/gro-seq.html
+Inverse PCR	10.1093/genetics/120.3.621	1860	https://henriksson-lab.github.io/NGS_101/inverse-pcr__10.1093+genetics+120.3.621/inverse_pcr.html
+Perturb-seq (original barcode proxy)	10.1016/j.cell.2016.11.038	1854	https://henriksson-lab.github.io/NGS_101/perturb-seq-original-barcode-proxy__10.1016+j.cell.2016.11.038/chem.html
+MARS-seq	10.1126/science.1247651	1795	https://henriksson-lab.github.io/NGS_101/mars-seq__10.1126+science.1247651/mars-seq.html
+Stereo-seq	10.1016/j.cell.2022.04.003	1782	https://henriksson-lab.github.io/NGS_101/stereo-seq__10.1016+j.cell.2022.04.003/stereo-seq.html
+DAP-seq	10.1016/j.cell.2016.04.038	1620	https://henriksson-lab.github.io/NGS_101/dap-seq__10.1016+j.cell.2016.04.038/01_dap-seq.html
+STARmap	10.1126/science.aat5691	1618	https://henriksson-lab.github.io/NGS_101/starmap__10.1126+science.aat5691/starmap.html
+SMART-seq	10.1038/nbt.2282	1608	https://henriksson-lab.github.io/NGS_101/smart-seq__10.1038+nbt.2282/smart-seq.html
+Microwell-seq	10.1016/j.cell.2018.02.001	1597	https://henriksson-lab.github.io/NGS_101/microwell-seq__10.1016+j.cell.2018.02.001/microwell-seq.html
+Nagano single-cell Hi-C	10.1038/nature12593	1588	https://henriksson-lab.github.io/NGS_101/nagano-single-cell-hi-c__10.1038+nature12593/nagano-single-cell-hi-c.html
+miCLIP	10.1038/nmeth.3453	1567	https://henriksson-lab.github.io/NGS_101/miclip__10.1038+nmeth.3453/miclip.html
+ChIP-seq	10.1038/nmeth1068	1454	https://henriksson-lab.github.io/NGS_101/chip-seq__10.1038+nmeth1068/chip-seq.html
+SPLiT-seq	10.1126/science.aam8999	1422	https://henriksson-lab.github.io/NGS_101/split-seq__10.1126+science.aam8999/split-seq.html
+DNase-seq (Boyle 2008)	10.1016/j.cell.2007.12.014	1415	https://henriksson-lab.github.io/NGS_101/dnase-seq-boyle-2008__10.1016+j.cell.2007.12.014/dnase-seq-boyle-2008.html
+sci-RNA-seq	10.1126/science.aam8940	1402	https://henriksson-lab.github.io/NGS_101/sci-rna-seq__10.1126+science.aam8940/sci-rna-seq.html
+eCLIP	10.1038/nmeth.3810	1395	https://henriksson-lab.github.io/NGS_101/eclip__10.1038+nmeth.3810/eclip.html
+MoClo	10.1371/journal.pone.0016765	1383	https://henriksson-lab.github.io/NGS_101/moclo__10.1371+journal.pone.0016765/moclo.html
+TAm-Seq	10.1126/scitranslmed.3003726	1298	https://henriksson-lab.github.io/NGS_101/tam-seq__10.1126+scitranslmed.3003726/01_chem.html
+Slide-seqV2	10.1038/s41587-020-0739-1	1295	https://henriksson-lab.github.io/NGS_101/slide-seqv2__10.1038+s41587-020-0739-1/slide-seqv2.html
+Joung one-PCR CRISPR screen readout	10.1038/nprot.2017.016	1280	https://henriksson-lab.github.io/NGS_101/joung-one-pcr-crispr-screen-readout__10.1038+nprot.2017.016/joung-one-pcr-crispr-screen-readout.html
+ChIRP-seq	10.1016/j.molcel.2011.08.027	1271	https://henriksson-lab.github.io/NGS_101/chirp-seq__10.1016+j.molcel.2011.08.027/01_chem.html
+sci-ATAC-seq	10.1126/science.aab1601	1247	https://henriksson-lab.github.io/NGS_101/sci-atac-seq__10.1126+science.aab1601/sci-atac-seq.html
+G4-seq	10.1038/nbt.3295	1238	https://henriksson-lab.github.io/NGS_101/g4-seq__10.1038+nbt.3295/g4-seq.html
+CEL-Seq	10.1016/j.celrep.2012.08.003	1230	https://henriksson-lab.github.io/NGS_101/cel-seq__10.1016+j.celrep.2012.08.003/cel-seq.html
+ET recombineering	10.1038/2417	1225	https://henriksson-lab.github.io/NGS_101/et-recombineering__10.1038+2417/et_recombineering.html
+LIC-PCR	10.1093/nar/18.20.6069	1206	https://henriksson-lab.github.io/NGS_101/lic-pcr__10.1093+nar+18.20.6069/lic_pcr.html
+Safe-SeqS	10.1073/pnas.1105422108	1204	https://henriksson-lab.github.io/NGS_101/safe-seqs__10.1073+pnas.1105422108/safe-seqs.html
+ARTIC tiled-amplicon sequencing	10.1038/nprot.2017.066	1188	https://henriksson-lab.github.io/NGS_101/artic-tiled-amplicon-sequencing__10.1038+nprot.2017.066/artic-tiled-amplicon.html
+STRT-C1	10.1038/nmeth.2772	1183	https://henriksson-lab.github.io/NGS_101/strt-c1__10.1038+nmeth.2772/strt-c1.html
+MALBAC	10.1126/science.1229164	1154	https://henriksson-lab.github.io/NGS_101/malbac__10.1126+science.1229164/malbac.html
+dRNA-seq	10.1038/nature08756	1151	https://henriksson-lab.github.io/NGS_101/drna-seq__10.1038+nature08756/01_drna-seq.html
+iCLIP	10.1038/nsmb.1838	1151	https://henriksson-lab.github.io/NGS_101/iclip__10.1038+nsmb.1838/iclip_partial.html
+Fast-ATAC	10.1038/ng.3646	1150	https://henriksson-lab.github.io/NGS_101/fast-atac__10.1038+ng.3646/fast-atac.html
+HDST	10.1038/s41592-019-0548-y	1149	https://henriksson-lab.github.io/NGS_101/hdst__10.1038+s41592-019-0548-y/hdst.html
+Plate_scATAC-seq	10.1038/s41467-018-07771-0	1147	https://henriksson-lab.github.io/NGS_101/plate-scatac-seq__10.1038+s41467-018-07771-0/plate-scatac-seq.html
+SHARE-seq	10.1016/j.cell.2020.09.056	1144	https://henriksson-lab.github.io/NGS_101/share-seq__10.1016+j.cell.2020.09.056/share-seq.html
+HiChIP	10.1038/nmeth.3999	1133	https://henriksson-lab.github.io/NGS_101/hichip__10.1038+nmeth.3999/hichip.html
+Gateway	10.1101/gr.143000	1130	https://henriksson-lab.github.io/NGS_101/gateway__10.1101+gr.143000/gateway.html
+CEL-Seq2	10.1186/s13059-016-0938-8	1125	https://henriksson-lab.github.io/NGS_101/cel-seq2__10.1186+s13059-016-0938-8/cel-seq2.html
+STARR-seq	10.1126/science.1232542	1125	https://henriksson-lab.github.io/NGS_101/starr-seq__10.1126+science.1232542/starr-seq.html
+scBS-seq	10.1038/nmeth.3035	1125	https://henriksson-lab.github.io/NGS_101/scbs-seq__10.1038+nmeth.3035/scbs-seq.html
+CROP-seq	10.1038/nmeth.4177	1095	https://henriksson-lab.github.io/NGS_101/crop-seq__10.1038+nmeth.4177/crop-seq.html
+MSCC	10.1038/nbt.1533	1095	https://henriksson-lab.github.io/NGS_101/mscc__10.1038+nbt.1533/01_chemistry.html
+hmC-Seal	10.1038/nbt.1732	1088	https://henriksson-lab.github.io/NGS_101/hmc-seal__10.1038+nbt.1732/01_hmc_seal.html
+GeoMx DSP	10.1038/s41587-020-0472-9	1072	https://henriksson-lab.github.io/NGS_101/geomx-dsp__10.1038+s41587-020-0472-9/geomx-dsp.html
+Duplex Sequencing	10.1073/pnas.1208715109	1044	https://henriksson-lab.github.io/NGS_101/duplex-sequencing__10.1073+pnas.1208715109/duplex-sequencing.html
+TAB-seq	10.1016/j.cell.2012.04.027	1036	https://henriksson-lab.github.io/NGS_101/tab-seq__10.1016+j.cell.2012.04.027/tab-seq.html
+Pseudo-seq	10.1038/nature13802	1027	https://henriksson-lab.github.io/NGS_101/pseudo-seq__10.1038+nature13802/pseudo-seq.html
+m1A-seq	10.1038/nature16998	1027	https://henriksson-lab.github.io/NGS_101/m1a-seq__10.1038+nature16998/01_m1a_seq.html
+RNA-BS-seq (Squires2012)	10.1093/nar/gks144	1011	https://henriksson-lab.github.io/NGS_101/rna-bs-seq-squires2012__10.1093+nar+gks144/01_pending_review.html
+Digenome-seq	10.1038/nmeth.3284	992	https://henriksson-lab.github.io/NGS_101/digenome-seq__10.1038+nmeth.3284/digenome-seq.html
+RAP-DNA	10.1126/science.1237973	986	https://henriksson-lab.github.io/NGS_101/rap-dna__10.1126+science.1237973/01_chem.html
+scTHS-seq	10.1038/nbt.4038	983	https://henriksson-lab.github.io/NGS_101/scths-seq__10.1038+nbt.4038/scths-seq.html
+FISSEQ	10.1126/science.1250212	973	https://henriksson-lab.github.io/NGS_101/fisseq__10.1126+science.1250212/fisseq.html
+DBiT-seq	10.1016/j.cell.2020.10.026	966	https://henriksson-lab.github.io/NGS_101/dbit-seq__10.1016+j.cell.2020.10.026/dbit-seq.html
+SLIC	10.1038/nmeth1010	955	https://henriksson-lab.github.io/NGS_101/slic__10.1038+nmeth1010/slic.html
+STRT-seq	10.1101/gr.110882.110	948	https://henriksson-lab.github.io/NGS_101/strt-seq__10.1101+gr.110882.110/strt-seq.html
+sci-CAR-seq	10.1126/science.aau0730	938	https://henriksson-lab.github.io/NGS_101/sci-car-seq__10.1126+science.aau0730/sci-car-seq.html
+oxBS-seq	10.1126/science.1220671	930	https://henriksson-lab.github.io/NGS_101/oxbs-seq__10.1126+science.1220671/oxbs-seq.html
+Yeast Toolkit	10.1021/sb500366v	919	https://henriksson-lab.github.io/NGS_101/yeast-toolkit__10.1021+sb500366v/yeast_toolkit.html
+DRIP-seq	10.1016/j.molcel.2012.01.017	912	https://henriksson-lab.github.io/NGS_101/drip-seq__10.1016+j.molcel.2012.01.017/drip-seq.html
+SPRITE	10.1016/j.cell.2018.05.024	891	https://henriksson-lab.github.io/NGS_101/sprite__10.1016+j.cell.2018.05.024/sprite.html
+Seq-Well	10.1038/nmeth.4179	868	https://henriksson-lab.github.io/NGS_101/seq-well__10.1038+nmeth.4179/seq-well.html
+DMS-seq	10.1038/nature12894	860	https://henriksson-lab.github.io/NGS_101/dms-seq__10.1038+nature12894/dms-seq.html
+Drop-ChIP	10.1038/nbt.3383	854	https://henriksson-lab.github.io/NGS_101/drop-chip__10.1038+nbt.3383/drop-chip.html
+PRO-cap	10.1126/science.1229386	849	https://henriksson-lab.github.io/NGS_101/pro-cap__10.1126+science.1229386/pro-cap.html
+PRO-seq	10.1126/science.1229386	849	https://henriksson-lab.github.io/NGS_101/pro-seq__10.1126+science.1229386/pro-seq.html
+PARE	10.1038/nbt1417	839	https://henriksson-lab.github.io/NGS_101/pare__10.1038+nbt1417/01_chem.html
+REAP-seq	10.1038/nbt.3973	832	https://henriksson-lab.github.io/NGS_101/reap-seq__10.1038+nbt.3973/reap.html
+Stevens single-cell Hi-C	10.1038/nature21429	831	https://henriksson-lab.github.io/NGS_101/stevens-single-cell-hi-c__10.1038+nature21429/stevens-single-cell-hi-c.html
+CRISPR CIRCLE-seq	10.1038/nmeth.4278	812	https://henriksson-lab.github.io/NGS_101/crispr-circle-seq__10.1038+nmeth.4278/crispr-circle-seq.html
+SNARE-seq	10.1038/s41587-019-0290-0	809	https://henriksson-lab.github.io/NGS_101/snare-seq__10.1038+s41587-019-0290-0/snare-seq.html
+Micro-C	10.1016/j.cell.2015.05.048	788	https://henriksson-lab.github.io/NGS_101/micro-c__10.1016+j.cell.2015.05.048/micro-c.html
+CRISP-seq	10.1016/j.cell.2016.11.039	777	https://henriksson-lab.github.io/NGS_101/crisp-seq__10.1016+j.cell.2016.11.039/chem.html
+GESTALT (genomic recovery)	10.1126/science.aaf7907	766	https://henriksson-lab.github.io/NGS_101/gestalt-genomic-recovery__10.1126+science.aaf7907/chem.html
+PARS	10.1038/nature09322	765	https://henriksson-lab.github.io/NGS_101/pars__10.1038+nature09322/pars.html
+BioBrick	10.1186/1754-1611-2-5	763	https://henriksson-lab.github.io/NGS_101/biobrick__10.1186+1754-1611-2-5/biobrick.html
+ChIP-exo	10.1016/j.cell.2011.11.013	760	https://henriksson-lab.github.io/NGS_101/chip-exo__10.1016+j.cell.2011.11.013/01_chemistry.html
+snHi-C	10.1038/nature21711	753	https://henriksson-lab.github.io/NGS_101/snhi-c__10.1038+nature21711/snhi-c.html
+G&T-seq	10.1038/nmeth.3370	750	https://henriksson-lab.github.io/NGS_101/g-t-seq__10.1038+nmeth.3370/g-t-seq.html
+2b-RAD	10.1038/nmeth.2023	730	https://henriksson-lab.github.io/NGS_101/2b-rad__10.1038+nmeth.2023/01_2b_rad.html
+inDrop v2	10.1038/nprot.2016.154	730	https://henriksson-lab.github.io/NGS_101/indrop-v2__10.1038+nprot.2016.154/indrop-v2.html
+scM&T-seq	10.1038/nmeth.3728	717	https://henriksson-lab.github.io/NGS_101/scm-t-seq__10.1038+nmeth.3728/scm-t-seq.html
+GAM	10.1038/nature21411	715	https://henriksson-lab.github.io/NGS_101/gam__10.1038+nature21411/gam.html
+MPRA	10.1038/nbt.2137	710	https://henriksson-lab.github.io/NGS_101/mpra__10.1038+nbt.2137/mpra.html
+SMART-seq3	10.1038/s41587-020-0497-0	700	https://henriksson-lab.github.io/NGS_101/smart-seq3__10.1038+s41587-020-0497-0/smart-seq3.html
+GRO-cap	10.1038/ng.3142	693	https://henriksson-lab.github.io/NGS_101/gro-cap__10.1038+ng.3142/gro-cap.html
+m1A-ID-seq	10.1038/nchembio.2040	686	https://henriksson-lab.github.io/NGS_101/m1a-id-seq__10.1038+nchembio.2040/01_m1a_id_seq.html
+DNA assembler	10.1093/nar/gkn991	679	https://henriksson-lab.github.io/NGS_101/dna-assembler__10.1093+nar+gkn991/dna_assembler.html
+LAM-HTGTS	10.1038/nbt.3101	672	https://henriksson-lab.github.io/NGS_101/lam-htgts__10.1038+nbt.3101/chem.html
+PAL-seq	10.1038/nature13007	664	https://henriksson-lab.github.io/NGS_101/pal-seq__10.1038+nature13007/01_chem.html
+APEX-seq	10.1016/j.cell.2019.05.027	663	https://henriksson-lab.github.io/NGS_101/apex-seq__10.1016+j.cell.2019.05.027/01_apex_seq.html
+SHAPE-MaP	10.1038/nmeth.3029	661	https://henriksson-lab.github.io/NGS_101/shape-map__10.1038+nmeth.3029/shape-map.html
+PARIS	10.1016/j.cell.2016.04.028	658	https://henriksson-lab.github.io/NGS_101/paris__10.1016+j.cell.2016.04.028/paris.html
+scNMT-seq	10.1038/s41467-018-03149-4	657	https://henriksson-lab.github.io/NGS_101/scnmt-seq__10.1038+s41467-018-03149-4/scnmt-seq.html
+scTrio-seq	10.1038/cr.2016.23	647	https://henriksson-lab.github.io/NGS_101/sctrio-seq__10.1038+cr.2016.23/sctrio-seq.html
+MULTI-seq	10.1038/s41592-019-0433-8	642	https://henriksson-lab.github.io/NGS_101/multi-seq__10.1038+s41592-019-0433-8/chem.html
+RF cloning	10.1016/j.jbbm.2005.12.008	641	https://henriksson-lab.github.io/NGS_101/rf-cloning__10.1016+j.jbbm.2005.12.008/rf_cloning.html
+SLAM-seq	10.1038/nmeth.4435	622	https://henriksson-lab.github.io/NGS_101/slam-seq__10.1038+nmeth.4435/slam-seq.html
+MIRACL-seq	10.1016/j.cell.2020.08.003	581	https://henriksson-lab.github.io/NGS_101/miracl-seq__10.1016+j.cell.2020.08.003/miracl-seq.html
+RAISIN RNA-seq	10.1016/j.cell.2020.08.003	581	https://henriksson-lab.github.io/NGS_101/raisin-rna-seq__10.1016+j.cell.2020.08.003/raisin-rna-seq.html
+miCLIP (NSUN2 m5C)	10.1016/j.celrep.2013.06.029	578	https://henriksson-lab.github.io/NGS_101/miclip-nsun2-m5c__10.1016+j.celrep.2013.06.029/01_miclip-nsun2-m5c.html
+Double-stranded ancient DNA with partial UDG	10.1098/rstb.2013.0624	572	https://henriksson-lab.github.io/NGS_101/double-stranded-ancient-dna-with-partial-udg__10.1098+rstb.2013.0624/partial-udg-ds-adna.html
+TT-seq	10.1126/science.aad9841	569	https://henriksson-lab.github.io/NGS_101/tt-seq__10.1126+science.aad9841/tt-seq.html
+mNET-seq	10.1016/j.cell.2015.03.027	562	https://henriksson-lab.github.io/NGS_101/mnet-seq__10.1016+j.cell.2015.03.027/mnet-seq.html
+CeU-Seq	10.1038/nchembio.1836	560	https://henriksson-lab.github.io/NGS_101/ceu-seq__10.1038+nchembio.1836/01_ceu_seq.html
+DRIPc-seq	10.1016/j.molcel.2016.05.032	560	https://henriksson-lab.github.io/NGS_101/dripc-seq__10.1016+j.molcel.2016.05.032/dripc-seq.html
+fCAB-seq	10.1016/j.cell.2013.04.001	553	https://henriksson-lab.github.io/NGS_101/fcab-seq__10.1016+j.cell.2013.04.001/fcab-seq.html
+CAP-seq	10.1371/journal.pgen.1001134	550	https://henriksson-lab.github.io/NGS_101/cap-seq__10.1371+journal.pgen.1001134/cap-seq.html
+DM-tRNA-seq	10.1038/nmeth.3478	550	https://henriksson-lab.github.io/NGS_101/dm-trna-seq__10.1038+nmeth.3478/dm-trna-seq.html
+sci-Hi-C	10.1038/nmeth.4155	549	https://henriksson-lab.github.io/NGS_101/sci-hi-c__10.1038+nmeth.4155/sci-hi-c.html
+In-Fusion	10.1093/nar/gkm047	541	https://henriksson-lab.github.io/NGS_101/in-fusion__10.1093+nar+gkm047/in_fusion.html
+TCC	10.1038/nbt.2057	541	https://henriksson-lab.github.io/NGS_101/tcc__10.1038+nbt.2057/01_chemistry.html
+Single-stranded ancient DNA	10.1038/nprot.2013.038	540	https://henriksson-lab.github.io/NGS_101/single-stranded-ancient-dna__10.1038+nprot.2013.038/single-stranded-library.html
+Single-cell TCR/phenotype sequencing (Han)	10.1038/nbt.2938	534	https://henriksson-lab.github.io/NGS_101/single-cell-tcr-phenotype-sequencing-han__10.1038+nbt.2938/chem.html
+NanoSeq	10.1038/s41586-021-03477-4	531	https://henriksson-lab.github.io/NGS_101/nanoseq__10.1038+s41586-021-03477-4/nanoseq.html
+LINNAEUS	10.1038/nbt.4124	529	https://henriksson-lab.github.io/NGS_101/linnaeus__10.1038+nbt.4124/chem.html
+ASAP-seq	10.1038/s41587-021-00927-2	528	https://henriksson-lab.github.io/NGS_101/asap-seq__10.1038+s41587-021-00927-2/asap-seq.html
+DOGMA-seq	10.1038/s41587-021-00927-2	528	https://henriksson-lab.github.io/NGS_101/dogma-seq__10.1038+s41587-021-00927-2/dogma-seq.html
+m7G-seq (Zhang2019)	10.1016/j.molcel.2019.03.036	527	https://henriksson-lab.github.io/NGS_101/m7g-seq-zhang2019__10.1016+j.molcel.2019.03.036/01_chem.html
+Seq-Scope	10.1016/j.cell.2021.05.010	520	https://henriksson-lab.github.io/NGS_101/seq-scope__10.1016+j.cell.2021.05.010/seq-scope.html
+ECCITE-seq	10.1038/s41592-019-0392-0	519	https://henriksson-lab.github.io/NGS_101/eccite-seq__10.1038+s41592-019-0392-0/eccite-seq.html
+CPEC	10.1371/journal.pone.0006441	518	https://henriksson-lab.github.io/NGS_101/cpec__10.1371+journal.pone.0006441/cpec.html
+scRRBS	10.1101/gr.161679.113	517	https://henriksson-lab.github.io/NGS_101/scrrbs__10.1101+gr.161679.113/scrrbs.html
+ChIPmentation	10.1038/nmeth.3542	509	https://henriksson-lab.github.io/NGS_101/chipmentation__10.1038+nmeth.3542/chipmentation.html
+BD Rhapsody	10.1038/s41592-018-0255-0	506	https://henriksson-lab.github.io/NGS_101/bd-rhapsody__10.1038+s41592-018-0255-0/bd-rhapsody.html
+DR-seq	10.1038/nbt.3129	502	https://henriksson-lab.github.io/NGS_101/dr-seq__10.1038+nbt.3129/dr-seq.html
+RAP-RNA	10.1016/j.cell.2014.08.018	500	https://henriksson-lab.github.io/NGS_101/rap-rna__10.1016+j.cell.2014.08.018/01_chem.html
+Dip-C	10.1126/science.aat5641	498	https://henriksson-lab.github.io/NGS_101/dip-c__10.1126+science.aat5641/dip-c.html
+SLiCE	10.1093/nar/gkr1288	494	https://henriksson-lab.github.io/NGS_101/slice__10.1093+nar+gkr1288/slice.html
+TRAC-seq	10.1016/j.molcel.2018.06.001	490	https://henriksson-lab.github.io/NGS_101/trac-seq__10.1016+j.molcel.2018.06.001/01_trac_seq.html
+DART-seq	10.1038/s41592-019-0570-0	487	https://henriksson-lab.github.io/NGS_101/dart-seq__10.1038+s41592-019-0570-0/dart-seq.html
+Rapture	10.1534/genetics.115.183665	486	https://henriksson-lab.github.io/NGS_101/rapture__10.1534+genetics.115.183665/01_chem.html
+m1A-MAP	10.1016/j.molcel.2017.10.019	486	https://henriksson-lab.github.io/NGS_101/m1a-map__10.1016+j.molcel.2017.10.019/m1a-map.html
+Aza-IP	10.1038/nbt.2566	485	https://henriksson-lab.github.io/NGS_101/aza-ip__10.1038+nbt.2566/01_aza_ip.html
+MAZTER-seq	10.1016/j.cell.2019.06.013	484	https://henriksson-lab.github.io/NGS_101/mazter-seq__10.1016+j.cell.2019.06.013/mazter-seq.html
+scDamID	10.1016/j.cell.2015.08.040	482	https://henriksson-lab.github.io/NGS_101/scdamid__10.1016+j.cell.2015.08.040/scdamid.html
+spatial-ATAC-RNA-seq	10.1038/s41586-023-05795-1	482	https://henriksson-lab.github.io/NGS_101/spatial-atac-rna-seq__10.1038+s41586-023-05795-1/spatial-atac-rna-seq.html
+spatial-CUT&Tag-RNA-seq	10.1038/s41586-023-05795-1	482	https://henriksson-lab.github.io/NGS_101/spatial-cut-tag-rna-seq__10.1038+s41586-023-05795-1/spatial-cut-tag-rna-seq.html
+3P-seq	10.1038/nature09616	481	https://henriksson-lab.github.io/NGS_101/3p-seq__10.1038+nature09616/01_chem.html
+ARM-seq	10.1038/nmeth.3508	479	https://henriksson-lab.github.io/NGS_101/arm-seq__10.1038+nmeth.3508/arm-seq.html
+TAPS	10.1038/s41587-019-0041-2	479	https://henriksson-lab.github.io/NGS_101/taps__10.1038+s41587-019-0041-2/taps.html
+TAIL-seq	10.1016/j.molcel.2014.02.007	467	https://henriksson-lab.github.io/NGS_101/tail-seq__10.1016+j.molcel.2014.02.007/tail-seq.html
+BLESS	10.1038/nmeth.2408	465	https://henriksson-lab.github.io/NGS_101/bless__10.1038+nmeth.2408/bless.html
+Drop-scChIP-seq	10.1038/s41588-019-0424-9	465	https://henriksson-lab.github.io/NGS_101/drop-scchip-seq__10.1038+s41588-019-0424-9/drop-scchip-seq.html
+5' direct-capture Perturb-seq	10.1038/s41587-020-0470-y	464	https://henriksson-lab.github.io/NGS_101/5-direct-capture-perturb-seq__10.1038+s41587-020-0470-y/5-direct-capture-perturb-seq.html
+Histone H4S47C chemical mapping	10.1038/nature11142	464	https://henriksson-lab.github.io/NGS_101/histone-h4s47c-chemical-mapping__10.1038+nature11142/01_chem.html
+DMS-MaPseq	10.1038/nmeth.4057	458	https://henriksson-lab.github.io/NGS_101/dms-mapseq__10.1038+nmeth.4057/dms-mapseq.html
+NOMe-seq (bulk)	10.1101/gr.143008.112	455	https://henriksson-lab.github.io/NGS_101/nome-seq-bulk__10.1101+gr.143008.112/nome-seq.html
+Quartz-Seq	10.1186/gb-2013-14-4-r31	455	https://henriksson-lab.github.io/NGS_101/quartz-seq__10.1186+gb-2013-14-4-r31/quartz-seq.html
+Olink Explore	10.1016/j.mcpro.2021.100168	453	https://henriksson-lab.github.io/NGS_101/olink-explore__10.1016+j.mcpro.2021.100168/olink-explore.html
+SITE-Seq	10.1038/nmeth.4284	451	https://henriksson-lab.github.io/NGS_101/site-seq__10.1038+nmeth.4284/site-seq.html
+TIF-seq	10.1038/nature12121	451	https://henriksson-lab.github.io/NGS_101/tif-seq__10.1038+nature12121/01_chem.html
+CHART-seq	10.1073/pnas.1113536108	448	https://henriksson-lab.github.io/NGS_101/chart-seq__10.1073+pnas.1113536108/01_chem.html
+nanopore Cas9-targeted sequencing (nCATS)	10.1038/s41587-020-0407-5	448	https://henriksson-lab.github.io/NGS_101/nanopore-cas9-targeted-sequencing-ncats__10.1038+s41587-020-0407-5/ncats.html
+ScarTrace	10.1038/nature25969	447	https://henriksson-lab.github.io/NGS_101/scartrace__10.1038+nature25969/chem.html
+TSA-seq	10.1083/jcb.201807108	444	https://henriksson-lab.github.io/NGS_101/tsa-seq__10.1083+jcb.201807108/tsa-seq.html
+dscATAC-seq	10.1038/s41587-019-0147-6	444	https://henriksson-lab.github.io/NGS_101/dscatac-seq__10.1038+s41587-019-0147-6/dscatac-seq.html
+dsciATAC-seq	10.1038/s41587-019-0147-6	444	https://henriksson-lab.github.io/NGS_101/dsciatac-seq__10.1038+s41587-019-0147-6/dsciatac-seq.html
+rG4-seq	10.1038/nmeth.3965	442	https://henriksson-lab.github.io/NGS_101/rg4-seq__10.1038+nmeth.3965/01_rg4_seq.html
+3′READS	10.1038/nmeth.2288	441	https://henriksson-lab.github.io/NGS_101/3-reads__10.1038+nmeth.2288/01_chem.html
+Multiplexed HT-SELEX	10.1101/gr.100552.109	441	https://henriksson-lab.github.io/NGS_101/multiplexed-ht-selex__10.1101+gr.100552.109/01_chem.html
+DISCOVER-Seq	10.1126/science.aav9023	434	https://henriksson-lab.github.io/NGS_101/discover-seq__10.1126+science.aav9023/discover-seq.html
+SiC-seq	10.1038/nbt.3880	431	https://henriksson-lab.github.io/NGS_101/sic-seq__10.1038+nbt.3880/sic.html
+Start-seq	10.1126/science.1181421	424	https://henriksson-lab.github.io/NGS_101/start-seq__10.1126+science.1181421/start-seq.html
+ExSeq	10.1126/science.aax2656	421	https://henriksson-lab.github.io/NGS_101/exseq__10.1126+science.aax2656/exseq.html
+PBAT	10.1093/nar/gks454	419	https://henriksson-lab.github.io/NGS_101/pbat__10.1093+nar+gks454/pbat.html
+Spatial-ATAC-seq	10.1101/2021.06.06.447244	416	https://henriksson-lab.github.io/NGS_101/spatial-atac-seq__10.1101+2021.06.06.447244/spatial-atac-seq.html
+ChIP-BS-seq	10.1101/gr.133728.111	413	https://henriksson-lab.github.io/NGS_101/chip-bs-seq__10.1101+gr.133728.111/chip-bs-seq.html
+Paired VH:VL	10.1038/nbt.2492	410	https://henriksson-lab.github.io/NGS_101/paired-vh-vl__10.1038+nbt.2492/paired_vh_vl.html
+sci-ATAC-seq3	10.1126/science.aba7612	405	https://henriksson-lab.github.io/NGS_101/sci-atac-seq3__10.1126+science.aba7612/sci-atac-seq3.html
+MiGS	10.1093/nar/gkp992	404	https://henriksson-lab.github.io/NGS_101/migs__10.1093+nar+gkp992/migs.html
+PA-m6A-seq	10.1002/anie.201410647	402	https://henriksson-lab.github.io/NGS_101/pa-m6a-seq__10.1002+anie.201410647/01_pa-m6a-seq.html
+RNA Bind-n-Seq	10.1016/j.molcel.2014.04.016	402	https://henriksson-lab.github.io/NGS_101/rna-bind-n-seq__10.1016+j.molcel.2014.04.016/chem.html
+m6A-REF-seq	10.1126/sciadv.aax0250	401	https://henriksson-lab.github.io/NGS_101/m6a-ref-seq__10.1126+sciadv.aax0250/m6a-ref-seq.html
+sci-Plex	10.1126/science.aax6234	399	https://henriksson-lab.github.io/NGS_101/sci-plex__10.1126+science.aax6234/sci-plex.html
+LIANTI	10.1126/science.aak9787	393	https://henriksson-lab.github.io/NGS_101/lianti__10.1126+science.aak9787/lianti.html
+Spatial-CUT&Tag	10.1126/science.abg7216	393	https://henriksson-lab.github.io/NGS_101/spatial-cut-tag__10.1126+science.abg7216/spatial-cut-tag.html
+SHAPE-Seq	10.1073/pnas.1106501108	390	https://henriksson-lab.github.io/NGS_101/shape-seq__10.1073+pnas.1106501108/shape-seq.html
+cP-RNA-seq	10.1073/pnas.1510077112	386	https://henriksson-lab.github.io/NGS_101/cp-rna-seq__10.1073+pnas.1510077112/01_chem.html
+GLORI	10.1038/s41587-022-01487-9	384	https://henriksson-lab.github.io/NGS_101/glori__10.1038+s41587-022-01487-9/glori.html
+LIGR-seq	10.1016/j.molcel.2016.04.030	384	https://henriksson-lab.github.io/NGS_101/ligr-seq__10.1016+j.molcel.2016.04.030/ligr-seq.html
+R-ChIP	10.1016/j.molcel.2017.10.008	378	https://henriksson-lab.github.io/NGS_101/r-chip__10.1016+j.molcel.2017.10.008/r-chip.html
+scCOOL-seq	10.1038/cr.2017.82	374	https://henriksson-lab.github.io/NGS_101/sccool-seq__10.1038+cr.2017.82/sccool-seq.html
+BLISS	10.1038/ncomms15058	368	https://henriksson-lab.github.io/NGS_101/bliss__10.1038+ncomms15058/bliss.html
+Human NET-seq	10.1016/j.cell.2015.03.010	366	https://henriksson-lab.github.io/NGS_101/human-net-seq__10.1016+j.cell.2015.03.010/human-net-seq.html
+CRAC	10.1073/pnas.0901997106	364	https://henriksson-lab.github.io/NGS_101/crac__10.1073+pnas.0901997106/01_crac.html
+sci-ATAC-seq (2018)	10.1038/nature25981	362	https://henriksson-lab.github.io/NGS_101/sci-atac-seq-2018__10.1038+nature25981/sci-atac-seq-2018.html
+DASH	10.1186/s13059-016-0904-5	358	https://henriksson-lab.github.io/NGS_101/dash__10.1186+s13059-016-0904-5/01_dash.html
+OK-seq	10.1038/ncomms10208	358	https://henriksson-lab.github.io/NGS_101/ok-seq__10.1038+ncomms10208/ok-seq.html
+Term-seq	10.1126/science.aad9822	357	https://henriksson-lab.github.io/NGS_101/term-seq__10.1126+science.aad9822/01_chem.html
+SLIM	10.1093/nar/gnh172	355	https://henriksson-lab.github.io/NGS_101/slim__10.1093+nar+gnh172/slim.html
+PhIP-Seq	10.1038/nbt.1856	354	https://henriksson-lab.github.io/NGS_101/phip-seq__10.1038+nbt.1856/phip-seq.html
+SPLASH	10.1016/j.molcel.2016.04.028	350	https://henriksson-lab.github.io/NGS_101/splash__10.1016+j.molcel.2016.04.028/splash.html
+GoldenBraid	10.1371/journal.pone.0021622	348	https://henriksson-lab.github.io/NGS_101/goldenbraid__10.1371+journal.pone.0021622/goldenbraid.html
+PLAC-seq	10.1038/cr.2016.137	344	https://henriksson-lab.github.io/NGS_101/plac-seq__10.1038+cr.2016.137/plac-seq.html
+Paired-seq	10.1038/s41594-019-0323-x	344	https://henriksson-lab.github.io/NGS_101/paired-seq__10.1038+s41594-019-0323-x/paired-seq.html
+CARLIN	10.1016/j.cell.2020.04.048	342	https://henriksson-lab.github.io/NGS_101/carlin__10.1016+j.cell.2020.04.048/chem.html
+microSPLiT	10.1126/science.aba5257	340	https://henriksson-lab.github.io/NGS_101/microsplit__10.1126+science.aba5257/microsplit.html
+sn-m3C-seq	10.1038/s41592-019-0547-z	340	https://henriksson-lab.github.io/NGS_101/sn-m3c-seq__10.1038+s41592-019-0547-z/sn-m3c-seq.html
+DNA-barcoded pMHC multimers	10.1038/nbt.3662	337	https://henriksson-lab.github.io/NGS_101/dna-barcoded-pmhc-multimers__10.1038+nbt.3662/chem.html
+ac4C-seq	10.1038/s41586-020-2418-2	337	https://henriksson-lab.github.io/NGS_101/ac4c-seq__10.1038+s41586-020-2418-2/01_ac4c_seq.html
+GoT	10.1038/s41586-019-1367-0	332	https://henriksson-lab.github.io/NGS_101/got__10.1038+s41586-019-1367-0/got.html
+Mosaic-seq	10.1016/j.molcel.2017.03.007	332	https://henriksson-lab.github.io/NGS_101/mosaic-seq__10.1016+j.molcel.2017.03.007/01_mosaic_seq.html
+scDNase-seq	10.1038/nature15740	332	https://henriksson-lab.github.io/NGS_101/scdnase-seq__10.1038+nature15740/scdnase-seq.html
+snATAC-seq	10.1038/s41593-018-0079-3	332	https://henriksson-lab.github.io/NGS_101/snatac-seq__10.1038+s41593-018-0079-3/snatac-seq.html
+PLAYR	10.1038/nmeth.3742	330	https://henriksson-lab.github.io/NGS_101/playr__10.1038+nmeth.3742/playr.html
+smMIP	10.1101/gr.147686.112	329	https://henriksson-lab.github.io/NGS_101/smmip__10.1101+gr.147686.112/smmip.html
+5PSeq	10.1016/j.cell.2015.05.008	325	https://henriksson-lab.github.io/NGS_101/5pseq__10.1016+j.cell.2015.05.008/01_5pseq.html
+FragSeq	10.1038/nmeth.1529	318	https://henriksson-lab.github.io/NGS_101/fragseq__10.1038+nmeth.1529/fragseq.html
+RIC-seq	10.1038/s41586-020-2249-1	317	https://henriksson-lab.github.io/NGS_101/ric-seq__10.1038+s41586-020-2249-1/ric-seq.html
+IVA cloning	10.1038/srep27459	314	https://henriksson-lab.github.io/NGS_101/iva-cloning__10.1038+srep27459/iva_cloning.html
+LIBRA-seq	10.1016/j.cell.2019.11.003	314	https://henriksson-lab.github.io/NGS_101/libra-seq__10.1016+j.cell.2019.11.003/libra.html
+CLASH	10.1073/pnas.1017386108	308	https://henriksson-lab.github.io/NGS_101/clash__10.1073+pnas.1017386108/01_clash.html
+GRID-seq	10.1038/nbt.3968	308	https://henriksson-lab.github.io/NGS_101/grid-seq__10.1038+nbt.3968/grid-seq.html
+RAGE-Seq	10.1038/s41467-019-11049-4	308	https://henriksson-lab.github.io/NGS_101/rage-seq__10.1038+s41467-019-11049-4/rage-seq.html
+TARGET-seq	10.1016/j.molcel.2019.01.009	305	https://henriksson-lab.github.io/NGS_101/target-seq__10.1016+j.molcel.2019.01.009/target-seq.html
+PairedTag	10.1038/s41592-021-01060-3	301	https://henriksson-lab.github.io/NGS_101/pairedtag__10.1038+s41592-021-01060-3/pairedtag.html
+scMT-seq	10.1186/s13059-016-0950-z	300	https://henriksson-lab.github.io/NGS_101/scmt-seq__10.1186+s13059-016-0950-z/scmt-seq.html
+PANDORA-seq	10.1038/s41556-021-00652-7	296	https://henriksson-lab.github.io/NGS_101/pandora-seq__10.1038+s41556-021-00652-7/pandora-seq.html
+eccDNA Circle-Seq	10.1073/pnas.1508825112	296	https://henriksson-lab.github.io/NGS_101/eccdna-circle-seq__10.1073+pnas.1508825112/eccdna-circle-seq.html
+DNA circle sequencing	10.1073/pnas.1319590110	295	https://henriksson-lab.github.io/NGS_101/dna-circle-sequencing__10.1073+pnas.1319590110/01_dna_circle.html
+SCI-seq	10.1038/nmeth.4154	294	https://henriksson-lab.github.io/NGS_101/sci-seq__10.1038+nmeth.4154/sci-seq.html
+RamDA-seq	10.1038/s41467-018-02866-0	292	https://henriksson-lab.github.io/NGS_101/ramda-seq__10.1038+s41467-018-02866-0/ramda-seq.html
+MARS-seq2.0	10.1038/s41596-019-0164-4	291	https://henriksson-lab.github.io/NGS_101/mars-seq2-0__10.1038+s41596-019-0164-4/mars-seq2-0.html
+Nm-seq	10.1038/nmeth.4294	291	https://henriksson-lab.github.io/NGS_101/nm-seq__10.1038+nmeth.4294/nm-seq.html
+BacDrop	10.1016/j.cell.2023.01.002	290	https://henriksson-lab.github.io/NGS_101/bacdrop__10.1016+j.cell.2023.01.002/bacdrop.html
+CHANGE-seq	10.1038/s41587-020-0555-7	284	https://henriksson-lab.github.io/NGS_101/change-seq__10.1038+s41587-020-0555-7/change-seq.html
+END-seq	10.1016/j.molcel.2016.06.034	284	https://henriksson-lab.github.io/NGS_101/end-seq__10.1016+j.molcel.2016.06.034/end-seq.html
+PIPE	10.1002/prot.21786	284	https://henriksson-lab.github.io/NGS_101/pipe__10.1002+prot.21786/pipe.html
+Methyl-seq (Brunner)	10.1101/gr.088773.108	283	https://henriksson-lab.github.io/NGS_101/methyl-seq-brunner__10.1101+gr.088773.108/01_methyl_seq.html
+Microbe-seq	10.1126/science.abm1483	283	https://henriksson-lab.github.io/NGS_101/microbe-seq__10.1126+science.abm1483/microbe-seq.html
+TLA	10.1038/nbt.2959	279	https://henriksson-lab.github.io/NGS_101/tla__10.1038+nbt.2959/tla.html
+m6A-SAC-seq	10.1038/s41587-022-01243-z	279	https://henriksson-lab.github.io/NGS_101/m6a-sac-seq__10.1038+s41587-022-01243-z/m6a-sac.html
+Proximity barcoding assay (PBA)	10.1038/s41467-019-11486-1	276	https://henriksson-lab.github.io/NGS_101/proximity-barcoding-assay-pba__10.1038+s41467-019-11486-1/pba.html
+MethylC-seq	10.1038/nprot.2014.114	274	https://henriksson-lab.github.io/NGS_101/methylc-seq__10.1038+nprot.2014.114/methylc-seq.html
+Seq-Well S3	10.1016/j.immuni.2020.09.015	271	https://henriksson-lab.github.io/NGS_101/seq-well-s3__10.1016+j.immuni.2020.09.015/seq-well-s3.html
+sci-Space	10.1126/science.abb9536	271	https://henriksson-lab.github.io/NGS_101/sci-space__10.1126+science.abb9536/sci-space.html
+hiCLIP	10.1038/nature14280	270	https://henriksson-lab.github.io/NGS_101/hiclip__10.1038+nature14280/01_hiclip.html
+scifi-RNA-seq	10.1101/2019.12.17.879304	270	https://henriksson-lab.github.io/NGS_101/scifi-rna-seq__10.1101+2019.12.17.879304/scifi-rna-seq.html
+ChIP-nexus	10.1038/nbt.3121	268	https://henriksson-lab.github.io/NGS_101/chip-nexus__10.1038+nbt.3121/01_chemistry.html
+NG Capture-C	10.1038/nmeth.3664	268	https://henriksson-lab.github.io/NGS_101/ng-capture-c__10.1038+nmeth.3664/ng-capture-c.html
+slide-DNA-seq	10.1038/s41586-021-04217-4	268	https://henriksson-lab.github.io/NGS_101/slide-dna-seq__10.1038+s41586-021-04217-4/slide-dna-seq.html
+CATCH cloning	10.1038/ncomms9101	267	https://henriksson-lab.github.io/NGS_101/catch-cloning__10.1038+ncomms9101/catch_cloning.html
+CAGE	10.1038/nprot.2012.005	265	https://henriksson-lab.github.io/NGS_101/cage__10.1038+nprot.2012.005/cage.html
+MethylCap-seq	10.1016/j.ymeth.2010.06.012	264	https://henriksson-lab.github.io/NGS_101/methylcap-seq__10.1016+j.ymeth.2010.06.012/01_source_access.html
+irCLIP	10.1038/nmeth.3840	264	https://henriksson-lab.github.io/NGS_101/irclip__10.1038+nmeth.3840/irclip_partial.html
+NAD captureSeq	10.1038/nature14020	262	https://henriksson-lab.github.io/NGS_101/nad-captureseq__10.1038+nature14020/01_nad-captureseq.html
+TimeLapse-seq	10.1038/nmeth.4582	261	https://henriksson-lab.github.io/NGS_101/timelapse-seq__10.1038+nmeth.4582/timelapse-seq.html
+RBS-seq	10.1073/pnas.1817334116	260	https://henriksson-lab.github.io/NGS_101/rbs-seq__10.1073+pnas.1817334116/01_rbs_seq.html
+Abseq	10.1038/srep44447	259	https://henriksson-lab.github.io/NGS_101/abseq__10.1038+srep44447/abseq.html
+Fiber-seq	10.1126/science.aaz1646	257	https://henriksson-lab.github.io/NGS_101/fiber-seq__10.1126+science.aaz1646/fiber-seq.html
+XR-seq	10.1101/gad.261271.115	256	https://henriksson-lab.github.io/NGS_101/xr-seq__10.1101+gad.261271.115/xr-seq.html
+MATQ-seq	10.1038/nmeth.4145	255	https://henriksson-lab.github.io/NGS_101/matq-seq__10.1038+nmeth.4145/matq-seq.html
+mcSCRB-seq	10.1038/s41467-018-05347-6	255	https://henriksson-lab.github.io/NGS_101/mcscrb-seq__10.1038+s41467-018-05347-6/mcscrb-seq.html
+ChIA-Drop	10.1038/s41586-019-0949-1	250	https://henriksson-lab.github.io/NGS_101/chia-drop__10.1038+s41586-019-0949-1/chia-drop.html
+RiboMethSeq (Illumina)	10.1093/nar/gkw547	250	https://henriksson-lab.github.io/NGS_101/ribomethseq-illumina__10.1093+nar+gkw547/ribomethseq.html
+T-Scan	10.1016/j.cell.2019.07.009	249	https://henriksson-lab.github.io/NGS_101/t-scan__10.1016+j.cell.2019.07.009/01_chem.html
+mim-tRNAseq	10.1016/j.molcel.2021.01.028	249	https://henriksson-lab.github.io/NGS_101/mim-trnaseq__10.1016+j.molcel.2021.01.028/mim-trnaseq.html
+ChOR-seq	10.1016/j.molcel.2018.08.010	248	https://henriksson-lab.github.io/NGS_101/chor-seq__10.1016+j.molcel.2018.08.010/01_chor-seq.html
+BID-seq	10.1038/s41587-022-01505-w	246	https://henriksson-lab.github.io/NGS_101/bid-seq__10.1038+s41587-022-01505-w/bid-seq.html
+LCR	10.1021/sb4001992	246	https://henriksson-lab.github.io/NGS_101/lcr__10.1021+sb4001992/lcr.html
+TAP-seq	10.1038/s41592-020-0837-5	245	https://henriksson-lab.github.io/NGS_101/tap-seq__10.1038+s41592-020-0837-5/chem.html
+NICHE-seq	10.1126/science.aao4277	244	https://henriksson-lab.github.io/NGS_101/niche-seq__10.1126+science.aao4277/01_niche-seq.html
+TRIBE	10.1016/j.cell.2016.03.007	243	https://henriksson-lab.github.io/NGS_101/tribe__10.1016+j.cell.2016.03.007/01_tribe.html
+scCAT-seq	10.1038/s41467-018-08205-7	243	https://henriksson-lab.github.io/NGS_101/sccat-seq__10.1038+s41467-018-08205-7/sccat-seq.html
+emRiboSeq	10.1038/nature14183	241	https://henriksson-lab.github.io/NGS_101/emriboseq__10.1038+nature14183/emriboseq.html
+QTI-seq	10.1038/nmeth.3208	240	https://henriksson-lab.github.io/NGS_101/qti-seq__10.1038+nmeth.3208/01_qti-seq.html
+5hmC chemical-label SMRT sequencing	10.1038/nmeth.1779	235	https://henriksson-lab.github.io/NGS_101/5hmc-chemical-label-smrt-sequencing__10.1038+nmeth.1779/01_hmc_smrt.html
+R2C2	10.1073/pnas.1806447115	235	https://henriksson-lab.github.io/NGS_101/r2c2__10.1073+pnas.1806447115/r2c2.html
+CAST-Seq	10.1016/j.stem.2021.02.002	234	https://henriksson-lab.github.io/NGS_101/cast-seq__10.1016+j.stem.2021.02.002/01_chem.html
+VASA-seq	10.1038/s41587-022-01361-8	234	https://henriksson-lab.github.io/NGS_101/vasa-seq__10.1038+s41587-022-01361-8/vasa-seq.html
+epicPCR	10.1038/ismej.2015.124	233	https://henriksson-lab.github.io/NGS_101/epicpcr__10.1038+ismej.2015.124/chem.html
+stLFR	10.1101/gr.245126.118	232	https://henriksson-lab.github.io/NGS_101/stlfr__10.1101+gr.245126.118/stlfr.html
+nano-COP	10.1016/j.molcel.2019.11.017	230	https://henriksson-lab.github.io/NGS_101/nano-cop__10.1016+j.molcel.2019.11.017/nano_cop.html
+ACE-seq	10.1038/nbt.4204	229	https://henriksson-lab.github.io/NGS_101/ace-seq__10.1038+nbt.4204/ace-seq.html
+Methyl-HiC	10.1038/s41592-019-0502-z	229	https://henriksson-lab.github.io/NGS_101/methyl-hic__10.1038+s41592-019-0502-z/methyl-hic.html
+scMethyl-HiC	10.1038/s41592-019-0502-z	229	https://henriksson-lab.github.io/NGS_101/scmethyl-hic__10.1038+s41592-019-0502-z/scmethyl-hic.html
+Nano-tRNAseq	10.1038/s41587-023-01743-6	228	https://henriksson-lab.github.io/NGS_101/nano-trnaseq__10.1038+s41587-023-01743-6/nano-trnaseq.html
+m7G-MaP-seq	10.1093/nar/gkz736	228	https://henriksson-lab.github.io/NGS_101/m7g-map-seq__10.1093+nar+gkz736/01_pending_review.html
+MC-4C	10.1038/s41588-018-0161-5	227	https://henriksson-lab.github.io/NGS_101/mc-4c__10.1038+s41588-018-0161-5/mc-4c.html
+nanoNOMe	10.1038/s41592-020-01000-7	227	https://henriksson-lab.github.io/NGS_101/nanonome__10.1038+s41592-020-01000-7/nano-nome.html
+PIP-seq	10.1038/s41587-023-01685-z	225	https://henriksson-lab.github.io/NGS_101/pip-seq__10.1038+s41587-023-01685-z/pip-seq.html
+BotSeqS	10.1073/pnas.1607794113	224	https://henriksson-lab.github.io/NGS_101/botseqs__10.1073+pnas.1607794113/botseqs.html
+Slide-tags	10.1038/s41586-023-06837-4	223	https://henriksson-lab.github.io/NGS_101/slide-tags__10.1038+s41586-023-06837-4/slide-tags.html
+PETRI-seq	10.1038/s41564-020-0729-6	221	https://henriksson-lab.github.io/NGS_101/petri-seq__10.1038+s41564-020-0729-6/petri-seq.html
+TCP-seq	10.1038/nature18647	220	https://henriksson-lab.github.io/NGS_101/tcp-seq__10.1038+nature18647/tcp-seq.html
+G4RP-seq	10.1038/s41467-018-07224-8	219	https://henriksson-lab.github.io/NGS_101/g4rp-seq__10.1038+s41467-018-07224-8/01_g4rp_seq.html
+m6A-label-seq	10.1038/s41589-020-0526-9	218	https://henriksson-lab.github.io/NGS_101/m6a-label-seq__10.1038+s41589-020-0526-9/01_chem.html
+SCRB-seq	10.1101/003236	217	https://henriksson-lab.github.io/NGS_101/scrb-seq__10.1101+003236/scrb-seq.html
+redBS-seq	10.1038/nchem.1893	217	https://henriksson-lab.github.io/NGS_101/redbs-seq__10.1038+nchem.1893/redbs-seq.html
+Small-seq	10.1038/nbt.3701	215	https://henriksson-lab.github.io/NGS_101/small-seq__10.1038+nbt.3701/smallseq.html
+4C-seq	10.1016/j.ymeth.2019.07.014	213	https://henriksson-lab.github.io/NGS_101/4c-seq__10.1016+j.ymeth.2019.07.014/4c-seq.html
+pairSEQ	10.1126/scitranslmed.aac5624	213	https://henriksson-lab.github.io/NGS_101/pairseq__10.1126+scitranslmed.aac5624/01_pairseq.html
+CoBATCH	10.1016/j.molcel.2019.07.015	212	https://henriksson-lab.github.io/NGS_101/cobatch__10.1016+j.molcel.2019.07.015/cobatch.html
+m6ACE-seq	10.1038/s41467-019-13561-z	210	https://henriksson-lab.github.io/NGS_101/m6ace-seq__10.1038+s41467-019-13561-z/m6ace.html
+hydro-tRNAseq	10.1016/j.celrep.2017.07.029	209	https://henriksson-lab.github.io/NGS_101/hydro-trnaseq__10.1016+j.celrep.2017.07.029/hydro_trnaseq.html
+m6A-SEAL	10.1038/s41589-020-0525-x	209	https://henriksson-lab.github.io/NGS_101/m6a-seal__10.1038+s41589-020-0525-x/01_m6a-seal.html
+RAMPAGE	10.1101/gr.139618.112	206	https://henriksson-lab.github.io/NGS_101/rampage__10.1101+gr.139618.112/rampage.html
+eTAM-seq	10.1038/s41587-022-01587-6	206	https://henriksson-lab.github.io/NGS_101/etam-seq__10.1038+s41587-022-01587-6/01_etam_seq.html
+ChEC-seq	10.1038/ncomms9733	200	https://henriksson-lab.github.io/NGS_101/chec-seq__10.1038+ncomms9733/chec-seq.html
+cfMeDIP-seq	10.1038/s41596-019-0202-2	200	https://henriksson-lab.github.io/NGS_101/cfmedip-seq__10.1038+s41596-019-0202-2/cfmedip-seq.html
+TetTCR-seq	10.1038/nbt.4282	199	https://henriksson-lab.github.io/NGS_101/tettcr-seq__10.1038+nbt.4282/chem.html
+Damage-seq	10.1073/pnas.1614430113	198	https://henriksson-lab.github.io/NGS_101/damage-seq__10.1073+pnas.1614430113/damage-seq.html
+FAIRE-seq	10.1016/j.ymeth.2009.03.003	198	https://henriksson-lab.github.io/NGS_101/faire-seq__10.1016+j.ymeth.2009.03.003/faire-seq.html
+Strand-seq	10.1038/nmeth.2206	198	https://henriksson-lab.github.io/NGS_101/strand-seq__10.1038+nmeth.2206/strand-seq.html
+eSPAN	10.1016/j.molcel.2014.09.017	197	https://henriksson-lab.github.io/NGS_101/espan__10.1016+j.molcel.2014.09.017/espan.html
+DNA Typewriter	10.1038/s41586-022-04922-8	196	https://henriksson-lab.github.io/NGS_101/dna-typewriter__10.1038+s41586-022-04922-8/chem.html
+SPOTS	10.1038/s41587-022-01536-3	196	https://henriksson-lab.github.io/NGS_101/spots__10.1038+s41587-022-01536-3/chem.html
+Tri-C	10.1038/s41588-018-0253-2	196	https://henriksson-lab.github.io/NGS_101/tri-c__10.1038+s41588-018-0253-2/tri-c.html
+Repair-seq (CRISPR outcomes)	10.1016/j.cell.2021.10.002	194	https://henriksson-lab.github.io/NGS_101/repair-seq-crispr-outcomes__10.1016+j.cell.2021.10.002/01_repair-seq-crispr-outcomes.html
+COMRADES	10.1038/s41592-018-0121-0	191	https://henriksson-lab.github.io/NGS_101/comrades__10.1038+s41592-018-0121-0/01_identity.html
+E/L Repli-seq	10.1038/nprot.2017.148	190	https://henriksson-lab.github.io/NGS_101/e-l-repli-seq__10.1038+nprot.2017.148/el-repli-seq.html
+CPT-seq	10.1038/ng.3119	189	https://henriksson-lab.github.io/NGS_101/cpt-seq__10.1038+ng.3119/cpt-seq.html
+snmC-seq2	10.1038/s41467-018-06355-2	189	https://henriksson-lab.github.io/NGS_101/snmc-seq2__10.1038+s41467-018-06355-2/snmc-seq2.html
+HydEn-seq	10.1038/nsmb.2957	188	https://henriksson-lab.github.io/NGS_101/hyden-seq__10.1038+nsmb.2957/hyden-seq.html
+Methyl-MAPS	10.1101/gr.101535.109	187	https://henriksson-lab.github.io/NGS_101/methyl-maps__10.1101+gr.101535.109/01_source_access.html
+DNase Hi-C	10.1038/nmeth.3205	186	https://henriksson-lab.github.io/NGS_101/dnase-hi-c__10.1038+nmeth.3205/dnase-hi-c.html
+USER cloning	10.1093/nar/gkm041	186	https://henriksson-lab.github.io/NGS_101/user-cloning__10.1093+nar+gkm041/user_cloning.html
+PTA	10.1073/pnas.2024176118	184	https://henriksson-lab.github.io/NGS_101/pta__10.1073+pnas.2024176118/pta.html
+FLAM-seq	10.1038/s41592-019-0503-y	183	https://henriksson-lab.github.io/NGS_101/flam-seq__10.1038+s41592-019-0503-y/01_chem.html
+ORGANIC profiling	10.1038/nmeth.2766	183	https://henriksson-lab.github.io/NGS_101/organic-profiling__10.1038+nmeth.2766/organic-profiling.html
+QuantM-tRNAseq	10.1038/s41467-020-17879-x	183	https://henriksson-lab.github.io/NGS_101/quantm-trnaseq__10.1038+s41467-020-17879-x/01_quantm-trnaseq.html
+icSHAPE	10.1038/nprot.2016.011	183	https://henriksson-lab.github.io/NGS_101/icshape__10.1038+nprot.2016.011/icshape.html
+MEGAWHOP	10.2144/02335st03	181	https://henriksson-lab.github.io/NGS_101/megawhop__10.2144+02335st03/megawhop.html
+RDIP-seq	10.1186/s13072-015-0040-6	177	https://henriksson-lab.github.io/NGS_101/rdip-seq__10.1186+s13072-015-0040-6/rdip.html
+AlkAniline-Seq	10.1002/anie.201810946	176	https://henriksson-lab.github.io/NGS_101/alkaniline-seq__10.1002+anie.201810946/alkaniline-seq.html
+OG-seq	10.1021/jacs.6b12604	176	https://henriksson-lab.github.io/NGS_101/og-seq__10.1021+jacs.6b12604/og-seq.html
+Mod-seq	10.1261/rna.042218.113	175	https://henriksson-lab.github.io/NGS_101/mod-seq__10.1261+rna.042218.113/01_mod_seq.html
+Rend-seq	10.1016/j.cell.2018.03.007	175	https://henriksson-lab.github.io/NGS_101/rend-seq__10.1016+j.cell.2018.03.007/01_rend-seq.html
+S1-seq	10.1126/science.aak9704	175	https://henriksson-lab.github.io/NGS_101/s1-seq__10.1126+science.aak9704/01_s1_seq.html
+SMART-seq3xpress	10.1038/s41587-022-01311-4	175	https://henriksson-lab.github.io/NGS_101/smart-seq3xpress__10.1038+s41587-022-01311-4/smart-seq3xpress.html
+HiRES	10.1126/science.adg3797	173	https://henriksson-lab.github.io/NGS_101/hires__10.1126+science.adg3797/hires.html
+RedaC:T-seq	10.1016/j.molcel.2022.05.016	172	https://henriksson-lab.github.io/NGS_101/redac-t-seq__10.1016+j.molcel.2022.05.016/01_redac-t-seq.html
+snmC2T-seq	10.1016/j.xgen.2022.100107	172	https://henriksson-lab.github.io/NGS_101/snmc2t-seq__10.1016+j.xgen.2022.100107/snmc2t-seq.html
+Pu-seq	10.1038/nsmb.2962	169	https://henriksson-lab.github.io/NGS_101/pu-seq__10.1038+nsmb.2962/pu-seq.html
+scMNase-seq	10.1038/s41586-018-0567-3	166	https://henriksson-lab.github.io/NGS_101/scmnase-seq__10.1038+s41586-018-0567-3/scmnase-seq.html
+scRibo-seq	10.1038/s41586-021-03887-4	166	https://henriksson-lab.github.io/NGS_101/scribo-seq__10.1038+s41586-021-03887-4/scribo-seq.html
+CPD-seq	10.1073/pnas.1606667113	165	https://henriksson-lab.github.io/NGS_101/cpd-seq__10.1073+pnas.1606667113/cpd-seq.html
+STAMP	10.1038/s41592-021-01128-0	164	https://henriksson-lab.github.io/NGS_101/stamp__10.1038+s41592-021-01128-0/01_stamp.html
+epiGBS	10.1038/nmeth.3763	164	https://henriksson-lab.github.io/NGS_101/epigbs__10.1038+nmeth.3763/01_epigbs.html
+MINCE-seq	10.1016/j.cell.2016.02.062	162	https://henriksson-lab.github.io/NGS_101/mince-seq__10.1016+j.cell.2016.02.062/mince-seq.html
+Pixel-seq	10.1016/j.cell.2022.10.021	161	https://henriksson-lab.github.io/NGS_101/pixel-seq__10.1016+j.cell.2022.10.021/pixel-seq.html
+SMAC-seq	10.1038/s41592-019-0730-2	160	https://henriksson-lab.github.io/NGS_101/smac-seq__10.1038+s41592-019-0730-2/01_chem.html
+DSBCapture	10.1038/nmeth.3960	159	https://henriksson-lab.github.io/NGS_101/dsbcapture__10.1038+nmeth.3960/dsbcapture.html
+MARIO	10.1038/ncomms12023	158	https://henriksson-lab.github.io/NGS_101/mario__10.1038+ncomms12023/mario.html
+Pore-C	10.1038/s41587-022-01289-z	157	https://henriksson-lab.github.io/NGS_101/pore-c__10.1038+s41587-022-01289-z/pore-c.html
+hyRAD	10.1371/journal.pone.0151651	157	https://henriksson-lab.github.io/NGS_101/hyrad__10.1371+journal.pone.0151651/01_hyrad.html
+CAGEscan	10.1038/nmeth.1470	156	https://henriksson-lab.github.io/NGS_101/cagescan__10.1038+nmeth.1470/cagescan.html
+Smart-3SEQ	10.1101/gr.234807.118	156	https://henriksson-lab.github.io/NGS_101/smart-3seq__10.1101+gr.234807.118/01_smart-3seq.html
+fC-CET	10.1038/nmeth.3569	156	https://henriksson-lab.github.io/NGS_101/fc-cet__10.1038+nmeth.3569/fc-cet.html
+ProximID	10.1038/s41592-018-0009-z	155	https://henriksson-lab.github.io/NGS_101/proximid__10.1038+s41592-018-0009-z/01_proximid.html
+DiMeLo-seq	10.1038/s41592-022-01475-6	154	https://henriksson-lab.github.io/NGS_101/dimelo-seq__10.1038+s41592-022-01475-6/dimelo-seq.html
+MAESTER	10.1038/s41587-022-01210-8	154	https://henriksson-lab.github.io/NGS_101/maester__10.1038+s41587-022-01210-8/maester.html
+MAB-seq	10.1038/nbt.3073	153	https://henriksson-lab.github.io/NGS_101/mab-seq__10.1038+nbt.3073/mab-seq.html
+ZipSeq	10.1038/s41592-020-0880-2	153	https://henriksson-lab.github.io/NGS_101/zipseq__10.1038+s41592-020-0880-2/zipseq.html
+ssDNA-Seq (permanganate)	10.1016/j.cell.2013.04.033	153	https://henriksson-lab.github.io/NGS_101/ssdna-seq-permanganate__10.1016+j.cell.2013.04.033/ssdna-seq.html
+ReDeeM	10.1038/s41586-024-07066-z	151	https://henriksson-lab.github.io/NGS_101/redeem__10.1038+s41586-024-07066-z/redeem.html
+Cappable-seq	10.1186/s12864-016-2539-z	150	https://henriksson-lab.github.io/NGS_101/cappable-seq__10.1186+s12864-016-2539-z/01_cappable-seq.html
+ICE-seq	10.1101/gr.162537.113	150	https://henriksson-lab.github.io/NGS_101/ice-seq__10.1101+gr.162537.113/01_pending_review.html
+PrimeFlow RNA Assay	10.1038/ncomms6641	150	https://henriksson-lab.github.io/NGS_101/primeflow-rna-assay__10.1038+ncomms6641/primeflow-rna.html
+Record-seq	10.1038/s41586-018-0569-1	150	https://henriksson-lab.github.io/NGS_101/record-seq__10.1038+s41586-018-0569-1/record.html
+CAP-seq (RNA proximity)	10.1038/s41589-019-0368-5	149	https://henriksson-lab.github.io/NGS_101/cap-seq-rna-proximity__10.1038+s41589-019-0368-5/01_cap_seq.html
+Subassembly (Hiatt)	10.1038/nmeth.1416	149	https://henriksson-lab.github.io/NGS_101/subassembly-hiatt__10.1038+nmeth.1416/chem.html
+ACT-seq	10.1038/s41467-019-11559-1	148	https://henriksson-lab.github.io/NGS_101/act-seq__10.1038+s41467-019-11559-1/act-seq.html
+HydraPsiSeq	10.1093/nar/gkaa769	148	https://henriksson-lab.github.io/NGS_101/hydrapsiseq__10.1093+nar+gkaa769/hydrapsiseq.html
+Ovation RNA-Seq V2	10.1093/nar/gkr547	146	https://henriksson-lab.github.io/NGS_101/ovation-rna-seq-v2__10.1093+nar+gkr547/ovation-rna-seq-v2.html
+Spatial VDJ	10.1126/science.adf8486	146	https://henriksson-lab.github.io/NGS_101/spatial-vdj__10.1126+science.adf8486/spatial-vdj.html
+Spear-ATAC	10.1038/s41467-021-23213-w	146	https://henriksson-lab.github.io/NGS_101/spear-atac__10.1038+s41467-021-23213-w/spear-atac.html
+nano-CUT&Tag	10.1038/s41587-022-01535-4	146	https://henriksson-lab.github.io/NGS_101/nano-cut-tag__10.1038+s41587-022-01535-4/nano-cut-tag.html
+Splinkerette PCR	10.1371/journal.pone.0010168	145	https://henriksson-lab.github.io/NGS_101/splinkerette-pcr__10.1371+journal.pone.0010168/splinkerette.html
+2OMe-seq	10.1093/nar/gkw810	144	https://henriksson-lab.github.io/NGS_101/2ome-seq__10.1093+nar+gkw810/2ome-seq.html
+inCITE-seq	10.1038/s41592-021-01278-1	144	https://henriksson-lab.github.io/NGS_101/incite-seq__10.1038+s41592-021-01278-1/01_incite-seq.html
+FLASH-seq	10.1038/s41587-022-01312-3	143	https://henriksson-lab.github.io/NGS_101/flash-seq__10.1038+s41587-022-01312-3/flash-seq.html
+CHyMErA	10.1038/s41587-020-0437-z	142	https://henriksson-lab.github.io/NGS_101/chymera__10.1038+s41587-020-0437-z/chymera.html
+D-NAscent	10.1038/s41592-019-0394-y	142	https://henriksson-lab.github.io/NGS_101/d-nascent__10.1038+s41592-019-0394-y/d-nascent.html
+FLEP-seq	10.1038/s41477-020-0688-1	140	https://henriksson-lab.github.io/NGS_101/flep-seq__10.1038+s41477-020-0688-1/01_flep_seq.html
+itChIP-seq	10.1038/s41556-019-0383-5	140	https://henriksson-lab.github.io/NGS_101/itchip-seq__10.1038+s41556-019-0383-5/itchip-seq.html
+NEAT-seq	10.1038/s41592-022-01461-y	139	https://henriksson-lab.github.io/NGS_101/neat-seq__10.1038+s41592-022-01461-y/chem.html
+ChRO-seq	10.1038/s41588-018-0244-3	138	https://henriksson-lab.github.io/NGS_101/chro-seq__10.1038+s41588-018-0244-3/chro-seq.html
+Single-molecule nucleosome decoding with on-surface DNA sequencing	10.1126/science.aad7701	138	https://henriksson-lab.github.io/NGS_101/single-molecule-nucleosome-decoding-with-on-surface-dna-sequencing__10.1126+science.aad7701/01_single-molecule-nucleosome-decoding-with-on-surface-dna-sequencing.html
+SHERRY	10.1073/pnas.1919800117	137	https://henriksson-lab.github.io/NGS_101/sherry__10.1073+pnas.1919800117/sherry.html
+SNS-seq	10.1101/gr.124644.111	137	https://henriksson-lab.github.io/NGS_101/sns-seq__10.1101+gr.124644.111/sns-seq.html
+CUT&RUN.ChIP	10.1016/j.molcel.2018.10.046	136	https://henriksson-lab.github.io/NGS_101/cut-run-chip__10.1016+j.molcel.2018.10.046/01_cut-run-chip.html
+Long-read ChIA-PET	10.1038/nprot.2017.012	135	https://henriksson-lab.github.io/NGS_101/long-read-chia-pet__10.1038+nprot.2017.012/long-read-chia-pet.html
+Quartz-Seq2	10.1186/s13059-018-1407-3	135	https://henriksson-lab.github.io/NGS_101/quartz-seq2__10.1186+s13059-018-1407-3/quartz-seq2.html
+SiMSen-Seq	10.1093/nar/gkw224	134	https://henriksson-lab.github.io/NGS_101/simsen-seq__10.1093+nar+gkw224/chem.html
+UDiTaS	10.1186/s12864-018-4561-9	134	https://henriksson-lab.github.io/NGS_101/uditas__10.1186+s12864-018-4561-9/uditas.html
+AP-seq	10.1186/s13059-018-1582-2	133	https://henriksson-lab.github.io/NGS_101/ap-seq__10.1186+s13059-018-1582-2/ap-seq.html
+PhoTag	10.1038/s41589-022-01044-0	133	https://henriksson-lab.github.io/NGS_101/photag__10.1038+s41589-022-01044-0/01_chem.html
+scGRO-seq	10.1038/s41586-024-07517-7	131	https://henriksson-lab.github.io/NGS_101/scgro-seq__10.1038+s41586-024-07517-7/scgro-seq.html
+Bind-n-Seq	10.1093/nar/gkp802	130	https://henriksson-lab.github.io/NGS_101/bind-n-seq__10.1093+nar+gkp802/chem.html
+PAIso-seq	10.1038/s41467-019-13228-9	130	https://henriksson-lab.github.io/NGS_101/paiso-seq__10.1038+s41467-019-13228-9/paiso-seq.html
+YAMAT-seq	10.1093/nar/gkx005	130	https://henriksson-lab.github.io/NGS_101/yamat-seq__10.1093+nar+gkx005/yamat-seq.html
+DropSynth	10.1126/science.aao5167	128	https://henriksson-lab.github.io/NGS_101/dropsynth__10.1126+science.aao5167/dropsynth.html
+LoopSeq	10.1186/s40168-021-01072-3	127	https://henriksson-lab.github.io/NGS_101/loopseq__10.1186+s40168-021-01072-3/chem.html
+TGIRT-seq	10.1261/rna.054809.115	127	https://henriksson-lab.github.io/NGS_101/tgirt-seq__10.1261+rna.054809.115/tgirt-seq.html
+ini-seq	10.1093/nar/gkw760	127	https://henriksson-lab.github.io/NGS_101/ini-seq__10.1093+nar+gkw760/ini-seq.html
+Five-/six-letter epigenetic sequencing	10.1038/s41587-022-01652-0	126	https://henriksson-lab.github.io/NGS_101/five-six-letter-epigenetic-sequencing__10.1038+s41587-022-01652-0/01_five-six-letter.html
+sci-L3-WGS	10.1016/j.molcel.2019.08.002	126	https://henriksson-lab.github.io/NGS_101/sci-l3-wgs__10.1016+j.molcel.2019.08.002/01_sci-l3-wgs.html
+INSPIIRED	10.1016/j.omtm.2016.11.002	124	https://henriksson-lab.github.io/NGS_101/inspiired__10.1016+j.omtm.2016.11.002/chem.html
+KAS-seq	10.1038/s41592-020-0797-9	124	https://henriksson-lab.github.io/NGS_101/kas-seq__10.1038+s41592-020-0797-9/kas-seq.html
+CATCH nanopore	10.1093/nar/gky411	123	https://henriksson-lab.github.io/NGS_101/catch-nanopore__10.1093+nar+gky411/catch_nanopore.html
+Click-code-seq	10.1021/jacs.8b03715	123	https://henriksson-lab.github.io/NGS_101/click-code-seq__10.1021+jacs.8b03715/01_click-code-seq.html
+ClickTags (fixed-cell original)	10.1038/s41587-019-0372-z	122	https://henriksson-lab.github.io/NGS_101/clicktags-fixed-cell-original__10.1038+s41587-019-0372-z/chem.html
+Ribose-seq	10.1038/nmeth.3259	122	https://henriksson-lab.github.io/NGS_101/ribose-seq__10.1038+nmeth.3259/ribose-seq.html
+Loop assembly	10.1111/nph.15625	121	https://henriksson-lab.github.io/NGS_101/loop-assembly__10.1111+nph.15625/loop_assembly.html
+Repair-seq (neuronal synthesis)	10.1126/science.abb9032	121	https://henriksson-lab.github.io/NGS_101/repair-seq-neuronal-synthesis__10.1126+science.abb9032/01_repair-seq.html
+SMiLE-seq	10.1038/nmeth.4143	120	https://henriksson-lab.github.io/NGS_101/smile-seq__10.1038+nmeth.4143/chem.html
+SEQRS	10.1016/j.celrep.2012.04.003	119	https://henriksson-lab.github.io/NGS_101/seqrs__10.1016+j.celrep.2012.04.003/chem.html
+fCLIP-seq	10.1016/j.molcel.2017.03.013	119	https://henriksson-lab.github.io/NGS_101/fclip-seq__10.1016+j.molcel.2017.03.013/01_fclip-seq.html
+Mint-ChIP	10.1016/j.molcel.2015.11.003	118	https://henriksson-lab.github.io/NGS_101/mint-chip__10.1016+j.molcel.2015.11.003/01_mint-chip.html
+scGET-seq	10.1038/s41587-021-01031-1	117	https://henriksson-lab.github.io/NGS_101/scget-seq__10.1038+s41587-021-01031-1/scget-seq.html
+GLOE-seq	10.1016/j.molcel.2020.03.027	115	https://henriksson-lab.github.io/NGS_101/gloe-seq__10.1016+j.molcel.2020.03.027/gloe-seq.html
+ISSAAC-seq	10.1038/s41592-022-01601-4	114	https://henriksson-lab.github.io/NGS_101/issaac-seq__10.1038+s41592-022-01601-4/issaac-seq.html
+TELL-seq	10.1101/gr.260380.119	114	https://henriksson-lab.github.io/NGS_101/tell-seq__10.1101+gr.260380.119/tell-seq.html
+XYZeq	10.1126/sciadv.abg4755	114	https://henriksson-lab.github.io/NGS_101/xyzeq__10.1126+sciadv.abg4755/01_xyzeq.html
+Bubble-seq	10.1101/gr.155218.113	113	https://henriksson-lab.github.io/NGS_101/bubble-seq__10.1101+gr.155218.113/bubble-seq.html
+DNA microscopy	10.1016/j.cell.2019.05.019	113	https://henriksson-lab.github.io/NGS_101/dna-microscopy__10.1016+j.cell.2019.05.019/01_chem.html
+Structure-seq2	10.1093/nar/gkx533	113	https://henriksson-lab.github.io/NGS_101/structure-seq2__10.1093+nar+gkx533/structure-seq2.html
+PORE-cupine	10.1038/s41587-020-0712-z	112	https://henriksson-lab.github.io/NGS_101/pore-cupine__10.1038+s41587-020-0712-z/01_pore-cupine.html
+ScISOr-seq2	10.1038/s41593-024-01616-4	112	https://henriksson-lab.github.io/NGS_101/scisor-seq2__10.1038+s41593-024-01616-4/scisor-seq2.html
+Multi-CUT&Tag	10.1016/j.molcel.2021.09.019	111	https://henriksson-lab.github.io/NGS_101/multi-cut-tag__10.1016+j.molcel.2021.09.019/multi-cut-tag.html
+BASIC	10.1021/sb500356d	110	https://henriksson-lab.github.io/NGS_101/basic__10.1021+sb500356d/basic.html
+scDam&T-seq	10.1038/s41587-019-0150-y	110	https://henriksson-lab.github.io/NGS_101/scdam-t-seq__10.1038+s41587-019-0150-y/scdam-t-seq.html
+CRISPR-sciATAC	10.1038/s41587-021-00902-x	107	https://henriksson-lab.github.io/NGS_101/crispr-sciatac__10.1038+s41587-021-00902-x/crispr-sciatac.html
+Circulome-Seq	10.1534/g3.117.300141	107	https://henriksson-lab.github.io/NGS_101/circulome-seq__10.1534+g3.117.300141/01_circulome_seq.html
+MethylRAD	10.1098/rsob.150130	107	https://henriksson-lab.github.io/NGS_101/methylrad__10.1098+rsob.150130/methylrad.html
+MulTI-Tag	10.1038/s41587-022-01522-9	107	https://henriksson-lab.github.io/NGS_101/multi-tag__10.1038+s41587-022-01522-9/multi-tag.html
+PEM-seq	10.1038/s41421-019-0088-8	107	https://henriksson-lab.github.io/NGS_101/pem-seq__10.1038+s41421-019-0088-8/pem-seq.html
+MapR	10.1016/j.celrep.2019.09.052	105	https://henriksson-lab.github.io/NGS_101/mapr__10.1016+j.celrep.2019.09.052/mapr.html
+RASL-seq	10.1002/0471142727.mb0413s98	105	https://henriksson-lab.github.io/NGS_101/rasl-seq__10.1002+0471142727.mb0413s98/01_chem.html
+SEnd-seq	10.1038/s41564-019-0500-z	105	https://henriksson-lab.github.io/NGS_101/send-seq__10.1038+s41564-019-0500-z/01_pending_review.html
+RAID	10.1038/s41598-018-37977-7	104	https://henriksson-lab.github.io/NGS_101/raid__10.1038+s41598-018-37977-7/chem.html
+TruePrime	10.1038/ncomms13296	104	https://henriksson-lab.github.io/NGS_101/trueprime__10.1038+ncomms13296/trueprime.html
+TruePrime Single Cell	10.1038/ncomms13296	104	https://henriksson-lab.github.io/NGS_101/trueprime-single-cell__10.1038+ncomms13296/trueprime-single-cell.html
+ProteinSeq	10.1371/journal.pone.0025583	102	https://henriksson-lab.github.io/NGS_101/proteinseq__10.1371+journal.pone.0025583/chem.html
+3′T-fill	10.1093/nar/gks1249	101	https://henriksson-lab.github.io/NGS_101/3-t-fill__10.1093+nar+gks1249/01_chem.html
+DLO Hi-C	10.1038/s41588-018-0111-2	101	https://henriksson-lab.github.io/NGS_101/dlo-hi-c__10.1038+s41588-018-0111-2/01_dlo_hi_c.html
+LACE-seq	10.1038/s41556-021-00696-9	101	https://henriksson-lab.github.io/NGS_101/lace-seq__10.1038+s41556-021-00696-9/01_lace_seq.html
+Smart-seq-total	10.1073/pnas.2113568118	101	https://henriksson-lab.github.io/NGS_101/smart-seq-total__10.1073+pnas.2113568118/01_smart_total.html
+UMI-4C	10.1038/nmeth.3922	101	https://henriksson-lab.github.io/NGS_101/umi-4c__10.1038+nmeth.3922/umi-4c.html
+CoTECH	10.1038/s41592-021-01129-z	100	https://henriksson-lab.github.io/NGS_101/cotech__10.1038+s41592-021-01129-z/cotech.html
+CC-seq	10.1038/s41467-019-12802-5	99	https://henriksson-lab.github.io/NGS_101/cc-seq__10.1038+s41467-019-12802-5/01_cc-seq.html
+POINT	10.1016/j.molcel.2021.02.034	99	https://henriksson-lab.github.io/NGS_101/point__10.1016+j.molcel.2021.02.034/point.html
+snRandom-seq	10.1038/s41467-023-38409-5	99	https://henriksson-lab.github.io/NGS_101/snrandom-seq__10.1038+s41467-023-38409-5/snrandom-seq.html
+CirSeq	10.1038/nprot.2014.118	98	https://henriksson-lab.github.io/NGS_101/cirseq__10.1038+nprot.2014.118/cirseq.html
+M3-seq	10.1038/s41564-023-01462-3	98	https://henriksson-lab.github.io/NGS_101/m3-seq__10.1038+s41564-023-01462-3/m3-seq.html
+s3-ATAC	10.1038/s41587-021-00962-z	98	https://henriksson-lab.github.io/NGS_101/s3-atac__10.1038+s41587-021-00962-z/s3-atac.html
+s3-WGS	10.1038/s41587-021-00962-z	98	https://henriksson-lab.github.io/NGS_101/s3-wgs__10.1038+s41587-021-00962-z/s3-wgs.html
+Telomere Profiling	10.1126/science.ado0431	97	https://henriksson-lab.github.io/NGS_101/telomere-profiling__10.1126+science.ado0431/telomere-profiling.html
+adductSeq	10.1073/pnas.1907860116	95	https://henriksson-lab.github.io/NGS_101/adductseq__10.1073+pnas.1907860116/01_adductseq.html
+EasySci	10.1038/s41588-023-01572-y	94	https://henriksson-lab.github.io/NGS_101/easysci__10.1038+s41588-023-01572-y/easysci.html
+LM-Seq	10.1038/srep09570	94	https://henriksson-lab.github.io/NGS_101/lm-seq__10.1038+srep09570/01_lm-seq.html
+TUC-seq	10.1002/anie.201707465	94	https://henriksson-lab.github.io/NGS_101/tuc-seq__10.1002+anie.201707465/tuc-seq.html
+DNTR-seq	10.1016/j.molcel.2020.09.025	93	https://henriksson-lab.github.io/NGS_101/dntr-seq__10.1016+j.molcel.2020.09.025/01_dntr_seq.html
+NTT-seq	10.1038/s41587-022-01588-5	93	https://henriksson-lab.github.io/NGS_101/ntt-seq__10.1038+s41587-022-01588-5/ntt-seq.html
+Proximity-CLIP	10.1038/s41592-018-0220-y	93	https://henriksson-lab.github.io/NGS_101/proximity-clip__10.1038+s41592-018-0220-y/01_proximity_clip.html
+TrAC-looping	10.1038/s41592-018-0107-y	93	https://henriksson-lab.github.io/NGS_101/trac-looping__10.1038+s41592-018-0107-y/trac-looping.html
+BL-Hi-C	10.1038/s41467-017-01754-3	92	https://henriksson-lab.github.io/NGS_101/bl-hi-c__10.1038+s41467-017-01754-3/01_chemistry.html
+DSB-Seq	10.3390/ijms150713111	92	https://henriksson-lab.github.io/NGS_101/dsb-seq__10.3390+ijms150713111/01_dsb-seq.html
+SSB-Seq	10.3390/ijms150713111	92	https://henriksson-lab.github.io/NGS_101/ssb-seq__10.3390+ijms150713111/01_ssb-seq.html
+EP-Seq	10.1038/s41467-024-45630-3	91	https://henriksson-lab.github.io/NGS_101/ep-seq__10.1038+s41467-024-45630-3/01_ep-seq.html
+PAT-seq	10.1261/rna.048355.114	91	https://henriksson-lab.github.io/NGS_101/pat-seq__10.1261+rna.048355.114/01_chem.html
+CODEC	10.1038/s41588-023-01376-0	90	https://henriksson-lab.github.io/NGS_101/codec__10.1038+s41588-023-01376-0/codec.html
+DIP-CAB-seq (5fC/5caC)	10.1038/cr.2015.5	89	https://henriksson-lab.github.io/NGS_101/dip-cab-seq-5fc-5cac__10.1038+cr.2015.5/01_chemistry.html
+HAC-seq	10.1093/nar/gkaa1186	89	https://henriksson-lab.github.io/NGS_101/hac-seq__10.1093+nar+gkaa1186/01_hac-seq.html
+HELP-tagging	10.1186/gb-2010-11-4-r36	89	https://henriksson-lab.github.io/NGS_101/help-tagging__10.1186+gb-2010-11-4-r36/01_chemistry.html
+RNA Tagging	10.1038/nmeth.3651	89	https://henriksson-lab.github.io/NGS_101/rna-tagging__10.1038+nmeth.3651/01_rna_tagging.html
+SaferSeqS	10.1038/s41587-021-00900-z	89	https://henriksson-lab.github.io/NGS_101/saferseqs__10.1038+s41587-021-00900-z/saferseqs.html
+scCC	10.1016/j.cell.2020.06.037	89	https://henriksson-lab.github.io/NGS_101/sccc__10.1016+j.cell.2020.06.037/sccc.html
+6mACE-seq	10.1093/nar/gky1104	88	https://henriksson-lab.github.io/NGS_101/6mace-seq__10.1093+nar+gky1104/6mace-seq.html
+CELLO-seq	10.1038/s41587-021-01093-1	88	https://henriksson-lab.github.io/NGS_101/cello-seq__10.1038+s41587-021-01093-1/cello-seq.html
+SMRF-seq	10.1016/j.jmb.2020.02.014	88	https://henriksson-lab.github.io/NGS_101/smrf-seq__10.1016+j.jmb.2020.02.014/smrf-seq.html
+Ribo-ITP	10.1038/s41586-023-06228-9	87	https://henriksson-lab.github.io/NGS_101/ribo-itp__10.1038+s41586-023-06228-9/01_chem.html
+RiboLace	10.1016/j.celrep.2018.09.084	87	https://henriksson-lab.github.io/NGS_101/ribolace__10.1016+j.celrep.2018.09.084/01_chem.html
+SUGAR-seq	10.1126/sciadv.abe3610	87	https://henriksson-lab.github.io/NGS_101/sugar-seq__10.1126+sciadv.abe3610/chem.html
+scGESTALT	10.1038/s41596-018-0058-x	86	https://henriksson-lab.github.io/NGS_101/scgestalt__10.1038+s41596-018-0058-x/scgestalt.html
+CRISPR-UMI (Schmierer)	10.15252/msb.20177834	85	https://henriksson-lab.github.io/NGS_101/crispr-umi-schmierer__10.15252+msb.20177834/crisprumi.html
+PIP-seq (protein interaction profile)	10.1186/gb-2014-15-1-r3	85	https://henriksson-lab.github.io/NGS_101/pip-seq-protein-interaction-profile__10.1186+gb-2014-15-1-r3/protein-pip-seq.html
+MPE-seq	10.1073/pnas.1424804112	84	https://henriksson-lab.github.io/NGS_101/mpe-seq__10.1073+pnas.1424804112/01_mpe_seq.html
+DAb-seq	10.1038/s41467-021-21810-3	83	https://henriksson-lab.github.io/NGS_101/dab-seq__10.1038+s41467-021-21810-3/dab.html
+snAP-seq	10.1038/s41557-019-0279-9	83	https://henriksson-lab.github.io/NGS_101/snap-seq__10.1038+s41557-019-0279-9/snap-seq.html
+Excision-seq	10.1101/gr.174052.114	82	https://henriksson-lab.github.io/NGS_101/excision-seq__10.1101+gr.174052.114/excision-seq.html
+LiMCA	10.1038/s41592-024-02239-0	81	https://henriksson-lab.github.io/NGS_101/limca__10.1038+s41592-024-02239-0/limca.html
+MAESTRO	10.1038/s41551-022-00855-9	81	https://henriksson-lab.github.io/NGS_101/maestro__10.1038+s41551-022-00855-9/01_chem.html
+RNP-MaP	10.1038/s41587-020-0709-7	81	https://henriksson-lab.github.io/NGS_101/rnp-map__10.1038+s41587-020-0709-7/01_identity.html
+SIF-seq	10.1038/nmeth.2886	81	https://henriksson-lab.github.io/NGS_101/sif-seq__10.1038+nmeth.2886/sif_seq.html
+Halo-seq	10.1093/nar/gkab1185	80	https://henriksson-lab.github.io/NGS_101/halo-seq__10.1093+nar+gkab1185/01_halo_seq.html
+NOIR sequencing	10.1093/dnares/dsv010	80	https://henriksson-lab.github.io/NGS_101/noir-sequencing__10.1093+dnares+dsv010/chem.html
+Pi-ATAC-seq	10.1038/s41467-018-07115-y	80	https://henriksson-lab.github.io/NGS_101/pi-atac-seq__10.1038+s41467-018-07115-y/pi-atac-seq.html
+HiCAR	10.1016/j.molcel.2022.01.023	79	https://henriksson-lab.github.io/NGS_101/hicar__10.1016+j.molcel.2022.01.023/hicar.html
+INSIGHT	10.1126/sciadv.abe5054	79	https://henriksson-lab.github.io/NGS_101/insight__10.1126+sciadv.abe5054/insight.html
+MSR-seq	10.1038/s41467-022-30261-3	78	https://henriksson-lab.github.io/NGS_101/msr-seq__10.1038+s41467-022-30261-3/01_msr-seq.html
+STRT-seq-2i	10.1038/s41598-017-16546-4	78	https://henriksson-lab.github.io/NGS_101/strt-seq-2i__10.1038+s41598-017-16546-4/strt-seq-2i.html
+Telo-seq	10.1038/s41467-024-48917-7	78	https://henriksson-lab.github.io/NGS_101/telo-seq__10.1038+s41467-024-48917-7/telo-seq.html
+CapZyme-Seq	10.1016/j.molcel.2018.03.014	77	https://henriksson-lab.github.io/NGS_101/capzyme-seq__10.1016+j.molcel.2018.03.014/01_pending_review.html
+LAMP-Seq	10.1038/s41587-021-00966-9	77	https://henriksson-lab.github.io/NGS_101/lamp-seq__10.1038+s41587-021-00966-9/lamp-seq.html
+iSeq	10.1261/rna.036202.112	77	https://henriksson-lab.github.io/NGS_101/iseq__10.1261+rna.036202.112/01_iseq.html
+scONE-seq	10.1126/sciadv.abp8901	77	https://henriksson-lab.github.io/NGS_101/scone-seq__10.1126+sciadv.abp8901/scone-seq.html
+Light-Seq	10.1038/s41592-022-01604-1	76	https://henriksson-lab.github.io/NGS_101/light-seq__10.1038+s41592-022-01604-1/light-seq.html
+ClickSeq	10.1016/j.jmb.2015.06.011	75	https://henriksson-lab.github.io/NGS_101/clickseq__10.1016+j.jmb.2015.06.011/clickseq.html
+DART-seq (targeted capture)	10.1038/s41592-018-0259-9	75	https://henriksson-lab.github.io/NGS_101/dart-seq-targeted-capture__10.1038+s41592-018-0259-9/chem.html
+META-CS	10.1073/pnas.2013106118	75	https://henriksson-lab.github.io/NGS_101/meta-cs__10.1073+pnas.2013106118/01_meta-cs.html
+iMARGI	10.1073/pnas.1819788116	75	https://henriksson-lab.github.io/NGS_101/imargi__10.1073+pnas.1819788116/imargi.html
+ASTAR-seq	10.1101/829960	74	https://henriksson-lab.github.io/NGS_101/astar-seq__10.1101+829960/astar-seq.html
+G4access	10.1038/s41588-023-01437-4	74	https://henriksson-lab.github.io/NGS_101/g4access__10.1038+s41588-023-01437-4/01_g4access.html
+scGR-seq	10.1016/j.isci.2021.102882	74	https://henriksson-lab.github.io/NGS_101/scgr-seq__10.1016+j.isci.2021.102882/chem.html
+DREAM	10.4161/epi.22552	73	https://henriksson-lab.github.io/NGS_101/dream__10.4161+epi.22552/01_dream.html
+CATS	10.4161/rna.29304	72	https://henriksson-lab.github.io/NGS_101/cats__10.4161+rna.29304/01_chem.html
+EMP cloning	10.1371/journal.pone.0053360	72	https://henriksson-lab.github.io/NGS_101/emp-cloning__10.1371+journal.pone.0053360/emp_cloning.html
+LiGA	10.1038/s41589-021-00788-5	72	https://henriksson-lab.github.io/NGS_101/liga__10.1038+s41589-021-00788-5/chem.html
+DisCo	10.1038/s41592-021-01391-1	71	https://henriksson-lab.github.io/NGS_101/disco__10.1038+s41592-021-01391-1/disco.html
+Silent cPTM phage encoding	10.1021/jacs.5b10390	71	https://henriksson-lab.github.io/NGS_101/silent-cptm-phage-encoding__10.1021+jacs.5b10390/01_chem.html
+FICC-Seq	10.1093/nar/gkz658	70	https://henriksson-lab.github.io/NGS_101/ficc-seq__10.1093+nar+gkz658/ficc_seq.html
+Nano3P-seq	10.1038/s41592-022-01714-w	70	https://henriksson-lab.github.io/NGS_101/nano3p-seq__10.1038+s41592-022-01714-w/nano3p-seq.html
+PacBio telobait	10.1038/s41467-023-35823-7	70	https://henriksson-lab.github.io/NGS_101/pacbio-telobait__10.1038+s41467-023-35823-7/pacbio-telobait.html
+CypherSeq	10.1093/nar/gkv915	69	https://henriksson-lab.github.io/NGS_101/cypherseq__10.1093+nar+gkv915/chem.html
+OTTR-seq	10.1073/pnas.2107900118	69	https://henriksson-lab.github.io/NGS_101/ottr-seq__10.1073+pnas.2107900118/ottr-seq.html
+Topo-Seq (gyrase cleavage complexes)	10.1093/nar/gky1222	69	https://henriksson-lab.github.io/NGS_101/topo-seq-gyrase-cleavage-complexes__10.1093+nar+gky1222/01_topo-seq.html
+Yeast TeloTag	10.1101/gr.275868.121	69	https://henriksson-lab.github.io/NGS_101/yeast-telotag__10.1101+gr.275868.121/yeast-telotag.html
+DIMPLE	10.1186/s13059-023-02880-6	68	https://henriksson-lab.github.io/NGS_101/dimple__10.1186+s13059-023-02880-6/dimple.html
+PHAGE-ATAC	10.1038/s41587-021-01065-5	68	https://henriksson-lab.github.io/NGS_101/phage-atac__10.1038+s41587-021-01065-5/phage-atac.html
+BACS	10.1038/s41592-024-02439-8	67	https://henriksson-lab.github.io/NGS_101/bacs__10.1038+s41592-024-02439-8/01_pending_review.html
+BOLORAMIS	10.1093/nar/gkab120	67	https://henriksson-lab.github.io/NGS_101/boloramis__10.1093+nar+gkab120/boloramis.html
+Nick-seq	10.1093/nar/gkaa473	67	https://henriksson-lab.github.io/NGS_101/nick-seq__10.1093+nar+gkaa473/nick-seq.html
+EpiDamID	10.1016/j.molcel.2022.03.009	66	https://henriksson-lab.github.io/NGS_101/epidamid__10.1016+j.molcel.2022.03.009/epidamid.html
+MUSIC	10.1038/s41586-024-07239-w	64	https://henriksson-lab.github.io/NGS_101/music__10.1038+s41586-024-07239-w/music.html
+Nano-C	10.1038/s41467-023-41265-y	64	https://henriksson-lab.github.io/NGS_101/nano-c__10.1038+s41467-023-41265-y/01_nano-c.html
+Rho-seq	10.1016/j.molcel.2021.11.003	64	https://henriksson-lab.github.io/NGS_101/rho-seq__10.1016+j.molcel.2021.11.003/01_chem.html
+SCITO-seq	10.1038/s41592-021-01222-3	63	https://henriksson-lab.github.io/NGS_101/scito-seq__10.1038+s41592-021-01222-3/scito-seq.html
+in4mer	10.1038/s41467-024-47795-3	63	https://henriksson-lab.github.io/NGS_101/in4mer__10.1038+s41467-024-47795-3/in4mer.html
+Chem-map	10.1038/s41587-022-01636-0	62	https://henriksson-lab.github.io/NGS_101/chem-map__10.1038+s41587-022-01636-0/chem-map.html
+GoT-ChA	10.1038/s41586-024-07388-y	62	https://henriksson-lab.github.io/NGS_101/got-cha__10.1038+s41586-024-07388-y/got-cha.html
+mTAG-seq	10.1038/ncomms3190	62	https://henriksson-lab.github.io/NGS_101/mtag-seq__10.1038+ncomms3190/01_mtag_seq.html
+spinDrop	10.1038/s41467-023-40322-w	62	https://henriksson-lab.github.io/NGS_101/spindrop__10.1038+s41467-023-40322-w/spindrop.html
+CombiGEM	10.1038/nbt.3326	61	https://henriksson-lab.github.io/NGS_101/combigem__10.1038+nbt.3326/combigem.html
+HyPro-seq	10.1016/j.molcel.2021.10.009	61	https://henriksson-lab.github.io/NGS_101/hypro-seq__10.1016+j.molcel.2021.10.009/01_hypro-seq.html
+HiDEF-seq	10.1038/s41586-024-07532-8	59	https://henriksson-lab.github.io/NGS_101/hidef-seq__10.1038+s41586-024-07532-8/01_chem.html
+Nested Patch PCR	10.1101/gr.078204.108	59	https://henriksson-lab.github.io/NGS_101/nested-patch-pcr__10.1101+gr.078204.108/01_nested-patch-pcr.html
+PIC	10.1038/s41467-021-24691-8	59	https://henriksson-lab.github.io/NGS_101/pic__10.1038+s41467-021-24691-8/01_chem.html
+TAR circular	10.1073/pnas.93.24.13925	59	https://henriksson-lab.github.io/NGS_101/tar-circular__10.1073+pnas.93.24.13925/tar_circular.html
+S1-END-seq	10.1016/j.molcel.2022.08.007	58	https://henriksson-lab.github.io/NGS_101/s1-end-seq__10.1016+j.molcel.2022.08.007/01_s1-end-seq.html
+SMM-seq	10.1126/sciadv.abm3259	58	https://henriksson-lab.github.io/NGS_101/smm-seq__10.1126+sciadv.abm3259/01_smm-seq.html
+CRISPR-DS	10.1101/gr.235291.118	57	https://henriksson-lab.github.io/NGS_101/crispr-ds__10.1101+gr.235291.118/01_chem.html
+DPC-seq (endogenous crosslinks)	10.1038/s41556-024-01391-1	57	https://henriksson-lab.github.io/NGS_101/dpc-seq-endogenous-crosslinks__10.1038+s41556-024-01391-1/01_dpc-seq-endogenous.html
+PLATO	10.1038/nbt.2539	57	https://henriksson-lab.github.io/NGS_101/plato__10.1038+nbt.2539/chem.html
+TERA-Seq	10.1093/nar/gkab713	57	https://henriksson-lab.github.io/NGS_101/tera-seq__10.1093+nar+gkab713/01_chem.html
+DM-Seq	10.1038/s41589-023-01318-1	56	https://henriksson-lab.github.io/NGS_101/dm-seq__10.1038+s41589-023-01318-1/01_dm_seq.html
+SSiNGLe (Illumina)	10.1038/s41467-019-13602-7	56	https://henriksson-lab.github.io/NGS_101/ssingle-illumina__10.1038+s41467-019-13602-7/ssingle-illumina.html
+NAIL-seq	10.1186/s13059-021-02390-3	55	https://henriksson-lab.github.io/NGS_101/nail-seq__10.1186+s13059-021-02390-3/01_nail-seq.html
+TrAEL-seq	10.1371/journal.pbio.3000886	55	https://henriksson-lab.github.io/NGS_101/trael-seq__10.1371+journal.pbio.3000886/trael-seq.html
+NicE-seq	10.1186/s13059-017-1247-6	54	https://henriksson-lab.github.io/NGS_101/nice-seq__10.1186+s13059-017-1247-6/nice-seq.html
+Prox-seq	10.1038/s41592-022-01684-z	54	https://henriksson-lab.github.io/NGS_101/prox-seq__10.1038+s41592-022-01684-z/prox-seq.html
+UDA-seq	10.1038/s41592-024-02586-y	54	https://henriksson-lab.github.io/NGS_101/uda-seq__10.1038+s41592-024-02586-y/uda-seq.html
+scEdU-seq	10.1038/s41592-024-02308-4	54	https://henriksson-lab.github.io/NGS_101/scedu-seq__10.1038+s41592-024-02308-4/01_scedu-seq.html
+Molecular Pixelation (MPX)	10.1038/s41592-024-02268-9	53	https://henriksson-lab.github.io/NGS_101/molecular-pixelation-mpx__10.1038+s41592-024-02268-9/molecular_pixelation.html
+Poly(A)-seq (Yu2020)	10.1371/journal.pone.0234696	53	https://henriksson-lab.github.io/NGS_101/poly-a-seq-yu2020__10.1371+journal.pone.0234696/01_chem.html
+SEC-seq	10.1038/s41467-023-39367-8	53	https://henriksson-lab.github.io/NGS_101/sec-seq__10.1038+s41467-023-39367-8/sec-seq.html
+TCR-MAP	10.1038/s41587-024-02248-6	53	https://henriksson-lab.github.io/NGS_101/tcr-map__10.1038+s41587-024-02248-6/01_chem.html
+enTRAP-seq (oxidative DNA)	10.1021/acs.biochem.9b00782	53	https://henriksson-lab.github.io/NGS_101/entrap-seq-oxidative-dna__10.1021+acs.biochem.9b00782/01_entrap-seq.html
+LASER-Seq	10.1093/nar/gky1172	52	https://henriksson-lab.github.io/NGS_101/laser-seq__10.1093+nar+gky1172/01_laser_seq.html
+SCOPE-Seq	10.1186/s13059-018-1607-x	52	https://henriksson-lab.github.io/NGS_101/scope-seq__10.1186+s13059-018-1607-x/01_scope-seq.html
+easyCLIP	10.1038/s41467-021-21623-4	52	https://henriksson-lab.github.io/NGS_101/easyclip__10.1038+s41467-021-21623-4/01_easyclip.html
+CoLa-seq	10.1016/j.molcel.2022.11.004	51	https://henriksson-lab.github.io/NGS_101/cola-seq__10.1016+j.molcel.2022.11.004/cola-seq.html
+Calling Card-seq (genomic Ty5 recovery)	10.1101/gr.114850.110	50	https://henriksson-lab.github.io/NGS_101/calling-card-seq-genomic-ty5-recovery__10.1101+gr.114850.110/01_calling-card-seq.html
+LamPORE	10.1101/2020.08.07.20161737	50	https://henriksson-lab.github.io/NGS_101/lampore__10.1101+2020.08.07.20161737/lampore.html
+SIMPLE-seq	10.1038/s41587-024-02148-9	50	https://henriksson-lab.github.io/NGS_101/simple-seq__10.1038+s41587-024-02148-9/simple_seq.html
+SISSOR	10.1073/pnas.1707609114	50	https://henriksson-lab.github.io/NGS_101/sissor__10.1073+pnas.1707609114/sissor.html
+Spec-seq	10.1534/genetics.114.170100	50	https://henriksson-lab.github.io/NGS_101/spec-seq__10.1534+genetics.114.170100/01_chem.html
+i-BLESS	10.1038/s42003-018-0165-9	50	https://henriksson-lab.github.io/NGS_101/i-bless__10.1038+s42003-018-0165-9/i-bless.html
+CLAPS-seq	10.1093/nar/gkab1022	49	https://henriksson-lab.github.io/NGS_101/claps-seq__10.1093+nar+gkab1022/01_claps-seq.html
+EndoVIPER-seq	10.1021/jacs.9b13406	49	https://henriksson-lab.github.io/NGS_101/endoviper-seq__10.1021+jacs.9b13406/01_endoviper-seq.html
+TAmC-Seq	10.1038/ncomms2527	49	https://henriksson-lab.github.io/NGS_101/tamc-seq__10.1038+ncomms2527/01_tamc_seq.html
+BAsE-Seq	10.1186/s13059-014-0517-9	48	https://henriksson-lab.github.io/NGS_101/base-seq__10.1186+s13059-014-0517-9/base-seq.html
+Digital Telomere Measurement	10.1038/s41467-024-49007-4	48	https://henriksson-lab.github.io/NGS_101/digital-telomere-measurement__10.1038+s41467-024-49007-4/digital-telomere-measurement.html
+HRF-Seq	10.1093/nar/gku167	48	https://henriksson-lab.github.io/NGS_101/hrf-seq__10.1093+nar+gku167/hrf-seq.html
+Replicon-seq	10.1016/j.molcel.2022.02.010	48	https://henriksson-lab.github.io/NGS_101/replicon-seq__10.1016+j.molcel.2022.02.010/01_replicon-seq.html
+TIP-seq	10.1083/jcb.202103078	48	https://henriksson-lab.github.io/NGS_101/tip-seq__10.1083+jcb.202103078/tip-seq.html
+D-seq (Draycott2022)	10.1371/journal.pbio.3001622	47	https://henriksson-lab.github.io/NGS_101/d-seq-draycott2022__10.1371+journal.pbio.3001622/01_d-seq.html
+Perturb-DBiT	10.1038/s41587-026-03127-y	47	https://henriksson-lab.github.io/NGS_101/perturb-dbit__10.1038+s41587-026-03127-y/01_perturb-dbit.html
+SLIC-CAGE	10.1101/gr.235937.118	47	https://henriksson-lab.github.io/NGS_101/slic-cage__10.1101+gr.235937.118/01_slic_cage.html
+Holo-Seq	10.1186/s13059-018-1553-7	46	https://henriksson-lab.github.io/NGS_101/holo-seq__10.1186+s13059-018-1553-7/01_holo_seq.html
+QuRIE-seq	10.1016/j.crmeth.2021.100070	46	https://henriksson-lab.github.io/NGS_101/qurie-seq__10.1016+j.crmeth.2021.100070/qurie.html
+OS-Seq	10.1038/nbt.1996	44	https://henriksson-lab.github.io/NGS_101/os-seq__10.1038+nbt.1996/01_chem.html
+RELACS	10.1038/s42003-018-0219-z	43	https://henriksson-lab.github.io/NGS_101/relacs__10.1038+s42003-018-0219-z/01_relacs.html
+SPACECAT	10.1038/s41467-021-25279-y	43	https://henriksson-lab.github.io/NGS_101/spacecat__10.1038+s41467-021-25279-y/01_chem.html
+CFMS mRNA display	10.1002/anie.201207005	42	https://henriksson-lab.github.io/NGS_101/cfms-mrna-display__10.1002+anie.201207005/chem.html
+TRIP	10.1038/nprot.2014.072	42	https://henriksson-lab.github.io/NGS_101/trip__10.1038+nprot.2014.072/trip.html
+Xdrop	10.1002/humu.24063	42	https://henriksson-lab.github.io/NGS_101/xdrop__10.1002+humu.24063/chem.html
+methyl-ATAC-seq	10.1101/gr.245399.118	42	https://henriksson-lab.github.io/NGS_101/methyl-atac-seq__10.1101+gr.245399.118/01_methyl_atac.html
+CeFra-seq	10.1016/j.ymeth.2017.05.017	41	https://henriksson-lab.github.io/NGS_101/cefra-seq__10.1016+j.ymeth.2017.05.017/01_cefra_seq.html
+Circle-damage-seq	10.1126/sciadv.abi6508	41	https://henriksson-lab.github.io/NGS_101/circle-damage-seq__10.1126+sciadv.abi6508/01_circle-damage-seq.html
+Nm-Mut-seq	10.1038/s41422-023-00836-w	41	https://henriksson-lab.github.io/NGS_101/nm-mut-seq__10.1038+s41422-023-00836-w/01_chem.html
+ARTR-seq	10.1038/s41592-023-02146-w	40	https://henriksson-lab.github.io/NGS_101/artr-seq__10.1038+s41592-023-02146-w/artr_seq.html
+Apt-seq	10.1038/s41598-018-21153-y	40	https://henriksson-lab.github.io/NGS_101/apt-seq__10.1038+s41598-018-21153-y/chem.html
+MAD-DASH	10.1093/nar/gkz425	39	https://henriksson-lab.github.io/NGS_101/mad-dash__10.1093+nar+gkz425/01_mad_dash.html
+IPOD-HR	10.1371/journal.pbio.3001306	38	https://henriksson-lab.github.io/NGS_101/ipod-hr__10.1371+journal.pbio.3001306/01_ipod-hr.html
+MethylSaferSeqS	10.1073/pnas.2220704120	38	https://henriksson-lab.github.io/NGS_101/methylsaferseqs__10.1073+pnas.2220704120/01_methylsaferseqs.html
+SHAPE-JuMP	10.1021/acs.biochem.1c00270	38	https://henriksson-lab.github.io/NGS_101/shape-jump__10.1021+acs.biochem.1c00270/01_shape_jump.html
+TIRTL-seq	10.1038/s41592-025-02907-9	38	https://henriksson-lab.github.io/NGS_101/tirtl-seq__10.1038+s41592-025-02907-9/tirtl-seq.html
+scCARE-seq	10.1038/s41594-023-01066-9	38	https://henriksson-lab.github.io/NGS_101/sccare-seq__10.1038+s41594-023-01066-9/sccare-seq.html
+CIDER-Seq	10.1093/nar/gky914	37	https://henriksson-lab.github.io/NGS_101/cider-seq__10.1093+nar+gky914/01_cider_seq.html
+HyPR-seq	10.1073/pnas.2010738117	36	https://henriksson-lab.github.io/NGS_101/hypr-seq__10.1073+pnas.2010738117/01_chem.html
+INVADEseq	10.1038/s41596-023-00888-7	36	https://henriksson-lab.github.io/NGS_101/invadeseq__10.1038+s41596-023-00888-7/invadeseq.html
+SHARC-exo	10.1038/s41467-022-28602-3	36	https://henriksson-lab.github.io/NGS_101/sharc-exo__10.1038+s41467-022-28602-3/01_sharc_exo.html
+NGGM	10.1021/acs.analchem.9b01988	35	https://henriksson-lab.github.io/NGS_101/nggm__10.1021+acs.analchem.9b01988/chem.html
+SNuBar-ATAC	10.1016/j.molcel.2021.09.026	35	https://henriksson-lab.github.io/NGS_101/snubar-atac__10.1016+j.molcel.2021.09.026/snubar-atac.html
+Stapleton synthetic long reads	10.1371/journal.pone.0147229	34	https://henriksson-lab.github.io/NGS_101/stapleton-synthetic-long-reads__10.1371+journal.pone.0147229/chem.html
+TOP-seq	10.1016/j.molcel.2016.12.012	34	https://henriksson-lab.github.io/NGS_101/top-seq__10.1016+j.molcel.2016.12.012/01_top_seq.html
+TRAPS-seq	10.1038/s41592-023-01841-y	34	https://henriksson-lab.github.io/NGS_101/traps-seq__10.1038+s41592-023-01841-y/chem.html
+RCA-GIP	10.1007/s10529-009-0128-9	33	https://henriksson-lab.github.io/NGS_101/rca-gip__10.1007+s10529-009-0128-9/rca_gip.html
+SAMOSA-Tag	10.1038/s41588-024-01748-0	33	https://henriksson-lab.github.io/NGS_101/samosa-tag__10.1038+s41588-024-01748-0/samosa-tag.html
+fastGRO	10.1016/j.celrep.2020.108373	33	https://henriksson-lab.github.io/NGS_101/fastgro__10.1016+j.celrep.2020.108373/fastgro.html
+ChAIR	10.1038/s41592-025-02658-7	32	https://henriksson-lab.github.io/NGS_101/chair__10.1038+s41592-025-02658-7/chair.html
+SPIDR	10.1016/j.cell.2025.06.042	32	https://henriksson-lab.github.io/NGS_101/spidr__10.1016+j.cell.2025.06.042/01_identity.html
+HiCuT	10.1371/journal.pgen.1010121	31	https://henriksson-lab.github.io/NGS_101/hicut__10.1371+journal.pgen.1010121/01_hicut.html
+uvCLAP	10.1038/s41467-018-03575-4	31	https://henriksson-lab.github.io/NGS_101/uvclap__10.1038+s41467-018-03575-4/01_uvclap.html
+DPC-Seq (Tg enzyme trapping)	10.1021/jacs.1c10490	30	https://henriksson-lab.github.io/NGS_101/dpc-seq-tg-enzyme-trapping__10.1021+jacs.1c10490/01_dpc-seq-tg.html
+scifi-ATAC-seq	10.1101/2023.09.17.558155	30	https://henriksson-lab.github.io/NGS_101/scifi-atac-seq__10.1101+2023.09.17.558155/scifi-atac-seq.html
+CaBagE	10.1371/journal.pone.0241253	29	https://henriksson-lab.github.io/NGS_101/cabage__10.1371+journal.pone.0241253/cabage.html
+SUM-seq	10.1038/s41592-025-02700-8	29	https://henriksson-lab.github.io/NGS_101/sum-seq__10.1038+s41592-025-02700-8/sum-seq.html
+scRepli-seq	10.1038/s41596-020-0378-5	29	https://henriksson-lab.github.io/NGS_101/screpli-seq__10.1038+s41596-020-0378-5/screpli-seq.html
+CapTrap-seq	10.1038/s41467-024-49523-3	28	https://henriksson-lab.github.io/NGS_101/captrap-seq__10.1038+s41467-024-49523-3/captrap-seq.html
+Drop-BS	10.1038/s41467-023-40411-w	28	https://henriksson-lab.github.io/NGS_101/drop-bs__10.1038+s41467-023-40411-w/drop-bs.html
+Direct-seq	10.1186/s13059-020-02044-w	26	https://henriksson-lab.github.io/NGS_101/direct-seq__10.1186+s13059-020-02044-w/direct-seq.html
+Phospho-seq	10.1038/s41467-025-56590-7	26	https://henriksson-lab.github.io/NGS_101/phospho-seq__10.1038+s41467-025-56590-7/phospho-seq.html
+TIME-seq	10.1038/s43587-023-00555-2	26	https://henriksson-lab.github.io/NGS_101/time-seq__10.1038+s43587-023-00555-2/time-seq.html
+superRCA	10.1038/s41467-022-31397-y	26	https://henriksson-lab.github.io/NGS_101/superrca__10.1038+s41467-022-31397-y/superrca.html
+CLiPPR-seq	10.1093/nar/gkae058	25	https://henriksson-lab.github.io/NGS_101/clippr-seq__10.1093+nar+gkae058/clippr-seq.html
+txci-ATAC-seq	10.1101/2023.05.11.540245	25	https://henriksson-lab.github.io/NGS_101/txci-atac-seq__10.1101+2023.05.11.540245/txci-atac-seq.html
+CROPseq-multi	10.1101/2024.03.17.585235	24	https://henriksson-lab.github.io/NGS_101/cropseq-multi__10.1101+2024.03.17.585235/cropseq-multi.html
+Duplex-Repair	10.1093/nar/gkab855	24	https://henriksson-lab.github.io/NGS_101/duplex-repair__10.1093+nar+gkab855/duplex-repair.html
+FOODIE	10.1073/pnas.2423270121	24	https://henriksson-lab.github.io/NGS_101/foodie__10.1073+pnas.2423270121/01_foodie.html
+ID-seq	10.1038/s41467-018-04761-0	24	https://henriksson-lab.github.io/NGS_101/id-seq__10.1038+s41467-018-04761-0/chem.html
+NSCR	10.1101/gr.176099.114	24	https://henriksson-lab.github.io/NGS_101/nscr__10.1101+gr.176099.114/nscr.html
+SMASH	10.1101/gr.201491.115	24	https://henriksson-lab.github.io/NGS_101/smash__10.1101+gr.201491.115/01_smash.html
+scRCAT-seq	10.1038/s41467-020-18976-7	24	https://henriksson-lab.github.io/NGS_101/scrcat-seq__10.1038+s41467-020-18976-7/scrcat-seq.html
+ChIP-DIP	10.1038/s41588-024-02000-5	23	https://henriksson-lab.github.io/NGS_101/chip-dip__10.1038+s41588-024-02000-5/01_chip-dip.html
+FIPRESCI	10.1186/s13059-023-02893-1	23	https://henriksson-lab.github.io/NGS_101/fipresci__10.1186+s13059-023-02893-1/fipresci.html
+ProtSeq barcode-cycle sequencing	10.1016/j.isci.2021.103586	23	https://henriksson-lab.github.io/NGS_101/protseq-barcode-cycle-sequencing__10.1016+j.isci.2021.103586/chem.html
+o2n-seq	10.1038/ncomms15335	23	https://henriksson-lab.github.io/NGS_101/o2n-seq__10.1038+ncomms15335/01_o2n-seq.html
+NJU-seq	10.1016/j.crmeth.2024.100721	22	https://henriksson-lab.github.io/NGS_101/nju-seq__10.1016+j.crmeth.2024.100721/nju-seq.html
+SDR-seq	10.1038/s41592-025-02805-0	22	https://henriksson-lab.github.io/NGS_101/sdr-seq__10.1038+s41592-025-02805-0/sdr-seq.html
+Duplex Pro-Seq	10.1371/journal.pone.0204265	21	https://henriksson-lab.github.io/NGS_101/duplex-pro-seq__10.1371+journal.pone.0204265/01_duplex-pro-seq.html
+FLASH (RNA-protein interactions)	10.1093/nar/gkz1141	21	https://henriksson-lab.github.io/NGS_101/flash-rna-protein-interactions__10.1093+nar+gkz1141/01_flash.html
+Slic-seq	10.1093/nar/gkad604	21	https://henriksson-lab.github.io/NGS_101/slic-seq__10.1093+nar+gkad604/01_slic-seq.html
+scTEM-seq	10.1038/s41598-022-09765-x	21	https://henriksson-lab.github.io/NGS_101/sctem-seq__10.1038+s41598-022-09765-x/sctem-seq.html
+DAF-seq	10.1038/s41587-025-02914-3	20	https://henriksson-lab.github.io/NGS_101/daf-seq__10.1038+s41587-025-02914-3/01_daf-seq.html
+Ucaps-seq	10.1021/jacs.1c11269	20	https://henriksson-lab.github.io/NGS_101/ucaps-seq__10.1021+jacs.1c11269/01_ucaps-seq.html
+m6A-ORL-Seq	10.1039/d2sc03181g	20	https://henriksson-lab.github.io/NGS_101/m6a-orl-seq__10.1039+d2sc03181g/01_m6a-orl-seq.html
+scSPLAT	10.1101/2021.10.14.464375	20	https://henriksson-lab.github.io/NGS_101/scsplat__10.1101+2021.10.14.464375/scsplat.html
+CapSeq	10.1126/science.ady7227	19	https://henriksson-lab.github.io/NGS_101/capseq__10.1126+science.ady7227/01_capseq.html
+Epi-Decoder	10.1371/journal.pbio.2005542	19	https://henriksson-lab.github.io/NGS_101/epi-decoder__10.1371+journal.pbio.2005542/epi-decoder.html
+OAK	10.1038/s41467-024-53227-z	19	https://henriksson-lab.github.io/NGS_101/oak__10.1038+s41467-024-53227-z/oak.html
+ProBac-seq	10.1038/s41596-024-01002-1	19	https://henriksson-lab.github.io/NGS_101/probac-seq__10.1038+s41596-024-01002-1/probac-seq.html
+Quantum Barcoding (QBC)	10.1038/s42003-020-0896-2	19	https://henriksson-lab.github.io/NGS_101/quantum-barcoding-qbc__10.1038+s42003-020-0896-2/qbc.html
+SPATAC-seq	10.1038/s41556-024-01449-0	19	https://henriksson-lab.github.io/NGS_101/spatac-seq__10.1038+s41556-024-01449-0/spatac-seq.html
+Volumetric DNA microscopy	10.1038/s41587-025-02613-z	19	https://henriksson-lab.github.io/NGS_101/volumetric-dna-microscopy__10.1038+s41587-025-02613-z/01_volumetric-dna-microscopy.html
+CATCH-Seq (clone-adapted template capture)	10.1371/journal.pone.0111756	18	https://henriksson-lab.github.io/NGS_101/catch-seq-clone-adapted-template-capture__10.1371+journal.pone.0111756/catch-seq.html
+Photoselective sequencing (PSS)	10.1038/s41592-023-01845-8	18	https://henriksson-lab.github.io/NGS_101/photoselective-sequencing-pss__10.1038+s41592-023-01845-8/01_chem.html
+aa-tRNA-seq	10.1038/s41467-025-62545-9	18	https://henriksson-lab.github.io/NGS_101/aa-trna-seq__10.1038+s41467-025-62545-9/01_aa-trna-seq.html
+circTAIL-seq	10.1261/rna.054494.115	18	https://henriksson-lab.github.io/NGS_101/circtail-seq__10.1261+rna.054494.115/01_chem.html
+smol-seq	10.1038/s41587-025-02554-7	18	https://henriksson-lab.github.io/NGS_101/smol-seq__10.1038+s41587-025-02554-7/smol-seq.html
+Constellation-Seq	10.1016/j.isci.2021.102147	17	https://henriksson-lab.github.io/NGS_101/constellation-seq__10.1016+j.isci.2021.102147/01_constellation-seq.html
+Paired-Damage-seq	10.1038/s41592-025-02632-3	17	https://henriksson-lab.github.io/NGS_101/paired-damage-seq__10.1038+s41592-025-02632-3/01_paired-damage-seq.html
+ChIL-seq	10.1038/s41596-020-0375-8	16	https://henriksson-lab.github.io/NGS_101/chil-seq__10.1038+s41596-020-0375-8/chil-seq.html
+RADD-seq	10.1016/j.bpr.2021.100017	16	https://henriksson-lab.github.io/NGS_101/radd-seq__10.1016+j.bpr.2021.100017/01_radd-seq.html
+RIMS-seq	10.1093/nar/gkab705	16	https://henriksson-lab.github.io/NGS_101/rims-seq__10.1093+nar+gkab705/01_rims-seq.html
+inDrops-2	10.1093/nar/gkae1312	16	https://henriksson-lab.github.io/NGS_101/indrops-2__10.1093+nar+gkae1312/indrops-2.html
+ESEGA	10.1038/s41467-024-48408-9	15	https://henriksson-lab.github.io/NGS_101/esega__10.1038+s41467-024-48408-9/01_esega.html
+scSPRITE	10.1101/2020.08.11.242081	15	https://henriksson-lab.github.io/NGS_101/scsprite__10.1101+2020.08.11.242081/scsprite.html
+Click display	10.1093/nar/gkad643	14	https://henriksson-lab.github.io/NGS_101/click-display__10.1093+nar+gkad643/chem.html
+GenIE	10.1093/nar/gkaa960	14	https://henriksson-lab.github.io/NGS_101/genie__10.1093+nar+gkaa960/genie.html
+HiCoP	10.1186/s13072-020-00348-6	14	https://henriksson-lab.github.io/NGS_101/hicop__10.1186+s13072-020-00348-6/hicop.html
+PADD-seq	10.1093/nar/gkad008	14	https://henriksson-lab.github.io/NGS_101/padd-seq__10.1093+nar+gkad008/01_padd-seq.html
+scRICA-seq	10.1038/s41467-024-52335-0	14	https://henriksson-lab.github.io/NGS_101/scrica-seq__10.1038+s41467-024-52335-0/scrica-seq.html
+scSNV-seq	10.1186/s13059-024-03169-y	14	https://henriksson-lab.github.io/NGS_101/scsnv-seq__10.1186+s13059-024-03169-y/scsnv-seq.html
+snapTotal-seq	10.1038/s41467-024-50291-3	14	https://henriksson-lab.github.io/NGS_101/snaptotal-seq__10.1038+s41467-024-50291-3/snaptotal-seq.html
+NOMe-HiC	10.1186/s13059-023-02889-x	13	https://henriksson-lab.github.io/NGS_101/nome-hic__10.1186+s13059-023-02889-x/01_nome_hic.html
+SPEAC-seq	10.1038/s41596-024-01056-1	13	https://henriksson-lab.github.io/NGS_101/speac-seq__10.1038+s41596-024-01056-1/speac-seq.html
+scID-seq	10.1016/j.isci.2018.11.009	13	https://henriksson-lab.github.io/NGS_101/scid-seq__10.1016+j.isci.2018.11.009/scid.html
+GAGE-seq	10.1101/2023.07.20.549578	12	https://henriksson-lab.github.io/NGS_101/gage-seq__10.1101+2023.07.20.549578/gage-seq.html
+GenIE-ATAC	10.1093/nar/gkad332	12	https://henriksson-lab.github.io/NGS_101/genie-atac__10.1093+nar+gkad332/genie-atac.html
+LABS	10.1186/s13059-024-03262-2	12	https://henriksson-lab.github.io/NGS_101/labs__10.1186+s13059-024-03262-2/01_labs.html
+MALBAC-DT	10.1101/2019.12.31.892190	12	https://henriksson-lab.github.io/NGS_101/malbac-dt__10.1101+2019.12.31.892190/malbac-dt.html
+ssGap-seq	10.1093/nar/gkad263	12	https://henriksson-lab.github.io/NGS_101/ssgap-seq__10.1093+nar+gkad263/01_ssgap-seq.html
+CAT-ATAC	10.1016/j.crmeth.2025.101222	11	https://henriksson-lab.github.io/NGS_101/cat-atac__10.1016+j.crmeth.2025.101222/01_cat-atac.html
+CH-ATAC-seq	10.1016/j.devcel.2024.01.015	11	https://henriksson-lab.github.io/NGS_101/ch-atac-seq__10.1016+j.devcel.2024.01.015/ch-atac-seq.html
+LAST-seq	10.1186/s13059-023-03025-5	11	https://henriksson-lab.github.io/NGS_101/last-seq__10.1186+s13059-023-03025-5/last-seq.html
+FIND-seq	10.1038/s41596-024-01021-y	10	https://henriksson-lab.github.io/NGS_101/find-seq__10.1038+s41596-024-01021-y/find-seq.html
+PHOTON	10.1038/s41467-025-59801-3	9	https://henriksson-lab.github.io/NGS_101/photon__10.1038+s41467-025-59801-3/photon.html
+PRIM-seq	10.1038/s41587-025-02780-z	9	https://henriksson-lab.github.io/NGS_101/prim-seq__10.1038+s41587-025-02780-z/01_prim-seq.html
+LISH-seq	10.1093/nar/gkx471	8	https://henriksson-lab.github.io/NGS_101/lish-seq__10.1093+nar+gkx471/01_lish-seq.html
+Methyl-SNP-seq	10.1101/gr.277080.122	8	https://henriksson-lab.github.io/NGS_101/methyl-snp-seq__10.1101+gr.277080.122/01_methyl_snp.html
+Seq-Scope-eXpanded	10.1038/s41467-026-69346-8	8	https://henriksson-lab.github.io/NGS_101/seq-scope-expanded__10.1038+s41467-026-69346-8/01_chem.html
+cyPhyRNA-seq	10.1080/15476286.2021.1999105	8	https://henriksson-lab.github.io/NGS_101/cyphyrna-seq__10.1080+15476286.2021.1999105/01_chem.html
+scComplete-seq	10.1093/nar/gkaf699	8	https://henriksson-lab.github.io/NGS_101/sccomplete-seq__10.1093+nar+gkaf699/01_sccomplete-seq.html
+TaDRIM-seq	10.1038/s41467-024-53534-5	7	https://henriksson-lab.github.io/NGS_101/tadrim-seq__10.1038+s41467-024-53534-5/01_tadrim-seq.html
+Methyl-CODEC	10.1093/nar/gkaf482	6	https://henriksson-lab.github.io/NGS_101/methyl-codec__10.1093+nar+gkaf482/01_methyl-codec.html
+RGEN-seq	10.1038/s41598-021-03160-8	6	https://henriksson-lab.github.io/NGS_101/rgen-seq__10.1038+s41598-021-03160-8/01_rgen-seq.html
+TeloPCR-seq	10.1002/1873-3468.12444	6	https://henriksson-lab.github.io/NGS_101/telopcr-seq__10.1002+1873-3468.12444/telopcr-seq.html
+eTIP-seq	10.1038/s41598-020-75004-w	6	https://henriksson-lab.github.io/NGS_101/etip-seq__10.1038+s41598-020-75004-w/01_etip-seq.html
+sciPlex-ATAC-seq	10.1186/s12864-023-09832-1	6	https://henriksson-lab.github.io/NGS_101/sciplex-atac-seq__10.1186+s12864-023-09832-1/sciplex-atac-seq.html
+DRAP3R	10.1038/s41467-025-68230-1	5	https://henriksson-lab.github.io/NGS_101/drap3r__10.1038+s41467-025-68230-1/01_drap3r.html
+Modified SMART-Seq	10.1007/7651_2021_435	5	https://henriksson-lab.github.io/NGS_101/modified-smart-seq__10.1007+7651_2021_435/modified-smart-seq.html
+Peptide reverse translation	10.1038/s41587-026-03061-z	5	https://henriksson-lab.github.io/NGS_101/peptide-reverse-translation__10.1038+s41587-026-03061-z/01_peptide-reverse-translation.html
+RoCK and ROI	10.1038/s41467-025-66248-z	5	https://henriksson-lab.github.io/NGS_101/rock-and-roi__10.1038+s41467-025-66248-z/01_rock-and-roi.html
+NanoStrand-seq	10.1038/s41421-024-00694-9	4	https://henriksson-lab.github.io/NGS_101/nanostrand-seq__10.1038+s41421-024-00694-9/01_nanostrand-seq.html
+PADSE-seq	10.1073/pnas.2425000122	4	https://henriksson-lab.github.io/NGS_101/padse-seq__10.1073+pnas.2425000122/01_padse-seq.html
+Butt-seq	10.1101/gad.350434.123	3	https://henriksson-lab.github.io/NGS_101/butt-seq__10.1101+gad.350434.123/butt-seq.html
+Gel-seq	10.1039/c7lc00430c	3	https://henriksson-lab.github.io/NGS_101/gel-seq__10.1039+c7lc00430c/chem.html
+HybriSeq	10.1038/s42003-025-08702-8	3	https://henriksson-lab.github.io/NGS_101/hybriseq__10.1038+s42003-025-08702-8/01_hybriseq.html
+Hybrid BAG-seq	10.1186/s13059-025-03790-5	3	https://henriksson-lab.github.io/NGS_101/hybrid-bag-seq__10.1186+s13059-025-03790-5/hybrid-bag-seq.html
+MOLseq	10.1038/s41598-026-41186-y	3	https://henriksson-lab.github.io/NGS_101/molseq__10.1038+s41598-026-41186-y/molseq.html
+Proximity Network Assay	10.1101/2025.06.19.660329	3	https://henriksson-lab.github.io/NGS_101/proximity-network-assay__10.1101+2025.06.19.660329/pna.html
+SPACE-seq	10.1016/j.stem.2026.05.017	3	https://henriksson-lab.github.io/NGS_101/space-seq__10.1016+j.stem.2026.05.017/01_chem.html
+Sprox-seq	10.1016/j.cell.2026.06.034	3	https://henriksson-lab.github.io/NGS_101/sprox-seq__10.1016+j.cell.2026.06.034/01_source_pending.html
+sc-end5-seq	10.1101/2021.04.04.438388	3	https://henriksson-lab.github.io/NGS_101/sc-end5-seq__10.1101+2021.04.04.438388/sc-end5-seq.html
+scCAPS+	10.1101/2024.02.12.579864	3	https://henriksson-lab.github.io/NGS_101/sccaps__10.1101+2024.02.12.579864/sccaps-plus.html
+scTAPS	10.1101/2024.02.12.579864	3	https://henriksson-lab.github.io/NGS_101/sctaps__10.1101+2024.02.12.579864/sctaps.html
+Chem-seq	10.1038/nbt.2776	2	https://henriksson-lab.github.io/NGS_101/chem-seq__10.1038+nbt.2776/chem_seq.html
+MEDUSA	10.1093/clinchem/hvag046	2	https://henriksson-lab.github.io/NGS_101/medusa__10.1093+clinchem+hvag046/01_medusa.html
+Pt-seq (platinum)	10.1126/sciadv.adx6809	2	https://henriksson-lab.github.io/NGS_101/pt-seq-platinum__10.1126+sciadv.adx6809/01_chem.html
+RAG-seq	10.1093/gpbjnl/qzae072	2	https://henriksson-lab.github.io/NGS_101/rag-seq__10.1093+gpbjnl+qzae072/01_rag-seq.html
+SMAdd-seq	10.1093/nar/gkaf671	2	https://henriksson-lab.github.io/NGS_101/smadd-seq__10.1093+nar+gkaf671/01_smadd-seq.html
+AIRR UMI 5' RACE	10.1007/978-1-0716-2115-8_19	1	https://henriksson-lab.github.io/NGS_101/airr-umi-5-race__10.1007+978-1-0716-2115-8_19/airr-umi-5-race.html
+Atrandi WGS	10.1101/2025.06.20.660799	1	https://henriksson-lab.github.io/NGS_101/atrandi-wgs__10.1101+2025.06.20.660799/atrandi_wgs.html
+Bridge Capture	10.1016/j.jmoldx.2025.09.006	1	https://henriksson-lab.github.io/NGS_101/bridge-capture__10.1016+j.jmoldx.2025.09.006/01_source_pending.html
+CAP-seq (long-read microbiome)	10.1101/2024.09.10.612220	1	https://henriksson-lab.github.io/NGS_101/cap-seq-long-read-microbiome__10.1101+2024.09.10.612220/cap-long.html
+GLASS-seq	10.1016/j.bios.2026.118973	1	https://henriksson-lab.github.io/NGS_101/glass-seq__10.1016+j.bios.2026.118973/01_glass-seq.html
+sc-rDSeq	10.1093/nar/gkag312	1	https://henriksson-lab.github.io/NGS_101/sc-rdseq__10.1093+nar+gkag312/01_sc-rdseq.html
+wellDA-seq	10.1101/2024.09.06.611519	1	https://henriksson-lab.github.io/NGS_101/wellda-seq__10.1101+2024.09.06.611519/wellDA-seq.html
+BALI	10.1073/pnas.2527896123	0	https://henriksson-lab.github.io/NGS_101/bali__10.1073+pnas.2527896123/bali.html
+CRISPR-MIP	10.1101/2024.03.28.587082	0	https://henriksson-lab.github.io/NGS_101/crispr-mip__10.1101+2024.03.28.587082/crisprmip.html
+DEPACE-seq	10.1093/nar/gkag784	0	https://henriksson-lab.github.io/NGS_101/depace-seq__10.1093+nar+gkag784/depace-seq.html
+MASD-seq	10.1038/s44321-026-00509-2	0	https://henriksson-lab.github.io/NGS_101/masd-seq__10.1038+s44321-026-00509-2/01_masd-seq.html
+PCL-seq	10.1101/gr.279906.124	0	https://henriksson-lab.github.io/NGS_101/pcl-seq__10.1101+gr.279906.124/pcl_seq.html
+SELECT-seq	10.64898/2026.07.07.736965	0	https://henriksson-lab.github.io/NGS_101/select-seq__10.64898+2026.07.07.736965/01_select-seq.html
+SNU-Seq	10.1093/nar/gkag652	0	https://henriksson-lab.github.io/NGS_101/snu-seq__10.1093+nar+gkag652/snu-seq.html
+Spatial Hi-C-RNA	10.1016/j.cell.2026.07.039	0	https://henriksson-lab.github.io/NGS_101/spatial-hi-c-rna__10.1016+j.cell.2026.07.039/01_spatial-hi-c-rna.html
+Spatial-ATAC-Hi-C	10.1038/s41592-026-03217-4	0	https://henriksson-lab.github.io/NGS_101/spatial-atac-hi-c__10.1038+s41592-026-03217-4/01_spatial-atac-hi-c.html
+TF-chRDP	10.3389/fcell.2025.1561540	0	https://henriksson-lab.github.io/NGS_101/tf-chrdp__10.3389+fcell.2025.1561540/tf-chrdp.html
+sf4sU-Seq	10.1093/nar/gkag652	0	https://henriksson-lab.github.io/NGS_101/sf4su-seq__10.1093+nar+gkag652/sf4su-seq.html
+10x Chromium GEM-X Single Cell 3' Gene Expression v4			https://henriksson-lab.github.io/NGS_101/10x-chromium-gem-x-single-cell-3-ge-v4/01_10x-3prime-v4.html
+10x Chromium GEM-X Single Cell 5' Gene Expression v3			https://henriksson-lab.github.io/NGS_101/10x-chromium-gem-x-single-cell-5-ge-v3/01_10x-5p-ge-v3.html
+10x Chromium GEM-X Single Cell 5' VDJ v3			https://henriksson-lab.github.io/NGS_101/10x-chromium-gem-x-single-cell-5-vdj-v3/01_10x-5p-vdj-v3.html
+10x Chromium Single Cell 3' Gene Expression v2			https://henriksson-lab.github.io/NGS_101/10x-chromium-single-cell-3-ge-v2/01_10x-3prime-v2-v4.html
+10x Chromium Single Cell 3' Gene Expression v3			https://henriksson-lab.github.io/NGS_101/10x-chromium-single-cell-3-ge-v3/01_10x-3prime-v3.html
+10x Chromium Single Cell 3' v3 Cell Surface Protein			https://henriksson-lab.github.io/NGS_101/10x-chromium-single-cell-3-v3-cell-surface-protein/01_10x-3p-feature-barcoding.html
+10x Chromium Single Cell 3' v3 gRNA Capture (Feature Barcode)			https://henriksson-lab.github.io/NGS_101/10x-chromium-single-cell-3-v3-crispr-screening/01_10x-3p-crispr-screening.html
+10x Chromium Single Cell 5' Gene Expression v1			https://henriksson-lab.github.io/NGS_101/10x-chromium-single-cell-5-ge-v1/01_10x-5p-ge.html
+10x Chromium Single Cell 5' VDJ v2			https://henriksson-lab.github.io/NGS_101/10x-chromium-single-cell-5-vdj-v2/01_10x-5p-vdj-v2.html
+10x Chromium Single Cell ATAC v1			https://henriksson-lab.github.io/NGS_101/10x-chromium-single-cell-atac/01_10x-scatac.html
+10x Chromium Single Cell Multiome ATAC + Gene Expression			https://henriksson-lab.github.io/NGS_101/10x-chromium-single-cell-multiome-atac-gene-expression/multiome.html
+10x Fixed RNA Profiling (Flex)			https://henriksson-lab.github.io/NGS_101/10x-fixed-rna-profiling-flex/flex.html
+10x Visium Spatial Gene Expression			https://henriksson-lab.github.io/NGS_101/10x-visium-spatial-gene-expression/visium.html
+AHARIBO	10.7554/eLife.59303		https://henriksson-lab.github.io/NGS_101/aharibo__10.7554+eLife.59303/01_chem.html
+APEX-RIP	10.7554/eLife.29224		https://henriksson-lab.github.io/NGS_101/apex-rip__10.7554+eLife.29224/01_apex_rip.html
+BisMapR	10.7554/eLife.65146		https://henriksson-lab.github.io/NGS_101/bismapr__10.7554+eLife.65146/bismapr.html
+CATCH-IT (NGS preparation)	10.1016/B978-0-12-391938-0.00007-0		https://henriksson-lab.github.io/NGS_101/catch-it-ngs-preparation__10.1016+B978-0-12-391938-0.00007-0/01_catch-it-ngs-preparation.html
+CUT&RUN	10.7554/eLife.21856		https://henriksson-lab.github.io/NGS_101/cut-run__10.7554+eLife.21856/cut-run.html
+CUTAC	10.7554/eLife.63274		https://henriksson-lab.github.io/NGS_101/cutac__10.7554+eLife.63274/cutac.html
+ChAR-seq	10.7554/eLife.27024		https://henriksson-lab.github.io/NGS_101/char-seq__10.7554+eLife.27024/char-seq.html
+DNBSEQ library circularization			https://henriksson-lab.github.io/NGS_101/dnbseq-library-circularization/dnbseq.html
+Earth Microbiome Project ITS			https://henriksson-lab.github.io/NGS_101/earth-microbiome-project-its/emp-its.html
+HyDrop-ATAC	10.7554/eLife.73971		https://henriksson-lab.github.io/NGS_101/hydrop-atac__10.7554+eLife.73971/hydrop-atac.html
+HyDrop-RNA	10.7554/eLife.73971		https://henriksson-lab.github.io/NGS_101/hydrop-rna__10.7554+eLife.73971/hydrop-rna.html
+ICICLE-seq	10.7554/eLife.63632		https://henriksson-lab.github.io/NGS_101/icicle-seq__10.7554+eLife.63632/icicle-seq.html
+Illumina 16S Metagenomic Sequencing			https://henriksson-lab.github.io/NGS_101/illumina-16s-metagenomic-sequencing/illumina-16s.html
+Illumina DNA Prep			https://henriksson-lab.github.io/NGS_101/illumina-dna-prep/illumina-dna-prep.html
+Illumina DNA Prep Shotgun Metagenomics			https://henriksson-lab.github.io/NGS_101/illumina-dna-prep-shotgun-metagenomics/shotgun-metagenomics.html
+LAF-Seq	10.1074/jbc.M115.676296		https://henriksson-lab.github.io/NGS_101/laf-seq__10.1074+jbc.M115.676296/01_laf-seq.html
+Moffat two-step CRISPR screen readout			https://henriksson-lab.github.io/NGS_101/moffat-two-step-crispr-screen-readout/moffat-two-step-crispr-screen-readout.html
+NEBNext Enzymatic Methyl-seq v2			https://henriksson-lab.github.io/NGS_101/nebnext-enzymatic-methyl-seq-v2/nebnext-em-seq-v2.html
+NEBNext Low-bias Small RNA			https://henriksson-lab.github.io/NGS_101/nebnext-low-bias-small-rna/nebnext-low-bias-small-rna.html
+NEBNext Single Cell Low Input RNA			https://henriksson-lab.github.io/NGS_101/nebnext-single-cell-low-input-rna/nebnext-single-cell-low-input-rna.html
+NEBNext Ultra II DNA Library Prep (USER adaptor)			https://henriksson-lab.github.io/NGS_101/nebnext-ultra-ii-dna-library-prep-user-adaptor/nebnext-ultra-ii-user.html
+NEBNext Ultra II Directional RNA			https://henriksson-lab.github.io/NGS_101/nebnext-ultra-ii-directional-rna/nebnext-ultra-ii-directional-rna.html
+NEBNext Ultra II FS DNA PCR-free			https://henriksson-lab.github.io/NGS_101/nebnext-ultra-ii-fs-dna-pcr-free/nebnext-ultra-ii-fs-dna-pcr-free.html
+Nextera Mate Pair			https://henriksson-lab.github.io/NGS_101/nextera-mate-pair/nextera-mate-pair.html
+Nextera XT DNA Library Prep			https://henriksson-lab.github.io/NGS_101/nextera-xt-dna-library-prep/nextera-xt.html
+Oxford Nanopore Direct RNA Sequencing RNA004			https://henriksson-lab.github.io/NGS_101/oxford-nanopore-direct-rna-sequencing-rna004/direct-rna.html
+Oxford Nanopore Direct cDNA Sequencing			https://henriksson-lab.github.io/NGS_101/oxford-nanopore-direct-cdna-sequencing/direct-cdna.html
+Oxford Nanopore Ligation Sequencing V14 (SQK-LSK114)			https://henriksson-lab.github.io/NGS_101/oxford-nanopore-ligation-sequencing-v14/nanopore-ligation-v14.html
+Oxford Nanopore Native Barcoding V14 (SQK-NBD114.24)			https://henriksson-lab.github.io/NGS_101/oxford-nanopore-native-barcoding-v14/native-barcoding-v14.html
+Oxford Nanopore Rapid Sequencing V14 (SQK-RAD114)			https://henriksson-lab.github.io/NGS_101/oxford-nanopore-rapid-sequencing-v14/rapid-sequencing-v14.html
+Oxford Nanopore Ultra-Long DNA Sequencing V14 (SQK-ULK114)			https://henriksson-lab.github.io/NGS_101/oxford-nanopore-ultra-long-v14/ultra-long-v14.html
+Oxford Nanopore cDNA-PCR Sequencing V14			https://henriksson-lab.github.io/NGS_101/oxford-nanopore-cdna-pcr-sequencing-v14/cdna-pcr.html
+PacBio Iso-Seq v2 (SMRTbell prep kit 3.0)			https://henriksson-lab.github.io/NGS_101/pacbio-isoseq-smrtbell-prep-kit-3-0/pacbio-isoseq.html
+PacBio Kinnex full-length RNA			https://henriksson-lab.github.io/NGS_101/pacbio-kinnex-full-length-rna/kinnex-full-length-rna.html
+PacBio SMRTbell Express Template Prep Kit 2.0			https://henriksson-lab.github.io/NGS_101/pacbio-smrtbell-express-template-prep-kit-2-0/smrtbell-express-2-0.html
+PacBio SMRTbell prep kit 3.0			https://henriksson-lab.github.io/NGS_101/pacbio-smrtbell-prep-kit-3-0/smrtbell-prep-kit-3-0.html
+PicoPLEX DNA-seq			https://henriksson-lab.github.io/NGS_101/picoplex-dna-seq/picoplex-dna-seq.html
+Q5 site-directed mutagenesis			https://henriksson-lab.github.io/NGS_101/q5-site-directed-mutagenesis/q5_sdm.html
+QuikChange II			https://henriksson-lab.github.io/NGS_101/quikchange-ii-site-directed-mutagenesis/quikchange_ii.html
+REPLI-g Single Cell			https://henriksson-lab.github.io/NGS_101/repli-g-single-cell/repli-g-single-cell.html
+SAMOSA	10.7554/eLife.59404		https://henriksson-lab.github.io/NGS_101/samosa__10.7554+eLife.59404/samosa.html
+SureCell 3' WTA for ddSEQ			https://henriksson-lab.github.io/NGS_101/surecell-3-wta-for-ddseq/surecell-wta3.html
+SurePlex			https://henriksson-lab.github.io/NGS_101/sureplex/sureplex.html
+SureSelect XT HS2 DNA			https://henriksson-lab.github.io/NGS_101/sureselect-xt-hs2-dna/sureselect-xt-hs2.html
+TEA-seq	10.7554/eLife.63632		https://henriksson-lab.github.io/NGS_101/tea-seq__10.7554+eLife.63632/tea-seq.html
+TOPO TA cloning			https://henriksson-lab.github.io/NGS_101/topo-ta-cloning/topo_ta.html
+TruSeq DNA PCR-Free			https://henriksson-lab.github.io/NGS_101/truseq-dna-pcr-free/truseq-dna-pcr-free.html
+TruSeq Stranded mRNA			https://henriksson-lab.github.io/NGS_101/truseq-stranded-mrna/truseq-stranded-mrna.html
+bisDRIP-seq	10.7554/eLife.28306		https://henriksson-lab.github.io/NGS_101/bisdrip-seq__10.7554+eLife.28306/01_chem.html
+easySHARE-seq	10.7554/eLife.110034		https://henriksson-lab.github.io/NGS_101/easyshare-seq__10.7554+eLife.110034/easyshare-seq.html
+meta3C	10.7554/eLife.03318		https://henriksson-lab.github.io/NGS_101/meta3c__10.7554+eLife.03318/meta3c.html
+scG2P	10.1158/2159-8290.CD-24-0853		https://henriksson-lab.github.io/NGS_101/scg2p__10.1158+2159-8290.CD-24-0853/01_scg2p.html
+scNOMe-seq	10.7554/eLife.23203		https://henriksson-lab.github.io/NGS_101/scnome-seq__10.7554+eLife.23203/scnome-seq.html
+time-ChIP	10.7554/eLife.15316		https://henriksson-lab.github.io/NGS_101/time-chip__10.7554+eLife.15316/01_time-chip.html

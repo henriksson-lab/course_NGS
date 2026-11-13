@@ -375,11 +375,29 @@ Deck E2 (~30 slides)
 
 ---
 
-## Open questions for the course author
+## Decisions made
 
-- Which parts are examined, if any, and how?
-- Is there a wet lab component, or is this all paper and reading?
-- How much read-level reasoning is needed? There is no programming, but "position as
-  information" (B8) and QC (E1) need students to interpret reads and traces.
-- Can the NGS_101 site's construct diagrams be embedded directly in slides, or should the
-  course re-draw them?
+- **Self-published**, no course code, by Johan Henriksson. Mainly self-study; the decks may be
+  recorded later, which does not change how they are written.
+- **Images are conceptual**, made to explain how a protocol works, not decorative and not
+  photographs. The NGS_101 site renders constructs correctly, so its diagrams are a legitimate
+  source to use and to adapt.
+- **No numbering on the site.** Directories are named: `foundations/`, `blocks/`, `usecases/`,
+  `tricks/`, `qc/`, `design/`. The A1/B2/C3 labels in this file are planning shorthand only and
+  do not appear in the material.
+- **No Canvas quizzes.** Quizzes are self-check, on the page, behind collapsible callouts.
+- **No wet-lab exercises, but bench literacy is taught.** Students should finish knowing how a
+  step is actually carried out: what is in the tube, volumes and molarities, incubation and
+  clean-up, how to read a kit manual and a datasheet — just without running it themselves.
+- **Interpretation is in scope.** Reading a fragment-analyser trace, reasoning about where
+  reads land and what a duplicate rate means, without writing any code.
+- **Every named protocol links to its NGS_101 page.** `planning/protocol_links.tsv` maps all
+  840 protocols to name, DOI, citation count and URL.
+- **Repo-only:** this file, `planning/` and `oldpres/` (gitignored) never publish to the site.
+
+## Still open
+
+- Which parts are examined, if any, and how? (No Canvas, so: self-check only, or something
+  summative at the end?)
+- Where to start building: Foundations in order, or one complete vertical slice first — a deck
+  plus readings plus exercises — so the format can be judged before scaling it up?
