@@ -1,7 +1,7 @@
 project:
-  title: "ngs-libprep"
-  # Only these render, so CURRICULUM.md, planning/ and oldpres/ stay off the site.
+  type: website
   output-dir: _site
+  # Only these render, so CURRICULUM.md, planning/ and oldpres/ stay off the site.
   render:
     - "index.qmd"
     - "foundations/**/*.qmd"
@@ -10,6 +10,39 @@ project:
     - "tricks/**/*.qmd"
     - "qc/**/*.qmd"
     - "design/**/*.qmd"
+
+website:
+  title: "NGS library preparation"
+  search:
+    location: sidebar
+    type: textbox
+  sidebar:
+    style: docked
+    alignment: left
+    collapse-level: 3
+    contents:
+      - href: index.qmd
+        text: Overview
+      - section: "Foundations"
+        contents:
+          - section: "Nucleic acids as a building material"
+            contents:
+              - href: foundations/lectures/nucleic-acids.qmd
+                text: Slides
+              - href: foundations/lectures/nucleic-acids-readings.qmd
+                text: Readings
+              - href: foundations/exercises/nucleic-acids.qmd
+                text: Exercises
+          - section: "How sequencers read DNA"
+            contents:
+              - href: foundations/lectures/sequencers-illumina.qmd
+                text: "Slides — Illumina"
+              - href: foundations/lectures/sequencers-other.qmd
+                text: "Slides — other platforms"
+              - href: foundations/lectures/sequencers-readings.qmd
+                text: Readings
+              - href: foundations/exercises/sequencers.qmd
+                text: Exercises
 
 format:
   html:
