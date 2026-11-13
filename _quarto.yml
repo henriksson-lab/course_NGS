@@ -1,5 +1,6 @@
 project:
   title: "ngs-libprep"
+  # Only these render, so CURRICULUM.md, planning/ and oldpres/ stay off the site.
   output-dir: _site
   render:
     - "index.qmd"

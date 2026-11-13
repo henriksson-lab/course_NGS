@@ -5,7 +5,7 @@ $font-family-sans-serif: "Palatino Linotype", "Book Antiqua", Palatino,
   FreeSerif, serif !default;
 
 // colors
-$body-bg: #f0f1eb !default;
+$body-bg: #ffffff !default;
 $body-color: #000 !default;
 $link-color: #51483d !default;
 $selection-bg: #26351c !default;
@@ -29,14 +29,8 @@ $presentation-heading-color: #383d3d !default;
 .reveal pre {
   line-height: 2.2em;
 }
+
 .reveal .small {
   font-size: 0.58em;
   color: #6b6b66;
-}
-
-.reveal section img {
-  background: transparent;
-  border: none;
-  box-shadow: none;
-  margin: 0.3em 0;
 }
