@@ -33,16 +33,26 @@ Only `_site/` is published: `CURRICULUM.md`, `planning/` and `oldpres/` stay out
 
 ## Slides
 
-Use revealjs with the shared theme:
+Use revealjs with the shared theme. The house YAML for a deck:
 
 ```
 ---
 title: "..."
+subtitle: "Part · NGS library preparation"
+author: "Johan Henriksson"
 format:
-    revealjs:
-        theme: [serif, ../../custom.scss]
+  revealjs:
+    theme: [serif, ../../custom.scss]
+    embed-resources: true
+    controls: true     # Quarto hides the arrows on linear decks; this shows them
+    slide-number: true
+    history: false     # one browser-history entry per deck, not one per slide
 ---
 ```
+
+`history: false` matters: with reveal's default, every slide you advance through
+adds a browser-history entry, so leaving a deck with Back takes one press per
+slide viewed.
 
 Save to PDF from the browser: print, landscape, no margins, background graphics on.
 

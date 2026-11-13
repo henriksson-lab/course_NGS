@@ -8,6 +8,7 @@ format:
     embed-resources: true
     controls: true     # Quarto hides the arrows on linear decks; this shows them
     slide-number: true
+    history: false     # one browser-history entry per deck, not one per slide
 ---
 
 ## What this deck is for
