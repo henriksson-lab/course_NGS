@@ -7,3 +7,4 @@ quarto-*.deb
 # The rendered site. Built and published by GitHub Actions from the .qmd
 # sources, so it is not committed.
 /docs/
+__pycache__/

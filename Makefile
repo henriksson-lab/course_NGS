@@ -19,7 +19,7 @@ check:
 
 # Re-generate the conceptual SVG figures (not run by quarto render).
 figs:
-	python3 tools/make_figures.py
+	for f in */make-figs.py; do python3 "$$f"; done
 
 clean:
 	rm -rf .quarto docs

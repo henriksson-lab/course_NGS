@@ -34,7 +34,7 @@ jobs:
       # so a published figure always matches its generator.
       - name: Check the figures are up to date
         run: |
-          python3 tools/make_figures.py
+          for f in */make-figs.py; do python3 "$"; done
           git diff --exit-code -- '*/fig*.svg' || {
             echo "::error::Figures differ from tools/make_figures.py output. Run 'make figs' and commit."
             exit 1
