@@ -16,6 +16,21 @@ explain what each step does to the molecule, and design a new library prep.
   catalogue of tricks. Part E is QC and designing your own protocol.
 - **Unit of material:** a *deck* (revealjs, ≤ 30 slides) + a reading list of original papers +
   an exercise page with Hint/Solution callouts. A module can have several decks.
+- **No programming.** Unlike the course this scaffold came from, there are no coding
+  exercises and no R or shell for the student to write. Bioinformatics is another course.
+  What we use instead:
+  - **Demos** — show a tool, a calculation or an animation running; the student watches and
+    interprets, and does not write it.
+  - **Quizzes** — short factual checks after a deck.
+  - **Design questions** — the main exercise type. "You need to attach a handle to the 5' end
+    of a capped RNA without losing the cap: which block, which enzyme, which oligo?"
+    "This trace shows a 130 bp peak: what went wrong and which step do you change?"
+  - **Enzyme and reagent selection** — a skill in its own right. Students should be able to
+    pick an enzyme from vendor selection charts and datasheets, e.g. NEB's DNA polymerase
+    selection chart (<https://www.neb.com/en/tools-and-resources/selection-charts>), reading
+    off fidelity, strand displacement, 3'→5' exonuclease, thermostability, end type produced,
+    uracil tolerance and hot start, and justifying the choice for a given step. (neb.com
+    refuses automated fetches, so link to the charts rather than copying them.)
 - **Slides:** ≥ 50 % of slides carry a picture, always together with text on the same slide.
   Image sources, in order of preference: our own SVG diagrams; construct diagrams and
   animations from the NGS_101 site (our own work); figures from open-access papers with
@@ -83,24 +98,37 @@ Deck A3 (~25 slides)
 
 ## Part B — Building blocks
 
-Each block gets its own deck(s). Every deck covers: what the block does to the molecule
-(drawn base by base), the enzymes and oligos, the variants, the failure modes, the tricks,
-and which use cases (Part C) and collection protocols use it.
+This is the heart of the course, and the most technical part. Each block is a step you can
+put into a protocol. Every deck covers: what the block does to the molecule (drawn base by
+base), the enzymes and oligos it needs, what it requires of the ends, what it costs, how it
+fails, the *tricks* practitioners use, and which use cases (Part C) and collection protocols
+rely on it.
 
-### B1. Enzyme toolbox
-Decks: B1a polymerases and RTs · B1b ligases, kinases, phosphatases · B1c nucleases ·
-B1d transposases and modifying enzymes
-- ★ Polymerases: proofreading/fidel
+### B1. The enzyme toolbox
+Decks: B1a polymerases and reverse transcriptases · B1b ligases, kinases and phosphatases ·
+B1c nucleases · B1d transposases and modifying enzymes
+- ★ Polymerases: fidelity and proofreading, 3'→5' exonuclease, strand displacement,
+  thermostability and extension rate, hot start, the end type produced (blunt vs A-tailed),
+  uracil tolerance; Klenow and Klenow exo−, T4 DNA polymerase, phi29, Bst, Taq, Q5/KAPA
+- ★ Reverse transcriptases: MMLV-derived, template switching, TGIRT; processivity through
+  structure and modifications; RT stop vs misincorporation
+- ★ Ligases: T4 DNA ligase (blunt, TA, cohesive; PEG crowding), T4 RNA ligase 1 and 2 truncated,
+  pre-adenylated adapters, splinted ligation, circularisation ligases
+- ★ Kinases and phosphatases: T4 PNK, rSAP — controlling which ends can ligate
+- Nucleases: Type II, Type IIS/IIG (cut outside the recognition site), methylation-sensitive
+  pairs, nicking enzymes, exonucleases (Exo I, λ, Exo III), RNase H, RNase I, MNase, DNase I,
+  S1, USER/UDG, Cas9 and Cas12a RNPs
+- ★ Transposases: Tn5 (tagmentation, the 9 bp gap, loaded and fused variants), MuA
+- Modifying enzymes: methyltransferases, TET, β-glucosyltransferase, APOBEC3A, glycosylases,
+  capping and decapping enzymes, T7 RNA polymerase, TdT, poly(A) polymerase
+- ★ **Skill: choosing an enzyme.** Reading vendor selection charts and datasheets (NEB's
+  polymerase, ligase and RNA-polymerase charts; buffer compatibility; unit definitions) and
+  justifying a choice for a step. Recurring exercise type throughout Part B.
+- Tricks: exploiting an activity the enzyme was not sold for (Taq's A-addition, Tn5 on
+  RNA:DNA hybrids, RT template switching, phi29's strand displacement for RCA)
 
-## Part B — The building blocks
-
-This is the heart of the course. Each block is a step you can put into a protocol: what it
-does to the molecule, what it requires of the ends, what it costs, how it fails, and which
-blocks it can be combined with. Protocols in Part C are then read as combinations of these.
-Every block page lists *tricks*: the non-obvious variants practitioners use.
-
-### B1. Attaching a handle — the five ways
-Deck B1 (~30 slides). The central idea of the course: there are only a few ways to put a known
+### B2. Attaching a handle — the five ways
+Deck B2 (~30 slides). The central idea of the course: there are only a few ways to put a known
 sequence onto an unknown molecule.
 - ★ DNA ligation (blunt, TA, cohesive, splinted)
 - ★ RNA ligation (3' pre-adenylated adapter, 5' adapter, circularisation)
@@ -111,8 +139,8 @@ sequence onto an unknown molecule.
 - Tricks: partial/truncated adapters finished by index PCR; two-step PCR to cut noise;
   nested handles; asymmetric adapters; bead-bound handles
 
-### B2. End chemistry
-Deck B2 (~30 slides)
+### B3. End chemistry
+Deck B3 (~30 slides)
 - ★ End states: 5'-P vs 5'-OH, 3'-OH vs 3'-P vs 3'-blocked, overhangs, nicks, gaps
 - ★ End repair and blunting; dA-tailing; fill-in; gap repair after tagmentation
 - ★ Dephosphorylation to suppress unwanted ligation; selective re-phosphorylation
@@ -120,8 +148,8 @@ Deck B2 (~30 slides)
   methylated adapters surviving bisulfite; hairpin adapters; inverted-dT; adaptase and
   single-strand ligation for degraded input; dilute ligation to favour intramolecular events
 
-### B3. Fragmentation and size control
-Deck B3 (~25 slides)
+### B4. Fragmentation and size control
+Deck B4 (~25 slides)
 - ★ Acoustic shearing, enzymatic fragmentation, tagmentation, restriction digest, MNase, DNase I,
   chemical and alkaline hydrolysis
 - ★ Size targets set by the sequencer; size selection by SPRI ratio, double-sided selection,
@@ -131,8 +159,8 @@ Deck B3 (~25 slides)
   site with Type IIS/IIG enzymes to produce fixed-length tags; avoiding fragmentation altogether
   for long reads
 
-### B4. Amplification
-Deck B4 (~30 slides)
+### B5. Amplification
+Deck B5 (~30 slides)
 - ★ PCR: fidelity, cycle number, GC and length bias, duplicates, over-amplification, PCR-free
 - ★ Linear amplification: IVT (T7), single-primer extension
 - Isothermal: RCA, MDA, PTA, MALBAC, LAMP, nicking-enzyme SDA
@@ -141,8 +169,8 @@ Deck B4 (~30 slides)
   suppressing adapter-dimer amplification; splinkerettes to kill one-sided background;
   rolling-circle consensus for error correction
 
-### B5. Selection — keeping what you want
-Deck B5 (~30 slides)
+### B6. Selection — keeping what you want
+Deck B6 (~30 slides)
 - ★ Affinity: streptavidin–biotin, antibodies, oligo-dT, hybridisation capture with baits
 - ★ Depletion: RNase H with DNA oligos, Cas9 cutting, blocking oligos, duplex-specific nuclease
 - Enzymatic selection: exonucleases removing linear or unligated species, methylation-sensitive
@@ -151,8 +179,8 @@ Deck B5 (~30 slides)
 - Tricks: suppression PCR; select by end structure rather than by sequence; carrier nucleic acid
   for low input; spike-in standards
 
-### B6. Barcodes, UMIs and where information lives
-Deck B6 (~30 slides)
+### B7. Barcodes, UMIs and where information lives
+Deck B7 (~30 slides)
 - ★ Sample indexes, unique dual indexes, barcode design (edit distance, colour balance)
 - ★ Cell barcodes: bead-bound, split-pool, plate-based
 - ★ UMIs: where they can be added (ligation, RT, TSO) and why never in PCR; collapsing
@@ -160,8 +188,8 @@ Deck B6 (~30 slides)
 - Tricks: hashing with antibodies or lipids; combinatorial barcodes from a small oligo set;
   staggered/phased primers for base diversity; UMI plus duplex tags for consensus
 
-### B7. Converting chemistry into sequence
-Deck B7 (~30 slides). The trick that makes anything measurable: turn a non-sequence property
+### B8. Converting chemistry into sequence
+Deck B8 (~30 slides). The trick that makes anything measurable: turn a non-sequence property
 into a base change, an end, or a ligation event.
 - ★ Base conversion: bisulfite, enzymatic conversion, TAPS, APOBEC; conversion seen as a change
   the polymerase copies
@@ -172,23 +200,14 @@ into a base change, an end, or a ligation event.
 - Tricks: reduced representation to cut cost; controls that must be run alongside a conversion;
   protect-then-convert strategies
 
-### B8. Compartments
-Deck B8 (~25 slides)
+### B9. Compartments
+Deck E1 (~25 slides)
 - ★ Why compartments: keeping molecules from one cell, one fragment or one complex together
 - Wells and plates, droplets, nuclei as compartments, semi-permeable capsules, hydrogels,
   split-and-pool as a virtual compartment
 - Poisson loading, doublets, collisions, barcode-to-compartment mapping
 - Tricks: fix and permeabilise instead of isolating; two-stage encapsulation; in-situ reactions
   inside nuclei
-
-### B9. Cleanup, quantification and QC
-Deck B9 (~25 slides)
-- ★ SPRI beads: how the ratio sets the cut-off; columns, precipitation, gels
-- ★ Quantification: Qubit vs qPCR vs fragment analyser, and what each actually measures
-- ★ Pooling to equal molarity; denature and load; PhiX
-- Reading a Bioanalyzer trace: adapter dimers, over-amplification, the right insert size
-- Tricks: double-sided selection; diagnostic qPCR to pick a cycle number; small analytical
-  aliquots before committing the sample
 
 ---
 
@@ -199,7 +218,8 @@ reads real protocols from the collection and asks why they differ. The recurring
 *given this question and this sample, design the library; then compare with what the field does.*
 
 ### C1. Genomic DNA
-Deck C1 (~25 slides). Blocks: B3 + B2 + B1 (ligation or Tn5) + B4 + B9.
+Deck C1 (~25 slides). Blocks: B4 fragmentation + B3 end chemistry + B2 handle (ligation or
+Tn5) + B5 amplification + E1 QC.
 - Whole-genome shotgun, PCR-free, degraded and ancient DNA, low input, single-cell WGA
 - Why PCR-free when input allows; duplicate rates; coverage uniformity and GC bias
 - Collection: TruSeq DNA PCR-free, NEBNext Ultra II, Illumina DNA Prep, Nextera XT, MALBAC, PTA
@@ -271,22 +291,70 @@ Deck C10 (~30 slides)
   ultra-long, native barcoding, cDNA and direct RNA; Cas9 enrichment and adaptive sampling
 - Collection: SMRTbell prep 3.0, PacBio Iso-Seq, ONT LSK114, RAD114, ULK114, direct RNA RNA004
 
+## Part D — The trick catalogue
+
+A cross-cutting reference, indexed by the problem rather than by the block. Each entry: the
+problem, the trick, the molecular reason it works, and protocols that use it. Decks here are
+short and can be read in any order; this is also the part a practising student returns to.
+
+### D1. Making the right thing ligate
+- Blocked and inverted ends, dephosphorylation, A/T overhangs, splints, one-sided ligation,
+  dilute ligation for intramolecular events, PEG crowding
+
+### D2. Killing what you do not want
+- Adapter-dimer suppression, suppression PCR, exonuclease clean-up of unligated species,
+  blocking oligos, RNase H depletion, Cas9 depletion, methylation-sensitive digestion
+
+### D3. Getting a handle onto an impossible end
+- Template switching, tailing with TdT or poly(A) polymerase, adaptase and single-strand
+  ligation, cap trapping, circularisation to turn an end into an internal position
+
+### D4. Squeezing information into the read
+- Truncated adapters completed by index PCR, custom sequencing primers, dark cycles,
+  barcodes in the index read vs inline, staggered primers for base diversity
+
+### D5. Counting honestly
+- UMIs and where they may be added, duplex tags, RCA consensus, spike-ins, PCR-free when
+  input allows, limiting cycle number by diagnostic qPCR
+
+### D6. Working with very little, or very degraded, material
+- Carrier nucleic acid, single-strand library prep, pre-amplification then splitting,
+  bead-bound handles to avoid transfer losses, low-volume reactions
+
+### D7. Keeping molecules together
+- Nuclei as compartments, droplets, split-and-pool, fix-and-permeabilise instead of isolating,
+  in-situ reactions, two-stage encapsulation
+
+### D8. Turning a property into a base
+- Base conversion chemistries, protect-then-convert, position-as-information (stops, cuts,
+  junctions), affinity for a modification, native signal readout
+
 ---
 
-## Part D — Designing your own
+## Part E — Quality control and designing your own
 
-### D1. Design patterns and failure modes
-Deck D1 (~30 slides)
+### E1. Cleanup, quantification and QC
+Deck E1 (~25 slides)
+- ★ SPRI beads: how the ratio sets the cut-off; columns, precipitation, gels
+- ★ Quantification: Qubit vs qPCR vs fragment analyser, and what each actually measures
+- ★ Pooling to equal molarity; denature and load; PhiX
+- Reading a Bioanalyzer trace: adapter dimers, over-amplification, the right insert size
+- Tricks: double-sided selection; diagnostic qPCR to pick a cycle number; small analytical
+  aliquots before committing the sample
+
+### E2. Design patterns and failure modes
+Deck E2 (~30 slides)
 - Reading a protocol as a sequence of blocks; drawing the construct after every step
 - Failure modes and their signatures: adapter dimers, one-sided products, chimeras, index
   hopping, low complexity, bias from over-amplification, off-target ligation
-- Controls that distinguish them
-- Tool support: the NGS_101 *Annotate*, *Anneal* and *Sample-sheet* tools
+- The controls that distinguish them
+- Demos: the NGS_101 *Annotate*, *Anneal* and *Sample-sheet* tools run on real constructs
 
-### D2. Capstone
-- Design a library prep for a question of the student's choosing: state the blocks, draw the
-  construct at each step, specify oligos, predict the read structure, name the controls and
-  the expected failure modes. Compare against the closest protocol in the collection.
+### E3. Capstone
+- Design a library prep for a question of your choosing: state the blocks, draw the construct
+  at each step, specify the oligos and the enzymes (with a justification from the selection
+  charts), predict the read structure, name the controls and the expected failure modes.
+  Compare against the closest protocol in the collection.
 
 ---
 
@@ -294,7 +362,7 @@ Deck D1 (~30 slides)
 
 - Which parts are examined, if any, and how?
 - Is there a wet lab component, or is this all paper and reading?
-- How much bioinformatics to include? The old slides pushed analysis to another course, but
-  the "position as information" idea (B7) needs some read-level reasoning.
+- How much read-level reasoning is needed? There is no programming, but "position as
+  information" (B8) and QC (E1) need students to interpret reads and traces.
 - Can the NGS_101 site's construct diagrams be embedded directly in slides, or should the
   course re-draw them?
