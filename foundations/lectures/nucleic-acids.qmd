@@ -5,9 +5,12 @@ author: "Johan Henriksson"
 format:
   revealjs:
     theme: [serif, ../../custom.scss]
-    slide-number: true
     embed-resources: true
-    width: 1200
+    controls: true          # always show the navigation arrows
+    controls-layout: bottom-right
+    slide-number: true
+    menu:
+      side: left
 ---
 
 ## What this deck is for

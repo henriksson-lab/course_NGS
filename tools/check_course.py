@@ -22,7 +22,7 @@ MIN_IMAGE_FRACTION = 0.50
 
 # revealjs slide box and type scale, read from the generated quarto theme:
 #   --r-main-font-size: 40px, --r-heading2-size: 1.6em, slide 1200 x 700
-SLIDE_W, SLIDE_H = 1200.0, 700.0
+SLIDE_W, SLIDE_H = 1050.0, 700.0
 BODY_PX, HEAD_EM, SMALLER = 40.0, 1.6, 0.8
 CHAR_W = 0.50          # average glyph width as a fraction of font size
 LINE_H = 1.30
