@@ -29,25 +29,25 @@ The aim is not to re-teach base pairing. It is to install the habit of asking, a
 protocol step: what is the state of the ends now?
 :::
 
-## A strand has a direction
+## A strand has a direction {.smaller}
 
-![](../img/polarity.svg){width=78%}
+![](../img/polarity.svg){width=68%}
 
 - The backbone is asymmetric: a **5'-phosphate** at one end, a **3'-hydroxyl** at the other
 - Polymerases only ever add to a **3'-OH**. There is no enzyme that extends a 5' end
 - The two strands of a duplex run antiparallel, so "the left end" is 5' on one strand and
   3' on the other
 
-## Two ends, two chemistries
+## Two ends, two chemistries {.smaller}
 
-![](../img/end-chemistry.svg){width=68%}
+![](../img/end-chemistry.svg){width=60%}
 
 - A ligase needs a **5'-phosphate** on one side and a **free 3'-OH** on the other
 - Synthetic oligos arrive **without** a 5'-phosphate unless you pay for one
 - A blocked 3' end is a deliberate dead end — useful when you want a molecule to prime
   nothing and ligate nowhere
 
-## Cut ends have a shape
+## Cut ends have a shape {.smaller}
 
 ![](../img/end-types.svg){width=88%}
 
@@ -56,18 +56,18 @@ protocol step: what is the state of the ends now?
 - Shearing gives you ragged, damaged ends — a mixture of all of the above, which is why
   end repair exists
 
-## Nicks and gaps are not the same thing
+## Nicks and gaps are not the same thing {.smaller}
 
-![](../img/nick-gap.svg){width=72%}
+![](../img/nick-gap.svg){width=52%}
 
 - A **nick** is a broken backbone with every base present: a ligase can seal it
 - A **gap** is missing bases: a polymerase must fill it in first, then a ligase seals
 - Several protocols depend on this distinction — Tn5 leaves a 9 nt gap, nick translation
   walks a nick along the molecule
 
-## What a ligase actually requires
+## What a ligase actually requires {.smaller}
 
-![](../img/ligation-requirements.svg){width=72%}
+![](../img/ligation-requirements.svg){width=60%}
 
 - The geometry is identical in both cases. Only the chemistry differs
 - Forgetting a 5'-phosphate is one of the most common silent failures in library prep:
@@ -76,9 +76,9 @@ protocol step: what is the state of the ends now?
 
 [Lehman 1974, *DNA ligase: structure, mechanism, and function*, doi:10.1126/science.186.4166.790]{.small}
 
-## End state decides what is possible
+## End state decides what is possible {.smaller}
 
-![](../img/end-to-enzyme.svg){width=92%}
+![](../img/end-to-enzyme.svg){width=76%}
 
 Read every protocol step as a transformation: **which end state goes in, which comes out.**
 
@@ -97,14 +97,13 @@ ligating to each other.
 
 [Non-templated A addition: Clark 1988, doi:10.1093/nar/16.20.9677]{.small}
 
-## Hybridisation: everything that finds its target
+## Hybridisation and Tm {.smaller}
 
-![](../img/tm.svg){width=78%}
+![](../img/tm.svg){width=64%}
 
-- **Tm** is where half the duplexes are open. It is a property of a pair of sequences in a
-  particular buffer, not of one oligo alone
-- Every primer, probe, splint, bait and poly(A) capture step is a hybridisation with a Tm
-  you are implicitly choosing
+- **Tm** is a property of a duplex *in a buffer*, not of one oligo on its own
+- Every primer, probe, splint, bait and capture step is a hybridisation whose Tm you are
+  choosing, whether you meant to or not
 
 [SantaLucia 1998, nearest-neighbour thermodynamics, doi:10.1073/pnas.95.4.1460]{.small}
 
@@ -122,9 +121,9 @@ Where it bites:
 Rules of thumb: longer and more GC-rich raises Tm; mismatches and formamide lower it; salt
 raises it by shielding the backbone's negative charge.
 
-## When oligos do the wrong thing
+## When oligos do the wrong thing {.smaller}
 
-![](../img/hairpin-dimer.svg){width=94%}
+![](../img/hairpin-dimer.svg){width=85%}
 
 - An oligo that folds on itself cannot prime
 - Two oligos that anneal to each other get amplified as enthusiastically as your real target
@@ -141,29 +140,27 @@ They are short, perfectly formed, and amplify better than anything else in the t
 
 [Head et al. 2014, *Library construction for NGS: overviews and challenges*, doi:10.2144/000114133]{.small}
 
-## Writing a molecule down
+## Writing a molecule down {.smaller}
 
-![](../img/revcomp.svg){width=72%}
+![](../img/revcomp.svg){width=60%}
 
 - Convention: sequences are always written **5'→3'** unless stated otherwise
 - The same molecule has two equally valid written forms
 - When a protocol gives you an oligo, you must work out which strand it anneals to
 
-## Degenerate positions
+## Degenerate positions {.smaller}
 
-![](../img/iupac.svg){width=66%}
+![](../img/iupac.svg){width=52%}
 
-- `N` in an ordered oligo means the synthesiser used a mixture of all four bases at that
-  position: one tube, millions of different molecules
+- `N` means the synthesiser used all four bases at that position: one tube, many molecules
 - This is how **UMIs** and **random hexamers** are made
-- `VN` at the end of an oligo-dT primer anchors it at the start of the poly(A) tail instead
-  of sliding along it
+- `VN` anchors an oligo-dT primer at the start of the poly(A) tail
 
 [UMIs: Kivioja et al. 2011, doi:10.1038/nmeth.1778]{.small}
 
-## An oligo is more than its sequence
+## An oligo is more than its sequence {.smaller}
 
-![](../img/oligo-mods.svg){width=94%}
+![](../img/oligo-mods.svg){width=77%}
 
 What you specify when ordering decides which enzymes can act on it.
 
@@ -179,18 +176,18 @@ What you specify when ordering decides which enzymes can act on it.
 This is why adapters are often ordered as two shorter oligos and annealed, rather than as one
 long one.
 
-## DNA and RNA are different materials
+## DNA and RNA are different materials {.smaller}
 
-![](../img/dna-vs-rna.svg){width=84%}
+![](../img/dna-vs-rna.svg){width=50%}
 
 - The 2'-OH makes RNA chemically reactive: it self-cleaves at alkaline pH and at high
   temperature
 - RNases are everywhere, need no cofactors, and survive autoclaving
 - The RNA:DNA hybrid is its own substrate, with its own enzymes
 
-## RNA ends are more varied than DNA ends
+## RNA ends are more varied than DNA ends {.smaller}
 
-![](../img/rna-ends.svg){width=90%}
+![](../img/rna-ends.svg){width=67%}
 
 The end a transcript happens to have determines which chemistry can attach anything to it.
 

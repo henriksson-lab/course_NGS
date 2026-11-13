@@ -10,6 +10,7 @@
 Run from anywhere:  python3 tools/check_course.py
 Exits 1 if any rule is broken, so it can gate a commit.
 """
+import math
 import os
 import re
 import sys
@@ -18,6 +19,13 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PARTS = ["foundations", "blocks", "usecases", "tricks", "qc", "design"]
 MAX_SLIDES = 30
 MIN_IMAGE_FRACTION = 0.50
+
+# revealjs slide box and type scale, read from the generated quarto theme:
+#   --r-main-font-size: 40px, --r-heading2-size: 1.6em, slide 1200 x 700
+SLIDE_W, SLIDE_H = 1200.0, 700.0
+BODY_PX, HEAD_EM, SMALLER = 40.0, 1.6, 0.8
+CHAR_W = 0.50          # average glyph width as a fraction of font size
+LINE_H = 1.30
 
 IMG = re.compile(r"!\[[^\]]*\]\(([^)]+?)(?:\s+\"[^\"]*\")?\)|<img[^>]+src=\"([^\"]+)\"")
 
@@ -40,6 +48,51 @@ def slides(text):
 
 def images_in(s):
     return [m.group(1) or m.group(2) for m in IMG.finditer(s)]
+
+
+def svg_size(path):
+    m = re.search(r'viewBox="0 0 ([\d.]+) ([\d.]+)"', open(path).read())
+    return (float(m.group(1)), float(m.group(2))) if m else None
+
+
+def estimate_height(slide, qmd_dir):
+    """Rough height of a slide's content in slide coordinates.
+
+    revealjs does not shrink overflowing content, it clips it, and this course cannot
+    rely on a browser being available to check. The estimate is deliberately crude:
+    it exists to catch gross overflow, not to be exact.
+    """
+    smaller = ".smaller" in slide.split("\n")[0]
+    scale = SMALLER if smaller else 1.0
+    body = BODY_PX * scale
+    head = BODY_PX * HEAD_EM * scale
+    total = 0.0
+
+    heading = re.sub(r"\{[^}]*\}", "", slide.split("\n")[0][3:]).strip()
+    total += max(1, math.ceil(len(heading) / (SLIDE_W / (head * CHAR_W)))) * head * LINE_H + 20
+
+    for src in images_in(slide):
+        if src.startswith(("http", "data:")):
+            continue
+        pct = 100.0
+        m = re.search(re.escape(src) + r"\)\{width=(\d+)%", slide)
+        if m:
+            pct = float(m.group(1))
+        size = svg_size(os.path.join(qmd_dir, src))
+        if size:
+            w = SLIDE_W * pct / 100.0
+            total += w / size[0] * size[1] + 24
+
+    for ln in slide.split("\n")[1:]:
+        t = ln.strip()
+        if not t or t.startswith(("![", ":::", "<img")):
+            continue
+        font = body * 0.58 if t.startswith("[") and "{.small}" in t else body
+        t = re.sub(r"\{[^}]*\}|[*`\[\]]|^[-|] ", "", t)
+        if not t.strip():
+            continue
+        total += max(1, math.ceil(len(t) / (SLIDE_W / (font * CHAR_W)))) * font * LINE_H
+    return total
 
 
 def text_of(slide):
@@ -70,6 +123,12 @@ def check_deck(path, problems):
             problems.append(f"{rel}: picture-only slide '{head}' — "
                             f"a picture must share its slide with text")
     for s in sl:
+        if images_in(s):
+            h = estimate_height(s, os.path.dirname(path))
+            if h > SLIDE_H:
+                head = re.sub(r"\{[^}]*\}", "", s.split("\n")[0][3:]).strip()[:48]
+                problems.append(f"{rel}: slide '{head}' is about {h:.0f}px of content "
+                                f"in a {SLIDE_H:.0f}px slide — it will be clipped")
         for src in images_in(s):
             if src.startswith(("http://", "https://", "data:")):
                 continue

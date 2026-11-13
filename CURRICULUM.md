@@ -53,8 +53,14 @@ Legend: **★** core concept used by most protocols · *(rare)* specialised, exa
 
 ## Part A — What the sequencer needs
 
-### A1. Nucleic acids as a building material
-Deck A1 (~25 slides)
+### A1. Nucleic acids as a building material  ✅ built
+`foundations/lectures/nucleic-acids.qmd` (22 slides, 13 with figures) ·
+`…-readings.qmd` · `foundations/exercises/nucleic-acids.qmd`
+
+This module is the template for the rest: generated SVG figures in `<part>/img/`, a deck
+capped at 30 slides, a separate readings page with DOIs checked against Crossref, and an
+exercise page of design questions, traps and an enzyme-chart exercise. `make check` enforces
+the rules.
 - ★ Strand polarity; 5'-phosphate and 3'-OH; why every enzyme cares about end states
 - ★ ss vs ds, RNA:DNA hybrids, nicks, gaps, 5'/3' overhangs, blunt ends
 - ★ Hybridisation and Tm, secondary structure, hairpins, primer/adapter dimers
