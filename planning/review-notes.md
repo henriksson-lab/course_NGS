@@ -359,3 +359,26 @@ does not make.
 repetition between the trick catalogue and the unit that owns a block is deliberate, but a
 reader comparing the two sees two different answers to what looks like one question. Either
 use the same load in both, or have the trick-catalogue figure say it is a different scenario.
+
+## Colour as a verdict: the pattern the figure audit kept hitting
+
+Across all seven audit groups the commonest fault was not a collision but a colour that
+graded something the course refuses to grade. `OK` green and `BAD` red were used as plain
+category colours in figures that compare methods, so a reader sees one protocol endorsed and
+another marked as failed — in a course whose rule is to state what a chemistry does and leave
+the choice alone.
+
+Fixed where the colour contradicted the figure's own caption or slide. Left, because
+recolouring an overview is a design decision rather than a fault fix:
+
+- `genomic-dna/fig02-input-scale` and `fig21-decision` — green PCR-free, red single-cell WGA,
+  though WGA is the right route for one cell
+- `selection/fig01-map` — BAD for "depletion", OK for "enzymatic"
+- `compartments/fig20-knee` — the keep-these-barcodes line drawn in BAD
+- `modifications/fig15`, `fig32` — OK/HOT/TOP as card identity, which puts one named method
+  in green beside its alternatives
+- `chemistry-to-sequence` — nine figures where BAD means "the base the chemistry rewrote"
+
+Two root causes worth fixing once rather than per figure: `HOT` and `BAD` are too close to
+distinguish at slide size, and figlib has no neutral categorical palette, so an author
+reaching for a third colour reaches for a semantic one.

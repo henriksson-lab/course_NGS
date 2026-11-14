@@ -157,10 +157,10 @@ def fig_capture():
         out.append(box(60, yy - 8, 22, 14, "", BLUEF, TOP))
         out.append(line(82, yy - 1, 150, yy - 1, BOT if on else MUTE, 3))
         out.append(box(150, yy - 8, 22, 14, "", REDF, BAD))
-    out.append(line(96, 112, 138, 112, HOT, 3))
-    out.append(dot(96, 112, 4, HOT))
-    out.append(t(104, 106, "", 10))
-    out.append(t(190, 118, "bait (biotin)", 11.5, HOT))
+    # the bait sits just above the on-target fragment, not midway between two rows
+    out.append(line(96, 120, 138, 120, HOT, 3))
+    out.append(dot(96, 120, 4, HOT))
+    out.append(t(190, 124, "bait (biotin)", 11.5, HOT))
     out.append(t(190, 98, "off target", 11.5, MUTE))
     # panel 2: bead takes the on-target only
     x0 = 265
@@ -177,8 +177,9 @@ def fig_capture():
     out.append(box(x0 + 20, 100, 22, 14, "", BLUEF, TOP))
     out.append(line(x0 + 42, 107, x0 + 110, 107, BOT, 3))
     out.append(box(x0 + 110, 100, 22, 14, "", REDF, BAD))
-    out.append(arrow(x0 + 46, 138, x0 + 6, TOP))
-    out.append(arrow(x0 + 106, 138, x0 + 146, BAD))
+    # the two primers extend towards each other, across the insert
+    out.append(arrow(x0 + 20, 138, x0 + 66, TOP))
+    out.append(arrow(x0 + 132, 138, x0 + 86, BAD))
     out.append(t(x0 + 76, 176, "PCR with P5 and P7 primers", 11.5, MUTE, anchor="middle"))
     out.append(t(x0 + 76, 194, "the baits are not amplified", 11.5, MUTE, anchor="middle"))
     out.append(t(40, 226, "The wash is the selection step: too gentle keeps off-target DNA, too harsh "
@@ -274,22 +275,26 @@ def fig_clamp():
     out = [t(40, 26, "A blocking oligo sits on the abundant allele and cannot be extended.", 14, INK)]
     wt, bl = "GGAGCTGGTGGCGTA", "CCTCGACCACCGCAT"
     out.append(t(40, 56, "wild-type template: blocker pairs perfectly, so it stays and blocks the polymerase", 12.5, INK))
-    b, w = duplex(60, 80, wt, bl, ltop="5'", rtop="3'", lbot="3'", rbot="5'", labels=True)
+    # the duplex starts clear of the left margin so the C3 group can be drawn on the
+    # blocker's 3' end, which is the end that has to be blocked
+    X = 120
+    b, w = duplex(X, 80, wt, bl, ltop="5'", rtop="3'", lbot="3'", rbot="5'", labels=True)
     out.append(b)
-    out.append(box(60 + w + 38, 100, 34, 18, "C3", "#f0f0f0", MUTE, 10))
-    out.append(t(60 + w + 84, 114, "3' block", 11.5, MUTE))
+    out.append(box(56, 101, 34, 18, "C3", "#f0f0f0", MUTE, 10))
+    out.append(line(90, 110, 104, 110, MUTE, 1.4))
+    out.append(t(73, 136, "3' block", 11.5, MUTE, anchor="middle"))
     out.append(t(40, 156, "mutant template: one mismatch, the blocker melts off, the primer extends", 12.5, INK))
     mt = "GGAGCTGATGGCGTA"
-    s1, _ = seq(60, 182, mt, TOP)
+    s1, _ = seq(X, 182, mt, TOP)
     out.append(s1)
-    s2, _ = seq(60, 212, bl, BOT)
+    s2, _ = seq(X, 212, bl, BOT)
     out.append(s2)
-    out.append(pairs(60, 182, 212, mt, bl))
-    # mismatch at index 8: T? mt[8]='T' vs bl[8]='C'
-    out.append(f'<rect x="{60 + 7 * DX - 2}" y="168" width="{DX + 2}" height="54" fill="none" stroke="{BAD}" stroke-width="1.4"/>')
-    out.append(t(60 + 7 * DX + 6, 240, "mismatch", 11.5, BAD, anchor="middle"))
-    out.append(t(330, 182, "the mismatch costs several degrees of Tm", 11.5, MUTE))
-    out.append(t(330, 200, "LNA or PNA blockers widen the gap", 11.5, MUTE))
+    out.append(pairs(X, 182, 212, mt, bl))
+    # mismatch at index 7: mt[7]='A' vs bl[7]='C'
+    out.append(f'<rect x="{X + 7 * DX - 2}" y="168" width="{DX + 2}" height="54" fill="none" stroke="{BAD}" stroke-width="1.4"/>')
+    out.append(t(X + 7 * DX + 6, 240, "mismatch", 11.5, BAD, anchor="middle"))
+    out.append(t(352, 182, "the mismatch costs several degrees of Tm", 11.5, MUTE))
+    out.append(t(352, 200, "LNA or PNA blockers widen the gap", 11.5, MUTE))
     return svg(640, 260, "".join(out))
 
 
@@ -361,13 +366,14 @@ def fig_mspi():
     out.append(b)
     # cut top between idx3|idx4, bottom between idx5|idx6
     cx_top = 60 + 4 * DX - 1
-    out.append(line(cx_top, 52, cx_top, 76, HOT, 2))
+    out.append(line(cx_top, 58, cx_top, 76, HOT, 2))
     cx_bot = 60 + 6 * DX - 1
     out.append(line(cx_bot, 90, cx_bot, 112, HOT, 2))
     out.append(t(60 + w + 16, 76, "C^CGG leaves a 2-base 5' overhang", 12, HOT))
     out.append(t(40, 150, "5-methylcytosine on the inner C:", 13, INK))
-    out.append(dot(60 + 4 * DX + 4, 62, 3.6, BAD))
-    out.append(t(60 + 4 * DX + 4, 46, "m", 10.5, BAD, anchor="middle"))
+    # the methyl mark sits above its base, not on top of the letter
+    out.append(dot(60 + 4 * DX + 4, 52, 3.6, BAD))
+    out.append(t(60 + 4 * DX + 4, 42, "m", 10.5, BAD, anchor="middle"))
     rows = [("MspI", "cuts", OK), ("HpaII, unmethylated", "cuts", OK), ("HpaII, methylated", "blocked", BAD)]
     for i, (e, r, c) in enumerate(rows):
         out.append(t(60, 176 + i * 22, e, 12.5, INK))
@@ -467,14 +473,17 @@ def fig_suppression():
     out = [t(40, 26, "Suppression PCR: molecules with identical ends fold into panhandles and stop.", 14, INK)]
     # same ends
     out.append(t(40, 62, "same adapter at both ends", 13, BAD))
-    out.append(line(80, 110, 260, 110, MUTE, 2.6))
-    out.append(f'<path d="M 80 110 C 70 70, 120 70, 130 100" fill="none" stroke="{TOP}" stroke-width="2.6"/>')
-    out.append(f'<path d="M 260 110 C 270 70, 220 70, 210 100" fill="none" stroke="{TOP}" stroke-width="2.6"/>')
-    out.append(line(130, 100, 210, 100, MUTE, 2.6))
-    out.append(t(170, 130, "stem forms inside one molecule", 11, MUTE, anchor="middle"))
-    out.append(arrow(70, 144, 106, HOT))
-    out.append(cross(114, 144, BAD, 6))
-    out.append(t(130, 148, "primer cannot compete", 11.5, BAD))
+    # a panhandle: the two identical ends anneal into a short stem, the rest is the loop
+    out.append(f'<path d="M 140 106 A 30 30 0 1 1 140 114" fill="none" stroke="{MUTE}" '
+               f'stroke-width="2.6"/>')
+    out.append(line(70, 106, 140, 106, TOP, 2.6))
+    out.append(line(70, 114, 140, 114, TOP, 2.6))
+    for xt in (80, 94, 108, 122, 136):
+        out.append(line(xt, 107.5, xt, 112.5, MUTE, 1))
+    out.append(t(82, 136, "the two A ends pair", 11, MUTE, anchor="middle"))
+    out.append(arrow(70, 166, 106, HOT))
+    out.append(cross(114, 166, BAD, 6))
+    out.append(t(130, 170, "primer cannot compete", 11.5, BAD))
     # different ends
     out.append(t(400, 62, "different adapters at the two ends", 13, OK))
     out.append(line(400, 110, 600, 110, MUTE, 2.6))
@@ -543,7 +552,9 @@ def fig_carrier():
 def fig_spike():
     out = [t(40, 26, "A spike-in is the only ruler that does not move with the sample.", 14, INK)]
     data = {"control": (100, 100, 100), "treated": (50, 50, 100)}
-    for p, (name, sub) in enumerate([("raw reads", "raw"), ("scaled to cell reads", "cells"),
+    # panel 1 is the truth, not a measurement: raw read counts depend on sequencing
+    # depth, so they are not a ruler either
+    for p, (name, sub) in enumerate([("the truth, per cell", "raw"), ("scaled to cell reads", "cells"),
                                      ("scaled to the spike-in", "spike")]):
         x0 = 40 + p * 230
         out.append(t(x0 + 90, 52, name, 13, INK, anchor="middle"))
@@ -559,10 +570,10 @@ def fig_spike():
             bx = x0 + 30 + k * 70
             out.append(f'<rect x="{bx}" y="{170 - h * 0.9:.0f}" width="40" height="{h * 0.9:.0f}" fill="{TOP if k == 0 else HOT}" opacity="0.85"/>')
             out.append(t(bx + 20, 186, cond, 11, MUTE, anchor="middle"))
-    out.append(t(40, 214, "Treatment halves transcription of both cellular genes. Scaled to cell reads, the "
-                          "genes look unchanged.", 13.5, INK))
-    out.append(t(40, 234, "Scaled to a fixed spike-in added per cell, the halving appears. Numbers are made up.",
-                 13.5, OK))
+    out.append(t(40, 214, "Per cell, treatment halves transcription. Scaled to cell reads, the change "
+                          "vanishes.", 13.5, INK))
+    out.append(t(40, 234, "Scaled to a fixed spike-in added per cell, the halving reappears. Numbers are "
+                          "made up.", 13.5, OK))
     return svg(720, 254, "".join(out))
 
 

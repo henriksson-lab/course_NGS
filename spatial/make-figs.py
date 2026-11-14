@@ -20,7 +20,8 @@ def lines3(x, y, rows, size=12.5, fill=MUTE, step=17, anchor="start"):
 
 # ---------------------------------------------------------------- 1. three routes
 def fig_three_routes():
-    out = []
+    out = [t(30, 26, "Three ways to put position into a sequence.", 14, INK),
+           '<g transform="translate(0,26)">']
     xs = [30, 280, 530]
     # route 1: array capture
     x0 = xs[0]
@@ -49,7 +50,8 @@ def fig_three_routes():
     out.append(lines3(x0, 160, ["Copy the RNA in the cell, amplify", "it in place, and sequence it", "under a microscope"]))
     out.append(t(30, 236, "Routes 1 and 2 turn position into sequence before the library is made; "
                           "route 3 skips the library.", 14, INK))
-    return svg(760, 256, "".join(out))
+    out.append("</g>")
+    return svg(760, 288, "".join(out))
 
 
 # ---------------------------------------------------------------- 2. capture oligo
@@ -73,9 +75,11 @@ def fig_capture_oligo():
     out.append(t(x + 6, y - 8, "3'", 12.5, MUTE))
     for i in range(0, 160, 16):
         out.append(line(px + i + 8, y + 30, px + i + 8, y + 42, MUTE, 1))
+    # the mRNA runs antiparallel to the oligo, so its 3' poly(A) end lies under the
+    # 5' side of the poly(T) and the body continues past the VN anchor, to the right
     out.append(line(px - 10, y + 48, x + 10, y + 48, BOT, 2.6))
-    out.append(t(px - 16, y + 52, "mRNA", 12.5, BOT, anchor="end"))
-    out.append(t(x + 16, y + 52, "poly(A) tail", 12.5, BOT))
+    out.append(t(px - 16, y + 52, "poly(A) tail", 12.5, BOT, anchor="end"))
+    out.append(t(x + 16, y + 52, "mRNA", 12.5, BOT))
     out.append(t(30, 222, "RNA is reverse transcribed from the oligo, so the cDNA inherits barcode and UMI in one step.", 14, HOT))
     return svg(640, 242, "".join(out))
 
@@ -141,8 +145,8 @@ def fig_fixation():
         out.append(t(30, y + 22, a, 13.5, HOT, weight="bold"))
         x = 250
         if r == 0:
-            out.append(line(x, y + 18, x + 150, y + 18, BOT, 2.6))
-            out.append(t(x + 154, y + 22, "AAAA", 12, BOT, family=MONO))
+            out.append(line(x, y + 18, x + 118, y + 18, BOT, 2.6))
+            out.append(t(x + 122, y + 22, "AAAA", 12, BOT, family=MONO))
         elif r == 1:
             for i, (s, e) in enumerate([(0, 40), (52, 90), (104, 150)]):
                 out.append(line(x + s, y + 18, x + e, y + 18, BOT, 2.6))
@@ -165,7 +169,8 @@ def fig_fixation():
 
 # ---------------------------------------------------------------- 6. workflow
 def fig_workflow():
-    out = []
+    out = [t(30, 26, "The Visium workflow, in order.", 14, INK),
+           '<g transform="translate(0,22)">']
     steps = [["section on slide"], ["fix, stain, image"], ["permeabilise"], ["reverse transcribe", "on the slide"],
              ["second strand"], ["KOH release"], ["cDNA PCR"], ["fragment, adapter,", "index PCR"]]
     bw, bh = 150, 44
@@ -176,12 +181,14 @@ def fig_workflow():
         out.append(box(x, y, bw, bh, "", RED if hot else BLUE, HOT if hot else TOP))
         for j, l in enumerate(ls):
             yy = y + 27 if len(ls) == 1 else y + 19 + j * 15
-            out.append(t(x + bw / 2, yy, l, 13, INK, anchor="middle"))
+            # number the boxes, so "step 6" in the note below can be checked
+            out.append(t(x + bw / 2, yy, ("%d  %s" % (i + 1, l)) if j == 0 else l, 13, INK, anchor="middle"))
         if c < 3:
             out.append(arrow(x + bw + 3, y + bh / 2, x + bw + 22, MUTE, 1.5, 5))
     out.append(t(30, 186, "The slide is discarded after step 6: from there on it is an ordinary bulk cDNA library in a tube.", 14, INK))
     out.append(t(30, 210, "Everything that matters spatially happens in the first four boxes.", 14, HOT))
-    return svg(740, 228, "".join(out))
+    out.append("</g>")
+    return svg(740, 252, "".join(out))
 
 
 # ---------------------------------------------------------------- 7. read layout
@@ -374,8 +381,8 @@ def fig_geomx_construct():
     out.append(t(30, 66, "released tag", 12.5, MUTE))
     row(150, 50, [("SPR1 20", 20, BLUE, TOP), ("UMI+ID 26", 26, GREEN, OK), ("SPR2 20", 20, BLUE, TOP)])
     out.append(t(30, 142, "after PCR", 12.5, MUTE))
-    row(110, 126, [("P5 29", 29, BLUE, TOP), ("i5", 8, GREEN, OK), ("SPR1 33", 33, BLUE, TOP), ("UMI 14", 14, GREEN, OK),
-                   ("ID 12", 12, RED, BAD), ("SPR2 34", 34, BLUE, TOP), ("i7", 8, GREEN, OK), ("P7 24", 24, BLUE, TOP)])
+    row(110, 126, [("P5 29", 29, BLUE, TOP), ("i5 8", 8, GREEN, OK), ("SPR1 33", 33, BLUE, TOP), ("UMI 14", 14, GREEN, OK),
+                   ("ID 12", 12, RED, HOT), ("SPR2 34", 34, BLUE, TOP), ("i7 8", 8, GREEN, OK), ("P7 24", 24, BLUE, TOP)])
     out.append(t(110, 200, "162 bp in all. The 12-nt RTS ID names the target gene or antibody; the well's index names the region.", 12.5, MUTE))
     out.append(t(30, 232, "Short paired-end reads are enough, because what is read is an identifier, not a transcript.", 14, HOT))
     return svg(720, 250, "".join(out))
@@ -431,9 +438,10 @@ def fig_starmap():
     out.append(f'<path d="M 296 80 C 280 190, 440 190, 420 80" fill="none" stroke="{HOT}" stroke-width="3"/>')
     out.append(t(358, 128, "padlock probe", 12.5, HOT, anchor="middle"))
     out.append(t(358, 144, "gene code", 12.5, HOT, anchor="middle"))
-    out.append(line(262, 90, 330, 90, BAD, 3))
-    out.append(t(446, 96, "12-nt tail of the primer pairs", 12.5, BAD))
-    out.append(t(446, 113, "with both padlock ends", 12.5, BAD))
+    # the tail belongs to the primer, so it is drawn in the primer's colour, not in BAD
+    out.append(line(262, 90, 330, 90, TOP, 3))
+    out.append(t(446, 96, "12-nt tail of the primer pairs", 12.5, TOP))
+    out.append(t(446, 113, "with both padlock ends", 12.5, TOP))
     out.append(t(446, 136, "T4 ligase then closes the circle:", 12.5, MUTE))
     out.append(t(446, 153, "no match at the junction, no circle", 12.5, MUTE))
     out.append(t(30, 222, "Phi29 copies the circle from the primer, the amplicon is cast in a gel, and the code is read in rounds.", 14, HOT))

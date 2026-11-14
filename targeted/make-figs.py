@@ -42,8 +42,10 @@ def fig_strategies():
         out.append(rect(x + 80, 112, 80, 16, PALE_OK, OK))
         out.append(t(x + 120, 106, "target", 11.5, OK, anchor="middle"))
         if i == 0:
-            out.append(arrow(x + 60, 100, x + 100, HOT))
-            out.append(arrow(x + 190, 142, x + 150, HOT))
+            # the primers flank the target: both 3' ends stop outside the box,
+            # so the product spans the whole target
+            out.append(arrow(x + 38, 100, x + 78, HOT))
+            out.append(arrow(x + 202, 142, x + 162, HOT))
             out.append(t(x, 170, "product: only the region between", 12, MUTE))
             out.append(t(x, 185, "the two primers, exponentially", 12, MUTE))
         elif i == 1:
@@ -162,9 +164,10 @@ def fig_cas9():
     out.append(line(30, 90, 640, 90, BOT, 3))
     for x in (60, 140, 220, 440, 520, 600):
         out.append(dot(x, 85, 4, MUTE))
-    out.append(t(30, 66, "1 Dephosphorylate all ends: background cannot ligate", 12.5, MUTE))
-    out.append(line(300, 60, 300, 112, HOT, 2.5, dash="4 3"))
-    out.append(line(380, 60, 380, 112, HOT, 2.5, dash="4 3"))
+    out.append(t(30, 58, "1 Dephosphorylate all ends: background cannot ligate", 12.5, MUTE))
+    # the cut marks start below that line, so neither crosses its text
+    out.append(line(300, 66, 300, 112, HOT, 2.5, dash="4 3"))
+    out.append(line(380, 66, 380, 112, HOT, 2.5, dash="4 3"))
     out.append(t(340, 130, "2 Cas9 cuts both sides of the target,", 12.5, HOT, anchor="middle"))
     out.append(t(340, 146, "leaving 5'-phosphate ends", 12.5, HOT, anchor="middle"))
     out.append(rect(296, 160, 10, 10, ADA))
@@ -186,7 +189,7 @@ def fig_digest():
     out.append(t(30 + 130, 118, "CpG island", 12, OK, anchor="middle"))
     out.append(rect(30 + 310, 94, 60, 10, PALE_OK, OK))
     out.append(rect(30 + 540, 94, 60, 10, PALE_OK, OK))
-    out.append(t(30, 56, "MspI cuts at C^CGG: it finds CpG-rich DNA", 12.5, HOT))
+    out.append(t(30, 50, "MspI cuts at C^CGG: it finds CpG-rich DNA", 12.5, HOT))
     # selected fragments
     for a, b in [(120, 135), (330, 345), (560, 575)]:
         out.append(rect(30 + a, 140, b - a, 12, OK))
@@ -284,10 +287,12 @@ def fig_duplex():
             ("strand B consensus", "TGCAAGCTTG", INK, ""),
             ("duplex consensus", "ACGTTCGAAC", OK, "agree: accepted")]
     out.append(t(60, 150, "A damage or PCR error on one strand shows only on that strand:", 13, INK))
-    out.append(t(60, 172, "strand A read:  ACGTTCGAAC", 13, INK, family=MONO))
-    out.append(t(60, 190, "strand B read:  TGCAAGCTTG, complement matches: no mutation", 13, OK, family=MONO))
-    out.append(t(60, 214, "strand A read:  ACGTTCTAAC", 13, BAD, family=MONO))
-    out.append(t(60, 232, "strand B read:  TGCAAGCTTG, does not match A: rejected", 13, BAD, family=MONO))
+    # strand B is written in the duplex's orientation above (3'->5'), not as the
+    # sequencer emits it, so it is not called a read
+    out.append(t(60, 172, "strand A read:      ACGTTCGAAC", 13, INK, family=MONO))
+    out.append(t(60, 190, "strand B, as drawn: TGCAAGCTTG, complement matches: no mutation", 13, OK, family=MONO))
+    out.append(t(60, 214, "strand A read:      ACGTTCTAAC", 13, BAD, family=MONO))
+    out.append(t(60, 232, "strand B, as drawn: TGCAAGCTTG, does not match A: rejected", 13, BAD, family=MONO))
     out.append(t(60, 256, "A true mutation is present on both strands, in complementary form.", 13, INK))
     return svg(680, 272, "".join(out))
 
@@ -396,16 +401,18 @@ def fig_compare():
 
 def fig_decision():
     out = [t(20, 24, "From question to targeting method: a decision sketch.", 14)]
-    rows = [("a few loci, many samples", "multiplex PCR, tiled amplicons", OK),
-            ("tens to thousands of genes", "hybrid capture, with UMIs if rare variants", ADA),
-            ("tiny panel, very low input", "smMIPs or padlock probes", HOT),
-            ("methylation at CpG-rich regions", "RRBS: restriction enzyme + bisulfite", BAD),
-            ("a locus in native long DNA", "Cas9-guided enrichment, nanopore", MUTE)]
-    for i, (a, b, col) in enumerate(rows):
+    # one colour for every route: none of these is a success or a failure, and the
+    # course leaves the choice to the reader
+    rows = [("a few loci, many samples", "multiplex PCR, tiled amplicons"),
+            ("tens to thousands of genes", "hybrid capture, with UMIs if rare variants"),
+            ("tiny panel, very low input", "smMIPs or padlock probes"),
+            ("methylation at CpG-rich regions", "RRBS: restriction enzyme + bisulfite"),
+            ("a locus in native long DNA", "Cas9-guided enrichment, nanopore")]
+    for i, (a, b) in enumerate(rows):
         y = 44 + i * 48
         out.append(box(20, y, 250, 34, a, fill=PALE, size=12.5))
-        out.append(arrow(276, y + 17, 316, col))
-        out.append(box(322, y, 400, 34, b, fill=PALE, stroke=col, size=12.5))
+        out.append(arrow(276, y + 17, 316, MUTE))
+        out.append(box(322, y, 400, 34, b, fill=PALE, stroke=TOP, size=12.5))
     return svg(740, 288, "".join(out))
 
 
@@ -430,17 +437,18 @@ def fig_padlock_chain():
     out.append(t(20, 124, "Only the target gives both arms a place to sit, so only the target "
                           "makes a circle. The background is destroyed, not diluted.", 12, INK))
 
-    # the fork
+    # the fork: one node, two equal branches, drawn alike so neither is preferred
     out.append(line(623, 136, 440, 166, MUTE, 1.4))
     out.append(line(623, 136, 790, 166, MUTE, 1.4))
+    out.append(dot(623, 136, 3.2, MUTE))
 
     out.append(box(300, 168, 280, 62, "", fill="none", stroke=TOP))
     out.append(t(440, 190, "PCR from the backbone", 12, TOP, anchor="middle", weight="bold"))
     out.append(t(440, 208, "one amplicon per target: a panel", 11, INK, anchor="middle"))
     out.append(t(440, 223, "read in a tube  (smMIP)", 11, MUTE, anchor="middle"))
 
-    out.append(box(650, 168, 280, 62, "", fill="none", stroke=OK))
-    out.append(t(790, 190, "phi29 rolling circle", 12, OK, anchor="middle", weight="bold"))
+    out.append(box(650, 168, 280, 62, "", fill="none", stroke=TOP))
+    out.append(t(790, 190, "phi29 rolling circle", 12, TOP, anchor="middle", weight="bold"))
     out.append(t(790, 208, "a rolony: many copies, pinned", 11, INK, anchor="middle"))
     out.append(t(790, 223, "read in the tissue  (STARmap)", 11, MUTE, anchor="middle"))
 
@@ -475,7 +483,7 @@ def fig_walk_cappseq():
          [("cell-free DNA, about 165 bp", 260, "ins")],
          "already library-sized; a few thousand genomes"),
         ("2  end repair, dA-tail",
-         [("A", 14, "hot"), ("insert, blunt, 5'-P", 232, "ins"), ("A", 14, "hot")],
+         [("A", 14, "hot"), ("insert, repaired, 5'-P", 232, "ins"), ("A", 14, "hot")],
          "no shearing step: nothing to cut, nothing to lose"),
         ("3  long ligation, excess adapter",
          [("P5 i5 R1", 60, "p5"), ("insert", 240, "ins"), ("R2 i7 P7", 60, "p7")],

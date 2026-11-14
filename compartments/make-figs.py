@@ -213,9 +213,12 @@ def fig_droplet():
             out.append(circ(cx, 83, 4, PALE_HOT, HOT, 1.4))
         elif k == 4:
             out.append(circ(cx - 4, 78, 5, PALE_TOP, TOP, 1.4))
-    out.append(t(360, 126, "usable", 11.5, OK))
-    out.append(t(360 + 44, 126, "bead only", 11.5, MUTE))
-    out.append(t(360 + 4 * 44, 126, "cell, no bead: lost", 11.5, MUTE))
+    # each label centred under its own droplet, with a tick, and staggered so the
+    # two neighbouring ones cannot be read as belonging to the same droplet
+    for cx, yl, s, col in ((360, 126, "usable", OK), (404, 145, "bead only", MUTE),
+                           (360 + 4 * 44, 126, "cell, no bead: lost", MUTE)):
+        out.append(line(cx, 102, cx, yl - 11, MUTE, 1))
+        out.append(t(cx, yl, s, 11.5, col, anchor="middle"))
     out.append(cap(40, 206, "Inside each droplet the cell is lysed, its RNA is captured on the bead, and "
                             "reverse transcription runs. The oil keeps neighbours apart.", 13.5, INK, 90))
     out.append(t(40, 252, "Cells and beads arrive at random, so droplet contents follow Poisson statistics.",
@@ -265,7 +268,8 @@ def fig_grid():
     out.append(t(370, 168, f"{n2} with two or more", 13, BAD))
     out.append(cap(40, 196, "Most of what you pay for is empty oil. That is the price of keeping doublets "
                             "to about 5% of the occupied droplets.", 13.5, HOT, 90))
-    return svg(780, 230, "".join(out))
+    # the last column of the 100-wide grid reaches x = 783, so the canvas has to hold it
+    return svg(790, 230, "".join(out))
 
 
 # ------------------------------------------------------------------ 09 trade-off
@@ -278,13 +282,24 @@ def fig_tradeoff():
     for v in (0, 0.5, 1, 1.5, 2):
         out.append(t(x0 + v / 2 * W, y0 + 16, f"{v:g}", 11.5, MUTE, anchor="middle"))
     out.append(t(x0 + W / 2, y0 + 34, "mean cells per droplet, lambda", 12, MUTE, anchor="middle"))
-    pts1 = " ".join(f"{x0 + l / 2 * W:.0f},{y0 - H * pois(l, 1) / 0.45:.0f}" for l in [i / 50 for i in range(1, 101)])
-    pts2 = " ".join(f"{x0 + l / 2 * W:.0f},{y0 - H * (1 - pois(l, 0) - pois(l, 1)) / (1 - pois(l, 0)):.0f}"
-                    for l in [i / 50 for i in range(1, 101)])
+    def singlets(l):
+        return pois(l, 1)
+
+    def doublets(l):
+        return (1 - pois(l, 0) - pois(l, 1)) / (1 - pois(l, 0))
+
+    # both curves on the same 0-100% axis, so the peak can be read off it as 37%
+    pts1 = " ".join(f"{x0 + l / 2 * W:.0f},{y0 - H * singlets(l):.0f}" for l in [i / 50 for i in range(1, 101)])
+    pts2 = " ".join(f"{x0 + l / 2 * W:.0f},{y0 - H * doublets(l):.0f}" for l in [i / 50 for i in range(1, 101)])
     out.append(f'<polyline points="{pts1}" fill="none" stroke="{OK}" stroke-width="2.4"/>')
     out.append(f'<polyline points="{pts2}" fill="none" stroke="{BAD}" stroke-width="2.4"/>')
-    out.append(t(x0 + 30, y0 - H - 6, "droplets with exactly one cell", 12, OK))
-    out.append(t(x0 + 170, y0 - 22, "doublets among occupied droplets", 12, BAD))
+    # each label at its own curve's right-hand end
+    yd = y0 - H * doublets(2.0)
+    out.append(t(x0 + W + 8, yd - 4, "doublets among", 12, BAD))
+    out.append(t(x0 + W + 8, yd + 12, "occupied droplets", 12, BAD))
+    ys = y0 - H * singlets(2.0)
+    out.append(t(x0 + W + 8, ys - 4, "droplets with", 12, OK))
+    out.append(t(x0 + W + 8, ys + 12, "exactly one cell", 12, OK))
     out.append(t(x0 - 8, y0 - 4, "0", 11.5, MUTE, anchor="end"))
     out.append(t(x0 - 8, y0 - H + 4, "100%", 11.5, MUTE, anchor="end"))
     out.append(cap(40, 262, "Loading at lambda = 1 gives the most singlets (37% of droplets) but about "
@@ -390,11 +405,12 @@ def fig_fixperm():
         cx, cy = x0 + 90, 120
         out.append(t(x0 + 90, 54, titles[p], 13, INK, anchor="middle"))
         out.append(circ(cx, cy, 52, PALE_TOP, TOP, 1.8 if p < 2 else 1.4))
-        out.append(dots(cx, cy, 52, TOP, 10, 20 + p))
+        # the RNA cloud is kept inside r=36 so the crosslink marks below never land on a dot
+        out.append(dots(cx, cy, 44, TOP, 10, 20 + p))
         if p == 1:
             for a in range(0, 360, 36):
-                x = cx + 36 * math.cos(math.radians(a))
-                y = cy + 36 * math.sin(math.radians(a))
+                x = cx + 44 * math.cos(math.radians(a))
+                y = cy + 44 * math.sin(math.radians(a))
                 out.append(t(round(x, 1), round(y + 4, 1), "x", 10, HOT, anchor="middle"))
         if p == 2:
             for a in range(10, 360, 50):
@@ -491,16 +507,16 @@ def fig_insitu():
 def fig_twostage():
     out = [t(40, 26, "Two-stage: pre-index in wells, then overload droplets on purpose.", 14, INK)]
     out.append(t(40, 56, "Stage 1: wells give each nucleus an index", 12.5, MUTE))
-    cols = [A_COL, B_COL, C_COL, "#7a5aa0"]
-    for k in range(4):
-        out.append(box(40 + k * 60, 66, 46, 30, f"idx {k+1}", "none", cols[k], 11.5, cols[k]))
-    out.append(arrow(290, 82, 350, MUTE, 1.4))
-    out.append(t(320, 70, "pool", 11.5, MUTE, anchor="middle"))
+    cols = [A_COL, B_COL, C_COL, "#7a5aa0", "#2f6f7a"]
+    for k in range(5):
+        out.append(box(40 + k * 54, 66, 44, 30, f"idx {k+1}", "none", cols[k], 11.5, cols[k]))
+    out.append(arrow(312, 82, 362, MUTE, 1.4))
+    out.append(t(337, 70, "pool", 11.5, MUTE, anchor="middle"))
     out.append(t(380, 56, "Stage 2: many nuclei per droplet", 12.5, MUTE))
     out.append(circ(450, 130, 58, "none", MUTE, 1.6))
+    # five nuclei, five different indexes: this droplet holds no collision
     for k, (dx, dy) in enumerate([(-24, -16), (20, -20), (-4, 22), (30, 16), (-30, 18)]):
-        c = cols[[0, 1, 2, 3, 0][k]] if k != 4 else cols[1]
-        out.append(circ(450 + dx, 130 + dy, 10, "none", c, 2.2))
+        out.append(circ(450 + dx, 130 + dy, 10, "none", cols[k], 2.2))
     out.append(box(400, 200, 100, 20, "droplet barcode", PALE_TOP, TOP, 11.5, TOP))
     out.append(t(590, 100, "Each nucleus: (index, droplet)", 12.5, INK))
     out.append(t(590, 118, "A collision needs the same", 12.5, INK))
@@ -555,7 +571,7 @@ def fig_whitelist():
     out.append(t(40, 106, "whitelist neighbours", 13, MUTE))
     out.append(t(220, 106, "ACGTTC", 15, OK, family=MONO))
     out.append(t(330, 106, "one base away, and the only one: correct to it", 13, OK))
-    out.append(t(220, 130, "ACGTAC", 15, MUTE, family=MONO))
+    out.append(t(220, 130, "GAGTTA", 15, MUTE, family=MONO))
     out.append(t(330, 130, "two bases away: ignored", 13, MUTE))
     out.append(t(40, 170, "a different case", 13, MUTE))
     out.append(t(220, 170, "GATTCA", 15, INK, family=MONO))
@@ -600,9 +616,11 @@ def fig_knee():
 
 def fig_fragments():
     out = [t(40, 26, "Compartments can keep a long fragment's pieces together too.", 14, INK)]
-    out.append(line(40, 66, 360, 66, TOP, 4))
-    out.append(t(40, 52, "long DNA molecule, 100 kb or more", 12, MUTE))
-    out.append(arrow(380, 66, 430, MUTE, 1.4))
+    # two molecules in, so the two partitions below are plainly two different ones
+    out.append(t(40, 46, "two long DNA molecules, 100 kb or more", 12, MUTE))
+    out.append(line(40, 62, 360, 62, A_COL, 4))
+    out.append(line(40, 82, 360, 82, B_COL, 4))
+    out.append(arrow(380, 72, 430, MUTE, 1.4))
     for k, (cx, col) in enumerate([(500, A_COL), (620, B_COL)]):
         out.append(circ(cx, 100, 46, "none", col, 1.8))
         for j in range(3):

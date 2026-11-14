@@ -11,6 +11,7 @@ PALE_B = "#e8eef5"
 PALE_R = "#f5eae6"
 PALE_G = "#e6f0e8"
 GREY = "#dfe3e6"
+RNA = "#7a3b5e"       # RNA strands, as in the rna unit
 NUCF = "#e9dcc6"
 NUCS = "#a08560"
 PURP = "#6b5b8a"
@@ -118,8 +119,9 @@ def fig_junction_read():
     out.append(t(360, yy + 28, "ligation junction", 12, HOT, anchor="middle"))
     out.append(rd(252, 312, yy - 14, TOP))
     out.append(rd(468, 408, yy - 14, BOT))
-    out.append(line(262, yy - 20, 205, y + 6, TOP, 1.2, dash="3 3"))
-    out.append(line(458, yy - 20, 505, y + 6, BOT, 1.2, dash="3 3"))
+    # leaders routed outside the note line below, so neither crosses its text
+    out.append(line(252, yy - 20, 150, y + 6, TOP, 1.2, dash="3 3"))
+    out.append(line(468, yy - 20, 560, y + 6, BOT, 1.2, dash="3 3"))
     out.append(t(30, 214, "Read 1 aligns to A and read 2 aligns to B. A normal fragment would put "
                           "both reads side by side.", 12.5, INK))
     out.append(t(30, 236, "Count such pairs between every two places in the genome: that is the "
@@ -194,8 +196,8 @@ def fig_3c():
     out.append(t(300, y - 14, "junction", 12, HOT, anchor="middle"))
     out.append(rd(150, 230, y + 24, TOP))
     out.append(rd(450, 370, y + 24, BOT))
-    out.append(t(150, y + 50, "forward primer, fragment A", 12, TOP))
-    out.append(t(450, y + 50, "reverse primer, fragment B", 12, BOT, anchor="end"))
+    out.append(t(190, y + 50, "forward primer, fragment A", 12, TOP, anchor="middle"))
+    out.append(t(410, y + 50, "reverse primer, fragment B", 12, BOT, anchor="middle"))
     out.append(t(30, 164, "A PCR product exists only if A and B were ligated, which happened only if they were close.", 12.5, INK))
     out.append(t(30, 186, "Read out by qPCR or a gel, one pair of primers at a time: one-versus-one.", 12.5, INK))
     out.append(t(30, 212, "Dekker et al. 2002 introduced the method.", 12.5, MUTE))
@@ -432,8 +434,8 @@ def fig_features():
     bx = 400
     out.append(curve(f"M {bx} 190 L {bx + 40} 190 C {bx + 60} 190, {bx + 60} 110, {bx + 120} 110 "
                      f"C {bx + 180} 110, {bx + 180} 190, {bx + 200} 190 L {bx + 290} 190", MUTE, 3))
-    out.append(f'<circle cx="{bx + 120}" cy="150" r="14" fill="none" stroke="{BAD}" stroke-width="3"/>')
-    out.append(t(bx + 120, 96, "cohesin extrudes the loop", 12, BAD, anchor="middle"))
+    out.append(f'<circle cx="{bx + 120}" cy="150" r="14" fill="none" stroke="{HOT}" stroke-width="3"/>')
+    out.append(t(bx + 120, 96, "cohesin extrudes the loop", 12, HOT, anchor="middle"))
     for x, d in ((bx + 40, 1), (bx + 200, -1)):
         out.append(f'<path d="M {x} 208 L {x + 14 * d} 200 L {x} 192 Z" fill="{OK}"/>')
     out.append(t(bx + 120, 232, "CTCF sites, facing each other, stop it", 12, OK, anchor="middle"))
@@ -458,7 +460,7 @@ def fig_hichip():
     out.append(dna(40, 300, y, MUTE, 3))
     out.append(dna(340, 600, y, MUTE, 3))
     out.append(curve(f"M 220 {y} C 240 {y - 60}, 400 {y - 60}, 420 {y}", TOP, 3))
-    out.append(box(205, y + 6, 30, 14, "", PALE_R, BAD))
+    out.append(box(196, y + 6, 48, 17, "protein", PALE_R, HOT, 11, HOT))
     out.append(t(30, 212, "Only contacts anchored at the protein you chose survive the pull-down. "
                           "A Hi-C library has to be deep to see the same thing.", 12.5, INK))
     out.append(t(30, 234, "The map is no longer unbiased: peaks of the target protein shape the pattern.", 12.5, HOT))
@@ -492,8 +494,8 @@ def fig_rna():
     out.append(nuc(150, y, 12))
     out.append(nuc(190, y, 12))
     # RNA, bridge, DNA read
-    out.append(curve(f"M 300 {y - 30} C 330 {y - 90}, 420 {y - 90}, 440 {y - 50}", BAD, 3))
-    out.append(t(350, y - 100, "chromatin-associated RNA", 12, BAD, anchor="middle"))
+    out.append(curve(f"M 300 {y - 30} C 330 {y - 90}, 420 {y - 90}, 440 {y - 50}", RNA, 3))
+    out.append(t(350, y - 100, "chromatin-associated RNA", 12, RNA, anchor="middle"))
     out.append(box(436, y - 56, 56, 18, "bridge", PALE_G, OK, 11.5, OK))
     out.append(dot(464, y - 62, 4, OK))
     out.append(line(464, y - 38, 464, y - 2, TOP, 3))
