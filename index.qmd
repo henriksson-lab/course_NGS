@@ -29,8 +29,9 @@ your assay. If you are here to design something new, the whole course is the arg
 ## Part A — Foundations: what the sequencer needs
 
 **[Nucleic acids as a building material](nucleic-acids/lec.qmd)** — strand polarity and end
-states, what a ligase actually requires, hybridisation and Tm, degenerate bases, oligo
-modifications, how RNA differs.
+states, what a ligase actually requires, hybridisation and Tm, how RNA differs. Taught by
+carrying one sheared fragment through the front end of **TruSeq DNA PCR-free**, so each
+property arrives where the protocol needs it.
 [Readings](nucleic-acids/readings.qmd) · [Exercise](nucleic-acids/exercise.qmd)
 
 **How sequencers read DNA** — clustering and sequencing by synthesis, the four reads and
@@ -40,9 +41,10 @@ they change about a library, which is less than you might expect.
 [Illumina](sequencers/lec.qmd) · [Other short-read platforms](sequencers/lec-platforms.qmd) ·
 [Readings](sequencers/readings.qmd) · [Exercise](sequencers/exercise.qmd)
 
-**[Anatomy of a library molecule](library-molecule/lec.qmd)** — P5 to P7 part by part, Y
-adapters versus Nextera, full versus truncated adapters, where a barcode or UMI can sit, and
-what fails to cluster at all.
+**[Anatomy of a library molecule](library-molecule/lec.qmd)** — P5 to P7 part by part, then
+three real constructs: the simplest possible library (an **amplicon**, both ends already
+known), **TruSeq** with its forked Y adapter, and **Nextera**, where one enzyme does the
+cutting and the tagging. Full versus truncated adapters, and what fails to cluster at all.
 [Readings](library-molecule/readings.qmd) · [Exercise](library-molecule/exercise.qmd)
 
 ## Part B — Building blocks

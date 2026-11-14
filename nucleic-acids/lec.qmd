@@ -1,6 +1,6 @@
 ---
 title: "Nucleic acids as a building material"
-subtitle: "Foundations · NGS library preparation"
+subtitle: "Foundations · one fragment through TruSeq DNA PCR-free"
 author: "Johan Henriksson"
 format:
   revealjs:

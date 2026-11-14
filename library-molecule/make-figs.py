@@ -638,6 +638,38 @@ def fig_derive():
     return svg(end + 60, y + 172, "".join(out))
 
 
+def fig_amplicon():
+    """The simplest complete library: both ends already known."""
+    out = [t(30, 24, "When both ends are already known, the library is one PCR.", 14, INK)]
+    NOTE = 640
+
+    y = 54
+    out.append(t(30, y + 16, "1  the target", 12.5, INK))
+    out.append(box(190, y, 300, 24, "known sequence you chose", "#f4f6f8", MUTE, 11.5, INK))
+    out.append(t(NOTE, y + 16, "no fragmentation, no ligation", 11.5, MUTE))
+
+    y = 106
+    out.append(t(30, y + 16, "2  tailed primers", 12.5, INK))
+    out.append(box(190, y, 96, 24, "P5 i5 R1", "#e8eef5", TOP, 11, TOP))
+    out.append(box(286, y, 46, 24, "fwd", "none", HOT, 11, HOT))
+    out.append(arrow(338, y + 12, 376, HOT))
+    out.append(arrow(458, y + 12, 420, HOT))
+    out.append(box(458, y, 46, 24, "rev", "none", HOT, 11, HOT))
+    out.append(box(504, y, 98, 24, "R2 i7 P7", "#f5eae6", BAD, 11, BAD))
+    out.append(t(NOTE, y + 16, "the tail is not on the template", 11.5, MUTE))
+
+    y = 158
+    out.append(t(30, y + 16, "3  after two cycles", 12.5, INK))
+    out.append(box(190, y, 96, 24, "P5 i5 R1", "#e8eef5", TOP, 11, TOP))
+    out.append(box(286, y, 218, 24, "the target", "none", MUTE, 11.5, INK))
+    out.append(box(504, y, 98, 24, "R2 i7 P7", "#f5eae6", BAD, 11, BAD))
+    out.append(t(NOTE, y + 16, "a finished library molecule", 11.5, MUTE))
+
+    out.append(t(30, 224, "Every later method in this course answers one question: what do you do "
+                          "when you do not know the ends?", 13.5, HOT))
+    return svg(900, 242, "".join(out))
+
+
 build(__file__, [
     ("construct", fig_construct),
     ("strands", fig_strands),
@@ -656,4 +688,5 @@ build(__file__, [
     ("gallery", fig_gallery),
     ("readthrough", fig_readthrough),
     ("derive", fig_derive),
+    ("amplicon", fig_amplicon),
 ])

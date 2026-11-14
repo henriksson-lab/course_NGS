@@ -1,6 +1,6 @@
 ---
 title: "Anatomy of a library molecule"
-subtitle: "Foundations · NGS library preparation"
+subtitle: "Foundations · amplicon, TruSeq and Nextera"
 author: "Johan Henriksson"
 format:
   revealjs:
@@ -42,6 +42,15 @@ build the thing that is clustered.
 
 - Seven parts, always in this order. Four are fixed by the platform, **two are chosen per sample**, one is yours
 - Read it as a map: each read starts at a primer site and runs toward the next part
+
+## The simplest library there is: an amplicon
+
+![](fig18-amplicon.svg){width=72%}
+
+- If you already know the sequence at both ends — a guide cassette in a screen, one exon, a tumour hotspot — there is nothing to fragment and nothing to ligate
+- Two primers sit on the known sequence. Their 5′ tails carry P5, an index and the Read 1 site on one side, and the Read 2 side on the other
+- The tails are not on the template, so cycle 1 copies the target, cycle 2 copies a tail, and from there the product is a finished library molecule
+- Hold on to this: the rest of the course exists because you usually do **not** know the ends
 
 ## Two strands, four primers
 

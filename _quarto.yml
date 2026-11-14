@@ -33,7 +33,7 @@ website:
       # ----------------------------------------------------------------------
       - section: "Foundations"
         contents:
-          - section: "Nucleic acids as a building material"
+          - section: "Nucleic acids, and a first library"
             contents:
               - text: "Lecture (slides)"
                 href: nucleic-acids/lec.qmd
@@ -51,7 +51,7 @@ website:
                 href: sequencers/readings.qmd
               - text: "Exercise"
                 href: sequencers/exercise.qmd
-          - section: "Anatomy of a library molecule"
+          - section: "Anatomy of a library: TruSeq and Nextera"
             contents:
               - text: "Lecture (slides)"
                 href: library-molecule/lec.qmd
