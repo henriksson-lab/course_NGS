@@ -209,25 +209,26 @@ def fig_iupac():
 def fig_oligo_mods():
     out = []
     y = 86
-    out.append(line(160, y, 530, y, TOP, 3))
-    out.append(t(148, y + 5, "5'", 13, MUTE, anchor="end"))
-    out.append(t(542, y + 5, "3'", 13, MUTE))
-    marks = [(160, "biotin", "grabs streptavidin beads", -1),
-             (250, "phosphate", "lets a ligase use this end", 1),
-             (350, "dU", "cut out later by USER", -1),
-             (440, "phosphorothioate", "survives exonucleases", 1),
-             (530, "C3 / ddC / inv-dT", "3' blocked: no extension", -1)]
+    out.append(line(120, y, 600, y, TOP, 3))
+    out.append(t(108, y + 5, "5'", 13, MUTE, anchor="end"))
+    out.append(t(612, y + 5, "3'", 13, MUTE))
+    marks = [(120, "biotin", "grabs streptavidin beads", -1),
+             (216, "phosphate", "lets a ligase use this end", 1),
+             (312, "lipid", "sits in a cell membrane", -1),
+             (408, "dU", "cut out later by USER", 1),
+             (504, "phosphorothioate", "survives exonucleases", -1),
+             (600, "C3 / ddC / inv-dT", "3' blocked: no extension", 1)]
     for x, lab, note, side in marks:
         yy = y - 34 if side < 0 else y + 34
         out.append(f'<circle cx="{x}" cy="{y}" r="5.5" fill="{HOT}"/>')
-        out.append(line(x, y + (-6 if side < 0 else 6), x, yy + (10 if side < 0 else -10),
+        out.append(line(x, y + (-6 if side < 0 else 6), x, yy + (18 if side < 0 else -10),
                         MUTE, 1, dash="3 3"))
         anc = "middle"
         out.append(t(x, yy + (0 if side < 0 else 12), lab, 13, HOT, anchor=anc, weight="bold"))
         out.append(t(x, yy + (16 if side < 0 else 28), note, 11.5, MUTE, anchor=anc))
     out.append(t(50, 196, "An oligo is not just a sequence: its modifications decide what "
                           "enzymes can do to it.", 14, INK))
-    return svg(680, 214, "".join(out))
+    return svg(760, 214, "".join(out))
 
 
 def fig_rna_ends():

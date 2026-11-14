@@ -42,13 +42,15 @@ Each has its own ends, and therefore its own library prep.
 
 [Drmanac et al. 2010, doi:10.1126/science.1181498]{.small}
 
-## Two more short-read readouts
+## Three more short-read readouts
 
 ![](fig14-other-shortread.svg){width=92%}
 
 - Different chemistry, same library problem: give the platform its own ends
+- Ion Torrent is the odd one out: no camera, no fluorophore. A base is added, a proton is
+  released, and a transistor under the well measures the pH change
 
-[Avidity: Arslan et al. 2023, doi:10.1038/s41587-023-01750-7]{.small}
+[Avidity: Arslan et al. 2023, doi:10.1038/s41587-023-01750-7; Ion Torrent: Rothberg et al. 2011, doi:10.1038/nature10242]{.small}
 
 ## PacBio: the SMRTbell
 

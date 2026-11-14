@@ -328,32 +328,40 @@ def fig_dnbseq():
 
 
 def fig_other_shortread():
-    out = [t(40, 26, "Two other ways to read a cluster.", 14, INK)]
-    out.append(box(46, 50, 300, 118, "", "#fbfbf9", MUTE))
-    out.append(t(196, 74, "Element AVITI — sequencing by avidity", 13, HOT, anchor="middle",
-                 weight="bold"))
-    out.append(t(196, 98, "a multivalent probe carries many copies of", 11.5, MUTE,
-                 anchor="middle"))
-    out.append(t(196, 114, "one base, so it binds a polony very tightly", 11.5, MUTE,
-                 anchor="middle"))
-    out.append(t(196, 138, "bright signal from little reagent;", 11.5, INK, anchor="middle"))
-    out.append(t(196, 154, "binding is separated from incorporation", 11.5, INK,
-                 anchor="middle"))
-    out.append(box(362, 50, 300, 118, "", "#fbfbf9", MUTE))
-    out.append(t(512, 74, "Ultima — flow-based, no terminator", 13, HOT, anchor="middle",
-                 weight="bold"))
-    out.append(t(512, 98, "beads on an open wafer; one base flows at a", 11.5, MUTE,
-                 anchor="middle"))
-    out.append(t(512, 114, "time and is incorporated until it runs out", 11.5, MUTE,
-                 anchor="middle"))
-    out.append(t(512, 138, "signal height counts homopolymer length,", 11.5, INK,
-                 anchor="middle"))
-    out.append(t(512, 154, "so homopolymers are the weak spot", 11.5, INK, anchor="middle"))
-    out.append(t(40, 198, "Both read short, accurate reads and both want the same thing from "
-                          "you: a library with the platform's own ends.", 14, INK))
-    out.append(t(40, 222, "The chemistry differs; the library design problem does not.",
+    out = [t(30, 26, "Three other ways to read a short library.", 14, INK)]
+
+    panels = [
+        ("Element AVITI \u2014 avidity",
+         ["a multivalent probe carries many copies",
+          "of one base, so it binds a polony tightly"],
+         ["bright signal from little reagent;",
+          "binding is separated from incorporation"]),
+        ("Ultima \u2014 flow-based, no terminator",
+         ["beads on an open wafer; one base flows",
+          "at a time and adds until it runs out"],
+         ["signal height counts homopolymer length,",
+          "so homopolymers are the weak spot"]),
+        ("Ion Torrent \u2014 no optics at all",
+         ["each well sits on a transistor that senses",
+          "the H+ released when a base is added"],
+         ["bases also flow one at a time, so it shares",
+          "Ultima's homopolymer problem"]),
+    ]
+    for i, (title, mute, ink) in enumerate(panels):
+        x = 30 + i * 318
+        out.append(box(x, 50, 300, 118, "", "#fbfbf9", MUTE))
+        c = x + 150
+        out.append(t(c, 74, title, 12.5, HOT, anchor="middle", weight="bold"))
+        for j, ln in enumerate(mute):
+            out.append(t(c, 98 + j * 16, ln, 11, MUTE, anchor="middle"))
+        for j, ln in enumerate(ink):
+            out.append(t(c, 138 + j * 16, ln, 11, INK, anchor="middle"))
+
+    out.append(t(30, 198, "All three read short, accurate reads, and all three want the same "
+                          "thing from you: a library with the platform's own ends.", 14, INK))
+    out.append(t(30, 222, "The chemistry differs; the library design problem does not.",
                  13.5, MUTE))
-    return svg(700, 242, "".join(out))
+    return svg(1000, 242, "".join(out))
 
 
 def fig_smrtbell():

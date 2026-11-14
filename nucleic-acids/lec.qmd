@@ -180,7 +180,9 @@ They are short, perfectly formed, and amplify better than anything else in the t
 
 ![](fig11-oligo-mods.svg){width=89%}
 
-What you specify when ordering decides which enzymes can act on it.
+What you specify when ordering decides which enzymes can act on it. A lipid anchor is the
+odd one here: it binds nothing in the reaction, it inserts the oligo into a cell membrane, so
+a barcode can be put onto a cell without touching its genome ([hashing](../barcodes-umis/lec.qmd)).
 
 ## Ordering oligos in practice
 

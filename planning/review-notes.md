@@ -266,10 +266,10 @@ Everything in Parts B, D and E is covered. What is not:
 
 | Item | Syllabus | Status |
 |---|---|---|
-| Ion Torrent | A2 platform list | **absent** — AVITI, Ultima, DNBSEQ and SOLiD are all covered |
-| Optical duplicates | A2 | **absent** — PCR duplicates are covered in nine decks; the instrument-side cause is not |
+| Ion Torrent | A2 platform list | closed — third panel in `sequencers/fig14`, Rothberg 2011 |
+| Optical duplicates | A2 | **absent**, left open deliberately — see below |
 | Acrydite | A1 oligo modifications | **absent** — matters for gel and bead-bound oligos |
-| Lipid-anchored oligos | A1 oligo modifications | partial — lipid *hashing* is in `barcodes-umis/`, but not as an oligo modification |
+| Lipid-anchored oligos | A1 oligo modifications | closed — now a mark on `nucleic-acids/fig11`, linked to hashing |
 | FLAM-seq | C2 collection | **absent** — it belonged to the unbuilt C2c deck |
 
 Deliberate and already recorded above: the C2c (full-length/isoform) and C7c (multimodal/VDJ)
@@ -285,3 +285,19 @@ All five gaps are small: four are one line each, and FLAM-seq is one bullet in
 still crosslinking, recorded above.
 
 Note that `## Still open` in `CURRICULUM.md` is now stale: it asks where to start building.
+
+## Optical duplicates: still not covered, by decision
+
+Two reads that came from **one** original molecule because the instrument read one cluster
+twice, not because PCR copied it. On a patterned flow cell a single library molecule can seed
+its own well and a neighbouring one (ExAmp pad hopping); on an unpatterned lane an overlarge
+cluster can be called as two. The give-away is that the pair sit next to each other on the
+flow cell, which is why dedup tools treat them separately and use a pixel-distance threshold.
+
+Why it matters for library prep: it inflates duplicate rate without any PCR being at fault,
+so it is one of the things that can make a good library look over-amplified. A UMI collapses
+them like any other duplicate, since the molecule really is the same one.
+
+Not added. It is an instrument artefact rather than a library-prep decision, and `qc/` already
+teaches the duplicate-rate signature it would confuse. One line in `sequencers/lec.qmd` beside
+cluster density would close it if wanted.
