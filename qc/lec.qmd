@@ -78,7 +78,7 @@ Bead lots differ. Run a ladder through your own bead lot once and write the cut-
 
 ## Columns, precipitation, gels
 
-**Silica columns:** DNA binds in a chaotropic salt and ethanol, is washed, then eluted. Fast, but a fixed lower limit (about 50–100 bp, product-dependent) and the elution volume is not small.
+**Silica columns:** DNA binds to silica in a chaotropic salt (one that strips the ordered water around the DNA, such as guanidinium) and ethanol, is washed, then eluted. Fast, but a fixed lower limit (about 50–100 bp, product-dependent) and the elution volume is not small.
 
 **Alcohol precipitation:** salt plus ethanol or isopropanol, spin hard. Short pieces and low concentrations are lost, so add a carrier (glycogen, linear acrylamide) for small samples ([carrier nucleic acid](../tricks/lec-more.qmd)).
 
@@ -108,6 +108,7 @@ It counts any double-stranded DNA of any length: adapter dimers, fragments witho
 
 - Primers to P5 and P7 amplify only molecules that have both ends, which are the ones that cluster ([the anatomy of that molecule](../library-molecule/lec.qmd)) [Buehler et al. 2010, doi:10.1016/j.ymeth.2010.01.004]{.small}
 - Run a dilution series of a standard of known concentration; read your sample off its line
+- **Cq** is the cycle at which a sample's signal crosses the detection threshold: the more amplifiable molecules you started with, the earlier it is crossed
 - A tenfold dilution should shift Cq by about 3.3 cycles; a different slope means the PCR is not 100% efficient
 
 ## Why Qubit and qPCR disagree

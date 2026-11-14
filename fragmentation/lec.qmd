@@ -25,13 +25,9 @@ A human genome is three billion bases in 46 pieces. A sequencer reads a few hund
 
 - **Cut** the DNA or RNA to a length the instrument and the question want
 - **Sort** the pieces so the library contains that length and little else
-- The cut leaves the ends in a particular state, which decides what you have to do next ([end states](../nucleic-acids/lec.qmd))
+- The cut leaves the ends in a particular state, which decides what you have to do next ([end chemistry](../end-chemistry/lec.qmd))
 
 This deck covers the main ways of cutting, the targets set by the sequencer, and how to select by size, with one of the most-used and least-understood steps at the bench in detail: the bead ratio.
-
-::: {.notes}
-Students who have done a library prep have used a bead ratio without being told what it does. The SPRI section is where the deck slows down.
-:::
 
 ## Why we cut
 
@@ -138,9 +134,9 @@ Size selection narrows the distribution and removes the worst. It does **not** m
 
 [Head et al. 2014, doi:10.2144/000114133]{.small}
 
-## The ratio sets the cut-off
+## Which window do you ask for?
 
-![](fig13-spri-curve.svg){width=86%}
+![](fig12-spri-curve.svg){width=86%}
 
 - The ratio is **volume of bead suspension to volume of sample**. A lower ratio means less PEG and binds only the long DNA. How the beads bind, and how to work out a bead volume, are in [QC](../qc/lec.qmd); here the question is which window to ask for
 - 1.8x binds nearly everything above ~100 bp, so it clears primers and nucleotides; ~0.8x begins to leave the short end behind
@@ -148,9 +144,9 @@ Size selection narrows the distribution and removes the worst. It does **not** m
 
 [Hawkins et al. 1994, doi:10.1093/nar/22.21.4543; Rohland and Reich 2012, doi:10.1101/gr.128124.111]{.small}
 
-## Double-sided selection
+## Two edges make a window
 
-![](fig14-double-sided.svg){width=83%}
+![](fig13-double-sided.svg){width=83%}
 
 - Step 1 at a **low ratio** binds the long fragments. Keep the supernatant
 - Step 2 raises the ratio. Now the target binds, and the short fragments stay in solution. Keep the beads
@@ -158,7 +154,7 @@ Size selection narrows the distribution and removes the worst. It does **not** m
 
 ## A ratio is a PEG concentration
 
-![](fig15-peg.svg){width=84%}
+![](fig14-peg.svg){width=84%}
 
 - The final PEG concentration is a weighted average of sample and beads. Whatever PEG is already in the sample **adds to the beads**
 - The bead stock is assumed to be 20 % PEG here; vendors do not always publish it
@@ -175,14 +171,14 @@ When a library looks wrong, ask about the beads before you blame the enzyme. The
 
 ## Gel and PAGE
 
-![](fig16-gel-page.svg){width=89%}
+![](fig15-gel-page.svg){width=89%}
 
 - A gel puts a **window on a ruler**: you see the smear and cut the slice you want. PAGE does the same for small molecules to a few bases
 - It is slower and loses material; use it when two species are too close for beads to tell apart
 
 ## Order changes the answer
 
-![](fig17-order.svg){width=71%}
+![](fig16-order.svg){width=71%}
 
 - **Before or after the key chemistry**? For [RNA](../rna/lec.qmd), fragmenting first gives even coverage, cutting the cDNA afterwards is biased to the 3' end
 - Hi-C digests the chromatin **before** ligating and shears **after**, because ligation junctions are the data. Bisulfite fragments DNA by itself, so adapters go on after it, as in [PBAT](https://doi.org/10.1093/nar/gks454), or are made of methylated cytosines
@@ -192,7 +188,7 @@ When a library looks wrong, ask about the beads before you blame the enzyme. The
 
 ## Partial digestion
 
-![](fig18-partial.svg){width=82%}
+![](fig17-partial.svg){width=82%}
 
 - A complete digest tells you what is **between neighbouring sites**. A partial digest gives overlapping fragments from which you can build a map
 - With MNase or DNase I the titration chooses what you measure: mono-nucleosomes with plenty of enzyme, a ladder with less. Always run a time course on a new sample
@@ -200,7 +196,7 @@ When a library looks wrong, ask about the beads before you blame the enzyme. The
 
 ## Bottleneck dilution: endpoints as labels
 
-![](fig19-endpoints.svg){width=60%}
+![](fig18-endpoints.svg){width=60%}
 
 - Random shear points are a free label. In a human cancer or T-cell clone, every cell with a provirus in one place has the same junction but a different shear length. Count the lengths, count the cells
 - Dilution is the bottleneck: the number of molecules entering PCR should stay below the number of possible lengths, or the labels collide
@@ -209,7 +205,7 @@ When a library looks wrong, ask about the beads before you blame the enzyme. The
 
 ## Fixed-length tags from Type IIS and IIG enzymes
 
-![](fig20-type-iis.svg){width=85%}
+![](fig19-type-iis.svg){width=85%}
 
 - Ordinary enzymes cut inside their site. A Type IIS or IIG enzyme **binds in your linker and cuts into the neighbouring DNA**
 - The tag is the same length for every molecule, so a few dozen bases identify a transcript or a cut position. [CAGE](https://henriksson-lab.github.io/NGS_101/cage__10.1038+nprot.2012.005/cage.html) makes 27 nt tags with EcoP15I
@@ -218,7 +214,7 @@ When a library looks wrong, ask about the beads before you blame the enzyme. The
 
 ## Not cutting at all
 
-![](fig21-long.svg){width=83%}
+![](fig20-long.svg){width=83%}
 
 - Long-read sequencing wants the molecule intact, so the protocol is mostly about **not breaking it**: wide-bore tips, no vortexing, few transfers, gentle lysis
 - Rapid and ultra-long kits use a transposase at a low ratio so that each molecule is cut once, not many times: [rapid](https://henriksson-lab.github.io/NGS_101/oxford-nanopore-rapid-sequencing-v14/rapid-sequencing-v14.html), [ultra-long](https://henriksson-lab.github.io/NGS_101/oxford-nanopore-ultra-long-v14/ultra-long-v14.html)

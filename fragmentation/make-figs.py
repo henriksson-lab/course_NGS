@@ -680,7 +680,6 @@ build(__file__, [
     ("hydrolysis", fig_hydrolysis),
     ("targets", fig_targets),
     ("insert-vs-read", fig_insert_vs_read),
-    ("spri-mechanism", fig_spri_mechanism),
     ("spri-curve", fig_spri_curve),
     ("double-sided", fig_double_sided),
     ("peg", fig_peg),
