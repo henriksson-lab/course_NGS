@@ -115,8 +115,8 @@ def fig_pol_core():
     out.append(t(x + 15 * DX, y - 8, "the 3'-OH attacks the α-phosphate;", 13.5, INK))
     out.append(t(x + 15 * DX, y + 10, "pyrophosphate leaves; the primer", 13.5, INK))
     out.append(t(x + 15 * DX, y + 28, "is now one base longer", 13.5, INK))
-    out.append(foot(158, "Needs: a primer (or a nick) with a free 3'-OH, a template, dNTPs, Mg2+."))
-    return svg(700, 176, "".join(out))
+    out.append(foot(178, "Needs: a primer (or a nick) with a free 3'-OH, a template, dNTPs, Mg2+."))
+    return svg(700, 196, "".join(out))
 
 
 def fig_chart_chem():
@@ -239,8 +239,8 @@ def fig_nick_translation():
     out.append(t(80 + 11 * DX - 6, 146, "↓ nick has moved", 12, BAD))
     out.append(t(350, 108, "3 nt removed from the 5' side,", 13.5, INK))
     out.append(t(350, 126, "3 nt added to the 3' side", 13.5, INK))
-    out.append(foot(210, "Pol I and Taq do this. Klenow, T4 DNA polymerase and the HiFi enzymes do not: they leave the nick, or displace past it."))
-    return svg(700, 228, "".join(out))
+    out.append(foot(234, "Pol I and Taq do this. Klenow, T4 DNA polymerase and the HiFi enzymes do not: they leave the nick, or displace past it."))
+    return svg(700, 252, "".join(out))
 
 
 def fig_displacement_modes():
@@ -491,8 +491,8 @@ def fig_adapter_nick():
         if not both:
             out.append(mark(60, y, 9, strand=1))
             out.append(t(60 + 9 * DX - 18, y + 58, "nick", 12.5, BAD))
-    out.append(foot(76 + 100 + 62, "A nick is harmless for PCR (it is melted open and copied) and is a deliberate choice in several designs."))
-    return svg(640, 76 + 100 + 78, "".join(out))
+    out.append(foot(76 + 100 + 84, "A nick is harmless for PCR (it is melted open and copied) and is a deliberate choice in several designs."))
+    return svg(640, 76 + 100 + 100, "".join(out))
 
 
 def fig_rna_ligation():

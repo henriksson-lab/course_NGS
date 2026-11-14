@@ -14,7 +14,7 @@ def fig_sanger():
     out.append(line(60, 56, 300, 56, TOP, 2.4))
     out.append(t(50, 60, "3'", 11.5, MUTE, anchor="end"))
     out.append(line(60, 44, 110, 44, HOT, 2.4))
-    out.append(t(85, 34, "primer", 11.5, HOT, anchor="middle"))
+    out.append(t(116, 48, "primer", 11.5, HOT))
     # terminated products of increasing length
     for i, c in enumerate([OK, HOT, BOT, TOP, OK, HOT]):
         y = 84 + i * 15
@@ -168,8 +168,8 @@ def fig_read_order():
     end = x
     # read arrows
     rx, rw = pos["R1 site"]
-    out.append(arrow(rx + rw, y + 44, rx + rw + 120, HOT))
-    out.append(t(rx + rw + 4, y + 62, "1  Read 1 → into the insert", 12, HOT))
+    out.append(arrow(rx + rw, y + 40, rx + rw + 120, HOT))
+    out.append(t(rx + rw + 128, y + 44, "1  Read 1 → into the insert", 12, HOT))
     ix, iw = pos["i7"]
     out.append(arrow(ix + iw, y - 16, ix, "#6b5b8a"))
     out.append(t(ix + iw + 6, y - 12, "2  Index 1 (i7)", 12, "#6b5b8a"))
@@ -177,11 +177,11 @@ def fig_read_order():
     out.append(arrow(jx, y - 16, jx + jw, "#6b5b8a"))
     out.append(t(60, y - 28, "3  Index 2 (i5)", 12, "#6b5b8a"))
     sx, sw = pos["R2 site"]
-    out.append(arrow(sx, y + 44, sx - 120, HOT))
-    out.append(t(sx - 124, y + 62, "4  Read 2 ← from the other end", 12, HOT))
-    out.append(t(36, 188, "The indexes are read because they are sequence like any other — "
+    out.append(arrow(sx, y + 68, sx - 120, HOT))
+    out.append(t(sx - 128, y + 72, "4  Read 2 ← from the other end", 12, HOT, anchor="end"))
+    out.append(t(36, 198, "The indexes are read because they are sequence like any other — "
                           "that is why a sample index must sit next to a primer site.", 14, INK))
-    return svg(end + 60, 208, "".join(out))
+    return svg(end + 60, 218, "".join(out))
 
 
 def fig_pe_turnaround():
@@ -245,7 +245,8 @@ def fig_readthrough():
                        f'fill="{BAD}" opacity="0.18"/>')
             out.append(t(120 + ins + 66, y + 56, "adapter bases — must be trimmed off",
                          11.5, BAD))
-        out.append(t(330 if i == 0 else 350, y + 15, lab, 12.5, OK if i == 0 else BAD))
+        # clear of the longest molecule drawn above (adapter + 230 insert + adapter)
+        out.append(t(426, y + 15, lab, 12.5, OK if i == 0 else BAD))
     out.append(t(40, 246, "Adapter content in a QC report is this, and it tells you your "
                           "fragment size, not your sequencing quality.", 14, INK))
     return svg(700, 266, "".join(out))

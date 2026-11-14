@@ -9,6 +9,15 @@ approximate and a short string sitting above a long one ("A" over a caption) is 
 when nothing is wrong. Render the figure and look before changing it.
 
   python3 tools/check_overlap.py
+
+Known false positives, each checked by rendering and looking (2026-11-14):
+
+  chemistry-to-sequence/fig20-antibody.svg   antibody glyphs sit clear below the label
+  rna/fig17-riboconstruct.svg                heading ends well short of the cDNA circle
+  sequencers/fig05-linearise.svg             two separate lines; only the descenders are close
+  handles/fig17-topo-recomb.svg              no longer referenced by any slide
+
+A new name in the output is worth looking at. These four are not.
 """
 import re, glob, sys, html
 TXT = re.compile(r'<text([^>]*)>(.*?)</text>', re.S)

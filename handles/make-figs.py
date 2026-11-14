@@ -278,9 +278,9 @@ def fig_rna3():
 def fig_rna5():
     out = [t(30, 26, "5' adapter ligation (after the 3' adapter is on)", 14, INK, weight="bold")]
     out.append(ln(40, 60, 140, 60, HA, 4))
-    out.append(t(40, 52, "5' adapter (RNA), 3'-OH", 12, HA))
+    out.append(t(40, 46, "5' adapter (RNA), 3'-OH", 12, HA))
     out.append(t(150, 64, "+", 16, MUTE))
-    out.append(t(170, 52, "5'-P", 12, OK))
+    out.append(t(200, 46, "5'-P", 12, OK))
     out.append(ln(200, 60, 300, 60, RNAC, 4))
     out.append(ln(300, 60, 380, 60, HB, 4))
     out.append(t(280, 80, "RNA + 3' adapter", 12, MUTE))

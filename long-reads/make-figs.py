@@ -521,22 +521,28 @@ def fig_platform_compare():
     x0, y0, w, h = 90, 56, 420, 150
     out.append(line(x0, y0 + h, x0 + w, y0 + h, MUTE, 1.2))
     out.append(line(x0, y0, x0, y0 + h, MUTE, 1.2))
-    out.append(t(x0 + w / 2, y0 + h + 36, "read length  →", 12.5, MUTE, anchor="middle"))
-    out.append(t(x0 - 12, y0 + 8, "accuracy", 12.5, MUTE, anchor="end"))
-    out.append(t(x0 - 12, y0 + 24, "↑", 12.5, MUTE, anchor="end"))
-    pts = [("Illumina", 0.10, 0.80, TOP), ("MGI", 0.16, 0.82, TOP),
-           ("AVITI", 0.13, 0.90, TOP), ("Ultima", 0.09, 0.66, MUTE),
-           ("PacBio HiFi", 0.62, 0.93, OK), ("Nanopore", 0.92, 0.58, HOT)]
-    for name, fx, fy, c in pts:
+    out.append(t(x0 + w / 2, y0 + h + 38, "read length  →", 12.5, MUTE, anchor="middle"))
+    out.append(t(x0 - 12, y0 + 8, "accuracy ↑", 12.5, MUTE, anchor="end"))
+    for name, fx, fy, c in [("PacBio HiFi", 0.62, 0.93, OK), ("Nanopore", 0.92, 0.58, HOT)]:
         px, py = x0 + fx * w, y0 + h - fy * h
         out.append(dot(px, py, 6, c))
         out.append(t(px, py - 14, name, 11.5, c, anchor="middle"))
+    # the four short-read platforms land on top of each other, so their labels go in a
+    # stack to the right of the cluster, each joined to its dot by a thin leader
+    short = [("AVITI", 0.13, 0.90, TOP, 9, -2), ("MGI", 0.16, 0.82, TOP, 9, 1),
+             ("Illumina", 0.10, 0.80, TOP, 9, 4), ("Ultima", 0.09, 0.66, MUTE, 9, 3)]
+    for k, (name, fx, fy, c, ldx, ldy) in enumerate(short):
+        px, py = x0 + fx * w, y0 + h - fy * h
+        ly = y0 + 18 + k * 19
+        out.append(line(px + ldx, py + ldy, 214, ly - 4, MUTE, 0.9))
+        out.append(dot(px, py, 6, c))
+        out.append(t(220, ly, name, 11.5, c))
     out.append(t(x0 + 10, y0 + h + 18, "150 bp", 11, MUTE))
     out.append(t(x0 + w - 10, y0 + h + 18, "100 kb +", 11, MUTE, anchor="end"))
-    out.append(t(40, 248, "There is no best platform. There is a question, a sample, and a "
+    out.append(t(40, 272, "There is no best platform. There is a question, a sample, and a "
                           "budget — and those pick the platform.", 14, INK))
-    out.append(t(40, 272, "Positions here are schematic, and they move every year.", 12.5, MUTE))
-    return svg(700, 292, "".join(out))
+    out.append(t(40, 294, "Positions here are schematic, and they move every year.", 12.5, MUTE))
+    return svg(700, 314, "".join(out))
 
 
 build(__file__, [

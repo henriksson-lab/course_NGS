@@ -56,8 +56,10 @@ def trace(x0, y0, w, h, peaks, title=None, ticks=(100, 300, 1000, 3000)):
         xx = logx(tk, x0, w)
         out.append(line(xx, y0 + h, xx, y0 + h + 4, MUTE, 1.2))
         out.append(t(xx, y0 + h + 17, str(tk), 11, MUTE, anchor="middle"))
-    out.append(t(x0 + 4, y0 + h + 17, "marker", 10.5, MUTE))
-    out.append(t(x0 + w, y0 + h + 17, "marker", 10.5, MUTE, anchor="end"))
+    # on the axis-title row, not the tick row: in a narrow panel the 100 tick sits
+    # under the left marker
+    out.append(t(x0 + 4, y0 + h + 32, "marker", 10.5, MUTE))
+    out.append(t(x0 + w, y0 + h + 32, "marker", 10.5, MUTE, anchor="end"))
     out.append(t(x0 + w / 2, y0 + h + 32, "size (bp, log scale)", 11, MUTE, anchor="middle"))
     if title:
         out.append(t(x0, y0 - 6, title, 12.5, INK))

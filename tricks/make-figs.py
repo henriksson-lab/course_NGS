@@ -386,14 +386,14 @@ def fig_tailing():
     tail = "AAAAAAA"
     prim = "TTTTTTT"
     adapter = "AGTCTGAG"
-    x, y = 120, 84
+    x, y = 120, 96
     s1, _ = seq(x, y, cdna, TOP)
     s2, _ = seq(x + 10 * DX, y, tail, HOT)
     s3, _ = seq(x + 10 * DX, y + 30, prim, BOT)
     s4, _ = seq(x + 17 * DX + 4, y + 30, adapter, MUTE)
     out += [s1, s2, s3, s4]
     out.append(pairs(x + 10 * DX, y, y + 30, tail, prim))
-    out.append(t(x + 5 * DX, y - 22, "first-strand cDNA (3' end at the tail)", 12.5, TOP, anchor="middle"))
+    out.append(t(x + 5 * DX, y - 44, "first-strand cDNA (3' end at the tail)", 12.5, TOP, anchor="middle"))
     out.append(t(x + 13.5 * DX, y - 22, "TdT tail", 12.5, HOT, anchor="middle"))
     out.append(t(x + 13.5 * DX, y + 54, "oligo-dT primer", 12.5, BOT, anchor="middle"))
     out.append(t(x + 21 * DX, y + 54, "5' adapter", 12.5, MUTE, anchor="middle"))
