@@ -103,13 +103,30 @@ citations. Replace each with a one-line callback. This is the slide budget for p
 - `design` capstone's five missing demonstrations (construct per step, oligo sequences with Tm,
   enzyme table with the deciding property, the Omni-ATAC comparison, QC closure).
 
-## One open question for the owner
+## Part C order: decided
 
-`single-cell/lec-combinatorial.qmd` depends on the lentiviral vector taught in `screens`, two
-decks later. Phase 1.6 patches it with a signpost. The alternative is to **move `screens`
-before `single-cell`** in Part C, which fixes it properly and also puts the amplicon backbone
-(#1) early, where it belongs. The cost is re-checking every Part C cross-reference. Worth
-deciding before phase 2 starts, because the spines assume an order.
+**`screens` now comes before `single-cell`.** Done in the sidebar and `index.qmd`. This fixes
+the dependency properly rather than patching it: the lentiviral vector, the LTR, Pol II/Pol III
+and the amplicon backbone are all in place before any single-cell deck needs them.
+
+### Single-cell screens: the teaching order inside it
+
+Course owner's sequence, now possible because `screens` precedes:
+
+1. **Pooled screens** (bulk) — the vector, integration, the amplicon readout.
+2. **Single cell** — compartments, cell barcodes, UMIs, on the 10x 3′ and 5′ backbones.
+3. **Perturb-seq by 5′ direct guide capture** — the *introduction* to single-cell screens.
+   It is the simplest form: a capture sequence in the guide scaffold, read by the 5′ kit the
+   student already knows. No trick is required to see the guide.
+4. **CROP-seq** — taught *after* as a variation, not before. It needs the guide to appear in a
+   polyadenylated transcript via LTR duplication during reverse transcription, which is real
+   machinery and only makes sense once the vector is known. The audit called the current
+   CROP-seq slide the worst in its set precisely because it arrives before that material.
+5. **Multiplexed and combinatorial knockouts** — last, once both single cell and pooled
+   screening are established.
+
+This replaces phase 1.6: CROP-seq and Perturb-seq do not get cut to a signposted stub, they
+get reordered and taught properly, with 5′ capture leading.
 
 ## Verification
 

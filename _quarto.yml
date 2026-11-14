@@ -193,6 +193,16 @@ website:
                 href: modifications/readings.qmd
               - text: "Exercise"
                 href: modifications/exercise.qmd
+          - section: "Pooled screens and synthetic libraries"
+            contents:
+              - text: "Lecture (slides): building the library"
+                href: screens/lec.qmd
+              - text: "Lecture (slides): reading the library out"
+                href: screens/lec-readout.qmd
+              - text: "Readings"
+                href: screens/readings.qmd
+              - text: "Exercise"
+                href: screens/exercise.qmd
           - section: "Single cells"
             contents:
               - text: "Lecture (slides): plates, droplets and microwells"
@@ -211,16 +221,6 @@ website:
                 href: spatial/readings.qmd
               - text: "Exercise"
                 href: spatial/exercise.qmd
-          - section: "Pooled screens and synthetic libraries"
-            contents:
-              - text: "Lecture (slides): building the library"
-                href: screens/lec.qmd
-              - text: "Lecture (slides): reading the library out"
-                href: screens/lec-readout.qmd
-              - text: "Readings"
-                href: screens/readings.qmd
-              - text: "Exercise"
-                href: screens/exercise.qmd
           - section: "Long reads"
             contents:
               - text: "Lecture (slides)"
