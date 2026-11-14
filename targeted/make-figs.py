@@ -409,6 +409,47 @@ def fig_decision():
     return svg(740, 288, "".join(out))
 
 
+def fig_padlock_chain():
+    """One padlock molecule, all the way through, with the fork at the end."""
+    out = [t(20, 24, "One padlock probe, followed through. The first four steps are always the same.", 14, INK)]
+
+    stages = [
+        ("1  arms hybridise", "one each side of a gap"),
+        ("2  polymerase fills", "the gap, to the probe's end"),
+        ("3  ligase closes", "the circle: now covalent"),
+        ("4  exonuclease", "destroys everything linear"),
+    ]
+    xs = [20, 196, 372, 548]
+    for x, (a, b) in zip(xs, stages):
+        out.append(box(x, 50, 150, 54, "", fill="#fbfbf9"))
+        out.append(t(x + 75, 72, a, 12, HOT, anchor="middle", weight="bold"))
+        out.append(t(x + 75, 90, b, 10.5, MUTE, anchor="middle"))
+    for x in xs[:-1]:
+        out.append(arrow(x + 154, 77, x + 192, HOT))
+
+    out.append(t(20, 124, "Only the target gives both arms a place to sit, so only the target "
+                          "makes a circle. The background is destroyed, not diluted.", 12, INK))
+
+    # the fork
+    out.append(line(623, 136, 440, 166, MUTE, 1.4))
+    out.append(line(623, 136, 790, 166, MUTE, 1.4))
+
+    out.append(box(300, 168, 280, 62, "", fill="none", stroke=TOP))
+    out.append(t(440, 190, "PCR from the backbone", 12, TOP, anchor="middle", weight="bold"))
+    out.append(t(440, 208, "one amplicon per target: a panel", 11, INK, anchor="middle"))
+    out.append(t(440, 223, "read in a tube  (smMIP)", 11, MUTE, anchor="middle"))
+
+    out.append(box(650, 168, 280, 62, "", fill="none", stroke=OK))
+    out.append(t(790, 190, "phi29 rolling circle", 12, OK, anchor="middle", weight="bold"))
+    out.append(t(790, 208, "a rolony: many copies, pinned", 11, INK, anchor="middle"))
+    out.append(t(790, 223, "read in the tissue  (STARmap)", 11, MUTE, anchor="middle"))
+
+    out.append(t(20, 254, "The last step alone decides whether the answer is a panel of "
+                          "variants or a transcript located in a tissue.", 12.5, INK))
+
+    return svg(950, 268, "".join(out))
+
+
 build(__file__, [
     ("strategies", fig_strategies),
     ("tiling", fig_tiling),
@@ -427,4 +468,5 @@ build(__file__, [
     ("sureselect", fig_sureselect),
     ("compare", fig_compare),
     ("decision", fig_decision),
+    ("padlock-chain", fig_padlock_chain),
 ])

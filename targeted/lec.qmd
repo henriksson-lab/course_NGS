@@ -93,6 +93,17 @@ Real on-target rates depend on the kit and the number of rounds. Treat 70% as an
 
 [Hiatt et al. 2013, doi:10.1101/gr.147686.112; Porreca et al. 2007, doi:10.1038/nmeth1110]{.small}
 
+## One padlock, followed to the end
+
+![](fig18-padlock-chain.svg){width=76%}
+
+- Worth following once in full: these four steps turn up in three different places in this course, and they are the same four every time
+- The circle is the whole trick. It is the only product that survives the exonuclease, and it carries the captured target inside it
+- Only then does the route branch: PCR off the backbone gives a panel in a tube, while [rolling circle](../amplification/lec.qmd) gives a rolony that is read where it lies ([spatial](../spatial/lec.qmd))
+- A UMI sitting in the backbone rides through all of it, so what is counted at the end is molecules
+
+[Padlocks: Nilsson et al. 1994, doi:10.1126/science.7522346]{.small}
+
 ## Cas9-guided enrichment
 
 ![](fig06-cas9.svg){width=93%}
