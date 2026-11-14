@@ -190,7 +190,7 @@ Check the exact dNTP mix in the RRBS protocol before stating which bases are unm
 
 - A hairpin removes a free end: no 5' or 3' end is left to ligate, extend or digest
 - SMRTbell libraries close both ends this way; see the
-  [sequencers deck](../sequencers/lec-platforms.qmd)
+  [long-read instruments](../long-reads/lec-instruments.qmd)
 - Splinkerette uses a blocked hairpin to stop one-sided priming
   ([splinkerette PCR](../amplification/lec.qmd))
 

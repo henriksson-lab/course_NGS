@@ -273,6 +273,6 @@ The whole course, in the order a designer meets it.
 **Reagents, instrument, verdict**
 
 - [The enzyme toolbox](../enzymes/lec.qmd) — a deciding property for every enzyme in the design
-- [Other platforms](../sequencers/lec-platforms.qmd) — what the instrument you chose asks of the library
+- [Other short-read platforms](../sequencers/lec-platforms.qmd) and [the long-read instruments](../long-reads/lec-instruments.qmd) — what the instrument you chose asks of the library
 - [Cleanup and QC](../qc/lec.qmd) — the measurements that say whether the design worked
 - [The trick catalogue](../tricks/lec-more.qmd) — for the step no block can do

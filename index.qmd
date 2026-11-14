@@ -35,8 +35,9 @@ modifications, how RNA differs.
 
 **How sequencers read DNA** — clustering and sequencing by synthesis, the four reads and
 their order, i5 orientation, insert size versus read length, index hopping and base
-diversity; then MGI, AVITI, Ultima, PacBio and Nanopore, and what each asks of a library.
-[Illumina](sequencers/lec.qmd) · [Other platforms](sequencers/lec-platforms.qmd) ·
+diversity; then the other short-read machines — MGI, AVITI, Ultima, Ion Torrent — and what
+they change about a library, which is less than you might expect.
+[Illumina](sequencers/lec.qmd) · [Other short-read platforms](sequencers/lec-platforms.qmd) ·
 [Readings](sequencers/readings.qmd) · [Exercise](sequencers/exercise.qmd)
 
 **[Anatomy of a library molecule](library-molecule/lec.qmd)** — P5 to P7 part by part, Y
@@ -142,9 +143,10 @@ Plates, droplets and microwells; combinatorial indexing; multimodal assays.
 in situ sequencing; fixation and permeabilisation as the limiting chemistry.
 [Readings](spatial/readings.qmd) · [Exercise](spatial/exercise.qmd)
 
-**[Long reads](long-reads/lec.qmd)** — handling HMW DNA and what shears it; PacBio SMRTbell
-and Iso-Seq; ONT ligation, rapid, ultra-long and direct RNA; Cas9 enrichment and adaptive
-sampling.
+**Long reads** — the two instruments that read one native molecule, and then the prep:
+handling HMW DNA and what shears it; PacBio SMRTbell and Iso-Seq; ONT ligation, rapid,
+ultra-long and direct RNA; Cas9 enrichment and adaptive sampling.
+[The instruments](long-reads/lec-instruments.qmd) · [Preparing the library](long-reads/lec.qmd) ·
 [Readings](long-reads/readings.qmd) · [Exercise](long-reads/exercise.qmd)
 
 ## Part D — The trick catalogue

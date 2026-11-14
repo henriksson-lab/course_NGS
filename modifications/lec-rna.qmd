@@ -199,7 +199,7 @@ To separate synthesis from decay you need a **time axis in the library**: mark t
 ![](fig38-m6a-compare.svg){width=85%}
 
 - Antibody methods map many sites with little input but cannot give a fraction; chemical and enzymatic ones give single bases and often a fraction, at the price of harsher steps or fewer sites
-- [Direct RNA nanopore sequencing](../sequencers/lec-platforms.qmd) needs no RT at all and reads the mark from the current; calls are statistical [Pratanwanich et al. 2021, doi:10.1038/s41587-021-00949-w]{.small}
+- [Direct RNA nanopore sequencing](../long-reads/lec-instruments.qmd) needs no RT at all and reads the mark from the current; calls are statistical [Pratanwanich et al. 2021, doi:10.1038/s41587-021-00949-w]{.small}
 - Pick by the question: a map, a position, or a stoichiometry
 
 ## What goes wrong

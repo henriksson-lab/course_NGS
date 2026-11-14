@@ -255,7 +255,7 @@ PhiX reads are discarded at demultiplexing. Check the fraction that aligns to Ph
 **What QC cannot see until the run**
 
 - [How sequencers read DNA](../sequencers/lec.qmd) — index hopping: reads in a sample you did not load
-- [Other platforms](../sequencers/lec-platforms.qmd) — what each instrument asks of a finished library
+- [Other short-read platforms](../sequencers/lec-platforms.qmd) and [the long-read instruments](../long-reads/lec-instruments.qmd) — what each asks of a finished library
 
 **The same arithmetic elsewhere**
 

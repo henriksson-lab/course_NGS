@@ -118,7 +118,7 @@ take them in turn, using the same eight enzymes throughout.
 - It is why a **nick is not a stable mark** in a reaction with these enzymes
 - Klenow lacks it (the large fragment was made by removing that domain); T4 DNA polymerase
   and the HiFi enzymes never had it — **HiFi** here names the high-fidelity enzyme class, not
-  PacBio's HiFi reads ([platforms](../sequencers/lec-platforms.qmd))
+  PacBio's HiFi reads ([long-read instruments](../long-reads/lec-instruments.qmd))
 
 ## Strand displacement: three ways to meet a downstream strand
 

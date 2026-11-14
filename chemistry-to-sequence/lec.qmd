@@ -212,9 +212,9 @@ format:
 
 ![](fig22-pacbio.svg){width=79%}
 
-- No conversion: the [polymerase's speed](../sequencers/lec-platforms.qmd) is recorded for each base
+- No conversion: the [polymerase's speed](../long-reads/lec-instruments.qmd) is recorded for each base
 - A modified template slows incorporation, seen as a longer gap between pulses
-- Circular consensus, the reads sold as [HiFi](../sequencers/lec-platforms.qmd), gives many passes, which averages the noise from one pass
+- Circular consensus, the reads sold as [HiFi](../long-reads/lec-instruments.qmd), gives many passes, which averages the noise from one pass
 
 [Flusberg et al. 2010, doi:10.1038/nmeth.1459; Fiber-seq: Stergachis et al. 2020, doi:10.1126/science.aaz1646]{.small}
 

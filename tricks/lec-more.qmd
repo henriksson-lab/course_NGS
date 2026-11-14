@@ -77,7 +77,7 @@ A longer UMI costs read cycles, so the choice is a design trade-off ([read-struc
 
 - **Problem:** nanopore reads have random errors in each pass
 - **Trick:** circularise the molecule and copy it around the circle, so one long read contains it several times
-- **Reason:** errors fall in different places in each copy, so the consensus is far better than any single pass ([the same idea as PacBio HiFi](../sequencers/lec-platforms.qmd))
+- **Reason:** errors fall in different places in each copy, so the consensus is far better than any single pass ([the same idea as PacBio HiFi](../long-reads/lec-instruments.qmd))
 - **Used in:** [R2C2](https://henriksson-lab.github.io/NGS_101/r2c2__10.1073+pnas.1806447115/r2c2.html) [Volden et al. 2018, doi:10.1073/pnas.1806447115]{.small}
 
 ## Spike-ins

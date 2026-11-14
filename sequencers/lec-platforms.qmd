@@ -1,5 +1,5 @@
 ---
-title: "The other sequencing platforms"
+title: "Other short-read platforms"
 subtitle: "Foundations · NGS library preparation"
 author: "Johan Henriksson"
 format:
@@ -19,18 +19,20 @@ format:
     html-math-method: katex
 ---
 
-## Why look past Illumina
+## Illumina is not the only short-read machine
 
-Three reasons, and all of them change what you build:
+Several instruments read the same kind of library — a population of short fragments, each
+carrying a known sequence at both ends — by quite different chemistry.
 
-- **Length.** Illumina reads a few hundred bases. Isoforms, repeats, structural variants and
-  haplotypes are often longer than that.
-- **The molecule itself.** PacBio and Nanopore read a native molecule, so chemical
-  modifications can be detected without converting anything.
-- **Cost and access.** Different platforms win at different scales, and the sequencer you can
-  actually get time on is a real constraint.
+- **Cost and access** are the usual reasons to care: platforms win at different scales, and
+  the sequencer you can get time on is a real constraint
+- **What does not change** is the library. The ends differ, the read lengths are similar, and
+  every design decision in the rest of this course still applies
+- **What does change** is the sequence of the ends, the tolerance for homopolymers, and
+  sometimes the error profile
 
-Each has its own ends, and therefore its own library prep.
+Reading a native, full-length molecule is a different matter, and it waits until
+[long reads](../long-reads/lec-instruments.qmd), once the short-read protocols are in place.
 
 ## MGI: circularise, then copy
 
@@ -52,127 +54,23 @@ Each has its own ends, and therefore its own library prep.
 
 [Avidity: Arslan et al. 2023, doi:10.1038/s41587-023-01750-7; Ion Torrent: Rothberg et al. 2011, doi:10.1038/nature10242]{.small}
 
-## PacBio: the SMRTbell
-
-![](fig15-smrtbell.svg){width=83%}
-
-- Hairpin adapters close the duplex into one single-stranded circle: a molecule with no free
-  end left to ligate, extend or digest ([end chemistry](../end-chemistry/lec.qmd))
-
-## One polymerase, watched in real time
-
-![](fig16-zmw.svg){width=87%}
-
-- The timing between flashes reports modified bases — no conversion chemistry
-
-[Eid et al. 2009, doi:10.1126/science.1162986]{.small}
-
-## HiFi: accuracy from repetition
-
-![](fig17-ccs.svg){width=92%}
-
-- Insert length and accuracy are the same decision, and size selection is how you make it
-
-[Wenger et al. 2019, doi:10.1038/s41587-019-0217-9]{.small}
-
-## What PacBio asks of your library
-
-- **Intact DNA.** A nick inside the insert ends the read. Shearing, vortexing, freeze-thaw
-  and old samples all cost you length.
-- **A tight size distribution.** Short molecules are loaded preferentially, so a few short
-  fragments can dominate the run. Size selection is not optional.
-- **No damaged ends.** Damage repair before ligation is a standard step.
-- **Barcodes in the adapters or primers**, read as part of the insert rather than as separate
-  index reads.
-
-The whole prep is shorter than an Illumina one, and far more sensitive to how you handled the
-sample; [long reads](../long-reads/lec.qmd) is that prep, kit by kit.
-
-## Nanopore: the molecule is the signal
-
-![](fig18-nanopore.svg){width=92%}
-
-- Read length is how long your molecule was, so pipetting technique becomes read length
-
-[Jain et al. 2016, doi:10.1186/s13059-016-1103-0]{.small}
-
-## Three ways to attach the motor
-
-![](fig19-ont-kits.svg){width=90%}
-
-- Ligation for yield and length; rapid for speed; ultra-long for hundreds of kilobases
-
-[Ultra-long: Jain et al. 2018, doi:10.1038/nbt.4060]{.small}
-
-## Direct RNA, and modifications
-
-- Nanopore can sequence **RNA itself** — no reverse transcription, no PCR, no cDNA bias. The
-  adapter is ligated to the RNA's 3' end, and the molecule is read 3' to 5'.
-- Yield is lower and error higher than cDNA routes, and you need a lot of intact RNA.
-- Both platforms call **base modifications** from the raw signal: 5mC and 6mA on DNA, and a
-  growing list on RNA including m6A and pseudouridine.
-
-This is the one capability that no amount of clever library chemistry gives you on a
-short-read instrument — there you must first convert the modification into a base change
-([converting chemistry into sequence](../chemistry-to-sequence/lec.qmd)).
-
-## Basecalling and error
-
-![](fig20-error-profiles.svg){width=80%}
-
-- Decides whether you need UMIs, duplex reads or consensus to trust a variant call
-  ([barcodes and UMIs](../barcodes-umis/lec.qmd))
-
-[Nanopore review: Wang et al. 2021, doi:10.1038/s41587-021-01108-x]{.small}
-
-## Adaptive sampling
-
-A nanopore can decide, part-way through a molecule, that it does not want it — and eject it.
-
-- The first fraction of a second of signal is basecalled and compared with a target list
-- Unwanted molecules are rejected and the pore takes the next one
-- Enrichment without any wet-lab capture step
-
-It is a reminder that on these platforms, some of what used to be library chemistry has moved
-into software. When you design a prep, ask whether the wet-lab enrichment you are planning
-([selection](../selection/lec.qmd)) could be done at the pore instead.
-
-## Choosing a platform
-
-![](fig21-platform-compare.svg){width=73%}
-
-- There is no best platform: there is a question, a sample and a budget
-
-## What each platform asks for
-
-| Platform | Ends it needs | Cares most about |
-|---|---|---|
-| Illumina | P5 / P7, dual indexes | insert size, dimers, diversity |
-| MGI | its own adapters, circularisable | same, plus clean circularisation |
-| PacBio | hairpin SMRTbell adapters | intact high-molecular-weight (HMW) DNA, size selection |
-| Nanopore | motor-protein adapter | molecule length, gentle handling |
-
-The chemistry in the rest of this course is largely shared. What changes between platforms is
-the handle you put on the ends — and how much you must protect the molecule to get there.
-
 ## Where this connects
 
 **Read this next**
 
-- [Anatomy of a library molecule](../library-molecule/lec.qmd) — the construct in detail; the
-  same drawing habit works on a SMRTbell
+- [Anatomy of a library molecule](../library-molecule/lec.qmd) — the construct in detail, and
+  the drawing habit that makes a change of platform easy to reason about
 
-**What changes between platforms**
+**What a platform dictates**
 
-- [Attaching a handle](../handles/lec.qmd) — the ends are the part a platform dictates
-- [Fragmentation and size control](../fragmentation/lec.qmd) — size selection sets HiFi
-  accuracy, and on nanopore the thing you must *not* do
-- [Cleanup and QC](../qc/lec.qmd) — long-read loading is counted in molecules, not nanograms
+- [Attaching a handle](../handles/lec.qmd) — the ends are the part the instrument chooses for you
+- [Barcodes and read structure](../barcodes-umis/lec.qmd) — index design is platform-specific
+- [Cleanup and QC](../qc/lec.qmd) — loading concentration and diversity are read off the instrument
 
-**Where native reading pays off**
+**Later, when the short-read protocols are in place**
 
-- [Modifications and damage](../modifications/lec.qmd) — the conversion chemistries these
-  platforms let you skip
+- [The long-read instruments](../long-reads/lec-instruments.qmd) — PacBio and Nanopore, which
+  read one native molecule rather than a population of fragments
 
 Every protocol in [NGS 101](https://henriksson-lab.github.io/NGS_101/) names its platform;
 look at how the first and last steps change when the platform does.

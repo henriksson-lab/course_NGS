@@ -140,7 +140,7 @@ Frame the whole deck as: handle plus readout. Students should be able to name, f
 - **Whole-genome 5mC, ordinary input:** bisulfite or EM-seq; prefer EM-seq for low input or fragile DNA such as cell-free DNA
 - **5hmC separately** (brain, TET-mutant tumours): oxBS, TAB-seq or TAPS beta
 - **Many samples, promoters and islands only:** RRBS
-- **Long molecules, phasing, repeats:** [nanopore sequencing](../sequencers/lec-platforms.qmd) reads modified bases from the current signal, with no conversion at all [Simpson et al. 2017, doi:10.1038/nmeth.4184]{.small}
+- **Long molecules, phasing, repeats:** [nanopore sequencing](../long-reads/lec-instruments.qmd) reads modified bases from the current signal, with no conversion at all [Simpson et al. 2017, doi:10.1038/nmeth.4184]{.small}
 - **Whatever you choose:** spike-in controls, and say in the paper what fraction converted
 
 ## DNA breaks: the end is the handle

@@ -223,7 +223,9 @@ website:
                 href: spatial/exercise.qmd
           - section: "Long reads"
             contents:
-              - text: "Lecture (slides)"
+              - text: "Lecture (slides): the instruments"
+                href: long-reads/lec-instruments.qmd
+              - text: "Lecture (slides): preparing the library"
                 href: long-reads/lec.qmd
               - text: "Readings"
                 href: long-reads/readings.qmd

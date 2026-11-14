@@ -28,7 +28,7 @@ You choose a long-read library when the answer lies in how far apart two things 
 - **Isoforms**: which exons belong to the same transcript
 - **Modifications** on the native strand, with [no conversion chemistry](../chemistry-to-sequence/lec.qmd) at all
 
-In each case the library must keep the molecule as long as it was in the cell. The [platform deck](../sequencers/lec-platforms.qmd) explains how the instruments read; this deck is about getting the molecule to the instrument whole.
+In each case the library must keep the molecule as long as it was in the cell. The [instrument deck](lec-instruments.qmd) explains how the instruments read; this deck is about getting the molecule to the instrument whole.
 
 ## What shears HMW DNA
 
@@ -221,7 +221,7 @@ The two are not exclusive. Which to use depends on how many targets you have, an
 
 **Before this**
 
-- [Other platforms](../sequencers/lec-platforms.qmd) — what a SMRTbell and a motor protein actually are, and what each instrument demands of the molecule you hand it
+- [The long-read instruments](lec-instruments.qmd) — what a SMRTbell and a motor protein actually are, and what each instrument demands of the molecule you hand it
 
 **If this fails**
 
