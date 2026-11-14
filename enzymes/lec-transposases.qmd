@@ -24,11 +24,14 @@ format:
 Two groups of enzymes that do not fit the cut-copy-join pattern:
 
 - **Transposases** cut DNA and attach adapters in one step
-- **Modifying enzymes** change a base, a cap or a tail: they convert methylation to a readable
-  signal, mark RNA 5' ends, add handles to 3' ends, and amplify RNA linearly
+- **Modifying enzymes** exist to make something readable that the sequencer cannot otherwise
+  see: a methyl group, an undamaged base, which 5' ends were capped, an end with no sequence
+  of its own, an RNA too scarce to sequence directly
+- A sequencer reports bases, so every one of them turns a property into a base, an end or a
+  copy number ([converting chemistry into sequence](../chemistry-to-sequence/lec.qmd))
 
-Both are used for what they *happen to do*, so the skill is the same: identify the activity,
-then ask what else the enzyme does in the tube. The deck closes with the skill itself.
+Both groups are used for what they *happen to do*, so the skill is the same: identify the
+activity, then ask what else the enzyme does in the tube. The deck closes with the skill itself.
 
 ## Tn5: cutting and tagging in one step
 
@@ -107,9 +110,9 @@ then ask what else the enzyme does in the tube. The deck closes with the skill i
 
 ![](fig39-emseq.svg){width=75%}
 
+- **Made readable:** a methyl group, as the cytosines that are *not* converted
 - **TET2** oxidises 5mC and 5hmC; **T4-BGT** glucosylates 5hmC. Both are protected
-- **APOBEC3A** deaminates the cytosine that is left, turning C into U, read as T: a chemical
-  property turned into a base change ([converting chemistry into sequence](../chemistry-to-sequence/lec.qmd))
+- **APOBEC3A** deaminates the cytosine that is left, turning C into U, read as T
 - The DNA is not damaged by harsh chemistry — **bisulfite** conversion deaminates C but
   fragments the DNA as it goes ([modifications](../modifications/lec.qmd)) — so libraries can
   be built from far less input
@@ -118,6 +121,7 @@ then ask what else the enzyme does in the tube. The deck closes with the skill i
 
 ## Glycosylases and repair mixes
 
+- **Made readable:** the base that was there, instead of the damage that reads as a variant
 - A **uracil glycosylase** (UDG) removes U from DNA: used to clean **ancient DNA** and
   FFPE-damaged DNA of deaminated cytosines, which would read as C→T
 - **FPG** and similar enzymes remove oxidised bases such as 8-oxoG
@@ -130,6 +134,7 @@ then ask what else the enzyme does in the tube. The deck closes with the skill i
 
 ![](fig40-capping.svg){width=90%}
 
+- **Made readable:** which 5' ends were capped, because only those can carry the handle
 - A 5' cap is a 7-methylguanosine joined by a triphosphate. A ligase cannot use it
 - A **decapping enzyme** leaves 5'-P, which a ligase *can* use. A 5'-P-dependent exonuclease
   removes uncapped RNA first
@@ -139,6 +144,7 @@ then ask what else the enzyme does in the tube. The deck closes with the skill i
 
 ![](fig41-t7-ivt.svg){width=100%}
 
+- **Made readable:** a sample too small to sequence, copied without compounding its errors
 - T7 recognises a ~17 bp promoter and makes hundreds of RNA copies per DNA
 - Linear amplification compounds **no copy errors**, so it is fairer than exponential PCR
   ([amplification](../amplification/lec.qmd))
@@ -150,6 +156,7 @@ then ask what else the enzyme does in the tube. The deck closes with the skill i
 
 ![](fig42-tailing.svg){width=100%}
 
+- **Made readable:** an end with no sequence of its own, by giving it one to prime from
 - **TdT** adds nucleotides to a DNA 3'-OH with no template. Use a single dNTP for a
   homopolymer, a ddNTP to stop and block
 - **Poly(A) polymerase** adds A's to RNA 3' ends, so any RNA can be primed by oligo-dT
@@ -163,20 +170,16 @@ then ask what else the enzyme does in the tube. The deck closes with the skill i
 - Name the **step**, then the **deciding property**: the family follows
 - Then find the one chart column that could make the step fail silently, and check it
 
-## Putting it together: one ligation library
-
-![](fig44-walkthrough.svg){width=90%}
-
-- Every row's "end state out" must match the next row's "end state in"
-- Read a protocol you meet this way: if the end states do not line up, either the protocol
-  has a step you cannot see or one of the enzymes is doing something unexpected
-
 ## What to take away
 
 - Polymerases: read the **chart columns**, not the product name
 - Ligases need a **5'-phosphate and a 3'-OH**, and everything else is about substrates
 - Nucleases: ask **what end they need and what end they leave**
 - Transposases combine cutting and tagging; the **gap** is a polymerase job
+- Those four rows of ligation chemistry, collapsed into one reaction, are the backbone of
+  [the polymerase deck](lec.qmd): read a protocol by lining up its end states
+- Modifying enzymes make a property readable, which is a whole unit of its own
+  ([converting chemistry into sequence](../chemistry-to-sequence/lec.qmd))
 - A silent failure is nearly always an activity you did not know the enzyme had
 
 Next in Part B: attaching a handle to an unknown molecule, using these enzymes.

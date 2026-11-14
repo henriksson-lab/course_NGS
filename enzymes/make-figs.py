@@ -929,19 +929,20 @@ def fig_chooser():
 
 
 def fig_walkthrough():
-    out = [lead("One library, one end state at a time")]
+    out = [lead("TruSeq DNA PCR-free: one row per step, and the row only the PCR kits use")]
     heads = ["Step", "Enzyme", "End state in", "End state out"]
     rows = [
-        ["end prep", "T4 PNK + T4 DNA pol", "ragged, 5'-OH or P", "blunt, 5'-P, 3'-OH"],
-        ["A-tail", "Klenow exo− / Taq", "blunt", "3'-A overhang"],
-        ["ligate", "T4 DNA ligase", "3'-A + T-overhang adapter", "insert with adapter, nicks"],
-        ["cut loop", "USER", "closed hairpin adapter", "open Y-shaped adapter"],
-        ["amplify", "HiFi polymerase", "adapter-flanked insert", "many copies, blunt"],
+        ["shear", "none: acoustic shearing", "intact genomic DNA", "~350 bp, ragged, 5'-OH or P"],
+        ["end repair", "T4 DNA pol + T4 PNK", "ragged, 5'-OH or P", "blunt, 5'-P, 3'-OH"],
+        ["A-tail", "Klenow exo− + dATP", "blunt", "3'-A overhang"],
+        ["ligate", "T4 DNA ligase", "3'-A + T-overhang adapter", "full-length adapter on each end"],
+        ["amplify", "not in PCR-free; HiFi pol with a stub adapter", "adapter-flanked insert", "many copies, blunt"],
     ]
     b, r, bt = tbl(30, 62, heads, rows, size=13, rh=30)
     out.append(b)
-    out.append(foot(bt + 24, "Wrong enzyme at any row and the next row's 'in' does not match. Check a step by comparing its two end states."))
-    return svg(int(r) + 30, int(bt) + 40, "".join(out))
+    out.append(foot(bt + 24, "Every row's end state out is the next row's end state in. Wrong enzyme at any row and the next row's 'in' does not match."))
+    out.append(foot(bt + 44, "Tn5 does rows 1 to 4 in one reaction. PCR-free stops after row 4, which is why it needs micrograms of input.", MUTE))
+    return svg(int(r) + 30, int(bt) + 58, "".join(out))
 
 
 build(__file__, [
