@@ -41,9 +41,10 @@ Next: how each one reads, then what that asks of the library.
 
 ## One polymerase, watched in real time
 
-![](fig16-zmw.svg){width=87%}
+![](fig16-zmw.svg){width=66%} ![](../img/smrtcell-pacbio.jpg){width=17%}
 
 - The timing between flashes reports modified bases — no conversion chemistry
+- A SMRT cell, above right: the wells are on the chip inside it [Photo: Owlmonkey, CC BY-SA 4.0]{.small}
 
 [Eid et al. 2009, doi:10.1126/science.1162986]{.small}
 

@@ -68,6 +68,17 @@ def main():
     data = urllib.request.urlopen(req, timeout=120).read()
     with open(out, "wb") as fh:
         fh.write(data)
+    with open(os.path.splitext(out)[0] + ".md", "w") as fh:
+        fh.write("# %s\n\n"
+                 "- **File:** `%s`\n"
+                 "- **Author:** %s\n"
+                 "- **Licence:** %s%s\n"
+                 "- **Source:** %s\n"
+                 "- **Changes:** none, used as downloaded\n"
+                 % (os.path.basename(out), os.path.basename(out), info["author"],
+                    info["licence"],
+                    " (%s)" % info["licence_url"] if info["licence_url"] else "",
+                    info["page"]))
     new = not os.path.exists(CREDITS)
     with open(CREDITS, "a") as fh:
         if new:

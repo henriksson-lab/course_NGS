@@ -55,9 +55,10 @@ The aim is that by the end, a student can say what every part of an Illumina ada
 
 ## The flow cell is a lawn of two oligos
 
-![](fig03-flowcell.svg){width=92%}
+![](fig03-flowcell.svg){width=70%} ![](../img/flowcell-miseq.jpg){width=19%}
 
 - Two sequences, **P5** and **P7**, grafted to the surface by their 5' ends
+- The object itself is the glass channel above right: a MiSeq flow cell, one lane [Photo: Cirosantilli2, CC BY-SA 4.0]{.small}
 - Your molecule must carry the complement of one at each end
 - Same end at both ends → no bridge → no cluster → no read
 

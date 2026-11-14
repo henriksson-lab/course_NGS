@@ -48,9 +48,10 @@ Length is lost silently: the library looks normal, and the N50 is half of what y
 
 ## Count molecules, not mass
 
-![](fig02-molarity.svg){width=76%}
+![](fig02-molarity.svg){width=60%} ![](../img/flowcell-minion.jpg){width=17%}
 
 - A mass-based input gives you very few long molecules, so adapter ligation has fewer ends to find
+- What the library is finally loaded onto: a MinION flow cell, pipetted in through the port above right [Photo: Cirosantilli2, CC BY-SA 4.0]{.small}
 
 ## PacBio: SMRTbell prep 3.0
 

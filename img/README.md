@@ -3,10 +3,12 @@
 Equipment photographs used in the decks. Mechanism is always a drawn figure; a photograph is
 only ever here to show what a piece of equipment physically is.
 
-**Everything in this folder is CC0.** That is a deliberate restriction, not an accident of
-what was available: CC0 carries no attribution condition, so the course cannot quietly fall
-out of compliance as slides are edited. The author is credited anyway, on the slide and in
-`CREDITS.tsv`, because it is the decent thing and it costs a line.
+CC0, CC-BY and CC-BY-SA are all fine here. The photographs are used **unmodified**, so
+share-alike never bites: a slide carrying a photograph is a collection, not an adaptation.
+
+**Every image has a `.md` beside it** with its author, licence and source, so the attribution
+travels with the file and cannot be lost when a slide is edited. The credit is also on the
+slide itself, which is what a reader sees.
 
 `CREDITS.tsv` is written by `tools/fetch_photo.py`, which is the only way a photograph should
 enter this folder. It refuses any licence not on its allowlist, refuses a file with no
@@ -26,7 +28,6 @@ Worth recording so the same candidates are not re-examined:
 
 ## Still missing
 
-Commons has no usable CC0 photograph of a PacBio instrument, a Covaris sonicator, a magnetic
-bead rack, or a 10x Chromium controller. The decks that would use them have drawn figures
-instead, which is not a loss — but if a freely licensed photograph turns up, those are the
-gaps.
+Widening to CC-BY-SA filled the PacBio gap (a SMRT cell) and added both flow cells. Commons
+still has nothing usable for a **Covaris sonicator**, a **magnetic bead rack**, or a **10x
+Chromium controller**. The decks that would use them have drawn figures instead.
