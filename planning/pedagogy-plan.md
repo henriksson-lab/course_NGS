@@ -173,3 +173,24 @@ readout of modifications, which depends on PacBio kinetics and nanopore signal. 
 move those become forward references. They should be signposted as such rather than
 explained twice — the native-readout slides are a preview of a Part C unit, and saying so is
 better than quietly relying on a deck the student has not reached.
+
+## Sequencing by ligation: how to treat it
+
+Course owner's call: interesting mainly as inspiration for advanced students, in case the
+approach returns. It should not be taught as a current platform chemistry.
+
+Accurate framing, because the two halves differ:
+
+- **Dead in bulk sequencing.** SOLiD and Complete Genomics' cPAL are both discontinued, and
+  no current short-read instrument reads by ligation. It belongs in no comparison table of
+  instruments a student might buy time on.
+- **Alive in situ.** Ligation-based readout survived where the molecules cannot be moved:
+  STARmap's SEDAL is sequencing by ligation, and FISSEQ used a SOLiD-style ligation readout.
+  This is why four slides in `spatial/` depend on it, and why it cannot simply be cut.
+
+So: one short definition at the point `spatial/` first needs it, with a clause noting it was
+replaced by sequencing by synthesis in bulk instruments but persists in in-situ methods, plus
+at most one sentence for the advanced reader on why the idea is worth knowing. No new slide,
+and nothing in Foundations — that would spend the student's attention early on a chemistry
+they will never meet on an instrument, which is the opposite of keeping Illumina as the focal
+point (see F above).
