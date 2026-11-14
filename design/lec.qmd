@@ -109,6 +109,8 @@ Every failure has a **signature** (what you see) and a **control** (what proves 
 | over-amplification | duplicates; GC bias | titration; UMIs |
 | off-target ligation | skewed abundance | spike-in; no-template control |
 
+The controls in the last column are defined later in this deck, under *What each control means*.
+
 ## Adapter dimers
 
 ![](fig07-f-dimer.svg){width=92%}
@@ -193,17 +195,18 @@ Every failure has a **signature** (what you see) and a **control** (what proves 
 
 ## The capstone
 
-Design a library preparation for a question of your own choosing. Hand in:
+Design a library preparation for a question of your own choosing, and hand in a document that satisfies every line:
 
-1. The question, and what the data must show
-2. The blocks, in order
-3. The construct, drawn after every step
-4. Oligos and enzymes, each with a justification from the selection charts
-5. The read structure
-6. The controls, and the failures you expect
-7. A comparison with the closest protocol in the collection
+- [ ] The question is stated, with the readout that answers it
+- [ ] Every block is justified and ordered
+- [ ] The construct is drawn after each step, with end chemistry
+- [ ] Every enzyme has a deciding property
+- [ ] Oligo sequences, with Tm and checks for self-pairing
+- [ ] Read structure fits the construct
+- [ ] Controls cover the expected failures
+- [ ] The closest protocol is named, linked and compared
 
-The exercise page lists it with a checklist.
+The rest of this deck works one design against that list: chromatin accessibility in 500 human CD34+ cells. The exercise page repeats the list.
 
 ## A worked outline
 
@@ -212,6 +215,22 @@ The exercise page lists it with a checklist.
 - Question: which regulatory regions are accessible in 500 human CD34+ cells? ([accessibility assays](../chromatin/lec.qmd))
 - Closest protocol: [Omni-ATAC](https://henriksson-lab.github.io/NGS_101/omni-atac__10.1038+nmeth.4396/omni-atac.html) [Corces et al. 2017, doi:10.1038/nmeth.4396]{.small}, with the cycle choice from [ATAC-seq](https://henriksson-lab.github.io/NGS_101/atac-seq__10.1038+nmeth.2688/atac-seq.html)
 - Differences to state: the cell type, the low input, and any change you would make for a smaller sample
+
+## The construct, after every step
+
+![](fig17-capstone-walk.svg){width=92%}
+
+- One fragment end, both strands; the note beside each row is that step's ledger entry
+- Tn5 joins its own 3' end to the insert's 5' end, so no ligase appears ([transposases](../enzymes/lec-transposases.qmd))
+- The gap is filled from the insert's **own** 3'-OH at 72 °C; before that the index primers have no site
+
+## The oligos, written out
+
+![](fig18-capstone-oligos.svg){width=80%}
+
+- Parts from the construct the course already uses ([the library molecule](../library-molecule/lec.qmd))
+- Only the 14 nt tail anneals, so the Tm that matters is the tail's ([a duplex in a buffer](../nucleic-acids/lec.qmd))
+- What the *Anneal primers* tab is for: intended pairing long, unintended pairing short and off the 3' end
 
 ## Justify enzymes from the selection charts
 
@@ -227,6 +246,17 @@ Vendor charts (for example NEB's polymerase, ligase and nuclease selection tools
 
 A choice with no deciding property is not yet a choice.
 
+## The same, for this design
+
+| Step | Enzyme | Deciding property |
+|---|---|---|
+| tagment | hyperactive Tn5, loaded with the two stubs | cuts and transfers the adapter in one step, leaving a 9 nt stagger; the amount per nucleus sets the fragment size |
+| stop | none: SDS, heat or a column | Tn5 stays on the product and blocks the next step, so it is stripped rather than inhibited |
+| fill the gap | the PCR polymerase, first cycle at 72 °C | extends a recessed 3'-OH at 72 °C, hot-start so nothing extends while Tn5 is still bound |
+| index PCR | high-fidelity, low-bias polymerase | even yield across the GC-rich sequence of open chromatin; errors made early are carried into the library |
+
+Displacement is not a property this design has to choose on: ME' is 19 bp, Tm 47 °C, so it has left the molecule before 72 °C. No ligase appears anywhere, so adapter dimers cannot form the way they do in a ligation protocol.
+
 ## Predict the read structure
 
 Work from the construct to cycles per read.
@@ -238,16 +268,24 @@ Work from the construct to cycles per read.
 
 Write: `Read 1 / Index 1 / Index 2 / Read 2` as cycles, as in the example: 50 / 8 / 8 / 50.
 
-## Checklist
+## Compared with Omni-ATAC
 
-- [ ] The question is stated, with the readout that answers it
-- [ ] Every block is justified and ordered
-- [ ] The construct is drawn after each step, with end chemistry
-- [ ] Every enzyme has a deciding property
-- [ ] Oligo sequences, with Tm and checks for self-pairing
-- [ ] Read structure fits the construct
-- [ ] Controls cover the expected failures
-- [ ] The closest protocol is named, linked and compared
+500 cells is 3.3 ng (6.6 pg per cell): 1000 copies of every locus, of which about half carry one stub of each kind, and two clean-ups at 80% leave roughly 320 amplifiable molecules per accessible site.
+
+| What | Taken, or changed and why |
+|---|---|
+| lysis in NP-40, Tween-20 and digitonin; the Tween-20 wash; the reaction in PBS with digitonin | taken unchanged: mitochondrial reads are the same problem at any input ([the detergents, one by one](../chromatin/lec.qmd)) |
+| transposome per reaction | scaled down with the nuclei: fragment size is set by enzyme per DNA, so the published amount would over-tagment 500 nuclei |
+| cycles | 5 pre-amplification cycles, then the diagnostic qPCR, as published. ATAC-seq is written for 50,000 nuclei; 100-fold less is about seven doublings, so expect about that many more cycles, with the qPCR fixing the number |
+| depth | capped by the budget above, not by the instrument: at 30 reads per site, 30/320 is 0.09 reads per molecule and about 96% are unique; at 300 it is 0.94 and about 65% |
+
+## Closing the design at QC
+
+![](fig19-capstone-qc.svg){width=86%}
+
+- The trace is the first place this design can be shown to be wrong: the nucleosome ladder is the evidence that the enzyme-to-nuclei ratio was right ([fragment length carries information](../chromatin/lec.qmd))
+- Qubit gives mass and qPCR gives molecules that can cluster; the two disagreeing is the one-sided-product signature from earlier in this deck
+- The loading concentration is instrument and kit specific, so it comes from the guide ([cleanup and QC](../qc/lec.qmd)); the stop rules are written before the run, not after it
 
 ## Where this connects
 

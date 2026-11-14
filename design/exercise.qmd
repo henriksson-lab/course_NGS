@@ -74,7 +74,7 @@ A worked outline, for the question "which regions are accessible in 500 human CD
 2. Blocks: nuclei isolation; tagmentation; gap fill; pre-amplify; select by qPCR; index PCR; clean up; pool; load.
 3. Constructs: nucleus; stub-tagged open DNA with a 9-bp gap; gap-filled; indexed with P5/P7.
 4. Oligos: transposome carrying the read-primer stubs; index primers adding i5/i7 with P5/P7.
-5. Enzymes: Tn5 (tags and cuts in one step), a strand-displacement-free polymerase for gap fill, and a high-fidelity PCR polymerase.
+5. Enzymes: Tn5 (tags and cuts in one step); the gap fill needs only a polymerase that extends a 3'-OH at 72 °C, because ME' has melted off by then and there is nothing downstream to displace; and a high-fidelity polymerase for the index PCR.
 6. Read structure: 50 / 8 / 8 / 50.
 7. Controls: a no-transposase reaction, a reference cell line, deproteinised DNA, a blank in the pool.
 8. Failures: mitochondrial reads, over-tagmentation (short fragments only), over-amplification.

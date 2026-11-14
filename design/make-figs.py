@@ -434,6 +434,218 @@ def fig_capstone():
     return svg(900, 264, "".join(out))
 
 
+# ================================================================ the capstone, worked
+
+# Real sequences, as they appear in library-molecule/make-figs.py.  Indexes are the
+# placeholders used in fig06 of this deck.
+ME = "AGATGTGTATAAGAGACAG"
+ME_C = "CTGTCTCTTATACACATCT"
+TAIL_A = "TCGTCGGCAGCGTC"
+TAIL_B = "GTCTCGTGGGCTCGG"
+P5 = "AATGATACGGCGACCACCGAGATCTACAC"
+P7 = "CAAGCAGAAGACGGCATACGAGAT"
+I5, I7 = "TATAGCCT", "CGAGTAAT"
+
+check_pairing(ME, ME_C[::-1])                       # the duplex Tn5 binds
+assert len(TAIL_A + ME) == 33 and len(P5 + I5 + TAIL_A) == 51
+assert len(P5 + I5 + TAIL_A + ME) == 70 and len(P7 + I7 + TAIL_B + ME) == 66
+
+
+def sbar(x, y, w, label, kind, h=18, size=11):
+    fill, col = KIND[kind]
+    return box(x, y, w, h, label, fill, col, size, col, r=3)
+
+
+def fig_capstone_walk():
+    """One fragment end, both strands, after every step.  The 9 nt gap is drawn as a gap."""
+    LX, MX, NX = 40, 200, 700
+    XA, XB, XI, XE = MX, MX + 70, MX + 160, MX + 440     # tail A | ME | insert | end
+    XG = XI + 30                                          # the 9 nt gap, to scale-ish
+    out = [t(LX, 26, "The construct after every step: one fragment end of the 500-cell "
+                     "Omni-ATAC library, both strands.", 14, INK)]
+    rows = [
+        ("1  nuclei", "none", [
+            "blunt duplex, nothing to prime on.",
+            "Tn5 reaches it only where no",
+            "nucleosome sits."]),
+        ("2  tagment", "tn5", [
+            "the stub's 3'-OH is joined to the insert's",
+            "5'-P, with no ligase. Bottom strand: 3'-OH",
+            "recessed 9 nt, ME' annealed but not joined."]),
+        ("3  fill in", "fill", [
+            "ME' is 19 bp, Tm 47 °C: gone at 72 °C.",
+            "The insert's own 3'-OH is the primer, 9 nt",
+            "then the stub. A ligase cannot close a gap."]),
+        ("4  index PCR", "pcr", [
+            "the tail A complement now exists, so the",
+            "index primer has a site. Before this step",
+            "the primers have nothing to anneal to."]),
+        ("5  finished", "done", [
+            "blunt duplex, P5 one end, P7 the other:",
+            "70 + insert + 66 bp. Different ends, so it",
+            "bridges and clusters."]),
+    ]
+    for i, (lab, kind, note) in enumerate(rows):
+        y = 56 + i * 60
+        yb = y + 22
+        out.append(t(LX, y + 15, lab, 12.5, INK))
+        if kind == "none":
+            out.append(sbar(XA, y, XE - XA, "accessible DNA in the nucleus", "ins"))
+            out.append(sbar(XA, yb, XE - XA, "", "ins"))
+            out.append(t(XA - 10, y + 13, "5'", 11, MUTE, anchor="end"))
+            out.append(t(XA - 10, yb + 13, "3'", 11, MUTE, anchor="end"))
+            out.append(t(XE + 8, y + 13, "3'", 11, MUTE))
+            out.append(t(XE + 8, yb + 13, "5'", 11, MUTE))
+        elif kind == "tn5":
+            out.append(sbar(XA, y, XB - XA, "tail A", "p5"))
+            out.append(sbar(XB, y, XI - XB, "ME 19", "ad"))
+            out.append(sbar(XI, y, XE - XI, "insert", "ins"))
+            out.append(sbar(XB, yb, XI - XB, "ME'", "ad"))
+            out.append(sbar(XG, yb, XE - XG, "", "ins"))
+            out.append(line(XI, yb + 9, XG - 2, yb + 9, HOT, 1.2, dash="3 3"))
+            out.append(t(XI + 2, yb + 33, "9 nt gap, ending at the insert's 3'-OH",
+                         10, HOT))
+            out.append(dot(XI, y + 9, 3, HOT))
+            out.append(t(XI - 4, y - 4, "joined here", 10, HOT, anchor="end"))
+        elif kind == "fill":
+            out.append(sbar(XA, y, XB - XA, "tail A", "p5"))
+            out.append(sbar(XB, y, XI - XB, "ME 19", "ad"))
+            out.append(sbar(XI, y, XE - XI, "insert", "ins"))
+            out.append(sbar(XG, yb, XE - XG, "", "ins"))
+            out.append(arrow(XG - 2, yb + 13, XA + 4, HOT, 1.6, head=5))
+            out.append(t((XA + XG) / 2, yb + 6, "72 °C: 9 nt, then copy the stub",
+                         10, HOT, anchor="middle"))
+        elif kind == "pcr":
+            out.append(sbar(XA - 80, y, 80, "P5 i5", "p5"))
+            out.append(sbar(XA, y, XB - XA, "tail A", "p5"))
+            out.append(sbar(XB, y, XI - XB, "ME 19", "ad"))
+            out.append(sbar(XI, y, XE - XI, "insert", "ins"))
+            out.append(sbar(XA, yb, XE - XA, "template strand", "ins"))
+            out.append(t(XA - 76, y - 4, "from the primer's 5' tail", 10, HOT))
+        else:
+            out.append(sbar(XA, y, XI - XA, "P5 i5 tail A ME", "p5"))
+            out.append(sbar(XI, y, XE - 110 - XI, "insert", "ins"))
+            out.append(sbar(XE - 110, y, 110, "ME' tail B' i7 P7", "p7"))
+            out.append(sbar(XA, yb, XE - XA, "", "ins"))
+        for k, ln in enumerate(note):
+            out.append(t(NX, y + 11 + k * 15, ln, 11.5, MUTE))
+    out.append(t(LX, 354, "Write the ends, not the step name: the 9 nt gap, not the cut, is why "
+                          "the fill-in is not optional.", 13.5, HOT))
+    return svg(980, 368, "".join(out))
+
+
+def fig_capstone_oligos():
+    """The two oligos written out, with the pairing that matters and the one that does not."""
+    out = [t(40, 24, "The oligos this design needs. Tm by nearest neighbour, 50 mM Na+, "
+                     "0.25 µM oligo: a duplex in a buffer, not a property of the oligo.",
+             13.5, INK)]
+    # --- transposome
+    out.append(t(40, 60, "1  transposome, transferred strand  33 nt", 12.5, INK))
+    y = 92
+    sa, wa = seq(60, y, TAIL_A, TOP)
+    sb, wb = seq(60 + wa, y, ME, HOT)
+    out += [sa, sb]
+    sc, _ = seq(60 + wa, y + 30, ME_C[::-1], BOT)
+    out.append(sc)
+    out.append(pairs(60 + wa, y, y + 30, ME, ME_C[::-1]))
+    out.append(t(50, y, "5'", 12, MUTE, anchor="end"))
+    out.append(t(60 + wa + wb + 8, y, "3'", 12, MUTE))
+    out.append(t(60 + wa + wb + 8, y + 30, "5'", 12, MUTE))
+    out.append(t(60 + wa - 8, y + 30, "3'", 12, MUTE, anchor="end"))
+    out.append(t(60 + wa / 2, y - 14, "tail A  14 nt  Tm 55.8 °C", 11, TOP, anchor="middle"))
+    out.append(t(60 + wa + wb / 2, y - 14, "mosaic end  19 nt  duplex Tm 46.7 °C",
+                 11, HOT, anchor="middle"))
+    out.append(t(60 + wa + wb + 30, y + 30, "ME' : the strand Tn5 does not transfer",
+                 11, MUTE))
+    out.append(t(60, y + 50, "Tn5 binds the 19 bp duplex; the single-stranded tail is the "
+                             "Read 1 primer site and takes no part in the reaction.", 11.5, MUTE))
+    # --- index primer
+    out.append(t(40, y + 80, "2  i5 index primer  51 nt", 12.5, INK))
+    y2 = y + 112
+    s1, w1 = seq(60, y2, P5, TOP)
+    s2, w2 = seq(60 + w1, y2, I5, VIO)
+    s3, w3 = seq(60 + w1 + w2, y2, TAIL_A, HOT)
+    out += [s1, s2, s3]
+    out.append(t(50, y2, "5'", 12, MUTE, anchor="end"))
+    out.append(t(60 + w1 + w2 + w3 + 8, y2, "3'", 12, MUTE))
+    out.append(t(60 + w1 / 2, y2 + 20, "P5  29 nt  flow-cell end", 11, TOP, anchor="middle"))
+    out.append(t(60 + w1 + w2 / 2, y2 + 36, "i5  8 nt", 11, VIO, anchor="middle"))
+    out.append(t(60 + w1 + w2 + w3 / 2, y2 + 20, "tail A  anneals", 11, HOT, anchor="middle"))
+    # --- the checks
+    out.append(t(40, y2 + 66, "Checks, from the Anneal tab", 12.5, INK))
+    checks = [
+        (OK, "3' end: 14 of 14 bases pair with the tail A complement made by the fill-in."),
+        (OK, "against the stub as it sits in the tube: 5 bp at best, so nothing amplifies "
+             "before the fill-in."),
+        (HOT, "self-dimer: 6 bp, CTATAG, across the P5-index junction. Change the index and "
+              "this span changes."),
+        (HOT, "hairpin: a 4 bp stem with a 20 nt loop; the last six bases stay free, so the "
+              "primer can still prime."),
+        (MUTE, "i7 primer, P7 + i7 + tail B, 47 nt: tail B Tm 55.7 °C, within 0.1 °C "
+               "of tail A, so one annealing step suits both."),
+    ]
+    for k, (c, ln) in enumerate(checks):
+        yy = y2 + 86 + k * 18
+        out.append(dot(48, yy - 4, 3, c))
+        out.append(t(60, yy, ln, 11.5, INK if c != MUTE else MUTE))
+    return svg(860, y2 + 180, "".join(out))
+
+
+def fig_capstone_qc():
+    """The trace this design predicts, and the two numbers that get it onto the flow cell."""
+    out = [t(40, 26, "What the finished library should look like, and the arithmetic that "
+                     "loads it.", 14, INK)]
+    x0, y0, w, h = 80, 56, 520, 150
+
+    def X(bp):
+        return x0 + bp * (w / 1000.0)
+
+    out.append(line(x0, y0 + h, x0 + w, y0 + h, MUTE, 1.2))
+    out.append(line(x0, y0, x0, y0 + h, MUTE, 1.2))
+    peaks = [(186, 0.95, 34), (336, 0.70, 44), (536, 0.34, 54), (736, 0.13, 64)]
+    pts = []
+    for i in range(241):
+        bp = 60 + i * 4
+        v = sum(a * math.exp(-((bp - m) / s) ** 2) for m, a, s in peaks)
+        pts.append(f"{X(bp):.1f},{y0 + h - min(v, 1.0) * (h - 14):.1f}")
+    out.append(f'<polyline points="{" ".join(pts)}" fill="none" stroke="{TOP}" '
+               f'stroke-width="2.2"/>')
+    for bp in (100, 200, 400, 600, 800, 1000):
+        out.append(line(X(bp), y0 + h, X(bp), y0 + h + 5, MUTE, 1.2))
+        out.append(t(X(bp), y0 + h + 19, str(bp), 10.5, MUTE, anchor="middle"))
+    out.append(t(x0 + w / 2, y0 + h + 36, "library length, bp  (insert + 136 bp of adapter)",
+                 11.5, MUTE, anchor="middle"))
+    out.append(line(X(130), y0 + 40, X(130), y0 + h, BAD, 1.4, dash="4 3"))
+    out.append(t(X(130) - 4, y0 + h - 8, "130 bp", 10.5, BAD, anchor="end"))
+    for bp, lab in ((186, "sub-nucleosomal"), (336, "one nucleosome"), (536, "two")):
+        out.append(t(X(bp), y0 + h - 1.02 * (h - 14) * max(a for m, a, s in peaks if m == bp)
+                     - 6, lab, 10.5, HOT, anchor="middle"))
+    xn = x0 + w + 40
+    lines = [
+        (INK, "the nucleosome ladder is the check."),
+        (INK, "No ladder, only short pieces: the"),
+        (INK, "nuclei were over-tagmented."),
+        (None, ""),
+        (INK, "mean length 400 bp, Qubit 1.5 ng/µL:"),
+        (HOT, "1.5 × 10⁶ / (660 × 400) = 5.7 nM"),
+        (MUTE, "an upper bound: it counts every duplex."),
+        (None, ""),
+        (INK, "qPCR counts P5 + P7 molecules only."),
+        (INK, "Pool and load on that number, at the"),
+        (INK, "concentration in the instrument guide."),
+        (MUTE, "PhiX: this library is diverse, so the"),
+        (MUTE, "guide's 1 % is enough."),
+    ]
+    for k, (c, ln) in enumerate(lines):
+        if ln:
+            out.append(t(xn, y0 + 4 + k * 16.5, ln, 11.5, c))
+    out.append(t(40, y0 + h + 62, "No ligation step here, so a 130 bp dimer peak cannot form: "
+                                  "a peak there is stub or primer carry-over.", 13, INK))
+    out.append(t(40, y0 + h + 84, "Write the decision rules before the run: no ladder, stop; "
+                                  "Qubit far above qPCR, re-clean.", 13.5, HOT))
+    return svg(1000, y0 + h + 100, "".join(out))
+
+
 build(__file__, [
     ("blocks", fig_blocks),
     ("walk-dna", fig_walk_dna),
@@ -451,4 +663,7 @@ build(__file__, [
     ("controls", fig_controls),
     ("diagnosis", fig_diagnosis),
     ("capstone", fig_capstone),
+    ("capstone-walk", fig_capstone_walk),
+    ("capstone-oligos", fig_capstone_oligos),
+    ("capstone-qc", fig_capstone_qc),
 ])
