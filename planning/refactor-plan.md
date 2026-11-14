@@ -89,11 +89,31 @@ Each entry: the deck, the backbone, and what is cut to pay for it.
 | `targeted` | promote CAPP-Seq to a traced construct | the padlock slide already added shows the pattern |
 | `design` | the five-slide capstone: ATAC from question to loaded flow cell | nothing; the deck is at 25 of 30 |
 
-### Phase 3 — Part C stops re-teaching Part B
+### Phase 3 — Part C stops re-teaching Part B, but may remind
 
-21 slides across `modifications` (both), `single-cell` (both) duplicate `chemistry-to-sequence`,
-`compartments`, `barcodes-umis` and `amplification`, sometimes with identical numbers and
-citations. Replace each with a one-line callback. This is the slide budget for phase 2.
+21 slides across `modifications` (both) and `single-cell` (both) duplicate
+`chemistry-to-sequence`, `compartments`, `barcodes-umis` and `amplification`, sometimes with
+identical worked numbers and identical citations. `genomic-dna` has 8 more against
+`amplification`.
+
+**Do not simply delete them.** The course owner's rule: avoid re-teaching, but reminder slides
+are welcome. A student arriving at a Part C deck months after Part B should not be stranded.
+
+A **reminder** differs from a re-teach in all of these ways:
+
+| Re-teach (cut it) | Reminder (keep it) |
+|---|---|
+| derives the mechanism again | states the conclusion the reader needs here |
+| repeats the worked numbers | names the result, links to where it was worked |
+| repeats the original citations | cites nothing; the owning deck holds the references |
+| its own figure | no figure, or the owning deck's figure reused unchanged |
+| a full slide of bullets | two or three lines, often folded into the next slide |
+
+Rule of thumb: a reminder says *what you already know and why it matters here*, then gets on
+with the deck's own subject. If a reminder is longer than about three lines, or if it would
+make sense to someone who had not read the owning deck, it has turned back into a re-teach.
+
+The slides freed this way are the budget for phase 2.
 
 ### Phase 4 — remaining content gaps
 

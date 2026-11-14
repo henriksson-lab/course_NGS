@@ -142,7 +142,7 @@ Neither is wrong. The question is what you want to avoid: extra cycles, or long 
 - Direct capture copies the guide RNA itself in the reverse transcription of a 10x 5' library
 - The proxy is exposed to the swapping problem from the first deck ([a trap: two RNAs in one virion](lec.qmd)), where reverse transcriptase jumps between the two viral genomes in one particle and carries a barcode over to the wrong guide; direct capture is not. That is a different event from the TSO [template switching](../handles/lec.qmd) used to build libraries
 
-[Dixit et al. 2016, doi:10.1016/j.cell.2016.11.038; Replogle et al. 2020, doi:10.1038/s41587-020-0470-y]{.small}
+[Dixit et al. 2016, doi:10.1016/j.cell.2016.11.038; the case against the proxy: Hill et al. 2018, doi:10.1038/nmeth.4604; Replogle et al. 2020, doi:10.1038/s41587-020-0470-y]{.small}
 
 ## Insertion sites: inverse PCR
 

@@ -84,6 +84,13 @@ human cells using a massively parallel reporter assay.* Nature Biotechnology 30:
 > The argument for sequencing a pool instead of panning it repeatedly. Look at what is gained
 > by counting every variant rather than isolating the winners.
 
+**Hill AJ, McFaline-Figueroa JL, Starita LM, Gasperini MJ, et al. (2018).** *On the design of CRISPR-based single-cell molecular screens.* Nature Methods 15:271–274.
+[doi:10.1038/nmeth.4604](https://doi.org/10.1038/nmeth.4604) — **start here** before designing one
+
+> Why the original barcode-proxy designs misassign guides: lentiviral recombination and
+> template switching move a barcode onto the wrong guide, and the rate is high enough to
+> matter. Read it for the measurement, then for what it implies — capture the guide itself.
+
 ## Reference material to keep open
 
 - Gibson DG, et al. (2009), Nature Methods 6:343–345,
