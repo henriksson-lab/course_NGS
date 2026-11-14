@@ -135,7 +135,7 @@ Part C starts from a biological question and derives the protocol from blocks. H
 
 - The protein has to stay on the DNA through lysis, [shearing](../fragmentation/lec.qmd) and washing, so it is **fixed in place first**
 - The antibody on beads is the only step that selects. Everything else is generic
-- Release is the reverse of fixation: heat, protease, then purify the DNA
+- Release is the reverse of fixation: heat, protease, then purify the DNA ([crosslinking and fixation](../crosslinking/lec.qmd) is the block)
 
 [Johnson et al. 2007, doi:10.1126/science.1141319]{.small} · [Robertson et al. 2007, doi:10.1038/nmeth1068]{.small} · [protocol page](https://henriksson-lab.github.io/NGS_101/chip-seq__10.1038+nmeth1068/chip-seq.html){.small}
 

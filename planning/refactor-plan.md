@@ -141,7 +141,7 @@ The slides freed this way are the budget for phase 2.
 
 ### Phase 4 — remaining content gaps
 
-**Crosslinking becomes a new Part B unit, B10, placed after `compartments`.** Decision taken
+**Crosslinking is now a Part B unit, B10, after `compartments`.** ✅ built. Decision taken
 rather than extending `compartments`, for three reasons:
 
 - It is a block by the course's own definition — a step you put into a protocol, with its own

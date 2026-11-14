@@ -139,6 +139,14 @@ website:
                 href: compartments/readings.qmd
               - text: "Exercise"
                 href: compartments/exercise.qmd
+          - section: "Crosslinking and fixation"
+            contents:
+              - text: "Lecture (slides)"
+                href: crosslinking/lec.qmd
+              - text: "Readings"
+                href: crosslinking/readings.qmd
+              - text: "Exercise"
+                href: crosslinking/exercise.qmd
       - section: "Use cases"
         contents:
           - section: "Genomic DNA"

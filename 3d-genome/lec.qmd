@@ -43,7 +43,7 @@ Part C case. The building block is proximity ligation; the rest of the unit is a
 
 ![](fig03-four-steps.svg){width=77%}
 
-- Crosslink to hold neighbours, cut to make ends, ligate neighbouring ends, then select the junctions
+- [Crosslink](../crosslinking/lec.qmd) to hold neighbours, cut to make ends, ligate neighbouring ends, then select the junctions
 - Each step can be swapped: a different cutter, a ligation in a different setting, a different selection
 - The method names in this deck are shorthand for choices at those four steps
 

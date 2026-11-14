@@ -51,7 +51,7 @@ The second half of the deck asks a different question: once every molecule carri
 
 ## The cell must keep its molecules
 
-- Fixation or intact nuclei hold the barcoded cDNA inside the cell for the whole procedure
+- [Fixation](../crosslinking/lec.qmd) or intact nuclei hold the barcoded cDNA inside the cell for the whole procedure
 - A leaky cell lets barcoded cDNA escape and re-enter another, which looks like contamination and lowers specificity
 - Cells are counted before distribution, because the number per well sets the collision rate
 - The cost: no live-cell capture, and RNA captured is lower per cell than in droplets, but each cell costs a fraction as much

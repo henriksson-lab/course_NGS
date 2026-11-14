@@ -54,7 +54,7 @@ In every case the reverse transcriptase is the reporter: what it does at a modif
 
 ![](fig25-clip-flow.svg){width=92%}
 
-- Where does an RNA-binding protein touch its targets? UV crosslink in living cells, immunoprecipitate the protein, trim the RNA to a footprint with a single-strand-specific [nuclease](../enzymes/lec-nucleases.qmd)
+- Where does an RNA-binding protein touch its targets? [UV crosslink](../crosslinking/lec.qmd) in living cells, immunoprecipitate the protein, trim the RNA to a footprint with a single-strand-specific [nuclease](../enzymes/lec-nucleases.qmd)
 - The UV bond is zero-length, so only RNA touching the protein survives the washes; proteinase K then leaves a **peptide stub** on the crosslinked nucleotide, and the stub is what the enzyme reacts to
 - The 3' adapter goes on while the complex is still on the beads; then gel, proteinase K and RT
 - HITS-CLIP was the original form, and the variants differ in how the stub is read: [iCLIP](https://henriksson-lab.github.io/NGS_101/iclip__10.1038+nsmb.1838/iclip_partial.html) takes the truncation, [PAR-CLIP](https://henriksson-lab.github.io/NGS_101/par-clip__10.1016+j.cell.2010.03.009/par_clip.html) the T-to-C mismatch at a 4-thiouridine. Both can sit in one library, and scoring one throws the other away

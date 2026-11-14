@@ -94,6 +94,12 @@ anything measurable: turn a property into a base change, an end, or a ligation e
 droplets, nuclei, hydrogels, split-and-pool; Poisson loading, doublets and collisions.
 [Readings](compartments/readings.qmd) · [Exercise](compartments/exercise.qmd)
 
+**[Crosslinking and fixation](crosslinking/lec.qmd)** — holding an association in place
+while you take the sample apart: formaldehyde and the longer-armed reagents, UV as the
+zero-length and irreversible case, fixing and permeabilising a cell, reversal, and what
+over-fixation costs.
+[Readings](crosslinking/readings.qmd) · [Exercise](crosslinking/exercise.qmd)
+
 ## Part C — Use cases: blocks assembled into protocols
 
 Each unit takes a biological question, derives the protocol from the blocks above, then reads

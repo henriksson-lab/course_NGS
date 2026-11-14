@@ -234,6 +234,20 @@ Deck E1 (~25 slides)
 
 ---
 
+### B10. Crosslinking and fixation  ✅ built
+Deck B10 (~20 slides). Added after the pedagogy audit found crosslinking used as a block by
+five units and taught as one by none.
+- ★ Formaldehyde: what it joins, the short arm, reversibility
+- ★ DSG and the longer-armed protein-protein crosslinkers; reading a crosslinker datasheet
+- ★ UV: zero-length, RNA-protein, irreversible — the basis of the CLIP family
+- Fixing and permeabilising cells and nuclei, and the trade between the two
+- Reversal by heat and protease, and what must survive it
+- Costs: epitope masking, over-fixation, lost accessibility, chimeras
+- Worked examples: formaldehyde ChIP to naked DNA, and UV CLIP as the mirror that cannot be
+  reversed
+
+---
+
 ## Part C — Use cases: blocks assembled into protocols
 
 Each module takes a biological question, derives the protocol from the blocks in Part B, then

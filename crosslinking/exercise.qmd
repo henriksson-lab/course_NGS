@@ -1,0 +1,298 @@
+---
+title: "Exercises — Crosslinking and fixation"
+---
+
+Pen and paper. Try each one before opening the **Hint**, and the hint before the
+**Solution** — the reasoning is the point, not the answer. For the reagent questions, have a
+supplier's crosslinker selection table in front of you; the columns you need are reactive
+group, spacer-arm length, membrane permeability and cleavability.
+
+# Part 1 — Choosing the chemistry
+
+## E1. Pick the reagents, and say which property decides each
+
+You want to map where a co-activator sits on human chromatin. The protein has no DNA-binding
+domain: it is recruited to chromatin by a transcription factor. You will immunoprecipitate the
+co-activator, and afterwards you need clean DNA for an ordinary library.
+
+Choose the crosslinking reagents and the order in which they go in, and name the single
+property of each that settles the choice.
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Two different bonds are needed: one holds the co-activator to the factor, one holds the
+factor to the DNA. Which reagent can make each, and which of them has to come off again?
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+A protein–protein reagent first, then formaldehyde. DSG (or another amine-to-amine ester)
+joins the co-activator to the factor; the deciding property is the **spacer-arm length**,
+because the two proteins are nowhere near one carbon apart. Formaldehyde then joins the factor
+to the DNA; the deciding property is that its bridge is **one carbon long**, so what it
+reports is contact, and that it is **reversible by heat**, so the DNA can be freed at the end.
+
+The DSG bond is never reversed, and does not need to be: proteinase K digests the proteins it
+joined. Both reagents must cross the plasma membrane, which rules out charged esters.
+:::
+
+## E2. The step that is easy to leave out
+
+A protocol says: fix in 1% formaldehyde for 10 min at room temperature, add glycine to
+125 mM, 5 min, then spin and wash. A student is short of time and goes straight from the
+10 min to the spin, keeping everything cold from then on.
+
+What has changed about the experiment, and would you expect the effect to be the same for
+every sample in the batch?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+Formaldehyde is still present, so crosslinking continues through the spin and the wash. The
+fixation time is no longer 10 min but 10 min plus however long the handling takes, and the
+cold slows the reaction without stopping it. The effect is not uniform: the first tube in the
+rack is handled faster than the last, so the batch now carries a fixation gradient that looks
+like biological variation. The quench is what defines the end of the dose.
+:::
+
+## E3. Would formaldehyde answer this question?
+
+You want to know which RNAs an RNA-binding protein touches directly in living cells. A
+colleague points out that formaldehyde is cheap, works in any laboratory, and is reversible,
+while UV needs a dedicated lamp. Give two reasons the two reagents do not answer the same
+question.
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Think about reach, and about what a protein–protein bond does to an immunoprecipitation of a
+ribonucleoprotein particle.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+First, reach: formaldehyde joins protein to protein as readily as protein to RNA, so an RNA
+held by any other protein in the same particle is captured along with the one you pulled down.
+The UV bond is zero-length and forms only between an RNA base and a side chain in contact with
+it, so the footprint is the protein's own.
+
+Second, washing: because the UV bond is covalent and specific to direct contact, the complex
+can be washed under denaturing conditions, which removes everything held by affinity. A
+formaldehyde-fixed particle cannot be washed that hard without losing the indirect bonds that
+were the point of using it.
+
+The reversibility that makes formaldehyde attractive is also what makes it the wrong reagent
+here: the stub left by UV is what the CLIP readout measures.
+:::
+
+# Part 2 — What went wrong
+
+## E4. Low yield and fragments that will not come down
+
+A ChIP experiment gives very little DNA. The sheared chromatin runs as a smear centred well
+above 1 kb, although the same sonicator settings gave 300 bp last month. The cells looked
+healthy and the antibody is the one that worked before. The only change was that the
+formaldehyde incubation ran for 30 min instead of 10 while the student was called away.
+
+Explain the observation, and give two things to change.
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+Over-fixation. More and longer crosslinking makes the chromatin a denser covalent network,
+which resists shearing and is less soluble, so the material that does shear is a small and
+biased fraction of the starting chromatin, and much of the sample never leaves the pellet.
+Fragments that are too long also blur the signal, because the sequencer reads the ends.
+
+Two changes: shorten the fixation and fix the time properly with a quench, or increase the
+shearing energy or time to compensate. Both have a cost — the first captures fewer indirect
+contacts, the second heats and fragments the sample further — and the usual approach is a
+titration of fixation time against the fragment profile.
+:::
+
+## E5. A good antibody that gives no enrichment
+
+An antibody detects a single clean band in a western blot of the same cells, but the ChIP
+gives no enrichment over input at any locus, including a site confirmed by another method.
+Give three explanations and say how you would tell them apart.
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+A western blot is run on denatured, unfixed protein. Which step of the ChIP has no counterpart
+in that experiment?
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+1. **Epitope masking.** Formaldehyde has bridged a lysine inside the epitope, so the antibody
+   no longer binds the fixed protein. A western blot cannot detect this, because it sees
+   denatured, unfixed protein. Test it by repeating with a shorter fixation, or with an
+   antibody raised against a different region.
+2. **The protein is not held to the DNA.** If it contacts chromatin only through a partner, a
+   single short-arm reagent captures nothing. Test it by adding a protein–protein crosslinker
+   before the formaldehyde.
+3. **The complex is lost before the pull-down.** Over-fixed chromatin stays in the pellet, so
+   the target never enters the immunoprecipitation. Test it by blotting the input and the
+   insoluble fraction for the target.
+
+The three are distinguished by where the protein is, not by how much DNA comes out, so the
+informative controls are blots of the fractions rather than more qPCR.
+:::
+
+## E6. Fewer genes per cell after fixation
+
+The same cell line is profiled twice: once fresh, once after formaldehyde fixation and
+permeabilisation. The fixed sample gives fewer genes detected per cell at the same sequencing
+depth. Explain, and predict which transcripts lose the most.
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+Crosslinked RNA is a poorer template: protein is still attached at the sites that were
+crosslinked, and reverse transcription stops or is slowed at them. Fewer cDNA molecules are
+made per transcript, so fewer distinct molecules are captured per cell.
+
+The loss is not uniform. Transcripts that are heavily bound by protein, and long transcripts —
+which carry more crosslinks per molecule, and for which a stop anywhere upstream of the
+priming site costs the whole molecule — lose most. Lowly expressed genes fall below detection
+first because they start with few molecules. The result is that fixation changes the
+measured expression profile, not only its depth.
+:::
+
+## E7. Noise that does not dilute away
+
+A proximity-ligation library has a high fraction of read pairs joining distant, unrelated
+places. The usual explanation is ligation between ends from different complexes, so the
+ligation is repeated at a tenfold greater dilution. The fraction barely moves.
+
+What is the crosslinking-side explanation, and what would you change?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Dilution only helps for joints made between two separate particles in solution.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+If the two pieces are already in one covalently joined particle, they ligate at any dilution,
+because they never had to find each other. Two complexes crosslinked into one — by long
+fixation, by aggregation, or by a long-arm reagent joining proteins that were not interacting
+— produce junctions that look like contacts and behave like real signal under dilution.
+
+What to change is upstream of the ligation: the fixation time and reagent, and whether the
+reaction is run in intact nuclei rather than on released chromatin. The diagnostic is the
+fraction of valid pairs as a function of fixation condition, not as a function of dilution.
+:::
+
+# Part 3 — Arithmetic, order and design
+
+## E8. Is the quench in excess?
+
+Formaldehyde has a relative molecular mass of 30. A 1% (w/v) solution is 10 g/L. The quench is
+glycine at 125 mM. Work out the molarity of the formaldehyde, compare it with the glycine, and
+say what this tells you about the quench.
+
+Then estimate how many formaldehyde molecules are present per cell, taking a cell volume of
+2 pL and assuming the interior reaches the same concentration as the medium. Compare with an
+assumed 10^10^ protein molecules per cell.
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Molarity is grams per litre divided by the relative molecular mass. Avogadro's number is
+6.0 × 10^23^.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+Formaldehyde: 10 / 30 = 0.33 M, that is 333 mM. Glycine at 125 mM is therefore about 0.4
+equivalents — the quench is **below** the formaldehyde concentration, so it cannot consume all
+of it on stoichiometry alone. It works because glycine is a small, fast-reacting free amine that competes for the
+aldehyde, and because the wash that follows removes what is left; the quench is not a
+stoichiometric one.
+This is why protocols differ in glycine concentration and in whether they rely on the wash,
+and why leaving out the quench altogether is a larger change than it looks.
+
+Per cell: 0.33 mol/L × 2 × 10^−12^ L = 6.6 × 10^−13^ mol, times 6.0 × 10^23^ = about
+4 × 10^11^ molecules. Against 10^10^ protein molecules that is roughly 40 formaldehyde
+molecules per protein. The reagent is nowhere near limiting: what limits crosslinking is how
+often two amines are in contact and how long you leave it, not how much formaldehyde you add.
+:::
+
+## E9. Why is the CLIP adapter ligated while the protein is still there?
+
+In CLIP the 3′ adapter is ligated to the RNA while the protein–RNA complex is still bound to
+the beads, before the protease. Ligating to clean, deproteinised RNA would be easier. Why is
+it not done that way?
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+Because there is no point at which the RNA is both clean and intact. The UV bond cannot be
+reversed, so the protein can only be removed by digesting it, and that leaves a peptide stub
+on the RNA whatever you do. Meanwhile the complex on the beads is the only thing holding the
+footprint through the stringent washes: release it and the short RNA is lost with everything
+else.
+
+Ligating on the beads also means the adapter is attached before the RNA is eluted, so every
+molecule that survives the washes carries a handle. The sequence of operations follows from a
+bond that will not come off.
+:::
+
+## E10. Design: archival tissue, protein–DNA binding
+
+You are given formalin-fixed, paraffin-embedded human tumour blocks and asked to map where a
+transcription factor binds. A tethered-enzyme method such as CUT&RUN works on unfixed,
+permeabilised cells, and you have none.
+
+List the properties the method you use must have, given the material, and say which step of
+the crosslinking block each property comes from.
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Go through the block in order: what was done to the sample, what state it is in now, and what
+each later step needs from it.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+- **It must work on crosslinked chromatin.** The sample was fixed for hours to days, not
+  minutes, so the network is dense. That rules out methods that need native, unfixed chromatin
+  for the enzyme or for the antibody, and it means shearing will be hard: the fragmentation
+  step has to be chosen for over-fixed material.
+- **The antibody must bind a fixed epitope.** Fixation is already done and cannot be titrated,
+  so epitope masking is a property of the sample. An antibody validated on fixed material is a
+  requirement rather than a preference.
+- **It must include a reversal.** The bonds are there and nothing downstream can proceed
+  through them, so heat and protease are not optional, and the long fixation means a longer
+  reversal.
+- **It must tolerate damaged DNA.** The same heat that reverses the crosslinks, plus years in
+  a block, leaves short, nicked, deaminated fragments. The library chemistry has to accept
+  short inserts and ragged ends.
+
+The exercise is not to name a protocol but to notice that the first step of the block was
+taken by someone else, years ago, and every later step inherits it.
+:::
+
+# Self-check
+
+1. What two chemical groups does formaldehyde join, and how long is the bridge?
+2. Why is a second, longer-armed reagent used, and why does it not need reversing?
+3. What makes the UV bond zero-length, and what is left on the RNA after proteinase K?
+4. Which two steps reverse a formaldehyde crosslink, in which order, and what does each do?
+5. Name the two opposite requirements that permeabilisation has to satisfy.
+6. Give one failure mode that gets worse with more crosslinking and one that gets worse with
+   less.
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Answers
+1. Two primary amines — lysine side chains, and the exocyclic amino groups of the bases — so
+   protein–protein and protein–nucleic-acid. The bridge is a single carbon, about 2.3 Å.
+2. To hold a protein that touches the nucleic acid only through a partner, which a one-carbon
+   bridge cannot span. It needs no reversal because the proteins it joined are digested by
+   proteinase K at the end.
+3. The base itself absorbs the photon and bonds directly to a side chain already in contact
+   with it, with no linker in between. Proteinase K leaves a peptide stub on the crosslinked
+   nucleotide.
+4. Heat, typically 65 °C overnight, hydrolyses the methylene bridge and releases the protein
+   from the nucleic acid; proteinase K then digests the protein itself. Heat first.
+5. Letting enzymes, antibodies and oligonucleotides in, while keeping the cell's own molecules
+   from diffusing out.
+6. Worse with more: epitope masking, chromatin that will not shear, lost accessibility,
+   chimeric complexes. Worse with less: the association is lost during lysis and washing, so
+   there is nothing left to pull down.
+:::

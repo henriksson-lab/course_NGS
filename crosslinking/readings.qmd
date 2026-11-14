@@ -1,0 +1,90 @@
+---
+title: "Readings — Crosslinking and fixation"
+---
+
+Reading is optional, but each item is here for a reason. Start with the two marked **start
+here** if you read nothing else: one covers the chemistry of the reversible case, the other
+the chemistry of the irreversible one.
+
+## Formaldehyde: what the bond is
+
+**Hoffman EA, Frey BL, Smith LM, Auble DT (2015).** *Formaldehyde crosslinking: a tool for the
+study of chromatin complexes.* Journal of Biological Chemistry 290:26404–26411.
+[doi:10.1074/jbc.R115.651679](https://doi.org/10.1074/jbc.R115.651679) — **start here**
+
+> The methylol adduct, the methylene bridge, which groups react and how reversal works. Read
+> it for the two-step mechanism and for how little of the chemistry inside a cell is actually
+> measured.
+
+**Solomon MJ, Varshavsky A (1985).** *Formaldehyde-mediated DNA–protein crosslinking: a probe
+for in vivo chromatin structures.* PNAS 82:6470–6474.
+[doi:10.1073/pnas.82.19.6470](https://doi.org/10.1073/pnas.82.19.6470)
+
+> The paper that turned fixation into a mapping method, and the ancestor of every ChIP. Look
+> at what they had to show before the crosslink could be trusted as a report of contact.
+
+**Jackson V (1978).** *Studies on histone organization in the nucleosome using formaldehyde as a
+reversible cross-linking agent.* Cell 15:945–954.
+[doi:10.1016/0092-8674(78)90278-7](https://doi.org/10.1016/0092-8674(78)90278-7)
+
+> Earlier, and worth a look for the word *reversible* in the title: the reversal was the point
+> from the beginning.
+
+## Dose, time and what goes wrong
+
+**Schmiedeberg L, Skene P, Deaton A, Bird A (2009).** *A temporal threshold for formaldehyde
+crosslinking and fixation.* PLoS ONE 4:e4636.
+[doi:10.1371/journal.pone.0004636](https://doi.org/10.1371/journal.pone.0004636)
+
+> How long fixation takes to immobilise a protein, measured rather than assumed. Useful for
+> seeing why short fixations behave differently from long ones.
+
+**Baranello L, Kouzine F, Sanford S, Levens D (2016).** *ChIP bias as a function of
+cross-linking time.* Chromosome Research 24:175–181.
+[doi:10.1007/s10577-015-9509-1](https://doi.org/10.1007/s10577-015-9509-1)
+
+> The same chromatin fixed for different times gives different maps. Read it before you treat
+> a fixation time copied from another laboratory as a neutral choice.
+
+**Gavrilov AA, Razin SV, Cavalli G (2015).** *In vivo formaldehyde cross-linking: it is time for
+black box analysis.* Briefings in Functional Genomics 14:163–165.
+[doi:10.1093/bfgp/elu037](https://doi.org/10.1093/bfgp/elu037)
+
+> Short, and a useful corrective: what is known about crosslinking efficiency in a cell, and
+> what is assumed.
+
+## Longer arms, and the UV case
+
+**Zeng PY, Vakoc CR, Chen ZC, Blobel GA, Berger SL (2006).** *In vivo dual cross-linking for
+identification of indirect DNA-associated proteins by chromatin immunoprecipitation.*
+BioTechniques 41:694–698. [doi:10.2144/000112297](https://doi.org/10.2144/000112297)
+
+> The two-reagent protocol, and the argument for it: which targets are invisible to
+> formaldehyde alone.
+
+**Lee FCY, Ule J (2018).** *Advances in CLIP technologies for studies of protein–RNA
+interactions.* Molecular Cell 69:354–369.
+[doi:10.1016/j.molcel.2018.01.005](https://doi.org/10.1016/j.molcel.2018.01.005) —
+**start here**
+
+> The UV side in one review. Read the sections on crosslinking efficiency and on what the
+> peptide stub does to reverse transcription; the rest is the method family, which belongs to
+> the RNA modifications deck.
+
+**Alles J, Karaiskos N, Praktiknjo SD, et al. (2017).** *Cell fixation and preservation for
+droplet-based single-cell transcriptomics.* BMC Biology 15:44.
+[doi:10.1186/s12915-017-0383-5](https://doi.org/10.1186/s12915-017-0383-5)
+
+> Fixation treated as a sample-handling problem rather than a chemistry problem. Compare what
+> methanol and formaldehyde do to the same cells.
+
+## Reference material to keep open
+
+- **A crosslinker selection guide** from any supplier of bifunctional reagents. The table is
+  the same four columns as the lecture figure — reactive group, spacer-arm length, membrane
+  permeability, cleavability — and reading one is the skill, not memorising a reagent.
+- **[NGS 101](https://henriksson-lab.github.io/NGS_101/)** pages for
+  [ChIP-seq](https://henriksson-lab.github.io/NGS_101/chip-seq__10.1038+nmeth1068/chip-seq.html),
+  [iCLIP](https://henriksson-lab.github.io/NGS_101/iclip__10.1038+nsmb.1838/iclip_partial.html)
+  and [Micro-C](https://henriksson-lab.github.io/NGS_101/micro-c__10.1016+j.cell.2015.05.048/micro-c.html)
+  give the fixation conditions, the reversal conditions and where each sits in the protocol.

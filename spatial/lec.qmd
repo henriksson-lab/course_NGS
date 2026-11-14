@@ -40,7 +40,7 @@ Connect back to C7: there the compartment barcode named a cell. Here it names a 
 ![](fig01-three-routes.svg){width=81%}
 
 - Routes 1 and 2 end in an ordinary library; route 3 is sequenced under a microscope
-- Every method in this deck is one of these, plus a fixation and a permeabilisation recipe
+- Every method in this deck is one of these, plus a [fixation and a permeabilisation](../crosslinking/lec.qmd) recipe
 
 ## A coordinate is just a barcode
 
