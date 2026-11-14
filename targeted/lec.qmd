@@ -151,6 +151,8 @@ Real on-target rates depend on the kit and the number of rounds. Treat 70% as an
 - Errors from PCR, from damage and from the sequencer occur at about the same rate
 - More depth does not help: you would sample the same errors again
 
+From here the deck works **one sample**: a tube of plasma from a cancer patient. Each slide settles one decision it forces, and the protocol they add up to is CAPP-Seq.
+
 ## UMIs: collapse reads to molecules
 
 ![](fig10-umi.svg){width=68%}
@@ -158,6 +160,7 @@ Real on-target rates depend on the kit and the number of rounds. Treat 70% as an
 - A [random tag](../barcodes-umis/lec.qmd) put on each molecule **before** any amplification identifies its descendants
 - Reads with one tag are one molecule; their consensus removes errors that differ between reads
 - A variant is believed only if most reads of that molecule agree
+- **Decision 1 for the plasma sample:** a tag, or not. Untagged, the floor sits near the error rate; it is the block the tagged form of CAPP-Seq adds
 
 [Kinde et al. 2011, doi:10.1073/pnas.1105422108; see [Safe-SeqS](https://henriksson-lab.github.io/NGS_101/safe-seqs__10.1073+pnas.1105422108/safe-seqs.html)]{.small}
 
@@ -168,6 +171,7 @@ Real on-target rates depend on the kit and the number of rounds. Treat 70% as an
 - A UMI cannot tell a DNA lesion present from the start from a true mutation, since it is copied faithfully
 - Tag both strands: a true mutation is on both, a lesion on only one
 - Much stronger error suppression, at the cost of needing both strands of each molecule read
+- On a few nanograms of plasma DNA that cost is severe: both strands of one molecule must survive the ligation and be sequenced deeply enough to pair
 
 [Schmitt et al. 2012, doi:10.1073/pnas.1208715109; see [Duplex Sequencing](https://henriksson-lab.github.io/NGS_101/duplex-sequencing__10.1073+pnas.1208715109/duplex-sequencing.html)]{.small}
 
@@ -178,16 +182,17 @@ Real on-target rates depend on the kit and the number of rounds. Treat 70% as an
 - The tag must be present before the first amplification, otherwise copies cannot be told from originals
 - Earlier is better, but each protocol only protects against steps downstream of the tag
 - smMIPs and SureSelect XT HS2 put the tag in the reagent that selects or ligates; Safe-SeqS in the first PCR primer
-- **MBC** in the figure is the kit's name for that tag: a molecular barcode, which is a UMI on the adapter. SureSelect XT HS2 gets its own slide shortly
+- **MBC** in the figure is the kit's name for that tag: a molecular barcode, which is a UMI on the adapter
+- **Decision 2 for the plasma sample:** the only step before amplification is the adapter ligation, so that is where the tag has to sit
 
-## Worked example: molecules, not reads
+## The plasma sample: molecules, not reads
 
 ![](fig13-poisson.svg){width=93%}
 
 - 10 ng of cell-free DNA is about 3000 haploid genomes: a locus is present on 3000 molecules
 - A variant at 0.1% is on about 3 of them; with that few, chance decides whether any is in your tube
 - That 0.1% is a **variant allele fraction**, or VAF: the share of molecules at the locus that carry the variant
-- Sensitivity is set by **input molecules**, so low-VAF assays are limited by blood volume, not sequencing
+- **Decision 3:** sensitivity is set by **input molecules**, so nothing in the protocol may throw a molecule away, and the limit is blood volume rather than sequencing
 
 ## Family sizes tell you what to fix
 
@@ -196,6 +201,7 @@ Real on-target rates depend on the kit and the number of rounds. Treat 70% as an
 - Mostly singletons: sequenced too shallow to correct, or too many molecules for the reads
 - Large families and few of them: too little input, or too many PCR cycles
 - A good run balances molecules and reads per molecule: here a mean of 4 gives few singletons
+- **Decision 4:** the histogram from the plasma run says which end to move — draw more blood, or buy more reads
 
 ## SureSelect XT HS2: capture with molecular barcodes
 
@@ -203,15 +209,16 @@ Real on-target rates depend on the kit and the number of rounds. Treat 70% as an
 
 - 10 to 200 ng of DNA, sheared or enzymatically fragmented, end repair and A-tailing, ligation of adapters
 - The barcode is in the adapter, so it is present for the index PCR, the capture and the second PCR
+- **Decision 5:** tag, amplify, capture, amplify again is the order the four decisions above ask for; this kit is that order as a product. The next slide builds it for plasma instead
 - See [SureSelect XT HS2](https://henriksson-lab.github.io/NGS_101/sureselect-xt-hs2-dna/sureselect-xt-hs2.html)
 
-## Putting it together: CAPP-Seq for circulating tumour DNA
+## Putting it together: CAPP-Seq, followed to the end
 
-- Question: is tumour DNA in plasma, and how much? Sample: a few to tens of ng, short fragments
-- Design: a hybrid-capture **selector** targeting regions recurrently mutated in the cancer type, so most patients carry several trackable mutations
-- Plasma DNA is already short, so it is not sheared; adapters are ligated, with long incubation and excess adapter to rescue every molecule
-- Capture, then PCR; the original design used no molecule tags, and later versions added them to reach lower VAFs
-- See [CAPP-Seq](https://henriksson-lab.github.io/NGS_101/capp-seq__10.1038+nm.3519/01_chem.html)
+![](fig19-walk-cappseq.svg){width=86%}
+
+- The sample writes the protocol: plasma DNA is **already short**, so nothing is sheared, and the ligation gets a long incubation and excess adapter because a molecule lost there is sensitivity lost
+- The **selector** is the design work: baits over regions recurrently mutated in that cancer type, so most patients carry several trackable mutations
+- Row 7 is the later, tagged version, which is what takes the method to lower VAFs. See [CAPP-Seq](https://henriksson-lab.github.io/NGS_101/capp-seq__10.1038+nm.3519/01_chem.html)
 
 [Newman et al. 2014, doi:10.1038/nm.3519]{.small}
 
@@ -237,6 +244,7 @@ Real on-target rates depend on the kit and the number of rounds. Treat 70% as an
 - Rare variants are limited by error and by molecule count, not by depth
 - UMIs correct amplification errors; duplex tags also correct damage; the tag must precede amplification
 - RRBS uses restriction digestion as selection and bisulfite as the readout
+- One tube of plasma forced all of that at once, and the protocol it forces is CAPP-Seq
 
 ## Where this connects
 

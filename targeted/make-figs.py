@@ -450,6 +450,63 @@ def fig_padlock_chain():
     return svg(950, 268, "".join(out))
 
 
+# ---- the construct-walk idiom, as used in design/fig02-walk-dna.svg ----
+PB, PR, PP, GR, PG, PO = "#e8eef5", "#f5eae6", "#efe9f3", "#f1f1ee", "#e6f0e8", "#f7ece5"
+VIO = "#6b5b8a"
+KIND = {"p5": (PB, TOP), "p7": (PR, BAD), "idx": (PP, VIO), "ins": ("none", MUTE),
+        "ad": (GR, MUTE), "hot": (PO, HOT), "ok": (PG, OK)}
+
+
+def chain(x, y, parts, h=22, size=11.5):
+    out = []
+    for label, w, k in parts:
+        fill, col = KIND[k]
+        out.append(box(x, y, w, h, label, fill, col, size, col, r=3))
+        x += w
+    return "".join(out), x
+
+
+def fig_walk_cappseq():
+    """CAPP-Seq: the molecule after every step, and where the sample forces the choice."""
+    out = [t(40, 26, "CAPP-Seq on plasma: the molecule after every step. A few nanograms of "
+                     "cell-free DNA.", 14, INK)]
+    rows = [
+        ("1  plasma draw",
+         [("cell-free DNA, about 165 bp", 260, "ins")],
+         "already library-sized; a few thousand genomes"),
+        ("2  end repair, dA-tail",
+         [("A", 14, "hot"), ("insert, blunt, 5'-P", 232, "ins"), ("A", 14, "hot")],
+         "no shearing step: nothing to cut, nothing to lose"),
+        ("3  long ligation, excess adapter",
+         [("P5 i5 R1", 60, "p5"), ("insert", 240, "ins"), ("R2 i7 P7", 60, "p7")],
+         "long incubation, excess adapter: keep every molecule"),
+        ("4  PCR, then pool",
+         [("P5 i5 R1", 60, "p5"), ("insert", 240, "ins"), ("R2 i7 P7", 60, "p7")],
+         "one library per patient, indexed, then pooled"),
+        ("5  capture with the selector",
+         [("P5 i5 R1", 60, "p5"), ("insert from a selector region", 240, "ok"),
+          ("R2 i7 P7", 60, "p7")],
+         "baits over recurrently mutated regions only"),
+        ("6  PCR after capture",
+         [("P5 i5 R1", 60, "p5"), ("insert from a selector region", 240, "ok"),
+          ("R2 i7 P7", 60, "p7")],
+         "on-target library, ready to load"),
+        ("7  the tagged version",
+         [("P5 i5 R1", 60, "p5"), ("UMI", 32, "idx"), ("insert", 176, "ins"),
+          ("UMI", 32, "idx"), ("R2 i7 P7", 60, "p7")],
+         "tag on the adapter, so it precedes every cycle"),
+    ]
+    for i, (name, parts, note) in enumerate(rows):
+        y = 52 + i * 34
+        out.append(t(40, y + 15, name, 12, INK))
+        s, _ = chain(250, y, parts)
+        out.append(s)
+        out.append(t(660, y + 15, note, 11.5, MUTE))
+    out.append(t(40, 52 + 7 * 34 + 16, "Every choice above is forced by the sample: short "
+                 "fragments, few molecules, and the variant on three of them.", 13.5, HOT))
+    return svg(980, 52 + 7 * 34 + 36, "".join(out))
+
+
 build(__file__, [
     ("strategies", fig_strategies),
     ("tiling", fig_tiling),
@@ -469,4 +526,5 @@ build(__file__, [
     ("compare", fig_compare),
     ("decision", fig_decision),
     ("padlock-chain", fig_padlock_chain),
+    ("walk-cappseq", fig_walk_cappseq),
 ])

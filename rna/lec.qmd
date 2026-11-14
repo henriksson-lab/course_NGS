@@ -28,7 +28,7 @@ An RNA library is built around what you want to know. The same cell gives differ
 - **Which strand?** Needed wherever genes overlap or antisense transcription matters
 - **Which class of RNA?** Small RNAs, nascent RNA and translated RNA each need a different handle
 
-This deck covers the first of these for bulk mRNA and total RNA. The [next deck](lec-small-rna.qmd) covers small RNA, tag protocols, low input and full length.
+This deck covers the first of these for bulk mRNA and total RNA, and follows one protocol through: **TruSeq Stranded mRNA**. The [next deck](lec-small-rna.qmd) covers small RNA and tag protocols, and follows **SMART-seq2** through for full-length cDNA from very little RNA.
 
 ## Know your RNA
 
@@ -78,7 +78,7 @@ The question is whether the RNA class you need has a tail.
 | Fresh, intact RNA, mRNA is the question | poly(A) selection | cheapest, lowest rRNA, deepest per read |
 | Degraded or fixed RNA (FFPE) | rRNA depletion | tails are lost, so selection loses the 5' piece |
 | Need non-polyadenylated RNA | rRNA depletion | histone mRNA, many lncRNAs, nascent RNA |
-| Very low input | neither; amplify from the tail or from a TSO | each bead step loses material |
+| Very low input | neither; amplify from the tail or from a TSO, as SMART-seq2 does | each bead step loses material |
 
 Depletion costs more reads per transcript because the intronic and pre-mRNA fraction is higher.
 
@@ -136,18 +136,12 @@ A strand-specific library depends on an RT that copies only RNA, so this chemist
 
 [Source: Illumina and NEB reference guides; links on the next slides]{.small}
 
-## TruSeq Stranded mRNA, step by step
+## TruSeq Stranded mRNA, followed to the end
 
-In the [TruSeq Stranded mRNA](https://henriksson-lab.github.io/NGS_101/truseq-stranded-mrna/truseq-stranded-mrna.html) workflow the order is the logic:
+![](fig26-walk-truseq.svg){width=93%}
 
-1. Oligo-dT beads capture poly(A) RNA, twice
-2. Heat with divalent cations **fragments the RNA** and hexamers prime in the same step
-3. First strand with actinomycin D in the mix
-4. Second strand with dUTP, RNase H and DNA polymerase I, giving blunt ends
-5. Add one A, ligate **indexed adapters**, clean up twice
-6. PCR with 15 cycles in the guide's worked example; the dU strand does not amplify
-
-Fragmenting the RNA rather than the cDNA is what gives the insert size, because RNA breaks at random positions under heat and metal ions — [where you cut changes the answer](../fragmentation/lec.qmd).
+- Every slide so far is one row of this walk; [TruSeq Stranded mRNA](https://henriksson-lab.github.io/NGS_101/truseq-stranded-mrna/truseq-stranded-mrna.html) is the protocol, and in it the order is the logic
+- **Fragmenting the RNA rather than the cDNA** is what gives the insert size, because RNA breaks at random positions under heat and metal ions — [where you cut changes the answer](../fragmentation/lec.qmd)
 
 ## NEBNext Ultra II Directional: what differs
 
@@ -164,16 +158,16 @@ Read the [NEBNext Ultra II Directional](https://henriksson-lab.github.io/NGS_101
 
 ## What to look at in the data
 
-- **Strandedness:** the fraction of reads on the expected strand should be very high; a low value means the dU strand was not silenced or the RT copied DNA
-- **rRNA fraction:** a poly(A) library should have very little; a high value says selection failed
-- **3' bias:** coverage tilted towards the 3' end says the RNA was degraded
-- **Intronic fraction:** higher after depletion, since pre-mRNA is retained
+- **Strandedness:** the fraction of reads on the expected strand should be very high; a low value means **row 7** did not silence the U strand, or the RT in **row 3** copied DNA
+- **rRNA fraction:** a poly(A) library should have very little; a high value says the beads in **row 1** did not hold
+- **3' bias:** coverage tilted towards the 3' end says the RNA was already cut before **row 1**, so only its tailed piece was kept
+- **Intronic fraction:** higher after depletion, since pre-mRNA is retained — a different entry into **row 1**
 
-Each metric points at one step in this deck. That is the point of knowing the steps.
+Every one of these is a row of the walk failing. That is what following one protocol to the end buys you.
 
 ## Where this goes next
 
-- **Small RNA, tag protocols, low input and full length** are in the [next deck](lec-small-rna.qmd): they share the ideas here, and add template switching, linear amplification and ligation chemistry for short RNAs
+- **Small RNA, tag protocols, low input and full length** are in the [next deck](lec-small-rna.qmd): it shares the ideas here, adds ligation chemistry for short RNAs and linear amplification, and runs **SMART-seq2** through as this deck ran TruSeq
 - Try the [exercises](exercise.qmd) on choosing a route for a given sample
 - The [readings](readings.qmd) cover the primary papers for every protocol named here
 

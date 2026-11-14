@@ -112,11 +112,14 @@ The remaining protocols answer a different question. For expression you need to 
 - A **full-length protocol** spreads reads along the whole transcript. You see exons, junctions and variants, and you pay in reads and in the lack of early barcoding
 - Both start from small amounts of RNA, so both must add a known sequence to the cDNA without a ligation. **Template switching** is the step that does this
 
+The full-length protocol followed through here is **SMART-seq2**: the next three slides build its molecule, and the ones after that are variations on it.
+
 ## Template switching
 
 ![](fig18-ts.svg){width=92%}
 
 - The extra Cs are added by [the RT itself](../enzymes/lec.qmd); a primer ending in G pairs with them, and the RT copies the primer
+- This is the second reaction in SMART-seq2, and it happens in the same tube as the first
 
 [Zhu et al. 2001, doi:10.2144/01304pf02]{.small}
 
@@ -125,14 +128,16 @@ The remaining protocols answer a different question. For expression you need to 
 ![](fig19-tso.svg){width=93%}
 
 - Each of the four parts has a failure that you can recognise in the data
+- SMART-seq2 fills the handle and the GGG and leaves the barcode slot empty; Smart-seq3 uses that slot, which is where its UMIs come from
 
 [Hagemann-Jensen et al. 2020, doi:10.1038/s41587-020-0497-0]{.small}
 
-## SMART-seq2: full length from one cell
+## SMART-seq2, followed to the end
 
 ![](fig20-ss2.svg){width=95%}
 
 - [SMART-seq2](https://henriksson-lab.github.io/NGS_101/smart-seq2__10.1038+nmeth.2639/smart-seq2.html) reads the whole transcript, at the cost of one tube per cell and no early barcodes
+- Steps 1 and 2 are the two previous slides; steps 3 to 5 are an ordinary tagmentation library made from the cDNA those two produced. Everything after this slide is a variation on one of the five
 
 [Picelli et al. 2013, doi:10.1038/nmeth.2639]{.small}
 
@@ -160,7 +165,7 @@ The remaining protocols answer a different question. For expression you need to 
 
 ## When there is very little RNA
 
-A single cell holds only picograms of RNA, and every step now loses a visible fraction:
+A single cell holds only picograms of RNA, and every step now loses a visible fraction. SMART-seq2 makes the first three choices below; the fourth is where Smart-seq3 differs:
 
 - **Keep the reaction in one tube.** Lyse, RT and template switch without a cleanup, because each bead step loses material
 - **Amplify before you split.** PCR to nanograms first, then fragment and index
@@ -175,6 +180,7 @@ A single cell holds only picograms of RNA, and every step now loses a visible fr
 ![](fig24-tn5.svg){width=75%}
 
 - Skipping second-strand synthesis shortens the workflow, and it can be done because the transposase accepts the hybrid
+- SMART-seq2 tagments double-stranded cDNA after the pre-amplification; here the same enzyme cuts before any second strand exists
 
 [Di et al. 2020, doi:10.1073/pnas.1919800117]{.small}
 
@@ -200,7 +206,7 @@ A single cell holds only picograms of RNA, and every step now loses a visible fr
 
 - Every RNA library is a decision about **which end to put a handle on**, and how
 - Ligation works on small RNAs if the ends are right, the order is right and the dimers are controlled
-- Template switching is the way to give a cDNA a second handle without a second ligation
+- Template switching is the way to give a cDNA a second handle without a second ligation, and **SMART-seq2** is that idea run from one cell to a finished library
 - Tag against full length is a decision about counting against structure
 - The [exercises](exercise.qmd) ask you to make these choices for a given sample
 

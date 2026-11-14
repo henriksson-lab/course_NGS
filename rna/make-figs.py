@@ -765,6 +765,65 @@ def fig_captrap():
     return svg(860, 342, "".join(out))
 
 
+# ---- the construct-walk idiom, as used in design/fig03-walk-rna.svg ----
+PB, PR, PP, GR, PG, PO = "#e8eef5", "#f5eae6", "#efe9f3", "#f1f1ee", "#e6f0e8", "#f7ece5"
+PRNA = "#f3e7ec"
+KIND = {"p5": (PB, TOP), "p7": (PR, BAD), "ins": ("none", MUTE), "ad": (GR, MUTE),
+        "hot": (PO, HOT), "ok": (PG, OK), "rna": (PRNA, RNA), "cdna": (PB, CDNA)}
+
+
+def chain(x, y, parts, h=22, size=11.5):
+    out = []
+    for label, w, k in parts:
+        fill, col = KIND[k]
+        out.append(box(x, y, w, h, label, fill, col, size, col, r=3))
+        x += w
+    return "".join(out), x
+
+
+def fig_walk_truseq():
+    """TruSeq Stranded mRNA: the molecule after every step."""
+    out = [t(40, 26, "TruSeq Stranded mRNA: the molecule after every step. 100 ng of total RNA.",
+             14, INK)]
+    rows = [
+        ("1  oligo-dT beads, twice",
+         [("cap", 34, "ok"), ("mRNA, intact", 212, "rna"), ("AAAA", 44, "ad")],
+         "rRNA and everything untailed is washed away"),
+        ("2  heat + Mg2+, with hexamers",
+         [("mRNA fragment, a few hundred nt", 260, "rna")],
+         "the RNA is cut, not the cDNA: this sets the insert"),
+        ("3  first strand, actinomycin D",
+         [("first-strand cDNA on its RNA template", 260, "cdna")],
+         "the RT copies RNA only, so the strand is remembered"),
+        ("4  second strand, dUTP for dTTP",
+         [("double-stranded cDNA, U in one strand", 260, "hot")],
+         "RNase H nicks the RNA, Pol I replaces it; blunt"),
+        ("5  dA-tail",
+         [("A", 14, "hot"), ("blunt ds cDNA, U-marked", 232, "ins"), ("A", 14, "hot")],
+         "one 3' A, so only a T-overhang can ligate"),
+        ("6  ligate the indexed adapter",
+         [("P5 i5 R1", 66, "p5"), ("insert, U-marked strand", 228, "ins"),
+          ("R2 i7 P7", 66, "p7")],
+         "the index is on before PCR, not added by it"),
+        ("7  PCR, 15 cycles",
+         [("P5 i5 R1", 66, "p5"), ("only the first strand copies", 228, "hot"),
+          ("R2 i7 P7", 66, "p7")],
+         "the U strand is not a template: one orientation left"),
+        ("8  the finished molecule",
+         [("P5 i5 R1", 66, "p5"), ("insert", 228, "ins"), ("R2 i7 P7", 66, "p7")],
+         "read 1 lands antisense to the mRNA"),
+    ]
+    for i, (name, parts, note) in enumerate(rows):
+        y = 52 + i * 34
+        out.append(t(40, y + 15, name, 12, INK))
+        s, _ = chain(270, y, parts)
+        out.append(s)
+        out.append(t(680, y + 15, note, 11.5, MUTE))
+    out.append(t(40, 52 + 8 * 34 + 16, "Cutting the RNA sets the insert size; marking the second "
+                 "strand with U is what makes the library stranded.", 13.5, HOT))
+    return svg(1000, 52 + 8 * 34 + 36, "".join(out))
+
+
 build(__file__, [
     ("classes", fig_classes),
     ("removal", fig_removal),
@@ -791,4 +850,5 @@ build(__file__, [
     ("tagfl", fig_tagfl),
     ("tn5", fig_tn5),
     ("captrap", fig_captrap),
+    ("walk-truseq", fig_walk_truseq),
 ])
