@@ -83,6 +83,8 @@ You choose the shear size and the cut-off in the same decision. It is a decision
 
 - The [Iso-Seq](https://henriksson-lab.github.io/NGS_101/pacbio-isoseq-smrtbell-prep-kit-3-0/pacbio-isoseq.html) kit starts from 300 ng of total RNA of good integrity and adds a barcode at the PCR step. Both ends of the cDNA come from [template switching](../handles/lec.qmd), so an RT that stops early costs you the whole molecule
 
+- A full-length read also carries the poly(A) tail, which a short read never does. [FLAM-seq](https://henriksson-lab.github.io/NGS_101/flam-seq__10.1038+s41592-019-0503-y/01_chem.html) exploits that: the tail is measured on the same molecule as the isoform it belongs to, rather than inferred [Legnini et al. 2019, doi:10.1038/s41592-019-0503-y]{.small}
+
 [Sharon et al. 2013, doi:10.1038/nbt.2705]{.small}
 
 ## Kinnex: many transcripts per read

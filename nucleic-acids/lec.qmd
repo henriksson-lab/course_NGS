@@ -245,7 +245,9 @@ when you come to order an oligo of your own.
 What you specify when ordering decides which enzymes can act on it — the phosphate the
 adapter needed at step 4 is one entry on this list. A lipid anchor is the odd one: it binds
 nothing in the reaction, it inserts the oligo into a cell membrane, so a barcode can be put
-onto a cell without touching its genome ([hashing](../barcodes-umis/lec.qmd)).
+onto a cell without touching its genome ([hashing](../barcodes-umis/lec.qmd)). An acrydite
+group is the same idea applied to a gel: it copolymerises into polyacrylamide, so the oligo
+becomes part of a [bead](../compartments/lec.qmd) rather than something dissolved beside it.
 
 ## Reference: ordering oligos in practice
 

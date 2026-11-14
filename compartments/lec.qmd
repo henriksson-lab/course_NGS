@@ -181,6 +181,7 @@ Load at $\lambda = 0.1$. Use $e^{-x}\approx 1-x+x^2/2$, so $P(0)=e^{-0.1}\approx
 - A porous shell keeps cells and nucleic acids in, yet lets reagents pass
 - Buffer exchange between steps becomes possible, which droplets do not allow
 - Hydrogel beads can form droplets by vortexing, so no microfluidic device is needed
+- The barcoded oligo is built into the gel rather than stuck to its surface: an acrydite group on the oligo copolymerises with the acrylamide, and the oligo is cleaved off when the reaction needs it ([oligo modifications](../nucleic-acids/lec.qmd))
 
 [Clark et al. 2023, doi:10.1038/s41587-023-01685-z]{.small}
 
