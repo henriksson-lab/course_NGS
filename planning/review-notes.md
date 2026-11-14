@@ -301,3 +301,12 @@ them like any other duplicate, since the molecule really is the same one.
 Not added. It is an instrument artefact rather than a library-prep decision, and `qc/` already
 teaches the duplicate-rate signature it would confuse. One line in `sequencers/lec.qmd` beside
 cluster density would close it if wanted.
+
+## Exercise overlap to decide
+
+`modifications/exercise.qmd` and `chemistry-to-sequence/exercise.qmd` now pose three pairs of
+similar problems: the lambda conversion-rate arithmetic (modifications E1 / chemistry E2), the
+oxBS-minus-BS subtraction (E4 / E4) and RRBS cost (E5 / E8). In each pair the modifications
+version is the harder one — it adds a correction and a standard error, an impossible negative,
+and fragment-size arithmetic — so they are a progression rather than a duplicate, and both
+were kept. Worth a deliberate decision by someone who owns both pages.
