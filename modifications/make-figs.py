@@ -920,6 +920,52 @@ def fig_rna_summary():
 
 
 
+# ---- the construct-walk idiom, as used in design/fig02-walk-dna.svg ----
+PB, PR, PP, GR, PG, PO = "#e8eef5", "#f5eae6", "#efe9f3", "#f1f1ee", "#e6f0e8", "#f7ece5"
+KIND = {"p5": (PB, TOP), "p7": (PR, BAD), "ins": ("none", MUTE),
+        "ad": (GR, MUTE), "hot": (PO, HOT), "ok": (PG, OK)}
+
+
+def chain(x, y, parts, h=22, size=11.5):
+    out = []
+    for label, w, k in parts:
+        fill, col = KIND[k]
+        out.append(box(x, y, w, h, label, fill, col, size, col, r=3))
+        x += w
+    return "".join(out), x
+
+
+def fig_walk_emseq():
+    """EM-seq: the construct after every step, and where the conversion sits."""
+    out = [t(40, 26, "EM-seq: an ordinary library, converted after the adapters are on.", 14, INK)]
+    rows = [
+        ("1-2  fragment, end repair, dA-tail",
+         [("A", 14, "hot"), ("insert", 210, "ins"), ("A", 14, "hot")],
+         "controls spiked in here"),
+        ("3  ligate the 5mC adapter",
+         [("adapter 5mC", 84, "ok"), ("insert", 210, "ins"), ("adapter 5mC", 84, "ok")],
+         "its cytosines are methylated"),
+        ("4  TET2 + BGT protect",
+         [("adapter 5mC", 84, "ok"), ("insert, 5mC protected", 210, "ins"),
+          ("adapter 5mC", 84, "ok")], "5mC and 5hmC made unreadable to the deaminase"),
+        ("5  APOBEC3A deaminates",
+         [("adapter 5mC", 84, "ok"), ("insert, every bare C now U", 210, "hot"),
+          ("adapter 5mC", 84, "ok")], "adapters survive; the insert does not"),
+        ("6  amplify and index",
+         [("P5 i5 R1", 64, "p5"), ("insert, U read as T", 210, "hot"), ("R2 i7 P7", 64, "p7")],
+         "uracil-tolerant polymerase"),
+    ]
+    for i, (lab, parts, note) in enumerate(rows):
+        y = 52 + i * 34
+        out.append(t(40, y + 15, lab, 12, INK))
+        s, _ = chain(300, y, parts)
+        out.append(s)
+        out.append(t(700, y + 15, note, 11.5, MUTE))
+    out.append(t(40, 52 + 5 * 34 + 16, "The adapter is on before the chemistry starts, so the "
+                 "molecule that goes into the deaminase is already a library.", 13.5, HOT))
+    return svg(1060, 52 + 5 * 34 + 36, "".join(out))
+
+
 build(__file__, [
     ("cytosine-family", fig_cytosine_family),
     ("bisulfite-chem", fig_bisulfite_chem),
@@ -961,4 +1007,5 @@ build(__file__, [
     ("glori", fig_glori),
     ("m6a-compare", fig_m6a_compare),
     ("rna-summary", fig_rna_summary),
+    ("walk-emseq", fig_walk_emseq),
 ])

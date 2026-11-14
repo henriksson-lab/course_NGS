@@ -44,12 +44,14 @@ Frame the whole deck as: handle plus readout. Students should be able to name, f
 
 ## EM-seq: build the library first, convert it second
 
+![](fig40-walk-emseq.svg){width=76%}
+
 One [NEBNext EM-seq](https://henriksson-lab.github.io/NGS_101/nebnext-enzymatic-methyl-seq-v2/nebnext-em-seq-v2.html) library, from genomic DNA to a pooled product. The blocks are the ordinary ones; what is special is their **order** and three enzymes.
 
 - **1. Fragment** to a few hundred bases and **2. end-repair and dA-tail**: the front end of any ligation library, unchanged ([genomic DNA](../genomic-dna/lec.qmd))
 - The two control DNAs go in here, before anything else happens to the sample, so that they meet every step the sample meets
 - The conversion comes **after** the adapters are on. That is the point of the method: enzymes do not shear DNA, so the molecule that enters the chemistry is already a finished library molecule
-- **The molecule now:** `A-overhang — insert — A-overhang`, and no adapter yet
+- **The molecule now:** `A-overhang — insert — A-overhang`, and no adapter yet. The whole walk is above; the next three slides take it a step at a time
 
 [Vaisvila et al. 2021, doi:10.1101/gr.266551.120]{.small}
 
