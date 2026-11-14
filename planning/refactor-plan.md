@@ -127,12 +127,47 @@ Rule of thumb: a reminder says *what you already know and why it matters here*, 
 with the deck's own subject. If a reminder is longer than about three lines, or if it would
 make sense to someone who had not read the owning deck, it has turned back into a re-teach.
 
+**Some things get no reminder at all. By Part C, assume the student knows PCR.** PCR, index
+PCR, tailed primers and what a cycle costs are Part A and Part B material that the student has
+by then used repeatedly; restating them is padding, not courtesy. This settles the open
+question about `genomic-dna`: its eight slides against `amplification` — the PCR-cost trio,
+duplicates and complexity, and the MDA/MALBAC/PTA set — are **cut, not converted to
+reminders**. One line pointing at `amplification` is enough for all of them.
+
+Reserve reminders for what is genuinely easy to lose across a long course: a specific end
+state, a particular arithmetic result, or a constraint that a protocol turns on.
+
 The slides freed this way are the budget for phase 2.
 
 ### Phase 4 — remaining content gaps
 
-- **Crosslinking has no Part B block** although `chromatin`, `3d-genome` and `spatial` all
-  depend on it. Either a short unit or an extension of `compartments`.
+**Crosslinking becomes a new Part B unit, B10, placed after `compartments`.** Decision taken
+rather than extending `compartments`, for three reasons:
+
+- It is a block by the course's own definition — a step you put into a protocol, with its own
+  reagents, its own end states, its own failure modes and its own tricks. The course's central
+  claim is that protocols are assemblies of blocks; a block used by five units and taught in
+  none undercuts that claim everywhere it is made.
+- `compartments` is about *physical containers* that keep molecules from one cell together.
+  Crosslinking is *chemical tethering* that holds an association in place while you take the
+  sample apart. Filing one under the other would mis-teach both.
+- Five units depend on it: `chromatin` (formaldehyde ChIP, and the tethered-enzyme methods
+  that deliberately avoid it), `3d-genome` (formaldehyde plus DSG, where the crosslink is the
+  measurement), `modifications/lec-rna` (UV CLIP), `spatial` and `single-cell` (fixation and
+  permeabilisation as the limiting chemistry).
+
+Scope, about 16–20 slides: formaldehyde (what it joins, protein–DNA and protein–protein, and
+that it is reversible); DSG and the longer-arm protein–protein crosslinkers; UV as the
+zero-length, irreversible, RNA–protein case; fixation and permeabilisation of whole cells and
+nuclei; reversal by heat and proteinase K; and the costs — epitope masking, over-fixation,
+lost accessibility, chimeras, and why some methods go to great lengths to avoid crosslinking
+altogether. Worked example: formaldehyde ChIP from cells to reversed, sheared chromatin, with
+UV CLIP as the contrast that cannot be reversed.
+
+Its arrival lets `chromatin:44`'s block table finally be honest, and gives `3d-genome` a block
+to point at for its first step.
+
+- `acrydite`, FLAM-seq: one line each.
 - `acrydite`, FLAM-seq: one line each.
 - `design` capstone's five missing demonstrations (construct per step, oligo sequences with Tm,
   enzyme table with the deciding property, the Omni-ATAC comparison, QC closure).
