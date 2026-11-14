@@ -123,7 +123,35 @@ locus-specific primers for the many first reactions, pools them, and indexes onl
 second reaction per sample.
 :::
 
-## E8. A low-diversity library
+## E8. Depth per sample after pooling
+
+The forty indexed libraries of a 70,000-guide screen are cut from a gel, quantified and pooled
+for one run that returns 400 million reads. One library is quantified badly and goes in at half
+the molarity of the other thirty-nine.
+
+a. How many reads does each correctly pooled library get, and how many does the odd one get?
+b. Express both as reads per guide.
+c. About 100 reads per guide are needed to tell a twofold drop from counting noise. Which
+   samples still qualify, and what does the gel cut before pooling have to do with that number?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Reads follow molarity. Count the pool in units of one full-strength library.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. The pool is 39 + 0.5 = 39.5 units, so a unit gets 400 / 39.5 ≈ 10.1 million reads. The
+   thirty-nine get about 10.1 million each, the under-pooled one about 5.1 million.
+b. 10.1 x 10^6 / 70,000 ≈ 145 reads per guide, and ≈ 72 for the odd sample.
+c. The thirty-nine clear 100 reads per guide; the under-pooled sample does not, and its counts
+   are the noisiest in the screen even though nothing went wrong in its PCRs. Primer dimers
+   cluster, so any that survived into the pool would take reads out of the same 400 million,
+   and they also inflate a fluorescence-based quantification, which is how a library ends up at
+   the wrong molarity in the first place.
+:::
+
+## E9. A low-diversity library
 
 You run a single-primer-type amplicon library with a 2% PhiX spike-in, and the run fails in
 the first cycles.
@@ -140,28 +168,44 @@ b. Joung: ten forward primers with spacers of different length, so the start dif
    run design for diversity.
 :::
 
-## E9. Counting molecules
+## E10. Where a count came from
 
-A 12-nt random tag has 4^12 ≈ 16.7 million possibilities. One guide is captured 1,000 times
-by an MIP pool, another 1,000,000 times.
+A two-step readout runs 25 cycles in the first PCR and 10 in the second. Three guides come back
+odd. Guide A has fifty times the median count, in one sample only. Guide B is low in every
+sample of the screen, and was also low in the plasmid pool that was sequenced before the
+experiment. Guide C is low in every sample, sat at the median in the plasmid pool, and is 78% GC.
 
-a. Roughly how many distinct tags are seen for each?
-b. What does it do to the counts?
+a. For each guide, say where the number came from.
+b. Splitting the 100 µg over 29 first-round reactions is forced by how much DNA one reaction
+   takes, but it also defends against one of these three. Which, and how?
+c. For a count to be of molecules rather than of copies, what must be true of the tag that
+   carries the count, and at which step of this protocol would it have to be attached?
 
 ::: {.callout-tip collapse="true" appearance="minimal"}
 ## Hint
-For n molecules and N tags, the expected number of collisions is about n^2 / (2N).
+Thirty-five cycles separate the tube from the counts. Two of the three oddities appear in every
+sample, one in a single tube; one of them is older than the screen itself.
 :::
 
 ::: {.callout-note collapse="true" appearance="minimal"}
 ## Solution
-a. For 1,000: collisions ≈ 10^6 / 3.3 x 10^7 ≈ 0.03, so 1,000 tags. For 10^6: ≈ 10^12 / 3.3 x 10^7 ≈
-   30,000, so about 970,000 tags.
-b. High-copy guides are undercounted by about 3%, low-copy ones not at all. Longer tags or
-   correction for collisions removes the bias.
+a. A is jackpotting: a template copied in an early cycle of the first PCR keeps that lead
+   through all 35 cycles and returns as one enormous count. It is one tube's accident, so it is
+   in one sample. B was already skewed in the plasmid pool, so it is no PCR effect at all and no
+   screen result either; that is what sequencing the pool first is for. C is sequence-dependent
+   amplification efficiency: a high-GC amplicon is copied less well in both PCRs, in every
+   sample alike.
+b. A. Each of the 29 reactions amplifies its own share of the genomic DNA, so an early lead in
+   one of them is diluted by the other 28 products when they are pooled. A real enrichment is
+   present in all 29.
+c. The tag must be attached once per starting molecule, before anything is amplified. A tag in
+   either PCR primer is drawn afresh in every cycle and so labels copies — the rule is in the
+   barcodes-and-UMIs unit. In a genomic readout that means the tag arrives on a probe or an
+   adapter that touches each molecule a single time, which is the molecular-inversion-probe
+   route built and traced in the targeted-sequencing unit.
 :::
 
-## E10. Pick the anchor
+## E11. Pick the anchor
 
 A lentiviral library integrated into human cells; you want the integration sites of 20 clones.
 You know the LTR sequence only.
@@ -169,6 +213,13 @@ You know the LTR sequence only.
 a. Describe inverse PCR for this problem: what must be true of the restriction enzyme?
 b. What goes wrong if the ligation is concentrated?
 c. What does a splinkerette adapter add?
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Inverse PCR and the splinkerette are taught as blocks in the amplification unit, and the blocked
+hairpin that makes a one-sided ligation stay one-sided in the end-chemistry unit. What is asked
+here is what the lentiviral case demands of each.
+:::
 
 ::: {.callout-note collapse="true" appearance="minimal"}
 ## Solution
@@ -181,7 +232,7 @@ c. A second primer site that exists only on molecules copied from the known side
    ends that carry only adapter cannot prime, which cuts the background.
 :::
 
-## E11. Activity from tags
+## E12. Activity from tags
 
 In an MPRA, tag A has 100 DNA and 400 RNA counts, tag B has 40 DNA and 160 RNA, and tag C has
 100 DNA and 100 RNA. Which candidates are active? What would you conclude if you looked at RNA
@@ -194,7 +245,7 @@ alone would suggest A is far more active than B (400 against 160), but A simply 
 plasmids in the DNA pool. Normalising to DNA removes that difference.
 :::
 
-## E12. Design a display readout
+## E13. Design a display readout
 
 A colleague has panned a phage library of randomised 16-amino-acid peptides against an
 immobilised human receptor. They have done four rounds, picked 40 colonies and Sanger-sequenced
@@ -209,7 +260,8 @@ c. They also want to know how many *molecules* of each variant were present, not
 ::: {.callout-tip collapse="true" appearance="minimal"}
 ## Hint
 Ask what four rounds of binding, washing and amplification select for besides affinity. For
-(c), remember the rule about where a UMI can and cannot be introduced.
+(c), remember the rule from the barcodes-and-UMIs unit about where a UMI can and cannot be
+introduced.
 :::
 
 ::: {.callout-note collapse="true" appearance="minimal"}
