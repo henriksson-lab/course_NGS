@@ -21,7 +21,10 @@ format:
 
 ## Design backwards from the instrument
 
+![](../img/miseq.jpg){width=42%}
+
 Every library preparation exists to produce a molecule that one machine can read.
+[A MiSeq on a bench. Photo: Konrad Förstner, CC0]{.small}
 
 So before any chemistry: **what does the machine actually require, and what does it do with
 the molecule once it has it?**

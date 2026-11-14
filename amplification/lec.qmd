@@ -25,10 +25,13 @@ One nanogram of human DNA is about 150 cells' worth of genome. A sequencer wants
 
 - **Exponential** copying (PCR) is powerful and biased, and its errors compound
 - **Linear** copying (in vitro transcription, single-primer extension) makes each copy from the original
-- **Isothermal** copying needs no thermal cycler, and some of it works from one cell
+- **Isothermal** copying needs no thermal cycler — the block below — and some of it works from one cell
 - **Directed** copying (inverse, nested, anchored, tiled) reads from a known sequence into an unknown one
 
+![](../img/thermal-cycler.jpg){width=26%}
+
 A sequence you amplify is a sequence you have **changed the abundance of**. The question is always how.
+[Photo: Labcare, CC0]{.small}
 
 ## Exponential until it is not
 

@@ -70,11 +70,14 @@ sample; [long reads](../long-reads/lec.qmd) is that prep, kit by kit.
 
 ## Nanopore: the molecule is the signal
 
-![](fig18-nanopore.svg){width=92%}
+![](fig18-nanopore.svg){width=68%}
 
 - Read length is how long your molecule was, so pipetting technique becomes read length
+- There is no optics and no amplification, so the whole instrument is this size — a MinION Mk1C below, which is why nanopore goes to the sample rather than the sample to the sequencer
 
-[Jain et al. 2016, doi:10.1186/s13059-016-1103-0]{.small}
+![](../img/nanopore-mk1c.jpg){width=17%}
+
+[Jain et al. 2016, doi:10.1186/s13059-016-1103-0; photo: Rojoxiii, CC0]{.small}
 
 ## Three ways to attach the motor
 
