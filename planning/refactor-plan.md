@@ -30,7 +30,7 @@ none costs new vocabulary.
 
 | # | Backbone | What it carries | Home |
 |---|---|---|---|
-| 1 | **Amplicon + index PCR** (CRISPR screen readout) | PCR, tailed primers, index PCR, read structure — both ends already known | screens/lec-readout, referenced from handles, barcodes-umis |
+| 1 | **Amplicon + index PCR** | PCR, tailed primers, index PCR, read structure — both ends already known | **introduced in Part A/B**: library-molecule, handles, amplification. Applied, not re-taught, in screens/lec-readout |
 | 2 | **Tagmentation of naked DNA** | the shortest library for unknown sequence: cut-and-tag, then PCR | library-molecule, enzymes/lec-transposases, genomic-dna |
 | 3 | **ATAC-seq** | the same two steps in nuclei; the enzyme chooses where | enzymes/lec-transposases, chromatin |
 | 4 | **TruSeq DNA PCR-free** | the five steps Tn5 collapsed into one, and why you would still pay for them | nucleic-acids, end-chemistry, handles, genomic-dna |
@@ -42,6 +42,20 @@ none costs new vocabulary.
 
 Rule for reuse: the deck that owns a backbone teaches it; every other deck *refers* to it in
 one line rather than re-deriving it.
+
+**The amplicon is introduced early, not in Part C.** An earlier draft of this plan put it in
+`screens/lec-readout`, which is wrong: PCR, tailed primers, index PCR and read structure are
+Part A and Part B material, and by Part C a student must already have them. The amplicon is
+the worked example *for those blocks*, not an application that teaches them:
+
+- `library-molecule` (A3) already has "A tailed primer, cycle by cycle" and "Truncated
+  adapters, completed by PCR". That is the amplicon construct, and it is the right place for
+  the first complete molecule a student sees built.
+- `handles` (B2) teaches primer tails as one of the five ways; the amplicon is its simplest case.
+- `amplification` (B5) teaches the PCR itself.
+
+`screens/lec-readout` then *uses* it — the CRISPR readout is an application of a construction
+the student has known since Part A — and a reminder slide is all it needs.
 
 ## Phases
 
