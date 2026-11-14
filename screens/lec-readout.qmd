@@ -67,6 +67,8 @@ The readout has to:
 
 ## Moffat, step 1: 100 µg, split across reactions
 
+![](fig38-moffat-split.svg){width=60%}
+
 - A 50 µL reaction takes about 3.5 µg of genomic DNA, so one sample of 100 µg is roughly **29 reactions**
 - All of them run the same plain locus-specific primers for 25 cycles, and are pooled afterwards
 - A screen with 40 samples is then over a thousand first-round reactions. That number is the reason the indexes are kept out of this step
@@ -88,6 +90,8 @@ The readout has to:
 - The indexes are what make the samples separable again, and unique dual pairs are what stops [hopping](../barcodes-umis/lec.qmd) moving reads between them
 
 ## Moffat, step 4: gel cut, then pooled to equal molarity
+
+![](fig39-moffat-pool.svg){width=58%}
 
 - The ~200 bp band is cut from a gel. That removes primer dimers, which would otherwise cluster well and cost reads, and any first-round product carried over
 - Each indexed library is then quantified and the samples are mixed to **equal molarity**

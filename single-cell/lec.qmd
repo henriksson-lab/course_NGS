@@ -47,7 +47,7 @@ A human cell holds on the order of 10^5 mRNA molecules, in a few picograms of RN
 
 ![](fig03-smartseq.svg){width=90%}
 
-- Reverse transcriptase adds a few non-templated Cs at the 5' end of a cDNA that reaches the cap; a template-switch oligo pairs there and the enzyme copies it: **full-length cDNA with a known handle at each end** ([SMART-seq2](https://henriksson-lab.github.io/NGS_101/https://henriksson-lab.github.io/NGS_101/smart-seq2__10.1038+nmeth.2639/smart-seq2.html))
+- Reverse transcriptase adds a few non-templated Cs at the 5' end of a cDNA that reaches the cap; a template-switch oligo pairs there and the enzyme copies it: **full-length cDNA with a known handle at each end** ([SMART-seq2](https://henriksson-lab.github.io/NGS_101/smart-seq2__10.1038+nmeth.2639/smart-seq2.html))
 - One PCR primer amplifies every cDNA; Tn5 then tagments, and the **well index** is added by index PCR ([the TSO itself is designed in the low-input RNA deck](../rna/lec-small-rna.qmd))
 - The cell is never barcoded inside the molecule, so cells cannot be pooled before the end
 
@@ -57,7 +57,7 @@ A human cell holds on the order of 10^5 mRNA molecules, in a few picograms of RN
 
 - **3' or 5' tag methods** read one end of each mRNA, which is enough to count molecules and identify cell types, and allow UMIs
 - **Full-length methods** read the whole transcript: isoforms, splice junctions and variants within a cell, at higher cost per cell
-- [SMART-seq3](https://henriksson-lab.github.io/NGS_101/https://henriksson-lab.github.io/NGS_101/smart-seq3__10.1038+s41587-020-0497-0/smart-seq3.html) puts a UMI at the 5' end and combines the two: reads from the UMI-carrying end count molecules, and internal reads give isoform and variant information
+- [SMART-seq3](https://henriksson-lab.github.io/NGS_101/smart-seq3__10.1038+s41587-020-0497-0/smart-seq3.html) puts a UMI at the 5' end and combines the two: reads from the UMI-carrying end count molecules, and internal reads give isoform and variant information
 - The question decides: *which cells exist* wants thousands of cells and a tag; *what does this cell express in detail* wants a plate and a full-length protocol
 
 [Hagemann-Jensen et al. 2020, doi:10.1038/s41587-020-0497-0]{.small}
@@ -66,105 +66,68 @@ A human cell holds on the order of 10^5 mRNA molecules, in a few picograms of RN
 
 ![](fig04-rt-primer.svg){width=92%}
 
-- The reverse-transcription primer carries a **cell barcode**, a UMI and oligo(dT); after RT the wells are pooled, and one tube goes through the rest ([CEL-seq](https://henriksson-lab.github.io/NGS_101/https://henriksson-lab.github.io/NGS_101/cel-seq__10.1016+j.celrep.2012.08.003/cel-seq.html), [MARS-seq](https://henriksson-lab.github.io/NGS_101/https://henriksson-lab.github.io/NGS_101/mars-seq__10.1126+science.1247651/mars-seq.html))
+- The reverse-transcription primer carries a **cell barcode**, a UMI and oligo(dT); after RT the wells are pooled, and one tube goes through the rest ([CEL-seq](https://henriksson-lab.github.io/NGS_101/cel-seq__10.1016+j.celrep.2012.08.003/cel-seq.html), [MARS-seq](https://henriksson-lab.github.io/NGS_101/mars-seq__10.1126+science.1247651/mars-seq.html))
 - T7 in vitro transcription amplifies linearly, which avoids the exponential bias of early PCR cycles
 - The cells are still sorted into wells, so the experimenter knows which cell is where (for example by index sorting)
+- The UMI rides on that first-strand primer because a tag added later would count copies, not molecules ([barcodes and UMIs](../barcodes-umis/lec.qmd))
 
 [Hashimshony et al. 2012, doi:10.1016/j.celrep.2012.08.003; Jaitin et al. 2014, doi:10.1126/science.1247651]{.small}
 
-## UMIs: counting molecules, not reads
-
-![](fig05-umi.svg){width=86%}
-
-- A UMI is a random sequence on every first-strand primer, so each cDNA molecule has its own tag before any amplification
-- Reads sharing a UMI, a barcode and a gene are copies of one molecule; the count is the number of distinct UMIs
-- Sequencing errors create near-duplicate UMIs, which are merged when they differ by one base from a much more abundant UMI ([the trick catalogue](../tricks/lec-more.qmd) gathers the counting problems this creates)
-
-[Kivioja et al. 2012, doi:10.1038/nmeth.1778; Islam et al. 2014, doi:10.1038/nmeth.2772]{.small}
-
-## Drop-seq: a cell and a bead share a droplet
+## 10x 3' v3: one cell, one gel bead, one GEM
 
 ![](fig06-dropseq.svg){width=86%}
 
-- A microfluidic device makes oil droplets of about a nanolitre; each should hold one cell and one barcoded bead ([Drop-seq](https://henriksson-lab.github.io/NGS_101/https://henriksson-lab.github.io/NGS_101/drop-seq__10.1016+j.cell.2015.05.002/drop-seq.html))
-- The cell lyses in the droplet and its mRNA hybridises to the oligo(dT) on the bead; the droplets are then broken
-- Reverse transcription is done on the pooled beads, so every cDNA carries its bead's barcode
+- A chip brings a stream of cells together with a stream of gel beads and cuts the flow into droplets of oil of about a nanolitre, called GEMs ([3' v3 protocol](https://henriksson-lab.github.io/NGS_101/10x-chromium-single-cell-3-ge-v3/01_10x-3prime-v3.html))
+- Every oligo on one bead carries the same 16 nt cell barcode, its own 12 nt UMI, and poly(dT)VN to prime on poly(A)
+- Cells arrive at random, so most GEMs are empty and a few hold two cells; the loading rate chosen sets that doublet fraction ([worked in compartments](../compartments/lec.qmd))
 
-[Macosko et al. 2015, doi:10.1016/j.cell.2015.05.002]{.small}
+## Inside the GEM: reverse transcription, then a handle at the other end
 
-## Making a million barcodes: split and pool synthesis
+- The gel bead dissolves and releases its oligos; the mRNA primes on poly(dT)VN and is copied, so the barcode and UMI are on the cDNA while the droplet still exists
+- Reaching the cap, the reverse transcriptase adds a few non-templated Cs and switches to a [template-switch oligo](../handles/lec.qmd), which leaves a second known handle at the 5' end
+- The cDNA now has one handle at each end, so a single primer pair amplifies every molecule in the pool whatever gene it came from
 
-![](fig07-bead-synth.svg){width=84%}
-
-- Beads are split into four tubes, one base is added, the beads are pooled again; the cycle repeats 12 times
-- All oligos on one bead share one barcode, and two beads rarely share one; the UMI is made by adding random bases to every oligo separately
-- The cost is paid once per batch of beads, not per cell
-
-## Loading is random: doublets and empty droplets
-
-![](fig08-poisson.svg){width=55%}
-
-- If cells enter droplets at random, the number per droplet follows a Poisson distribution with mean lambda
-- At lambda = 0.1: 90.5% of droplets are empty, 9.0% hold one cell and 0.5% two or more, so 4.9% of occupied droplets are doublets
-- Loading more cells fills more droplets but raises the doublet fraction: the design decides which to accept
-
-## The bead decides how well droplets are used
-
-![](fig09-bead-types.svg){width=92%}
-
-- Hard beads (Drop-seq) load at random, so most droplets have none; soft hydrogel beads ([inDrop](https://henriksson-lab.github.io/NGS_101/https://henriksson-lab.github.io/NGS_101/indrop-v1__10.1016+j.cell.2015.04.044/indrop-v1.html)) close-pack and almost all droplets get one
-- [10x Chromium](https://henriksson-lab.github.io/NGS_101/https://henriksson-lab.github.io/NGS_101/10x-chromium-single-cell-3-ge-v1__10.1038+ncomms14049/01_10x-3p-v1.html) uses gel beads that dissolve in the droplet, and an engineered flow so that most droplets contain a bead
-- [HyDrop](https://henriksson-lab.github.io/NGS_101/https://henriksson-lab.github.io/NGS_101/hydrop-rna__10.7554+eLife.73971/hydrop-rna.html) makes dissolvable beads in the lab, for RNA or ATAC, at lower cost
-
-[Klein et al. 2015, doi:10.1016/j.cell.2015.04.044; Zheng et al. 2017, doi:10.1038/ncomms14049; De Rop et al. 2022, doi:10.7554/eLife.73971]{.small}
-
-## 10x 3' v3 as an example: the read structure
-
-![](fig10-tenx-construct.svg){width=92%}
-
-- The bead oligo sets the layout: Read 1 holds the 16 nt cell barcode and 12 nt UMI, and Read 2 holds the cDNA
-- The run is set up to match: about 28 cycles for Read 1, about 90 for Read 2, plus the index reads, as in the read-structure notation of the [sequencer deck](../sequencers/lec.qmd)
-- Reading only the 3' end keeps the library short and the UMI next to the barcode ([3' v3 protocol](https://henriksson-lab.github.io/NGS_101/https://henriksson-lab.github.io/NGS_101/10x-chromium-single-cell-3-ge-v3/01_10x-3prime-v3.html))
-
-## Everything after the droplet is bulk
+## Break the emulsion: from here it is an ordinary library
 
 ![](fig11-tenx-workflow.svg){width=92%}
 
-- The cell barcode must be on the cDNA **before** the emulsion is broken; afterwards a pool of millions of molecules cannot be traced back
-- The remaining steps are ordinary: amplify, fragment, A-tail ([end chemistry](../end-chemistry/lec.qmd)), ligate the Read 2 adapter, index PCR
-- Fragmenting the cDNA means only the 3' end carries both the barcode and the second adapter
+- The barcode must be on the cDNA **before** the oil is broken; afterwards a pool of millions of molecules cannot be traced back to cells
+- The pooled cDNA is amplified off its two handles, then fragmented, end-repaired and A-tailed ([end chemistry](../end-chemistry/lec.qmd)), and the Read 2 adapter is ligated
+- Index PCR adds the sample index and the P5 and P7 ends; since the cDNA was fragmented, only the 3'-most fragment carries both the cell barcode and the Read 2 adapter
 
-## Which barcodes are cells? Ambient RNA
+## The read structure that falls out of it
+
+![](fig10-tenx-construct.svg){width=92%}
+
+- The bead oligo sets the layout: Read 1 holds the 16 nt cell barcode and the 12 nt UMI, Read 2 holds the cDNA, and the index read holds the sample index
+- The run is set up to match: about 28 cycles for Read 1, about 90 for Read 2, in the read-structure notation of the [sequencer deck](../sequencers/lec.qmd)
+- Reading only the 3' end keeps the library short and puts the UMI next to the barcode, so one short read identifies the cell and the molecule at once
+
+## Which barcodes of this library are cells?
 
 ![](fig12-knee.svg){width=79%}
 
-- Most barcodes belong to droplets with no cell, which still capture RNA that leaked from broken cells: ambient RNA
-- Ranking barcodes by UMI count gives a plateau of cells and a tail; the knee is a first cut, refined by statistical models
+- Most of the barcodes seen are GEMs that held no cell but still captured RNA leaked from broken ones: ambient RNA
+- Ranking the barcodes by UMI count gives a plateau of cells and a tail; the knee is the first cut, refined by statistical models ([where the knee is derived](../compartments/lec.qmd))
 - Ambient RNA also contaminates real cells; correct it before calling a gene expressed in a cell type [Young and Behjati 2020, doi:10.1093/gigascience/giaa151]{.small}
+- A barcode one mismatch from exactly one entry of the bead whitelist is corrected to it; two equally close entries, and the read is dropped ([why that is safe](../barcodes-umis/lec.qmd))
 
-## Barcode errors: correct only when unambiguous
+## The same trace, a different bead
 
-![](fig13-barcode-correct.svg){width=74%}
+![](fig09-bead-types.svg){width=92%}
 
-- Sequencing and synthesis errors alter barcodes; a read barcode within one mismatch of exactly one whitelist entry is corrected
-- A barcode with two equally close entries is dropped, and one with none is treated as ambient
-- Whitelists work because they are far apart: a random subset of all 12-mers would be too crowded for this to be safe
+- [Drop-seq](https://henriksson-lab.github.io/NGS_101/drop-seq__10.1016+j.cell.2015.05.002/drop-seq.html): rigid beads load at random, so most droplets have none, and RT waits until the pooled beads are out of the oil
+- [inDrop](https://henriksson-lab.github.io/NGS_101/indrop-v1__10.1016+j.cell.2015.04.044/indrop-v1.html): hydrogel beads close-pack, so nearly every droplet gets one; [HyDrop](https://henriksson-lab.github.io/NGS_101/hydrop-rna__10.7554+eLife.73971/hydrop-rna.html) beads are made in the lab, for RNA or ATAC
+- Microwells ([Seq-Well](https://henriksson-lab.github.io/NGS_101/seq-well__10.1038+nmeth.4179/seq-well.html), BD Rhapsody): gravity instead of a chip, and a membrane instead of oil
+- The bead sets loading efficiency and when the barcode is released; after that, the trace above
 
-## Microwells: gravity instead of microfluidics
-
-![](fig14-microwell.svg){width=66%}
-
-- Cells and beads settle into wells tens of micrometres wide; the well holds them in place while buffer is exchanged ([Seq-Well](https://henriksson-lab.github.io/NGS_101/https://henriksson-lab.github.io/NGS_101/seq-well__10.1038+nmeth.4179/seq-well.html), [Microwell-seq](https://henriksson-lab.github.io/NGS_101/https://henriksson-lab.github.io/NGS_101/microwell-seq__10.1016+j.cell.2018.02.001/microwell-seq.html))
-- A semipermeable membrane lets lysis buffer in and keeps the beads and RNA in; mRNA hybridises to the bead in its own well
-- No pump or chip is needed, so the format is portable and cheap; the commercial BD Rhapsody system is also a microwell format
-
-[Gierahn et al. 2017, doi:10.1038/nmeth.4179; Han et al. 2018, doi:10.1016/j.cell.2018.02.001; Fan et al. 2015, doi:10.1126/science.1258367]{.small}
+[Macosko et al. 2015, doi:10.1016/j.cell.2015.05.002; Klein et al. 2015, doi:10.1016/j.cell.2015.04.044; De Rop et al. 2022, doi:10.7554/eLife.73971; Gierahn et al. 2017, doi:10.1038/nmeth.4179]{.small}
 
 ## Fresh cells, nuclei and fixed cells
 
 - **Whole cells** need fast, gentle dissociation; some tissue types (neurons, adipocytes, frozen biopsies) do not survive it
 - **Nuclei** can be isolated from frozen tissue; they carry less cytoplasmic RNA and more intronic reads, so a gene-expression reference with introns is used
-- **Fixed cells** decouple sampling from processing: [hybridised probes](../selection/lec.qmd) can replace RT as the capture step ([Flex](https://henriksson-lab.github.io/NGS_101/https://henriksson-lab.github.io/NGS_101/10x-fixed-rna-profiling-flex/flex.html)), and combinatorial methods need fixation by design
+- **Fixed cells** decouple sampling from processing: [hybridised probes](../selection/lec.qmd) can replace RT as the capture step ([Flex](https://henriksson-lab.github.io/NGS_101/10x-fixed-rna-profiling-flex/flex.html)), and combinatorial methods need fixation by design
 - Each choice changes the capture chemistry, but the barcode logic is the same
 
 ## Plates and droplets answer different questions

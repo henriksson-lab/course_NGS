@@ -25,30 +25,16 @@ Atlases of whole organs and embryos need millions of cells. [Microfluidic loadin
 
 **Remove the hardware: let the cell be its own compartment.** Fix the cells so they stay intact, barcode them in a plate, pool, re-split and barcode again. A cell's barcode is the sequence of wells it passed through.
 
+From [compartments](../compartments/lec.qmd), where the arithmetic is worked: three rounds of 96 wells give 884,736 paths, and two cells on one path collide rather than form a doublet, so far fewer cells are loaded than there are paths.
+
 The second half of the deck asks a different question: once every molecule carries a barcode, what other molecules can be given the same barcode? Chromatin, surface proteins, guide RNAs and receptor sequences are all captured by the same trick, with a different handle.
-
-## Split and pool: the barcode is the path
-
-![](fig16-splitpool-path.svg){width=89%}
-
-- Each round adds a well-specific tag by RT, ligation or PCR; between rounds, all cells are pooled and re-split at random
-- After three rounds of 96 wells, each cell has one of 96^3 = 884,736 paths, and no cell was ever isolated
-- The molecules are labelled inside the cells, so the cells must stay intact until the last round
-
-## Collisions replace doublets
-
-![](fig17-collision.svg){width=87%}
-
-- Two cells with the same path look like one cell with twice the RNA
-- With n cells and B barcodes, the chance that a given cell shares its path is 1 - exp(-n / B), so **load far fewer cells than there are barcodes**
-- 100,000 cells in 96^3 paths: 1 - exp(-0.113) = 10.7% collide; a fourth round of 96 brings it to about 0.1%
 
 ## sci-RNA-seq3: RT, ligation and PCR barcodes
 
 ![](fig18-scirna3.svg){width=92%}
 
 - Nuclei are distributed to wells and reverse-transcribed with an indexed oligo(dT) carrying a UMI; they are pooled and re-split
-- An indexed hairpin is ligated to the RT barcode, the nuclei are pooled again and sorted a few tens to a well, and the final index is added by PCR ([sci-RNA-seq3](https://henriksson-lab.github.io/NGS_101/https://henriksson-lab.github.io/NGS_101/sci-rna-seq3__10.1038+s41586-019-0969-x/sci-rna-seq3.html))
+- An indexed hairpin is ligated to the RT barcode, the nuclei are pooled again and sorted a few tens to a well, and the final index is added by PCR ([sci-RNA-seq3](https://henriksson-lab.github.io/NGS_101/sci-rna-seq3__10.1038+s41586-019-0969-x/sci-rna-seq3.html))
 - The method was built on mouse embryos; the human fetal atlas used the same chemistry
 
 [Cao et al. 2019, doi:10.1038/s41586-019-0969-x; Cao et al. 2020, doi:10.1126/science.aba7721]{.small}
@@ -57,7 +43,7 @@ The second half of the deck asks a different question: once every molecule carri
 
 ![](fig19-splitseq.svg){width=92%}
 
-- Fixed, permeabilised cells are reverse-transcribed in wells, then barcodes are ligated onto the cDNA's primer in two further rounds, using short linkers ([SPLiT-seq](https://henriksson-lab.github.io/NGS_101/https://henriksson-lab.github.io/NGS_101/split-seq__10.1126+science.aam8999/split-seq.html))
+- Fixed, permeabilised cells are reverse-transcribed in wells, then barcodes are ligated onto the cDNA's primer in two further rounds, using short linkers ([SPLiT-seq](https://henriksson-lab.github.io/NGS_101/split-seq__10.1126+science.aam8999/split-seq.html))
 - The last oligo also carries the UMI and a biotin; the cells are then lysed and cDNA is purified on streptavidin
 - Aliquots of the pool are amplified with a different **sublibrary index**, one more barcode added per aliquot in that PCR, so the total barcode space multiplies, as does the number of samples
 
@@ -82,8 +68,8 @@ The second half of the deck asks a different question: once every molecule carri
 
 ![](fig21-sciatac.svg){width=92%}
 
-- Isolated nuclei are tagmented in wells, each with Tn5 loaded with its own index, so accessible DNA is cut and tagged in place ([sci-ATAC-seq](https://henriksson-lab.github.io/NGS_101/https://henriksson-lab.github.io/NGS_101/sci-atac-seq__10.1126+science.aab1601/sci-atac-seq.html))
-- Nuclei are pooled, sorted into a second plate, and a PCR index is added; three levels ([sci-ATAC-seq3](https://henriksson-lab.github.io/NGS_101/https://henriksson-lab.github.io/NGS_101/sci-atac-seq3__10.1126+science.aba7612/sci-atac-seq3.html)) reach hundreds of thousands of cells
+- Isolated nuclei are tagmented in wells, each with Tn5 loaded with its own index, so accessible DNA is cut and tagged in place ([sci-ATAC-seq](https://henriksson-lab.github.io/NGS_101/sci-atac-seq__10.1126+science.aab1601/sci-atac-seq.html))
+- Nuclei are pooled, sorted into a second plate, and a PCR index is added; three levels ([sci-ATAC-seq3](https://henriksson-lab.github.io/NGS_101/sci-atac-seq3__10.1126+science.aba7612/sci-atac-seq3.html)) reach hundreds of thousands of cells
 - Validated on human cell lines, and later used for the human fetal chromatin atlas
 
 [Cusanovich et al. 2015, doi:10.1126/science.aab1601; Domcke et al. 2020, doi:10.1126/science.aba7612]{.small}
@@ -100,14 +86,14 @@ The second half of the deck asks a different question: once every molecule carri
 ![](fig22-multiome.svg){width=92%}
 
 - Chromatin and RNA come from the same nucleus: tagment in bulk, then partition nuclei with beads that carry both an RNA-capture oligo and a chromatin-capture oligo
-- Both oligos on one bead share the cell barcode, so the two libraries can be tied to the same cell ([10x Multiome](https://henriksson-lab.github.io/NGS_101/https://henriksson-lab.github.io/NGS_101/10x-chromium-single-cell-multiome-atac-gene-expression/multiome.html))
+- Both oligos on one bead share the cell barcode, so the two libraries can be tied to the same cell ([10x Multiome](https://henriksson-lab.github.io/NGS_101/10x-chromium-single-cell-multiome-atac-gene-expression/multiome.html))
 - Two libraries are made from one pre-amplified pool, with their own [read structures](../library-molecule/lec.qmd) and sequencing depth
 
 ## SHARE-seq: the split-pool version
 
 ![](fig23-shareseq.svg){width=92%}
 
-- Fixed cells are tagmented and reverse-transcribed in the same tube; the Tn5 product and the RT primer share one arm ([SHARE-seq](https://henriksson-lab.github.io/NGS_101/https://henriksson-lab.github.io/NGS_101/share-seq__10.1016+j.cell.2020.09.056/share-seq.html))
+- Fixed cells are tagmented and reverse-transcribed in the same tube; the Tn5 product and the RT primer share one arm ([SHARE-seq](https://henriksson-lab.github.io/NGS_101/share-seq__10.1016+j.cell.2020.09.056/share-seq.html))
 - Three rounds of hybridisation and ligation add BC1, BC2 and BC3 to both molecule types; biotin on the cDNA primer lets the two libraries be separated by streptavidin
 - The ligation chain gives each cell a unique barcode triplet in both assays
 
@@ -117,41 +103,12 @@ The second half of the deck asks a different question: once every molecule carri
 
 ![](fig24-citeseq.svg){width=92%}
 
-- Each antibody carries an oligo with a PCR handle, an antibody barcode and a poly(A) tail, so the capture oligo(dT) treats it as an mRNA ([CITE-seq](https://henriksson-lab.github.io/NGS_101/https://henriksson-lab.github.io/NGS_101/cite-seq__10.1038+nmeth.4380/cite-seq.html))
+- Each antibody carries an oligo with a PCR handle, an antibody barcode and a poly(A) tail, so the capture oligo(dT) treats it as an mRNA ([CITE-seq](https://henriksson-lab.github.io/NGS_101/cite-seq__10.1038+nmeth.4380/cite-seq.html))
 - The number of antibody barcodes with a given UMI counts the surface proteins on that cell
 - The short antibody-derived library is separated from the long cDNA by size, then amplified and indexed on its own
+- The same oligo carrying a **sample** barcode instead of an antibody barcode is cell hashing: pool the samples, overload the device, and a cell with two tags is a doublet ([hashing as a block](../barcodes-umis/lec.qmd))
 
 [Stoeckius et al. 2017, doi:10.1038/nmeth.4380; Peterson et al. 2017, doi:10.1038/nbt.3973]{.small}
-
-## Cell hashing: the same trick for sample identity
-
-![](fig25-hashing.svg){width=74%}
-
-- Antibodies against ubiquitous surface proteins carry a sample barcode, so each sample has its own tag
-- Pool the samples, overload the device, and use cells with two tags to find the doublets; the samples share one batch, so there is no batch effect between them
-- The idea extends to nuclei, where oligo-labelled reagents let thousands of chemical conditions be run in one experiment ([sci-Plex](https://henriksson-lab.github.io/NGS_101/https://henriksson-lab.github.io/NGS_101/sci-plex__10.1126+science.aax6234/sci-plex.html))
-
-[Stoeckius et al. 2018, doi:10.1186/s13059-018-1603-1; Srivatsan et al. 2020, doi:10.1126/science.aax6234]{.small}
-
-## Pooled CRISPR screens read out by RNA
-
-![](fig26-crispr-handles.svg){width=92%}
-
-- Each cell receives one or more guide RNAs, and the effect of each guide is read as a whole-transcriptome phenotype
-- The guide must be read in the same cell: route it through a poly(A) transcript, or capture the guide RNA directly ([Perturb-seq](https://henriksson-lab.github.io/NGS_101/https://henriksson-lab.github.io/NGS_101/perturb-seq-original-barcode-proxy__10.1016+j.cell.2016.11.038/chem.html), [direct capture](https://henriksson-lab.github.io/NGS_101/https://henriksson-lab.github.io/NGS_101/5-direct-capture-perturb-seq__10.1038+s41587-020-0470-y/5-direct-capture-perturb-seq.html))
-- Without a poly(A) route, a guide is invisible to the oligo(dT) capture used for the transcriptome
-
-[Dixit et al. 2016, doi:10.1016/j.cell.2016.11.038; Replogle et al. 2020, doi:10.1038/s41587-020-0470-y]{.small}
-
-## CROP-seq: the guide travels in the lentiviral genome
-
-![](fig27-crop-ltr.svg){width=77%}
-
-- The guide cassette is placed in the 3' LTR; reverse transcription copies it to the 5' LTR, so the provirus has two ([CROP-seq](https://henriksson-lab.github.io/NGS_101/https://henriksson-lab.github.io/NGS_101/crop-seq__10.1038+nmeth.4177/crop-seq.html))
-- Pol III makes the working guide from one copy; Pol II makes a polyadenylated mRNA that ends in the other, and that mRNA is captured with the transcriptome
-- No extra barcode lookup is needed, because the guide sequence is read directly; the enrichment PCR that makes those rare reads affordable is in [reading screens out](../screens/lec-readout.qmd)
-
-[Datlinger et al. 2017, doi:10.1038/nmeth.4177]{.small}
 
 ## T and B cell receptors: reading the junction
 
@@ -165,17 +122,46 @@ The second half of the deck asks a different question: once every molecule carri
 
 ![](fig29-vdj-capture.svg){width=78%}
 
-- In 5' kits the barcode is on the template-switch oligo, so it is added at the end of the cDNA that carries the variable region ([5' VDJ kit](https://henriksson-lab.github.io/NGS_101/https://henriksson-lab.github.io/NGS_101/10x-chromium-gem-x-single-cell-5-vdj-v3/01_10x-5p-vdj-v3.html))
+- In 5' kits the barcode is on the template-switch oligo, so it is added at the end of the cDNA that carries the variable region ([5' VDJ kit](https://henriksson-lab.github.io/NGS_101/10x-chromium-gem-x-single-cell-5-vdj-v3/01_10x-5p-vdj-v3.html))
 - [Nested](../amplification/lec.qmd) constant-region primers amplify TCR or BCR cDNA only; full-length receptor sequences are then read in paired-end mode
-- Because both chains share one cell barcode, alpha with beta, and heavy with light, are **paired**, which bulk sequencing cannot do ([earlier plate-based work](https://henriksson-lab.github.io/NGS_101/https://henriksson-lab.github.io/NGS_101/single-cell-tcr-phenotype-sequencing-han__10.1038+nbt.2938/chem.html))
+- Because both chains share one cell barcode, alpha with beta, and heavy with light, are **paired**, which bulk sequencing cannot do ([earlier plate-based work](https://henriksson-lab.github.io/NGS_101/single-cell-tcr-phenotype-sequencing-han__10.1038+nbt.2938/chem.html))
 
 [Han et al. 2014, doi:10.1038/nbt.2938]{.small}
+
+## Perturb-seq by direct guide capture
+
+![](fig26-crispr-handles.svg){width=92%}
+
+- Every cell carries a guide from a [pooled library](../screens/lec.qmd), and the phenotype read out is that cell's whole transcriptome — so the guide has to be read in the same cell
+- A guide RNA is made by Pol III and is not polyadenylated, so oligo(dT) never sees it. Direct capture puts a **capture sequence** in the guide scaffold and the matching sequence on the bead oligo, so the guide primes there and is reverse-transcribed in the droplet with the cell's barcode, like an mRNA ([5' direct capture](https://henriksson-lab.github.io/NGS_101/5-direct-capture-perturb-seq__10.1038+s41587-020-0470-y/5-direct-capture-perturb-seq.html))
+- Nothing is read but the guide itself. The earlier design read a polyadenylated barcode and translated it to a guide through a lookup table, and that barcode is moved onto the wrong guide often enough to matter, by the [recombination and template switching between the two RNAs in one virion](../screens/lec.qmd)
+
+[Dixit et al. 2016, doi:10.1016/j.cell.2016.11.038; Hill et al. 2018, doi:10.1038/nmeth.4604; Replogle et al. 2020, doi:10.1038/s41587-020-0470-y]{.small}
+
+## CROP-seq: the same guide, routed through an mRNA
+
+![](fig27-crop-ltr.svg){width=77%}
+
+- A variation that needs no capture sequence: the guide cassette sits in the 3' LTR, and [reverse transcription of the viral genome duplicates it](../screens/lec.qmd) into the 5' LTR, so the provirus has two copies ([CROP-seq](https://henriksson-lab.github.io/NGS_101/crop-seq__10.1038+nmeth.4177/crop-seq.html))
+- Pol III makes the working guide from one copy; Pol II makes a polyadenylated mRNA that ends in the other, and oligo(dT) captures it with the transcriptome
+- The guide sequence is still what is read, so no lookup table is needed; the reads are rare, and the enrichment PCR that makes them affordable is in [reading screens out](../screens/lec-readout.qmd)
+
+[Datlinger et al. 2017, doi:10.1038/nmeth.4177]{.small}
+
+## Several guides in one cell
+
+- In a bulk screen two guides in one cell spoil the measurement, which is why the [multiplicity of infection is kept low](../screens/lec.qmd)
+- When the guides are read per cell that stops being a defect: a cell with two guides measures the pair, so a higher multiplicity turns the screen into a test of how two perturbations combine
+- Direct capture was built for this, because each guide carries its own capture sequence and is counted as its own transcript
+- The cost is in cells rather than reads: pairs grow as the square of the library, and the [cell-number arithmetic](../screens/lec.qmd) of a pooled screen then applies to pairs. A cell whose second guide was not captured looks like a single knockout, so the per-cell assignment rule decides what counts as a double
+
+[Replogle et al. 2020, doi:10.1038/s41587-020-0470-y]{.small}
 
 ## One barcode, many libraries
 
 ![](fig30-libraries-one.svg){width=79%}
 
-- A single barcoded cDNA pool gives gene expression, receptor, antibody and guide libraries, separated by size or by primer ([ECCITE-seq](https://henriksson-lab.github.io/NGS_101/https://henriksson-lab.github.io/NGS_101/eccite-seq__10.1038+s41592-019-0392-0/eccite-seq.html))
+- A single barcoded cDNA pool gives gene expression, receptor, antibody and guide libraries, separated by size or by primer ([ECCITE-seq](https://henriksson-lab.github.io/NGS_101/eccite-seq__10.1038+s41592-019-0392-0/eccite-seq.html))
 - Each library has its own read structure and needs its own share of the sequencing run
 - Illustrative budget for 10,000 cells: 20,000 + 5,000 + 5,000 reads per cell = **300 million reads**
 
@@ -207,7 +193,11 @@ The second half of the deck asks a different question: once every molecule carri
 - [Transposases and modifying enzymes](../enzymes/lec-transposases.qmd) — an indexed Tn5 makes tagmentation itself the first barcoding step in sci-ATAC-seq
 - [Selection](../selection/lec.qmd) — biotin on the cDNA primer is how one barcoded pool is split into two libraries on streptavidin
 
+**Before this**
+
+- [Pooled screens](../screens/lec.qmd) — the vector, the LTR duplication, the Pol II and Pol III promoters and the virion trap, all taught before the guide is read in single cells
+- [Reading screens out](../screens/lec-readout.qmd) — the enrichment PCR that makes rare guide reads affordable
+
 **Where these blocks are also used**
 
 - [Chromatin](../chromatin/lec.qmd) — ATAC and CUT&Tag in bulk; sci-ATAC is that assay with an indexed enzyme
-- [Pooled screens](../screens/lec.qmd) — where the guide library that Perturb-seq and CROP-seq read out is built

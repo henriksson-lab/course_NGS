@@ -751,6 +751,51 @@ def fig_panning():
     return svg(620, 212, "".join(out))
 
 
+def fig_moffat_split():
+    """Why 100 ug becomes many reactions, and why the index waits."""
+    out = [t(20, 24, "One sample, 100 ug of genomic DNA: the first round cannot be done in one tube.", 14, INK)]
+    out.append(box(20, 50, 150, 46, "", fill="#f4f6f8"))
+    out.append(t(95, 70, "100 ug gDNA", 12.5, INK, anchor="middle", weight="bold"))
+    out.append(t(95, 86, "one sample", 11, MUTE, anchor="middle"))
+    out.append(arrow(176, 73, 206, HOT))
+    for i in range(7):
+        x = 214 + i * 36
+        out.append(box(x, 52, 28, 42, "", fill="#fbfbf9"))
+    out.append(t(214 + 3 * 36 + 14, 112, "about 29 reactions of 50 uL, 3.5 ug each", 12, INK, anchor="middle"))
+    out.append(t(214 + 3 * 36 + 14, 130, "same plain primers, 25 cycles, pooled afterwards", 11.5, MUTE, anchor="middle"))
+    out.append(t(20, 164, "40 samples x 29 = over a thousand first-round reactions.", 13.5, INK))
+    out.append(t(20, 186, "That is the whole argument for keeping the index out of round 1: the long "
+                          "indexed primers would have to be", 12.5, MUTE))
+    out.append(t(20, 204, "bought and pipetted a thousand times instead of forty.", 12.5, MUTE))
+    return svg(520, 220, "".join(out))
+
+
+def fig_moffat_pool():
+    """Gel cut and equal-molarity pooling, and what half molarity costs."""
+    out = [t(20, 24, "Cut the band, then pool by molarity, not by volume.", 14, INK)]
+    out.append(t(30, 52, "on the gel", 12, HOT, weight="bold"))
+    out.append(box(30, 62, 86, 108, "", fill="#f7f8f9"))
+    for lab, y, w, col, op in (("~600 bp carry-over", 80, 54, MUTE, 0.45),
+                               ("~200 bp product", 118, 62, TOP, 1.0),
+                               ("primer dimer", 150, 40, BAD, 0.8)):
+        out.append('<rect x="%d" y="%d" width="%d" height="8" rx="2" fill="%s" opacity="%.2f"/>'
+                   % (73 - w / 2, y, w, col, op))
+        out.append(t(124, y + 8, lab, 11, col if col != MUTE else MUTE))
+    out.append(t(30, 186, "only the middle band is cut out", 11.5, INK))
+
+    out.append(t(300, 52, "then pooled", 12, HOT, weight="bold"))
+    for i, (nm, h, note) in enumerate((("A", 46, "10 nM"), ("B", 46, "10 nM"), ("C", 23, "5 nM"))):
+        x = 300 + i * 66
+        out.append('<rect x="%d" y="%d" width="40" height="%d" rx="3" fill="%s" opacity="0.8"/>'
+                   % (x, 116 - h, h, TOP))
+        out.append(t(x + 20, 132, nm, 12, INK, anchor="middle"))
+        out.append(t(x + 20, 148, note, 11, MUTE, anchor="middle"))
+    out.append(t(300, 176, "Sample C is pooled at half the molarity of its", 12, INK))
+    out.append(t(300, 192, "neighbours, so it gets half the reads — and depth", 12, INK))
+    out.append(t(300, 208, "is exactly what its rarest guides needed.", 12, INK))
+    return svg(560, 224, "".join(out))
+
+
 build(__file__, [
     ("pipeline", fig_pipeline),
     ("oligo-arch", fig_oligo_arch),
@@ -789,4 +834,6 @@ build(__file__, [
     ("lineage", fig_lineage),
     ("display", fig_display),
     ("panning", fig_panning),
+    ("moffat-split", fig_moffat_split),
+    ("moffat-pool", fig_moffat_pool),
 ])

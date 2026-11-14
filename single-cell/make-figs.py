@@ -250,7 +250,9 @@ def fig_umi():
 
 
 def fig_dropseq():
-    out = [t(30, 22, "Drop-seq: one cell and one barcoded bead share a droplet; the bead catches the mRNA.", 14, INK)]
+    # Kept under its old build name so the figure numbering does not shift; it now
+    # draws the 10x GEM, the backbone this deck traces.
+    out = [t(30, 22, "A GEM: one cell and one gel bead in a droplet of oil, with the barcode on the bead's oligos.", 14, INK)]
     out.append(f'<circle cx="130" cy="120" r="84" fill="none" stroke="{MUTE}" stroke-width="2"/>')
     out.append(f'<circle cx="95" cy="120" r="30" fill="#e8eef5" stroke="{TOP}" stroke-width="1.6"/>')
     out.append(t(95, 124, "cell", 12, TOP, anchor="middle"))
@@ -259,15 +261,15 @@ def fig_dropseq():
         x1 = 170 + 14 * math.cos(math.radians(a))
         y1 = 120 + 14 * math.sin(math.radians(a))
         out.append(line(x1, y1, 170 + 28 * math.cos(math.radians(a)), 120 + 28 * math.sin(math.radians(a)), HOT, 1.4))
-    out.append(t(170, 172, "bead", 12, INK, anchor="middle"))
+    out.append(t(170, 172, "gel bead", 12, INK, anchor="middle"))
     out.append(t(130, 224, "oil droplet, about 1 nl", 11.5, MUTE, anchor="middle"))
     out.append(t(260, 60, "oligo on the bead", 12.5, INK, weight="bold"))
-    s, e = parts(260, 70, [("PCR handle", 100, OK), ("cell barcode", 100, HOT), ("UMI", 60, BAD), ("poly(dT)", 80, TOP)], 28)
+    s, e = parts(260, 70, [("Read 1 primer", 100, OK), ("cell barcode", 100, HOT), ("UMI", 60, BAD), ("poly(dT)VN", 80, TOP)], 28)
     out.append(s)
-    out.append(t(260, 126, "12 nt, the same on every oligo of one bead", 11.5, HOT))
-    out.append(t(260, 144, "8 nt, different on every oligo", 11.5, BAD))
-    out.append(t(260, 180, "The cell lyses, its poly(A) mRNA hybridises to the beads' poly(dT).", 12.5, INK))
-    out.append(t(260, 200, "The emulsion is then broken; every mRNA is stuck to a bead with its cell's barcode.", 12.5, INK))
+    out.append(t(260, 126, "16 nt, the same on every oligo of one bead", 11.5, HOT))
+    out.append(t(260, 144, "12 nt, different on every oligo", 11.5, BAD))
+    out.append(t(260, 180, "The bead dissolves and frees its oligos; the mRNA primes on poly(dT)VN.", 12.5, INK))
+    out.append(t(260, 200, "RT runs inside the GEM, so every cDNA carries its cell's barcode.", 12.5, INK))
     return svg(780, 244, "".join(out))
 
 
