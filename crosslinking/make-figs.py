@@ -150,7 +150,7 @@ def fig_formaldehyde():
     y = 78
     out.append(box(26, y - 22, 150, 44, "", PALE, MUTE))
     out.append(t(101, y - 6, "lysine side chain", 11.5, MUTE, anchor="middle"))
-    out.append(t(101, y + 12, "Pro–NH2", 13.5, OK, anchor="middle"))
+    out.append(t(101, y + 12, "Lys–NH2", 13.5, OK, anchor="middle"))
     out.append(t(196, y + 4, "+", 14, MUTE))
     out.append(box(216, y - 22, 96, 44, "", PALE_HOT, HOT))
     out.append(t(264, y - 6, "formaldehyde", 11.5, MUTE, anchor="middle"))
@@ -159,13 +159,13 @@ def fig_formaldehyde():
     out.append(t(345, y - 10, "fast", 11, MUTE, anchor="middle"))
     out.append(box(376, y - 22, 170, 44, "", PALE_HOT, HOT))
     out.append(t(461, y - 6, "methylol adduct, reversible", 11.5, MUTE, anchor="middle"))
-    out.append(t(461, y + 12, "Pro–NH–CH2–OH", 13.5, HOT, anchor="middle"))
+    out.append(t(461, y + 12, "Lys–NH–CH2–OH", 13.5, HOT, anchor="middle"))
 
     y2 = 162
     out.append(t(26, y2 - 24, "then the adduct finds a second amine that is already touching it:",
                  13, INK))
     out.append(box(26, y2 - 4, 170, 44, "", PALE_HOT, HOT))
-    out.append(t(111, y2 + 12, "Pro–NH–CH2–OH", 13.5, HOT, anchor="middle"))
+    out.append(t(111, y2 + 12, "Lys–NH–CH2–OH", 13.5, HOT, anchor="middle"))
     out.append(t(216, y2 + 22, "+", 14, MUTE))
     out.append(box(236, y2 - 4, 150, 44, "", PALE, MUTE))
     out.append(t(311, y2 + 12, "H2N–cytosine", 13.5, TOP, anchor="middle"))
@@ -173,7 +173,7 @@ def fig_formaldehyde():
     out.append(arrow(396, y2 + 18, 442, MUTE))
     out.append(t(419, y2 + 8, "slow", 11, MUTE, anchor="middle"))
     out.append(box(450, y2 - 4, 210, 44, "", PALE_OK, OK))
-    out.append(t(555, y2 + 12, "Pro–NH–CH2–NH–cytosine", 13, OK, anchor="middle"))
+    out.append(t(555, y2 + 12, "Lys–NH–CH2–NH–cytosine", 13, OK, anchor="middle"))
     out.append(t(555, y2 + 30, "methylene bridge, plus water", 11, MUTE, anchor="middle"))
     out.append(cap(26, y2 + 68, "The bridge is one carbon long, so the two amines must already be "
                                 "in contact. Heating hydrolyses it again, which is why formaldehyde "
@@ -244,6 +244,8 @@ def fig_dose():
         out.append(t(bx, 86 + i * 22, "– " + s, 12.5, MUTE))
     out.append(t(bx, 190, "Crosslinking does not stop when the clock does.", 12.5, BAD))
     out.append(t(bx, 210, "It stops when the quench goes in.", 12.5, BAD))
+    out.append(t(36, 272, "Both curves are illustrative, not measured; the crossing point is "
+                "titrated for each target and cell type.", 12, MUTE))
     out.append(cap(36, 292, "Fixation is not an on/off step but a titration, and the right point "
                             "depends on the target, the cell type and the shearing that follows.",
                    14, HOT, maxc=86))
@@ -473,7 +475,7 @@ def fig_walk_chip():
              [("nuclei in detergent, crosslinks intact", 300, "cell")],
              "membranes gone, chromatin not"),
             ("4  sonicate",
-             [("chr", 44, "ins"), ("chromatin pieces, ~700 bp average", 212, "ins"), ("chr", 44, "ins")],
+             [("", 62, "ins"), ("chromatin pieces, ~700 bp average", 196, "ins"), ("", 42, "ins")],
              "each piece still carries its proteins"),
             ("5  bind antibody, then beads",
              [("beads: pieces whose protein shows the epitope", 300, "ok")],
@@ -503,36 +505,50 @@ def fig_walk_chip():
 # ------------------------------------------------------------------ 14 the CLIP contrast
 
 def fig_walk_clip():
-    """UV CLIP: the same shape of walk, with no step 7."""
-    out = [t(34, 26, "UV CLIP, the same walk with the reversal removed.", 14, INK)]
-    rows = [("1  irradiate: UV-C, on ice",
+    """UV CLIP: the ChIP walk step for step, with step 7 drawn as the hole it is.
+
+    Rows are deliberately aligned one for one with fig_walk_chip, so the only
+    difference a reader has to find is the empty seventh row.
+    """
+    out = [t(34, 26, "UV CLIP: the ChIP walk step for step, and the one step that cannot exist.",
+             14, INK)]
+    rows = [("1  irradiate: UV-C 254 nm, on ice",
              [("intact cells, RNA bonded to touching protein", 300, "vio")],
              "zero-length bond, no linker"),
-            ("2  (no quench needed)",
+            ("2  (no quench: the lamp is the dose)",
              [("the same cells; the lamp is off", 300, "vio")],
-             "the dose is the exposure"),
-            ("3  lyse, partial RNase digestion",
-             [("protein-RNA complexes, RNA trimmed to a footprint", 300, "cell")],
-             "only bound RNA is protected"),
-            ("4  immunoprecipitate, wash hard",
+             "nothing is left over to compete with"),
+            ("3  lyse, release complexes",
+             [("protein-RNA complexes in detergent", 300, "cell")],
+             "membranes gone, crosslinks not"),
+            ("4  partial RNase digestion",
+             [("RNA trimmed to the protected footprint", 300, "ins")],
+             "the fragmentation step, as sonication is for ChIP"),
+            ("5  bind antibody, then beads",
              [("beads: one protein and its RNA", 300, "ok")],
-             "denaturing washes are survivable"),
-            ("5  ligate the 3' adapter on the beads",
-             [("ad", 40, "hot"), ("footprint RNA, protein still attached", 260, "vio")],
-             "the complex is still a complex"),
-            ("6  proteinase K",
-             [("ad", 40, "hot"), ("footprint RNA with a peptide stub", 260, "bad")],
-             "no heat step will undo the bond"),
-            ("7  reverse transcribe",
-             [("cDNA that stops at, or mis-reads, the stub", 300, "bad")],
-             "the crosslink is now the measurement")]
+             "the only selective step in the protocol"),
+            ("6  wash hard, ligate the 3' adapter",
+             [("adapter", 56, "hot"), ("protein still attached to its RNA", 244, "ok")],
+             "the adapter goes on before the protein leaves"),
+            ("7  —  there is no reversal  —",
+             None,
+             "this is the step ChIP has and CLIP cannot"),
+            ("8  proteinase K, then reverse transcribe",
+             [("stub", 52, "hot"), ("cDNA stops here, or mis-reads it", 248, "ok")],
+             "the crosslink has become the measurement")]
     for i, (lab, parts, note) in enumerate(rows):
         y = 50 + i * 32
-        out.append(t(34, y + 15, lab, 12, INK))
-        s, _ = chain(300, y, parts)
-        out.append(s)
+        out.append(t(34, y + 15, lab, 12, MUTE if parts is None else INK))
+        if parts is None:
+            out.append(f'<rect x="300" y="{y}" width="300" height="22" rx="3" fill="none" '
+                       f'stroke="{MUTE}" stroke-width="1.2" stroke-dasharray="5 4"/>')
+            out.append(t(450, y + 15, "no step here: the bond cannot be undone", 11.5, MUTE,
+                         anchor="middle"))
+        else:
+            s, _ = chain(300, y, parts)
+            out.append(s)
         out.append(t(620, y + 15, note, 11.5, MUTE))
-    y = 50 + 7 * 32
+    y = 50 + 8 * 32
     out.append(cap(34, y + 20, "ChIP throws the crosslink away and keeps the DNA. CLIP cannot "
                    "throw it away, so it reads it instead. One bond that will not come off, "
                    "two opposite protocols.", 13.5, HOT, maxc=104))

@@ -164,8 +164,8 @@ def fig_bisulfite():
     out.append(t(x0 + 22 * DX + 24, 118, "U is copied as A,", 12.5, MUTE))
     out.append(t(x0 + 22 * DX + 24, 134, "so the product has T", 12.5, MUTE))
     out.append(t(x0, 192, "Read C: was methylated.   Read T: was not.", 14, HOT))
-    out.append(cap(x0, 214, "Red marks every base that changed. Only the C that carried a methyl group "
-                          "is still a C.", 13, MUTE))
+    out.append(cap(x0, 214, "Every C without an m has become U, then T; the two methylated ones are "
+                          "still C.", 13, MUTE))
     return svg(760, 214, "".join(out))
 
 
@@ -193,7 +193,7 @@ def fig_align():
         out.append(line(cx, 74, cx, 88, MUTE, 0.8))
     out.append(cap(x0, 168, "M = methylated, u = unmethylated. A read C opposite a reference T is an error; "
                           "a read T opposite a reference C is information.", 13, INK))
-    out.append(cap(x0, 212, "The converted strand has only three bases left, so reads are harder to place "
+    out.append(cap(x0, 212, "Only three bases are left in the converted strand, so reads place less "
                           "uniquely.", 13, MUTE))
     return svg(760, 206, "".join(out))
 
@@ -240,8 +240,10 @@ def fig_matrix():
     ]
 
     def cc(i, j, c):
+        # Orange marks the cells the last column is about; blue is an ordinary base.
+        # Not BAD: a T here is a successful conversion, and for TAPS it is the signal.
         if j in (1, 2, 3):
-            return HOT if c == "C" else BAD
+            return HOT if c == "C" else TOP
         return None
     out.append(table(40, 40, [120, 80, 80, 80, 200], 30, header, rows, 13, cellcol=cc))
     out.append(cap(40, 244, "5mC = 5-methylcytosine, 5hmC = 5-hydroxymethylcytosine. TAPS inverts the "
@@ -372,8 +374,8 @@ def fig_slam():
     out.append(t(x0 - 14, 116, "new RNA (4sU fed)", 13, MUTE, anchor="end"))
     out.append(cs(x0, 116, rna_old, {i: HOT for i in new}))
     for i in new:
-        out.append(t(x0 + i * DX + 4, 98, "s4U", 10.5, HOT, anchor="middle"))
-    out.append(t(x0 + 11 * DX + 24, 116, "iodoacetamide alkylates s4U", 12.5, MUTE))
+        out.append(t(x0 + i * DX + 4, 98, "4sU", 10.5, HOT, anchor="middle"))
+    out.append(t(x0 + 11 * DX + 24, 116, "iodoacetamide alkylates 4sU", 12.5, MUTE))
     seq_old = rna_old.replace("U", "T")
     seq_new = "".join("C" if i in new else ch for i, ch in enumerate(seq_old))
     out.append(t(x0 - 14, 166, "read, old", 13, MUTE, anchor="end"))
@@ -457,7 +459,7 @@ def fig_iclip():
     out.append(f'<circle cx="300" cy="{y-30}" r="20" fill="{PALE_HOT}" stroke="{HOT}" stroke-width="1.4"/>')
     out.append(t(300, y - 26, "RBP", 12, HOT, anchor="middle"))
     out.append(line(300, y - 10, 300, y, HOT, 2.2, "3 2"))
-    out.append(t(318, y - 10, "UV crosslink", 11.5, HOT))
+    out.append(t(328, y - 12, "UV crosslink", 11.5, HOT))
     # cDNAs
     for k, (end, thru) in enumerate([(298, False), (298, False), (298, False), (298, False), (120, True)]):
         yy = y + 22 + k * 11
@@ -466,14 +468,14 @@ def fig_iclip():
             out.append(vtick(end, yy - 4, yy + 4, BAD, 2.6))
     out.append(t(570, y + 40, "cDNA", 12, MUTE))
     out.append(t(570, y + 70, "read-through", 11.5, MUTE))
-    # histogram
-    out.append(line(60, 190, 560, 190, MUTE, 1))
-    out.append(f'<rect x="293" y="{190-42}" width="9" height="42" fill="{BAD}"/>')
-    out.append(f'<rect x="110" y="{190-5}" width="180" height="5" fill="{MUTE}"/>')
-    out.append(t(312, 180, "read starts pile up", 12, BAD))
-    out.append(cap(60, 210, "Read 5' ends, one count per molecule. The peak is the binding site at "
+    # histogram, clear of the cDNA stack above it
+    out.append(line(60, 212, 560, 212, MUTE, 1))
+    out.append(f'<rect x="293" y="{212-42}" width="9" height="42" fill="{BAD}"/>')
+    out.append(f'<rect x="110" y="{212-5}" width="180" height="5" fill="{MUTE}"/>')
+    out.append(t(312, 204, "read starts pile up", 12, BAD))
+    out.append(cap(60, 234, "Read 5' ends, one count per molecule. The peak is the binding site at "
                           "single-nucleotide resolution.", 13, INK))
-    return svg(780, 228, "".join(out))
+    return svg(780, 252, "".join(out))
 
 
 # ------------------------------------------------------------------ 16 PAR-CLIP
@@ -484,7 +486,8 @@ def fig_parclip():
     x0 = 70
     out.append(cs(x0, 66, ref, {i: HOT for i, c in enumerate(ref) if c == "T"}))
     out.append(t(x0, 46, "4-thiouridine replaces U in living cells (orange)", 12, HOT))
-    site = 9
+    site = 8          # must be a T: the mismatch is a crosslinked 4sU read as C
+    assert ref[site] == "T"
     random.seed(4)
     for k in range(6):
         y = 96 + k * 14
@@ -560,14 +563,18 @@ def fig_cuts():
 def fig_junction():
     out = [t(40, 26, "Proximity ligation turns contact into a chimeric read.", 14, INK)]
     # chromatin loop
+    # the protein first, so the loop feet sit inside it: the label needs a subject
+    out.append(f'<ellipse cx="140" cy="120" rx="88" ry="15" fill="{PALE_TOP}" stroke="{TOP}" '
+               f'stroke-width="1.2"/>')
     out.append(f'<path d="M 60 120 C 60 50, 220 50, 220 120" fill="none" stroke="{TOP}" stroke-width="3"/>')
     out.append(line(20, 120, 60, 120, TOP, 3))
     out.append(line(220, 120, 330, 120, TOP, 3))
     out.append(dot(60, 120, 7, HOT))
     out.append(dot(220, 120, 7, BAD))
-    out.append(t(60, 142, "locus A", 12, HOT, anchor="middle"))
-    out.append(t(220, 142, "locus B", 12, BAD, anchor="middle"))
-    out.append(t(140, 44, "held together by protein", 11.5, MUTE, anchor="middle"))
+    out.append(t(60, 148, "locus A", 12, HOT, anchor="middle"))
+    out.append(t(220, 148, "locus B", 12, BAD, anchor="middle"))
+    # short enough to sit inside the loop without the arc crossing it
+    out.append(t(140, 96, "held by protein", 11.5, MUTE, anchor="middle"))
     out.append(arrow(340, 90, 400, MUTE, 1.5))
     out.append(t(370, 80, "cut, ligate", 11.5, MUTE, anchor="middle"))
     out.append(box(420, 76, 70, 22, "A", PALE_HOT, HOT, 13, HOT))
@@ -592,25 +599,26 @@ def fig_antibody():
         if k in (1, 4, 5, 8):
             out.append(dot(x + 17, y, 5, HOT))
             out.append(t(x + 17, y - 12, "Y", 13, OK, anchor="middle", weight="bold"))
-    out.append(t(40, 58, "fragmented DNA, some carrying 5mC", 12, MUTE))
+    out.append(t(40, 50, "fragmented DNA, some carrying 5mC", 12, MUTE))
     out.append(arrow(500, y, 560, MUTE, 1.5))
     out.append(t(530, y - 10, "pull down", 11.5, MUTE, anchor="middle"))
     for k, x in enumerate((580, 628)):
         out.append(line(x, y, x + 34, y, TOP, 3))
         out.append(dot(x + 17, y, 5, HOT))
     out.append(t(580, y + 22, "enriched fragments", 11.5, MUTE))
-    # coverage
+    # coverage: two tracks, so the input line is not drawn underneath the IP curve
     out.append(line(40, 190, 700, 190, MUTE, 1))
-    pts = " ".join(f"{40 + i * 4},{190 - (46 * math.exp(-((i * 4 - 200) / 45) ** 2) + 4)}"
+    pts = " ".join(f"{40 + i * 4},{190 - (46 * math.exp(-((i * 4 - 200) / 45) ** 2) + 3)}"
                    for i in range(0, 166))
     out.append(f'<polyline points="{pts}" fill="none" stroke="{BAD}" stroke-width="2"/>')
-    pts2 = " ".join(f"{40 + i * 4},{190 - 6}" for i in range(0, 166))
+    out.append(t(330, 152, "IP: a peak about one fragment wide", 12, BAD))
+    out.append(line(40, 228, 700, 228, MUTE, 1))
+    pts2 = " ".join(f"{40 + i * 4},{228 - 3}" for i in range(0, 166))
     out.append(f'<polyline points="{pts2}" fill="none" stroke="{MUTE}" stroke-width="2" stroke-dasharray="4 3"/>')
-    out.append(t(330, 150, "IP: a peak about one fragment wide", 12, BAD))
-    out.append(t(540, 176, "input control", 12, MUTE))
-    out.append(cap(40, 224, "The signal is a region, not a base, and it scales with how many modified bases "
+    out.append(t(40, 248, "input control: flat, no peak", 12, MUTE))
+    out.append(cap(40, 274, "The signal is a region, not a base, and it scales with how many modified bases "
                           "sit in the fragment.", 13, INK))
-    return svg(740, 242, "".join(out))
+    return svg(740, 292, "".join(out))
 
 
 # ------------------------------------------------------------------ 21 trade-offs

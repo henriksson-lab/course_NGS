@@ -335,3 +335,19 @@ regenerating every figure. Worth doing deliberately, not as a side effect of som
 Also noted: cairosvg resolves figlib's `ui-monospace` to a proportional font, so tightly
 packed `mono()` runs look overlapped in a local PNG render and are correct in a browser.
 Render with `DejaVu Sans Mono` substituted before believing a mono overlap.
+
+## A colour convention to decide: BAD for a rewritten base
+
+Across nine figures in `chemistry-to-sequence/` (fig02, 03, 04, 10, 11, 12, 16, 22, 23) the
+colour `BAD` marks *the base the chemistry rewrote*. Under the course's own convention `BAD`
+means failure — and in every one of those figures the rewrite is the measurement succeeding.
+
+The audit changed only the two figures where the colour contradicted the figure's own caption
+(the TAPS row, where the caption says a T marks a modification, and the GLORI route). Changing
+the other nine is a restyle rather than a fault fix, so it wants a decision: either adopt a
+neutral "changed base" colour across the unit, or state in the deck that this unit reads BAD
+as "rewritten" rather than "failed".
+
+Related, lower risk: `modifications/fig15` and `fig32` use OK/HOT/TOP as card-identity
+colours, which puts one named method in green beside others — close to a verdict the course
+does not make.

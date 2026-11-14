@@ -320,7 +320,7 @@ def fig_spikein():
     nonconv = 0.005
     out.append(t(30, 52, "Suppose 0.5% of unmethylated C stays C (conversion 99.5%).", 13, MUTE))
     out.append(t(30, 76, "true level", 12, MUTE))
-    out.append(t(150, 76, "apparent level", 12, MUTE))
+    out.append(t(150, 76, "blue bar = true, orange bar = apparent", 12, MUTE))
     for i, tr in enumerate([0.02, 0.20, 0.80]):
         ap = tr + (1 - tr) * nonconv
         y = 90 + i * 34
@@ -401,9 +401,10 @@ def fig_endseq():
     out.append(_piece(px[3], 74, 30, capR=HOT) + _piece(px[3] + 80, 74, 28, capL=HOT))
     out.append(_piece(px[3] + 34, 100, 22, faded=True) + _piece(px[3] + 60, 100, 22, faded=True))
     out.append(t(px[3] + 65, 134, "unlabelled pieces washed off", 11.5, MUTE, anchor="middle"))
-    # 5
-    out.append(_piece(px[4], 84, 40, capL=HOT, capR=OK) + _piece(px[4] + 66, 84, 40, capL=OK, capR=HOT))
-    out.append(t(px[4] + 65, 118, "read 1 starts at the break", 11.5, HOT, anchor="middle"))
+    # 5: two separate library molecules, stacked so they do not read as one
+    out.append(_piece(px[4], 74, 46, capL=HOT, capR=OK))
+    out.append(_piece(px[4] + 16, 100, 46, capL=OK, capR=HOT))
+    out.append(t(px[4] + 65, 134, "read 1 starts at the break", 11.5, HOT, anchor="middle"))
     out.append(t(30, 172, "Each library molecule has the break on one end (hairpin 1, orange) and a random sonication end on the "
                  "other (hairpin 2, green).", 13.5, INK))
     out.append(t(30, 194, "Without biotin selection, sonication ends outnumber breaks by many orders of magnitude.", 13.5, HOT))
@@ -416,14 +417,20 @@ def fig_resection():
     out.append(line(bx0, 50, bx0, 130, HOT, 1.2, dash="4 3"))
     out.append(t(bx0, 44, "original break", 11.5, HOT, anchor="middle"))
     # processed ends
-    out.append(t(30, 66, "after resection", 12, MUTE))
+    out.append(t(30, 50, "after resection", 12, MUTE))
+    # polarity at the outer ends: without it the "3' overhang" claim cannot be checked
+    for yy in (0, 86):
+        out.append(t(34, 68 + yy, "5'", 10.5, MUTE, anchor="end"))
+        out.append(t(34, 88 + yy, "3'", 10.5, MUTE, anchor="end"))
+        out.append(t(646, 68 + yy, "3'", 10.5, MUTE))
+        out.append(t(646, 88 + yy, "5'", 10.5, MUTE))
     out.append(line(40, 70, 340, 70, TOP, 2.4, cap="butt") + line(40, 78, 260, 78, BOT, 2.4, cap="butt"))
     out.append(line(340, 70, 640, 70, TOP, 2.4, cap="butt") if False else "")
     out.append(line(420, 70, 640, 70, TOP, 2.4, cap="butt") + line(340, 78, 640, 78, BOT, 2.4, cap="butt"))
     out.append(t(300, 98, "3' overhang", 11, MUTE, anchor="middle"))
     out.append(t(380, 98, "3' overhang", 11, MUTE, anchor="middle"))
     # trimmed
-    out.append(t(30, 150, "ExoVII + ExoT remove the overhang", 12, MUTE))
+    out.append(t(30, 138, "ExoVII + ExoT remove the overhang", 12, MUTE))
     out.append(line(40, 156, 260, 156, TOP, 2.4, cap="butt") + line(40, 164, 260, 164, BOT, 2.4, cap="butt"))
     out.append(line(420, 156, 640, 156, TOP, 2.4, cap="butt") + line(420, 164, 640, 164, BOT, 2.4, cap="butt"))
     out.append(arrow(258, 186, 170, HOT, 2))
@@ -646,21 +653,27 @@ def fig_m6a_seq():
 def fig_miclip():
     out = [t(30, 22, "miCLIP: UV crosslinks the antibody to the m6A, so reverse transcription leaves a mark at the site.", 14, INK)]
     rna = "GGACUAGC"
+    x0, m = 190, 2
     out.append(t(30, 66, "RNA, 5' to 3'", 12.5, MUTE))
-    cols = {2: HOT}
-    out.append(cseq(190, 66, rna, cols))
-    out.append(t(190 + 2 * DX + 4, 46, "m6A", 11.5, HOT, anchor="middle"))
-    out.append(t(190 + 2 * DX + 4, 90, "crosslinked antibody fragment", 11.5, HOT))
-    out.append(t(30, 134, "truncation", 12.5, INK, weight="bold"))
-    out.append(arrow(190 + 8 * DX, 130, 190 + 3 * DX - 6, TOP, 2))
-    out.append(t(190 + 8 * DX + 14, 134, "cDNA stops at the adduct; read starts one base downstream", 12, MUTE))
-    out.append(t(30, 176, "mutation", 12.5, INK, weight="bold"))
-    mut = "GGACUAGC"
-    out.append(cseq(190, 176, "GGAUUAGC", {3: BAD}))
-    out.append(t(190 + 8 * DX + 14, 176, "read-through with C changed to T at the +1 position", 12, MUTE))
-    out.append(t(30, 218, "Both marks are scored against a motif: m6A lives in DRACH sequences, so a call away from one is suspect.",
+    out.append(cseq(x0, 66, rna, {m: HOT}))
+    out.append(t(x0 + m * DX + 4, 46, "m6A", 11.5, HOT, anchor="middle"))
+    # draw the adduct, so the label below has something to point at
+    out.append(dot(x0 + m * DX + 4, 80, 4, HOT))
+    out.append(line(x0 + m * DX + 4, 84, x0 + m * DX + 4, 94, HOT, 1.4))
+    out.append(t(x0 + m * DX + 14, 98, "peptide left by the crosslinked antibody", 11.5, HOT))
+    # truncation, against the same sequence so the stop is visible
+    out.append(t(30, 146, "truncation", 12.5, INK, weight="bold"))
+    out.append(cseq(x0, 146, rna, {m: HOT}))
+    out.append(arrow(x0 + 8 * DX, 162, x0 + (m + 1) * DX, TOP, 2))
+    out.append(t(x0 + 8 * DX + 18, 150, "cDNA stops at the adduct, so the read starts at the +1 base",
+                 12, MUTE))
+    # mutation: this row is the read, so DNA letters
+    out.append(t(30, 200, "mutation", 12.5, INK, weight="bold"))
+    out.append(cseq(x0, 200, "GGATTAGC", {m: HOT, m + 1: BAD}))
+    out.append(t(x0 + 8 * DX + 18, 200, "read-through: the C at +1 is read as T", 12, MUTE))
+    out.append(t(30, 240, "Both marks are scored against a motif: m6A lives in DRACH sequences, so a call away from one is suspect.",
                  13.5, INK))
-    return svg(820, 236, "".join(out))
+    return svg(820, 258, "".join(out))
 
 
 def fig_clip_flow():
@@ -758,19 +771,25 @@ def fig_tc_time():
 
 def fig_runon():
     out = [t(30, 22, "GRO-seq: isolate nuclei, let the engaged polymerases run on briefly with labelled nucleotides.", 14, INK)]
-    out.append(line(40, 90, 700, 90, MUTE, 3))
-    out.append(t(60, 78, "promoter", 11.5, MUTE))
-    out.append(arrow(100, 108, 180, MUTE, 1.4))
-    out.append(t(190, 112, "direction of transcription", 11, MUTE))
-    for x, ln, lab in [(170, 28, ""), (330, 60, ""), (520, 44, "")]:
-        out.append(dot(x, 90, 8, TOP))
-        out.append(line(x, 98, x - ln, 126, INK, 1.6))
-        out.append(line(x - ln, 126, x - ln - 6, 130, HOT, 4.0))
-    out.append(t(190, 150, "labelled run-on RNA (orange), extended from where each polymerase was", 12, HOT))
-    out.append(t(40, 186, "anti-BrdU beads capture labelled RNA only", 12.5, INK))
-    out.append(t(40, 206, "Reads are strand-specific, so each polymerase is placed on one strand.", 12.5, INK))
-    out.append(t(40, 226, "Promoters show a sense peak (pausing) and an antisense peak (divergent transcription).", 12.5, INK))
-    return svg(740, 244, "".join(out))
+    # everything that is not RNA goes above the DNA line, so no label is crossed
+    out.append(line(40, 96, 700, 96, MUTE, 3))
+    out.append(vtick(64, 88, 104, TOP, 2.2))
+    out.append(t(44, 80, "promoter", 11.5, MUTE))
+    out.append(arrow(140, 76, 230, MUTE, 1.4))
+    out.append(t(238, 80, "direction of transcription", 11, MUTE))
+    for x, ln in [(200, 34), (380, 70), (560, 52)]:
+        out.append(dot(x, 96, 8, TOP))
+        # the nascent RNA trails behind; the run-on is the piece just added, at the
+        # 3' end, which is the end still inside the polymerase
+        mx, my = x - 0.45 * ln, 104 + 0.45 * 36
+        out.append(line(x - ln, 140, mx, my, INK, 1.6))
+        out.append(line(mx, my, x, 104, HOT, 4.0))
+    out.append(t(170, 166, "labelled run-on RNA (orange): the 3' piece each polymerase added after the label went in",
+                 12, HOT))
+    out.append(t(40, 196, "anti-BrdU beads capture labelled RNA only", 12.5, INK))
+    out.append(t(40, 216, "Reads are strand-specific, so each polymerase is placed on one strand.", 12.5, INK))
+    out.append(t(40, 236, "Promoters show a sense peak (pausing) and an antisense peak (divergent transcription).", 12.5, INK))
+    return svg(740, 254, "".join(out))
 
 
 def fig_proseq():
@@ -810,10 +829,14 @@ def fig_tss():
     out.append(t(30, 56, "capped, full-length", 12.5, INK))
     out.append(dot(200, 52, 6, HOT))
     out.append(line(206, 52, 520, 52, INK, 2.4))
+    out.append(t(192, 56, "5'", 10.5, MUTE, anchor="end"))
+    out.append(t(526, 56, "3'", 10.5, MUTE))
     out.append(t(30, 86, "broken, no cap", 12.5, INK))
     out.append(line(300, 82, 520, 82, MUTE, 2.4))
-    out.append(t(540, 56, "5' end of read = start site", 12, HOT))
-    out.append(t(540, 86, "5' end = a cut, not a start", 12, MUTE))
+    out.append(t(294, 86, "5'", 10.5, MUTE, anchor="end"))
+    out.append(t(526, 86, "3'", 10.5, MUTE))
+    out.append(t(556, 56, "5' end of read = start site", 12, HOT))
+    out.append(t(556, 86, "5' end = a cut, not a start", 12, MUTE))
     s, _ = row(30, 116, ["periodate-oxidise cap and 3' end", "biotinylate", "RNase I trims", "streptavidin keeps capped"],
                ["", "", ""], [None, None, None, OK], size=12)
     out.append(s)
@@ -879,7 +902,8 @@ def fig_glori():
     out = [t(30, 24, "GLORI: the RNA counterpart of bisulfite. Unmodified A is deaminated, m6A resists.", 14, INK)]
     xs = [60, 190, 350, 510]
     heads = ["", "1. glyoxal protects G", "2. nitrite deaminates", "3. RT and PCR"]
-    rows = [("A", [("A", None), ("A", None), ("I", BAD), ("G", BAD)]),
+    # the A route is not a failure, it is the chemistry working: TOP, not BAD
+    rows = [("A", [("A", None), ("A", None), ("I", TOP), ("G", TOP)]),
             ("m6A", [("m6A", HOT), ("m6A", HOT), ("m6A", HOT), ("A", OK)])]
     for j, h in enumerate(heads):
         if h:
