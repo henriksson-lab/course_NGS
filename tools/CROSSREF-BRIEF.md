@@ -65,9 +65,10 @@ Pick headings that suit the unit: *Blocks this protocol uses*, *Where these bloc
   real error, leave the text alone and report it instead.
 - Do **not** edit `index.qmd`, `_quarto.yml`, `CURRICULUM.md`, another worker's units, or any
   `readings.qmd` / `exercise.qmd`. Do not run `git`.
-- A deck may not exceed **30 slides** and at least **half** its slides must carry a figure.
-  Your new slide is a text slide, so check the ratio still passes; if a deck is at 30 slides
-  already, put the connections on the existing final slide instead of adding one.
+- A deck should stay near **30 slides** (soft: reported, not enforced) and at least **half**
+  its slides must carry a figure (enforced). Your new slide is a text slide, so check the
+  ratio still passes; if a deck is already at the guideline, prefer putting the connections on
+  the existing final slide to pushing it over.
 - `python3 tools/check_course.py` must print OK before you finish.
 
 ## Watch for

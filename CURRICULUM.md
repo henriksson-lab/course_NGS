@@ -14,7 +14,8 @@ explain what each step does to the molecule, and design a new library prep.
   enzymes, oligo designs, failure modes and tricks. Part C is use cases: each one is a map
   showing which building blocks a protocol family combines and why. Part D is a cross-cut
   catalogue of tricks. Part E is QC and designing your own protocol.
-- **Unit of material:** a *deck* (revealjs, ≤ 30 slides) + a reading list of original papers +
+- **Unit of material:** a *deck* (revealjs, about 30 slides at most — a guideline, not a
+  hard limit) + a reading list of original papers +
   an exercise page with Hint/Solution callouts. A module can have several decks.
 - **No programming.** Unlike the course this scaffold came from, there are no coding
   exercises and no R or shell for the student to write. Bioinformatics is another course.

@@ -73,7 +73,8 @@ Save to PDF from the browser: print, landscape, no margins, background graphics 
 ## Rules for the material
 
 - No programming. Exercises are design questions, quizzes and enzyme-selection tasks.
-- A deck is at most 30 slides, and at least half of them carry a picture — always alongside
+- A deck is about 30 slides at most — a guideline the checker reports on rather than
+  enforces — and at least half of them carry a picture, which is enforced — always alongside
   text, never a picture on its own slide. `make check` enforces this.
 - All examples are framed in human biology.
 - Every method named cites its original paper; protocols link to their

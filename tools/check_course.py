@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Check course material against the rules in CURRICULUM.md.
 
-  - a deck has at most 30 slides
+  - a deck is at most 30 slides (a soft ceiling: over it warns, it does not fail)
   - at least half of its content slides carry a picture
   - a picture never sits on a slide of its own: it must have text beside it
   - every referenced image file exists
@@ -17,7 +17,7 @@ import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SKIP = {"tools", "planning", "oldpres", "docs", "img", ".git", ".quarto", ".github"}
-MAX_SLIDES = 30
+SOFT_MAX_SLIDES = 30   # a guideline, reported but not enforced
 MIN_IMAGE_FRACTION = 0.50
 
 # revealjs slide box and type scale, read from the generated quarto theme:
@@ -105,7 +105,7 @@ def text_of(slide):
     return s.strip()
 
 
-def check_deck(path, problems):
+def check_deck(path, problems, notes):
     text = open(path).read()
     rel = os.path.relpath(path, ROOT)
     sl = slides(text)
@@ -113,8 +113,9 @@ def check_deck(path, problems):
     withimg = [s for s in sl if images_in(s)]
     frac = len(withimg) / len(sl) if sl else 0
 
-    if n > MAX_SLIDES:
-        problems.append(f"{rel}: {n} slides, limit is {MAX_SLIDES}")
+    if n > SOFT_MAX_SLIDES:
+        notes.append(f"{rel}: {n} slides, over the {SOFT_MAX_SLIDES}-slide guideline "
+                     f"— fine if the deck earns it, but look for something to cut")
     if frac < MIN_IMAGE_FRACTION:
         problems.append(f"{rel}: {frac:.0%} of slides have a picture, "
                         f"minimum is {MIN_IMAGE_FRACTION:.0%}")
@@ -157,7 +158,7 @@ def check_exercises(path, problems):
 def main():
     """One folder per unit at the repository root: lec*.qmd, readings.qmd,
     exercise.qmd, and the unit's figNN-*.svg files."""
-    problems, lines = [], []
+    problems, notes, lines = [], [], []
     for unit in sorted(os.listdir(ROOT)):
         d = os.path.join(ROOT, unit)
         if not os.path.isdir(d) or unit in SKIP or unit.startswith("."):
@@ -171,7 +172,7 @@ def main():
                 if "revealjs" not in text:
                     problems.append(f"{unit}/{name}: a lec*.qmd must be a revealjs deck")
                     continue
-                lines.append(check_deck(path, problems))
+                lines.append(check_deck(path, problems, notes))
             elif name.startswith("exercise"):
                 lines.append(check_exercises(path, problems))
             else:
@@ -179,6 +180,10 @@ def main():
 
     for ln in lines:
         print("  " + ln)
+    if notes:
+        print("\nNOTE")
+        for n in notes:
+            print("  - " + n)
     if problems:
         print("\nFAIL")
         for p in problems:

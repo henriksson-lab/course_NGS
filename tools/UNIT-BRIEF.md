@@ -50,7 +50,9 @@ format:
 
 Rules, all enforced by `python3 tools/check_course.py`:
 
-- **At most 30 slides.** A slide is a `##` heading. Aim for 20–26.
+- **About 30 slides at most.** A slide is a `##` heading. Aim for 20–26. This is a soft
+  ceiling: the checker reports a longer deck but does not fail it. Going over should be a
+  decision you can defend, not an accident.
 - **At least half the slides carry a figure**, and every figure shares its slide with text —
   never a figure on a slide of its own.
 - **Nothing is clipped.** The checker estimates the height of each figure slide against the
