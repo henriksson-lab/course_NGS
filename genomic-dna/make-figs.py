@@ -99,9 +99,9 @@ def frag_row(x, y, cuts, length, col, tag=False, ragged=False):
                 out.append(rect(e, y - 5, 5, 10, ADA))
         if ragged:
             if a:
-                out.append(line(s, y, s + 5, y + 5, BAD, 1.5))
+                out.append(line(s, y, s + 5, y + 5, HOT, 1.5))
             if b < length:
-                out.append(line(e, y, e - 5, y - 5, BAD, 1.5))
+                out.append(line(e, y, e - 5, y - 5, HOT, 1.5))
     return "".join(out)
 
 
@@ -109,9 +109,9 @@ def fig_fragmentation():
     out = [t(20, 24, "Three ways to cut genomic DNA to size, and what each leaves on the ends.", 14)]
     cuts = [70, 150, 190, 290]
     rows = [("Acoustic shearing (Covaris)", dict(ragged=True),
-             "random breaks, ragged ends: needs end repair + A-tailing", BAD),
+             "random breaks, ragged ends: needs end repair + A-tailing", INK),
             ("Enzymatic (e.g. NEBNext FS)", dict(),
-             "ends repaired and A-tailed in the same tube", OK),
+             "ends repaired and A-tailed in the same tube", INK),
             ("Tn5 tagmentation", dict(tag=True),
              "cut and adapter attached in one step", ADA)]
     for i, (name, kw, note, col) in enumerate(rows):
@@ -128,7 +128,7 @@ def fig_ligation_library():
     out.append(line(220, 92, 440, 92, TOP, 3))
     out.append(line(220, 106, 440, 106, BOT, 3))
     out.append(t(444, 97, "A", 15, HOT, family=MONO, weight="bold"))
-    out.append(t(206, 112, "A", 15, HOT, family=MONO, weight="bold", anchor="end"))
+    out.append(t(216, 112, "A", 15, HOT, family=MONO, weight="bold", anchor="end"))
     out.append(t(330, 130, "insert, ends repaired, one A on each 3' end", 12.5, MUTE, anchor="middle"))
     # adapters: Y shape with T overhang
     for sign, x in ((-1, 196), (1, 468)):
@@ -136,8 +136,10 @@ def fig_ligation_library():
         out.append(line(x, 106, x + sign * 22, 106, ADA, 3))
         out.append(line(x + sign * 22, 92, x + sign * 50, 66, ADA, 3))
         out.append(line(x + sign * 22, 106, x + sign * 50, 132, ADA, 3))
-    out.append(t(176, 100, "T", 15, HOT, family=MONO, weight="bold", anchor="end"))
-    out.append(t(484, 100, "T", 15, HOT, family=MONO, weight="bold"))
+    # the adapter's 3'-T sits at the ligation end of the fork, opposite the insert's A:
+    # on the upper strand at the left end and on the lower strand at the right end
+    out.append(t(196, 100, "T", 15, HOT, family=MONO, weight="bold", anchor="end"))
+    out.append(t(468, 114, "T", 15, HOT, family=MONO, weight="bold"))
     out.append(t(100, 62, "forked adapter", 12.5, ADA, anchor="middle"))
     out.append(t(100, 160, "arms stay unpaired: the fork", 12.5, MUTE, anchor="middle"))
     out.append(t(20, 190, "A/T overhangs stop insert-insert and adapter-adapter joining. Each fragment gets "
@@ -153,10 +155,11 @@ def fig_tagmentation():
     out.append(line(30, 84, 340, 84, BOT, 3))
     out.append(rect(150, 48, 70, 58, PALE_HOT, HOT, 8))
     out.append(t(185, 80, "Tn5", 14, HOT, anchor="middle", weight="bold"))
-    out.append(t(185, 124, "dimer, adapters loaded", 12, MUTE, anchor="middle"))
+    out.append(t(185, 136, "dimer, adapters loaded", 12, MUTE, anchor="middle"))
     out.append(line(160, 40, 160, 48, HOT, 1.5))
     out.append(line(210, 106, 210, 114, HOT, 1.5))
-    out.append(t(20, 50, "cut", 11.5, HOT))
+    out.append(t(154, 46, "cut", 11.5, HOT, anchor="end"))
+    out.append(t(216, 114, "cut", 11.5, HOT))
     out.append(arrow(360, 78, 400, MUTE))
     # panel B: result, one fragment
     y1, y2 = 62, 96
@@ -292,7 +295,7 @@ def fig_adapter_types():
         return "".join(o)
     out.append(t(40, 54, "PCR-free: everything is ligated on", 13, OK, weight="bold"))
     out.append(construct(62, False))
-    out.append(t(40, 130, "With PCR: stub adapters, the primers add the rest (dashed)", 13, BAD, weight="bold"))
+    out.append(t(40, 130, "With PCR: stub adapters, the primers add the rest (outlined)", 13, BAD, weight="bold"))
     out.append(construct(138, True))
     out.append(t(520, 82, "goes straight to the flow cell,", 12.5, MUTE))
     out.append(t(520, 98, "must be quantified by qPCR", 12.5, MUTE))
@@ -533,7 +536,7 @@ def fig_qc():
     out.append(trace(30, "good", [(100, 85, 28)], OK))
     out.append(trace(290, "adapter dimers", [(100, 55, 28), (14, 85, 6)], BAD))
     out.append(trace(550, "over-amplified", [(95, 70, 25), (165, 40, 12)], HOT))
-    out.append(t(30, 200, "sharp small peak", 12, BAD))
+    out.append(t(30, 200, "one peak at the design size", 12, OK))
     out.append(t(290, 200, "dimer peak near 130 bp: more bead cleanup", 12, BAD))
     out.append(t(550, 200, "second, larger peak: strands annealed through", 12, HOT))
     out.append(t(550, 216, "their ends. Re-do with fewer cycles", 12, HOT))
@@ -596,7 +599,7 @@ def chain(x, y, parts, h=22, size=11.5):
 
 def fig_walk_truseq():
     """TruSeq DNA PCR-free, construct after every block."""
-    out = [t(40, 26, "TruSeq DNA PCR-free: the construct after every block. 1 ug of blood DNA.",
+    out = [t(40, 26, "TruSeq DNA PCR-free: the construct after every block. 1 µg of blood DNA.",
              14, INK)]
     rows = [
         ("1  shear to ~350 bp",

@@ -160,9 +160,9 @@ def fig_rnaseh():
 
 def fig_dash():
     out = [t(40, 26, "Cas9 depletion acts on cDNA: cut what you do not want between RT and PCR.", 14, INK)]
-    out.append(lab(40, 56, "1. adapter-flanked cDNA library, ", 12.5, INK))
-    out.append(lab(40, 76, "rRNA-derived molecules are most of it", 12.5, MUTE))
-    y1, y2 = 110, 150
+    out.append(lab(40, 74, "1. adapter-flanked cDNA library,", 12.5, INK))
+    out.append(lab(40, 92, "rRNA-derived molecules are most of it", 12.5, MUTE))
+    y1, y2 = 72, 112
     out.append(box(300, y1 - 8, 22, 16, "", TB, TOP))
     out.append(strand(322, 520, y1, MUTE, 3))
     out.append(box(520, y1 - 8, 22, 16, "", TR, BAD))
@@ -171,23 +171,23 @@ def fig_dash():
     out.append(strand(322, 520, y2, RNA, 3))
     out.append(box(520, y2 - 8, 22, 16, "", TR, BAD))
     out.append(lab(560, y2 + 4, "mRNA cDNA", 12, RNA))
-    out.append(lab(40, 196, "2. Cas9 with guides against rRNA", 12.5, INK))
-    out.append(lab(40, 214, "cuts inside the insert", 12.5, MUTE))
-    out.append(box(300, 186, 22, 16, "", TB, TOP))
-    out.append(strand(322, 400, 194, MUTE, 3))
-    out.append(scissors(411, 194, HOT))
-    out.append(strand(422, 520, 194, MUTE, 3))
-    out.append(box(520, 186, 22, 16, "", TR, BAD))
-    out.append(lab(560, 198, "two pieces, each with one adapter", 12, BAD))
-    out.append(lab(40, 250, "3. PCR with adapter primers", 12.5, INK))
-    out.append(lab(40, 268, "needs an adapter at both ends", 12.5, MUTE))
-    out.append(box(300, 240, 22, 16, "", TB, TOP))
-    out.append(strand(322, 520, 248, RNA, 3))
-    out.append(box(520, 240, 22, 16, "", TR, BAD))
-    out.append(lab(560, 252, "amplified", 12, OK))
-    out.append(lab(300, 288, "Cut pieces fail to amplify exponentially. No oligo, no hybrid, no bead: the target "
-                             "is defined by the guide RNAs.", 13, HOT))
-    return svg(800, 306, "".join(out))
+    out.append(lab(40, 158, "2. Cas9 with guides against rRNA", 12.5, INK))
+    out.append(lab(40, 176, "cuts inside the insert", 12.5, MUTE))
+    out.append(box(300, 148, 22, 16, "", TB, TOP))
+    out.append(strand(322, 400, 156, MUTE, 3))
+    out.append(scissors(411, 156, HOT))
+    out.append(strand(422, 520, 156, MUTE, 3))
+    out.append(box(520, 148, 22, 16, "", TR, BAD))
+    out.append(lab(560, 160, "two pieces, each with one adapter", 12, BAD))
+    out.append(lab(40, 212, "3. PCR with adapter primers", 12.5, INK))
+    out.append(lab(40, 230, "needs an adapter at both ends", 12.5, MUTE))
+    out.append(box(300, 202, 22, 16, "", TB, TOP))
+    out.append(strand(322, 520, 210, RNA, 3))
+    out.append(box(520, 202, 22, 16, "", TR, BAD))
+    out.append(lab(560, 214, "amplified", 12, OK))
+    out.append(lab(40, 254, "Cut pieces fail to amplify exponentially. No oligo, no hybrid, no bead: the target "
+                            "is defined by the guide RNAs.", 13, HOT))
+    return svg(800, 272, "".join(out))
 
 
 def _cov(x0, y0, w, h, f, col, n=60):
@@ -320,9 +320,9 @@ def fig_dutp():
         out.append(t(xx, 175, "U", 9.5, HOT, family=MONO))
     out.append(lab(350, 156, "U-containing second strand", 11.5, HOT))
     out.append(lab(40, 198, "3. ligate adapters, then stop the U strand from being amplified", 12.5, INK))
-    out.append(box(60, 208, 18, 12, "", TB, TOP))
+    out.append(box(60, 206, 18, 30, "", TB, TOP))
     out.append(strand(78, 300, 214, CDNA, 3.2))
-    out.append(box(300, 208, 18, 12, "", TR, BAD))
+    out.append(box(300, 206, 18, 30, "", TR, BAD))
     out.append(strand(78, 300, 228, NEW, 3.2))
     out.append(lab(330, 222, "only the first-strand copy templates PCR", 11.5, OK))
     # right: read geometry
@@ -465,7 +465,7 @@ def fig_dimer():
 def fig_sizesel():
     out = [t(40, 26, "The size window is narrow, so the dimer peak sits right beside the miRNA peak.", 14, INK)]
     out.append(line(60, 190, 700, 190, MUTE, 1))
-    for xx, lbl in [(120, "100"), (220, "125"), (320, "150"), (420, "175"), (520, "200"), (620, "250")]:
+    for xx, lbl in [(120, "100"), (220, "125"), (320, "150"), (420, "175"), (520, "200"), (620, "225")]:
         out.append(line(xx, 190, xx, 195, MUTE, 1))
         out.append(lab(xx, 208, lbl, 11, MUTE, "middle"))
     out.append(lab(380, 226, "library size (bp), schematic", 11.5, MUTE, "middle"))
@@ -539,8 +539,8 @@ def fig_riboconstruct():
     out.append(lab(590, y0 + 40, "the end with no adapter on it", 11.5, MUTE))
     out.append(lab(590, y0 + 56, "now sits beside the linker", 11.5, MUTE))
     out.append(lab(440, y0 + 104, "4. PCR with primers pointing outwards", 12.5, INK))
-    out.append(arrow(470, y0 + 126, 515, CDNA, 1.6))
-    out.append(arrow(590, y0 + 126, 545, HOT, 1.6))
+    out.append(arrow(515, y0 + 126, 470, CDNA, 1.6))
+    out.append(arrow(545, y0 + 126, 590, HOT, 1.6))
     out.append(t(40, 252, "Circularisation joins the unadapted end to the linker, so no second ligation is needed "
                           "and one primer pair reads across the junction.", 13.5, HOT))
     return svg(820, 270, "".join(out))
@@ -559,7 +559,7 @@ def fig_ts():
         if p >= 1:
             out.append(t(x0 + 52, 128, "CCC", 11, NEW, family=MONO, anchor="middle"))
         if p == 2:
-            out.append(strand(x0 + 4, x0 + 44, 146, NEW, 3.2))
+            out.append(strand(x0 + 4, x0 + 34, 146, NEW, 3.2))
             out.append(box(x0 - 6, 139, 12, 14, "", TB, TOP))
             out.append(t(x0 + 52, 150, "GGG", 11, NEW, family=MONO, anchor="middle"))
             out.append(lab(x0 + 100, 158, "TSO", 11, NEW))
@@ -582,16 +582,10 @@ def fig_tso():
     for n, w, f, c in parts:
         out.append(box(x, 80, w, 36, n, f, c, 11.5, c))
         x += w
-    jobs = [("stops TSOs ligating to each other (concatemers)", 60),
-            ("one primer amplifies every molecule", 180),
-            ("which cell or molecule: labelled in this oligo", 300),
-            ("pairs with the extra C; ribo or LNA bases bind tighter", 420)]
-    for n, xx in jobs:
-        pass
     out.append(lab(60, 140, "blocks 5' end", 11, BAD))
-    out.append(lab(180, 140, "shared amplification site", 11, TOP))
+    out.append(lab(180, 140, "shared primer site", 11, TOP))
     out.append(lab(300, 140, "identity information", 11, HOT))
-    out.append(lab(410, 140, "binds the C-overhang", 11, OK))
+    out.append(lab(412, 140, "binds the C-overhang", 11, OK))
     out.append(lab(40, 186, "Smart-seq3 puts a UMI and a tag in the TSO, so each 5' end is counted once "
                             "and 5' reads can be told apart.", 12.5, INK))
     out.append(lab(40, 208, "Failure to watch: the TSO can also be copied by the RT, giving a strand-invasion "
@@ -669,7 +663,7 @@ def fig_constructs():
             out.append(strand(x, x + 260, y + 20, RNA, 4))
             out.append(capdot(x + 2, y + 20))
             x += 260
-            out.append(t(x + 6, y + 8, "AAAA", 10.5, RNA, family=MONO))
+            out.append(t(x + 6, y + 24, "AAAA", 10.5, RNA, family=MONO))
             x += 46
             for lbl, w, f, c in P3[k]:
                 out.append(box(x, y + 6, w, 28, lbl, f, c, 10.5, c))
@@ -692,14 +686,14 @@ def fig_tagfl():
             out.append(f'<rect x="{a}" y="{y-9}" width="{b-a}" height="18" fill="none" stroke="{MUTE}"/>')
         if k == "3":
             for xx in range(630, 690, 6):
-                out.append(line(xx, y - 9, xx, y - 24 + (xx % 11), BAD, 2))
+                out.append(line(xx, y - 9, xx, y - 24 + (xx % 11), HOT, 2))
         elif k == "5":
             for xx in range(252, 312, 6):
-                out.append(line(xx, y - 9, xx, y - 24 + (xx % 11), BAD, 2))
+                out.append(line(xx, y - 9, xx, y - 24 + (xx % 11), HOT, 2))
         else:
             for xx in range(256, 690, 14):
                 if not (312 < xx < 368 or 422 < xx < 488 or 544 < xx < 608):
-                    out.append(line(xx, y - 9, xx, y - 24 + (xx % 9), OK, 2))
+                    out.append(line(xx, y - 9, xx, y - 24 + (xx % 9), HOT, 2))
     out.append(lab(40, 262, "A tag count says how much; only full-length reads can say which exon "
                             "combination, which variant, which junction.", 12.5, INK))
     out.append(t(40, 288, "Depth: a tag protocol puts all reads on one short window, so it needs far fewer reads "
@@ -710,16 +704,16 @@ def fig_tagfl():
 def fig_tn5():
     out = [t(40, 26, "Tn5 can fragment and tag an RNA:DNA hybrid, so the second strand is not needed.", 14, INK)]
     out.append(lab(40, 62, "1. RT gives an RNA:cDNA hybrid; the usual route would now synthesise a second strand",
-                   12.5, MUTE))
+                   12.5, INK))
     out.append(strand(60, 400, 96, RNA, 3.2))
     out.append(strand(60, 400, 110, CDNA, 3.2))
     out.append(lab(40, 148, "2. Tn5, loaded with adapters, cuts the hybrid and attaches its adapters", 12.5,
                    INK))
-    for xx in (150, 280):
-        out.append(f'<ellipse cx="{xx}" cy="196" rx="20" ry="14" fill="{TY}" stroke="{HOT}"/>')
-        out.append(lab(xx, 200, "Tn5", 11, HOT, "middle"))
     out.append(strand(60, 400, 176, RNA, 3.2))
     out.append(strand(60, 400, 190, CDNA, 3.2))
+    for xx in (150, 280):
+        out.append(f'<ellipse cx="{xx}" cy="183" rx="20" ry="17" fill="{TY}" stroke="{HOT}"/>')
+        out.append(lab(xx, 187, "Tn5", 11, HOT, "middle"))
     out.append(lab(40, 240, "3. complete the adapters and amplify the library by PCR", 12.5, INK))
     out.append(lab(440, 96, "Saves a second-strand reaction and its cleanup", 12, OK))
     out.append(lab(440, 116, "Caveat: Tn5 prefers some sequences,", 12, MUTE))
@@ -806,7 +800,7 @@ def fig_walk_truseq():
           ("R2 i7 P7", 66, "p7")],
          "the index is on before PCR, not added by it"),
         ("7  PCR, 15 cycles",
-         [("P5 i5 R1", 66, "p5"), ("only the first strand copies", 228, "hot"),
+         [("P5 i5 R1", 66, "p5"), ("only the first strand is copied", 228, "hot"),
           ("R2 i7 P7", 66, "p7")],
          "the U strand is not a template: one orientation left"),
         ("8  the finished molecule",

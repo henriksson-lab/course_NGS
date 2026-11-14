@@ -136,6 +136,15 @@ def fig_sources():
     return svg(940, 24 + 14 + 7 * 34 + 44, "".join(out))
 
 
+def ends53(x, y, top, bot):
+    """5'/3' marks around a duplex drawn by dup(): top runs 5'->3' left to right."""
+    wt, wb = len(top.rstrip()) * DX, len(bot.rstrip()) * DX
+    return (t(x - 9, y, "5'", 11, MUTE, anchor="end") +
+            t(x + wt + 2, y, "3'", 11, MUTE) +
+            t(x - 9, y + 28, "3'", 11, MUTE, anchor="end") +
+            t(x + wb + 2, y + 28, "5'", 11, MUTE))
+
+
 def fig_shapes():
     out = []
     items = [("5' overhang", "ATGCTTAG    ", "TACGAATCGATC", "ATGCTTAGCTAG", "TACGAATCGATC", "polymerase fills in"),
@@ -145,11 +154,12 @@ def fig_shapes():
         out.append(t(20, y - 28, name, 14, INK, weight="bold"))
         s, w = dup(30, y, top, bot)
         out.append(s)
+        out.append(ends53(30, y, top, bot))
         out.append(arrow(30 + w + 20, y + 14, 30 + w + 80, HOT))
-        out.append(t(30 + w + 28, y + 2, how, 11.5, HOT) if False else "")
         s, w2 = dup(30 + w + 100, y, top2, bot2)
         out.append(s)
-        out.append(t(30 + w + 28, y + 38, how, 11.5, HOT))
+        out.append(ends53(30 + w + 100, y, top2, bot2))
+        out.append(t(30 + w + 28, y + 46, how, 11.5, HOT))
     out.append(t(20, 54 + 2 * 112 - 20, "Either way the result is blunt: that is what end repair is for.", 14, HOT))
     return svg(640, 54 + 2 * 112, "".join(out))
 
@@ -158,7 +168,8 @@ def fig_nickgap():
     out = []
     rows = [("nick", "ATGCTTAGCCA", "TACGAATCGGT", "nick", "ligase seals it (5'-P and 3'-OH needed)"),
             ("gap", "ATGCT   CCA", "TACGAATCGGT", "gap", "polymerase fills, then ligase seals"),
-            ("flap", "ATGCTTAGCCAGG", "TACGAATCGGT  ", "flap", "FEN1 or a 5'-3' exonuclease trims it"),
+            ("flap", "ATGCTTAGCCA", "TACGAATCGGT", "flap",
+             "a displaced 5' end: FEN1 or a 5'-3' exonuclease trims it"),
             ]
     y = 44
     for name, top, bot, kind, how in rows:
@@ -166,6 +177,16 @@ def fig_nickgap():
         out.append(s)
         if kind == "nick":
             out.append(line(30 + 5 * DX - 3, y - 12, 30 + 5 * DX - 3, y + 4, HOT, 2))
+        if kind == "flap":
+            # the downstream strand is peeled off from position 7 back to position 5,
+            # so its first two bases sit above the duplex with a free 5' end
+            jx = 30 + 7 * DX - 3
+            fx = 30 + 5 * DX
+            out.append(line(jx, y - 12, jx, y + 4, HOT, 2))
+            out.append(t(fx, y - 20, "T", 13, HOT, family=MONO))
+            out.append(t(fx + DX, y - 20, "A", 13, HOT, family=MONO))
+            out.append(t(fx - 8, y - 20, "5'", 10, HOT, anchor="end"))
+            out.append(line(fx + 2 * DX - 5, y - 24, jx, y - 13, HOT, 1.4))
         out.append(t(30, y - 22, name, 13, INK, weight="bold"))
         out.append(t(30 + w + 30, y + 16, how, 13, MUTE))
         y += 76
@@ -175,24 +196,28 @@ def fig_nickgap():
 
 def fig_repair():
     out = [t(20, 24, "after shearing: every kind of end in one tube", 13, INK, weight="bold")]
-    ends = [("blunt", "ATGCTTAG", "TACGAATC"), ("5' overhang", "ATGCTTAG", "TACGAA  "),
-            ("3' overhang", "ATGCTTAG", "TACG    ")] if False else None
     shapes = [("blunt, 5'-OH", "ATGCT", "TACGA", "OH", None), ("5' overhang", "ATGCT", "TACGAAT", "P", None),
-              ("3' overhang", "ATGCTTA", "TACGA", "P", None), ("3'-P damaged", "ATGCT", "TACGA", "P", "P")]
+              ("3' overhang", "ATGCTTA", "TACGA", "P", None), ("3'-P damaged", "ATGCT", "TACGA", "P", "block")]
     for i, (n, top, bot, five, three) in enumerate(shapes):
         x = 30 + i * 190
         top = top.ljust(7); bot = bot.ljust(7)
         s, w = dup(x, 54, top, bot, pair=False)
         out.append(s)
+        out.append(endmark(x - 10, 50, five, 5))
+        if three:
+            out.append(endmark(x + len(top.rstrip()) * DX + 6, 50, three, 5))
         out.append(t(x, 112, n, 12, MUTE))
-    out.append(t(20, 150, "end-repair mix", 13, INK, weight="bold"))
-    out.append(t(20, 174, "T4 DNA polymerase:  fills 5' overhangs and trims 3' overhangs", 13, INK))
-    out.append(t(20, 194, "T4 polynucleotide kinase:  adds 5'-P; its phosphatase removes 3'-P", 13, INK))
-    out.append(t(20, 214, "(Klenow fragment sometimes added to help fill-in)", 12, MUTE))
-    out.append(t(20, 244, "after: blunt, 5'-P, 3'-OH on every molecule", 14, OK, weight="bold"))
-    s, w = dup(30, 264, "ATGCTTAG", "TACGAATC")
+    out.append(t(20, 134, "marks on the 5' end of the top strand: green 5'-P, open red 5'-OH; "
+                          "red square: a blocking 3'-phosphate", 11.5, MUTE))
+    out.append(t(20, 162, "end-repair mix", 13, INK, weight="bold"))
+    out.append(t(20, 186, "T4 DNA polymerase:  fills 5' overhangs and trims 3' overhangs", 13, INK))
+    out.append(t(20, 206, "T4 polynucleotide kinase:  adds 5'-P; its phosphatase removes 3'-P", 13, INK))
+    out.append(t(20, 226, "(Klenow fragment sometimes added to help fill-in)", 12, MUTE))
+    out.append(t(20, 256, "after: blunt, 5'-P, 3'-OH on every molecule", 14, OK, weight="bold"))
+    s, w = dup(30, 276, "ATGCTTAG", "TACGAATC")
     out.append(s)
-    return svg(780, 312, "".join(out))
+    out.append(endmark(20, 272, "P", 5))
+    return svg(780, 324, "".join(out))
 
 
 def fig_blunting():
@@ -203,8 +228,8 @@ def fig_blunting():
     s, w2 = dup(30, 150, "ATGCTTAG  ", "TACGAATCGA")
     out.append(s)
     out.append(t(30, 136, "5' overhang: the polymerase fills in", 12, MUTE))
-    out.append(t(330, 84, "3'-5' exo removes unpaired 3' bases", 12, BAD))
-    out.append(t(330, 164, "5'-3' polymerase adds dNTPs", 12, OK))
+    out.append(t(330, 84, "3'-5' exo removes unpaired 3' bases", 12, INK))
+    out.append(t(330, 164, "5'-3' polymerase adds dNTPs", 12, INK))
     out.append(t(330, 214, "A blunt end is where neither activity has anything to do.", 13, HOT))
     out.append(t(20, 214, "", 12, MUTE))
     return svg(720, 236, "".join(out))
@@ -212,13 +237,13 @@ def fig_blunting():
 
 def fig_atail():
     out = [t(20, 24, "dA-tailing", 14, INK, weight="bold")]
-    s, w = dup(30, 60, "ATGCTTAG", "TACGAATC")
+    s, w = dup(30, 60, " ATGCTTAG ", " TACGAATC ")
     out.append(s)
     out.append(arrow(30 + w + 30, 74, 30 + w + 150, HOT))
     out.append(t(30 + w + 24, 56, "Klenow exo-, dATP only", 12, HOT))
-    s, w2 = dup(30 + w + 170, 60, "ATGCTTAGA", "TACGAATC ", hot_top=(8,))
+    s, w2 = dup(30 + w + 170, 60, " ATGCTTAGA", "ATACGAATC ", hot_top=(9,), hot_bot=(0,))
     out.append(s)
-    out.append(t(20, 140, "- one A, then it stops: no template for the next base", 13, INK))
+    out.append(t(20, 140, "- one A on each 3' end, then it stops: no template for the next base", 13, INK))
     out.append(t(20, 160, "- with only dATP in the tube, nothing else can be added", 13, INK))
     out.append(t(20, 180, "- an exonuclease-proficient polymerase would remove the A again: futile cycle", 13, INK))
     out.append(t(20, 200, "- the T-overhang adapter is the other half of the pair", 13, INK))
@@ -264,15 +289,17 @@ def fig_dephos():
         s = ln(x0, y, x1, y, TOP, 4)
         s += endmark(x0 - 6, y, l, 5) + endmark(x1 + 6, y, r, 5)
         return s
+    frags = [(40, 150), (180, 330), (360, 470)]
     out.append(t(20, 54, "1  genomic DNA, ends carry 5'-P", 12, MUTE))
-    for x0, x1 in [(40, 150), (180, 330), (360, 470)]:
+    for x0, x1 in frags:
         out.append(frag(72, x0, x1, "P", "P"))
     out.append(t(20, 108, "2  phosphatase (CIP, rSAP): every 5'-P becomes 5'-OH; ends cannot ligate to anything", 12, MUTE))
-    for x0, x1 in [(40, 150), (180, 330), (360, 470)]:
+    for x0, x1 in frags:
         out.append(frag(126, x0, x1, "OH", "OH"))
-    out.append(t(20, 162, "3  Cas9 cuts: the new ends carry 5'-P", 12, MUTE))
-    out.append(frag(180, 40, 120, "OH", "P"))
-    out.append(frag(180, 150, 330, "P", "OH"))
+    out.append(t(20, 162, "3  Cas9 cuts the middle molecule: the two new ends carry 5'-P", 12, MUTE))
+    out.append(frag(180, 40, 150, "OH", "OH"))
+    out.append(frag(180, 180, 238, "OH", "P"))
+    out.append(frag(180, 272, 330, "P", "OH"))
     out.append(frag(180, 360, 470, "OH", "OH"))
     out.append(t(20, 216, "4  adapter ligation: only the cut sites are tagged, so only they are sequenced", 12, OK))
     out.append(t(20, 250, "green: 5'-P (ligatable)    open red: 5'-OH (inert)", 12, MUTE))
@@ -305,7 +332,7 @@ def fig_blocked():
     out = [t(20, 24, "A blocked 3' end can give a ligation but cannot take one", 14, INK, weight="bold")]
     rows = [("adapter, 5'-P and 3'-OH", False), ("adapter, 5'-P and 3' block", True)]
     for i, (n, blocked) in enumerate(rows):
-        y = 70 + i * 100
+        y = 86 + i * 96
         out.append(t(20, y - 28, n, 13, INK, weight="bold"))
         out.append(endmark(46, y, "P", 5))
         out.append(ln(52, y, 140, y, HB, 4))

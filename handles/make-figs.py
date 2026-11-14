@@ -155,8 +155,11 @@ def fig_ligation_kinds():
     s += "".join(t(x2 + (6 + i) * DX + 6, y2, c, 13, HOT, family=MONO) for i, c in enumerate("TTGACG"))
     bot = "CTAGGTAACTGC"
     check_pairing(top + "TTGACG", bot)
-    s += "".join(t(x2 + i * DX + (6 if i >= 6 else 0), y2 + 28, c, 13, BAD if False else BOT, family=MONO)
+    s += "".join(t(x2 + i * DX + (6 if i >= 6 else 0), y2 + 28, c, 13, BOT, family=MONO)
                  for i, c in enumerate(bot))
+    for i in range(len(bot)):
+        cx = x2 + i * DX + (6 if i >= 6 else 0) + 4
+        s += line(cx, y2 + 4, cx, y2 + 17, MUTE, 1)
     out.append(s)
     out.append(line(x2 + 6 * DX + 2, y2 - 14, x2 + 6 * DX + 2, y2 + 4, OK, 2))
     out.append(t(x2, y2 + 66, "the nick is sealed; the splint is not (3' blocked)", 12, MUTE))
@@ -219,15 +222,17 @@ def fig_yadapter():
     out.append(t(x0, 26, "one forked (Y) adapter", 14, INK, weight="bold"))
     # insert
     out.append(bx(x0 + 60, 70, 120, 18, "insert", "I"))
-    # left fork
-    for xs, d, base in [(x0 + 58, -1, x0 + 58), (x0 + 182, 1, x0 + 182)]:
+    # The same adapter at both ends, but a 180-degree rotation: arm A leaves the top
+    # strand at one end and the bottom strand at the other.
+    for xs, d in [(x0 + 58, -1), (x0 + 182, 1)]:
+        up, dn = (HA, HB) if d < 0 else (HB, HA)
         out.append(bx(xs - (24 if d < 0 else -2), 64, 24, 30, "", "K"))
-        out.append(ln(xs - (24 if d < 0 else -26), 70, xs - (60 if d < 0 else -62), 52, HA, 2.6))
-        out.append(ln(xs - (24 if d < 0 else -26), 88, xs - (60 if d < 0 else -62), 106, HB, 2.6))
+        out.append(ln(xs - (24 if d < 0 else -26), 70, xs - (60 if d < 0 else -62), 52, up, 2.6))
+        out.append(ln(xs - (24 if d < 0 else -26), 88, xs - (60 if d < 0 else -62), 106, dn, 2.6))
     out.append(t(x0 - 10, 46, "arm A", 12, HA))
     out.append(t(x0 - 10, 124, "arm B", 12, HB))
-    out.append(t(x0 + 250, 46, "arm A", 12, HA))
-    out.append(t(x0 + 250, 124, "arm B", 12, HB))
+    out.append(t(x0 + 250, 46, "arm B", 12, HB))
+    out.append(t(x0 + 250, 124, "arm A", 12, HA))
     out.append(t(x0, 170, "same adapter at both ends; after the first copy,", 13, MUTE))
     out.append(t(x0, 188, "one strand ends in A and the other in B", 13, OK))
     out.append(t(30, 222, "Y adapters make asymmetry from a single oligo pair: no wasted combinations.", 14, HOT))
@@ -319,28 +324,27 @@ def fig_circ():
 
 def fig_primertail():
     out = []
-    # row 1
-    def row(y, title):
-        return t(30, y - 26, title, 13, INK, weight="bold")
-    out.append(row(50, "cycle 1: only the 3' part of the primer pairs; the tail hangs free"))
-    out.append(ln(60, 70, 520, 70, GREY, 3))
-    out.append(ln(160, 96, 230, 96, TOP, 4))
-    out.append(ln(110, 96, 160, 96, HA, 4))
-    out.append(arrow(230, 96, 400, TOP, w=2))
-    out.append(t(60, 118, "5' tail (handle)", 11, HA))
-    out.append(t(170, 118, "annealing part", 11, TOP))
-    out.append(row(170, "cycle 2: the copy carries the tail, so the complete primer now pairs along its full length"))
-    out.append(ln(110, 190, 520, 190, HA, 0.1))
-    out.append(ln(110, 190, 160, 190, HA, 3))
-    out.append(ln(160, 190, 400, 190, GREY, 3))
-    out.append(ln(110, 214, 160, 214, HA, 4))
-    out.append(ln(160, 214, 230, 214, TOP, 4))
-    out.append(arrow(230, 214, 400, TOP, w=2))
-    out.append(row(290, "product: new sequence at the end of every molecule, in whatever order the primers dictate"))
-    s, x = run(100, 300, 22, [(60, "handle A", "A"), (28, "gene", "K"), (150, "target", "I"), (28, "gene", "K"), (60, "handle B", "B")])
+    out.append(t(30, 24, "cycle 1: only the 3' part of the primer pairs; the tail hangs free",
+                 13, INK, weight="bold"))
+    out.append(ln(60, 52, 520, 52, GREY, 3))
+    out.append(ln(110, 76, 160, 76, HA, 4))
+    out.append(ln(160, 76, 230, 76, TOP, 4))
+    out.append(arrow(230, 76, 400, TOP, w=2))
+    out.append(t(110, 98, "5' tail (handle)", 11, HA))
+    out.append(t(210, 98, "annealing part", 11, TOP))
+    out.append(t(30, 132, "cycle 2: the copy carries the tail, so the complete primer now pairs along its full length",
+                 13, INK, weight="bold"))
+    out.append(ln(110, 160, 160, 160, HA, 3))
+    out.append(ln(160, 160, 400, 160, GREY, 3))
+    out.append(ln(110, 184, 160, 184, HA, 4))
+    out.append(ln(160, 184, 230, 184, TOP, 4))
+    out.append(arrow(230, 184, 400, TOP, w=2))
+    out.append(t(30, 218, "product: new sequence at the end of every molecule, in whatever order the primers dictate",
+                 13, INK, weight="bold"))
+    s, x = run(100, 230, 22, [(60, "handle A", "A"), (28, "gene", "K"), (150, "target", "I"), (28, "gene", "K"), (60, "handle B", "B")])
     out.append(s)
-    out.append(t(30, 352, "The tail does not need to match anything. Tm only matters for the annealing part.", 13, HOT))
-    return svg(720, 370, "".join(out))
+    out.append(t(30, 282, "The tail does not need to match anything. Tm only matters for the annealing part.", 13, HOT))
+    return svg(720, 300, "".join(out))
 
 
 def fig_rtprimer():
@@ -358,7 +362,7 @@ def fig_rtprimer():
     out.append(s)
     out.append(arrow(424, 92, 240, TOP, w=2.4))
     out.append(ln(240, 92, 424, 92, GREY, 3))
-    out.append(t(250, 120, "RT writes cDNA from the primer", 12, MUTE))
+    out.append(t(240, 136, "RT writes cDNA from the primer", 12, MUTE))
     out.append(t(30, 160, "First-strand cDNA starts with handle, barcode and UMI, then T's, then the transcript.", 13, INK))
     out.append(t(30, 182, "CEL-Seq, Drop-seq, 10x 3' and most 3'-end methods use this; no ligation step is needed.", 13, INK))
     out.append(t(30, 204, "A 'VN' at the primer 3' end anchors it to the start of the poly(A), not inside it.", 13, MUTE))
@@ -515,14 +519,13 @@ def fig_topo():
 
 def fig_indexpcr():
     out = [t(30, 26, "Truncated adapters: ligate the part every library shares, add the rest by PCR", 14, INK, weight="bold")]
-    s, x = run(100, 46, 22, [(60, "read 1 site", "A"), (170, "insert", "I"), (60, "read 2 site", "B")])
+    s, x = run(100, 46, 22, [(74, "read 1 site", "A"), (170, "insert", "I"), (74, "read 2 site", "B")])
     out.append(s)
     out.append(t(30, 62, "ligated", 12, MUTE))
     out.append(t(100, 90, "the stub is short and identical for every sample", 12, MUTE))
-    s, x = run(60, 124, 20, [(46, "P5", "A"), (40, "i5", "X"), (60, "read 1 site", "A")])
+    s, x = run(60, 124, 20, [(46, "P5", "A"), (40, "i5", "X"), (74, "read 1 site", "A")])
     out.append(s)
-    out.append(arrow(60 + 146 + 4, 134, 60 + 146 + 54, TOP, w=2) if False else "")
-    s, x = run(300, 160, 20, [(60, "read 2 site", "B"), (40, "i7", "X"), (46, "P7", "B")])
+    s, x = run(300, 160, 20, [(74, "read 2 site", "B"), (40, "i7", "X"), (46, "P7", "B")])
     out.append(s)
     out.append(t(30, 140, "PCR", 12, MUTE))
     out.append(t(60, 118, "index primer: 3' end pairs with the stub, 5' tail adds the rest", 12, MUTE))
@@ -544,11 +547,11 @@ def fig_twostep():
     out.append(t(244, 96, "clean up", 12, MUTE))
     out.append(arrow(240, 100, 290, MUTE) if False else "")
     out.append(ln(240, 104, 290, 104, MUTE, 1.5))
-    out.append(box(300, 48, 270, 90, "", fill="none", stroke=MUTE))
-    out.append(t(435, 68, "step 2: indexing primers", 13, INK, anchor="middle", weight="bold"))
-    s, x = run(310, 82, 16, [(30, "P5", "A"), (30, "i5", "X"), (30, "U1", "A"), (30, "gene", "K"), (30, "ins", "I"), (30, "gene", "K"), (30, "U2", "B"), (30, "i7", "X")], gap=0)
+    out.append(box(300, 48, 340, 90, "", fill="none", stroke=MUTE))
+    out.append(t(470, 68, "step 2: indexing primers", 13, INK, anchor="middle", weight="bold"))
+    s, x = run(350, 82, 16, [(30, "P5", "A"), (30, "i5", "X"), (30, "U1", "A"), (30, "gene", "K"), (30, "ins", "I"), (30, "gene", "K"), (30, "U2", "B"), (30, "i7", "X")], gap=0)
     out.append(s)
-    out.append(t(435, 124, "universal primers only: nothing target-specific can mispair", 11, MUTE, anchor="middle"))
+    out.append(t(470, 124, "universal primers only: nothing target-specific can mispair", 11, MUTE, anchor="middle"))
     out.append(t(30, 172, "- long chimeric primers (tail + gene) are the main source of primer dimers; step 1 keeps them out", 13, INK))
     out.append(t(30, 192, "- clean-up between steps removes step-1 primers, so step 2 cannot re-prime on them", 13, INK))
     out.append(t(30, 212, "- indexes are added once, in the second step: fewer expensive primers and less index swapping", 13, INK))
@@ -579,11 +582,11 @@ def fig_bead():
         a = math.radians(ang)
         x1, y1 = 90 + 34 * math.cos(a), 120 + 34 * math.sin(a)
         out.append(ln(x1, y1, x1 + 40, y1, GREY, 2))
-    s, x = run(150, 71, 18, [(52, "handle", "A"), (62, "barcode", "X"), (38, "UMI", "K"), (36, "T...T", "B")], gap=0)
+    s, x = run(150, 89, 18, [(52, "handle", "A"), (62, "barcode", "X"), (38, "UMI", "K"), (36, "T...T", "B")], gap=0)
     out.append(s)
-    out.append(t(150, 62, "same barcode on every oligo of one bead", 12, MUTE))
-    out.append(t(150, 114, "...", 14, MUTE))
-    s, x = run(150, 136, 18, [(52, "handle", "A"), (62, "barcode", "X"), (38, "UMI", "K"), (36, "T...T", "B")], gap=0)
+    out.append(t(150, 78, "same barcode on every oligo of one bead", 12, MUTE))
+    out.append(t(152, 125, "...", 14, MUTE))
+    s, x = run(150, 133, 18, [(52, "handle", "A"), (62, "barcode", "X"), (38, "UMI", "K"), (36, "T...T", "B")], gap=0)
     out.append(s)
     out.append(t(150, 168, "a different UMI on every oligo", 12, MUTE))
     out.append(t(30, 210, "- the polyA of a lysed cell's mRNA hybridises to the bead's T-run; RT extends it", 13, INK))
@@ -593,7 +596,7 @@ def fig_bead():
 
 
 def fig_decide():
-    rows = [("intact dsDNA, ng to ug", "end repair + A-tail + adapter ligation", "ligation"),
+    rows = [("intact dsDNA, ng to µg", "end repair + A-tail + adapter ligation", "ligation"),
             ("dsDNA, tens of ng or less, speed", "tagmentation", "transposition"),
             ("a known region", "tailed primers, then index PCR", "primer tails"),
             ("full-length mRNA, low input", "RT with template switching", "template switching"),
@@ -623,17 +626,19 @@ def fig_tn5():
     out.append(ln(40, 162, 236, 162, BOT, 3))
     out.append(bx(236, 154, 90, 16, "adapter A", "A", 11))
     out.append(bx(236, 138, 90, 12, "", "A"))
-    out.append(t(200, 138, "3'-OH", 11, MUTE, anchor="middle"))
-    out.append(t(236, 140, "5'-P", 11, MUTE, anchor="end"))
+    out.append(t(186, 138, "3'-OH", 11, MUTE, anchor="middle"))
+    out.append(t(238, 180, "5'-P", 11, MUTE))
     out.append(ln(202, 148, 234, 148, BAD, 2, dash="3 2"))
-    out.append(t(218, 190, "9-nt gap", 12, BAD, anchor="middle"))
+    out.append(t(216, 198, "9-nt gap", 12, BAD, anchor="middle"))
     out.append(t(400, 160, "adapter joined to the bottom strand's 5' end", 12, MUTE))
     out.append(t(30, 226, "right fragment, left-hand end: the mirror image, on the other strand", 13, INK, weight="bold"))
     out.append(ln(120, 250, 330, 250, TOP, 3))
     out.append(ln(156, 264, 330, 264, BOT, 3))
     out.append(bx(30, 242, 90, 16, "adapter A", "A", 11))
-    out.append(bx(30, 266, 90, 12, "", "A"))
-    out.append(t(30, 292, "The 9 nt between the cuts end up at both new ends: the target duplication.", 12, MUTE))
+    out.append(bx(30, 258, 90, 12, "", "A"))
+    out.append(ln(122, 264, 154, 264, BAD, 2, dash="3 2"))
+    out.append(t(138, 288, "9-nt gap", 12, BAD, anchor="middle"))
+    out.append(t(220, 292, "The 9 nt between the cuts end up at both new ends: the target duplication.", 12, MUTE))
     out.append(t(30, 320, "No ligase: the transposase joins the adapter. A polymerase at 72 C must fill the gap before PCR.", 13, HOT))
     return svg(720, 338, "".join(out))
 
@@ -644,13 +649,13 @@ def fig_ts():
     labs = {1: 52, 2: 112, 3: 184, 4: 256}
     for n, y in labs.items():
         out.append(t(30, y + 4, str(n), 14, HOT, weight="bold"))
-    out.append(t(50, 40, "RNA 5'", 11, MUTE)); out.append(t(x1 - 10, 40, "3' AAAA", 11, MUTE))
+    out.append(t(x0, 40, "RNA 5'", 11, MUTE)); out.append(t(x1 - 10, 40, "3' AAAA", 11, MUTE))
     out.append(ln(x0, 52, x1, 52, RNAC, 4))
     out.append(arrow(x1 - 4, 66, x0, TOP, w=2.4))
     out.append(t(x1 + 20, 70, "oligo-dT primes; RT copies to the RNA 5' end", 12, MUTE))
     out.append(ln(x0, 112, x1, 112, RNAC, 4))
     out.append(ln(x0 - 28, 126, x1 - 4, 126, GREY, 3))
-    out.append(t(x0 - 48, 130, "CCC", 12, HOT, family=MONO, weight="bold"))
+    out.append(t(x0 - 36, 130, "CCC", 12, HOT, family=MONO, weight="bold", anchor="end"))
     out.append(t(x1 + 20, 130, "RT adds a few non-templated C", 12, MUTE))
     out.append(ln(x0, 184, x1, 184, RNAC, 4))
     out.append(ln(x0 - 28, 198, x1 - 4, 198, GREY, 3))
