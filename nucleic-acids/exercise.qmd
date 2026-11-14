@@ -111,15 +111,23 @@ salt do to two molecules that are both negatively charged?
 
 ::: {.callout-note collapse="true" appearance="minimal"}
 ## Solution
-a. Salt shields the negative charge on both backbones, letting them approach: high salt
-   raises Tm and favours binding. Removing salt and warming destabilises the duplex, which
-   releases the mRNA.
-b. The wash was above the Tm of an AT-only duplex of that length, so the mRNA eluted during
-   the wash and went down the drain. There is no way to tell this apart from "capture
-   failed" without having measured.
-c. An AT-only duplex is weak per base pair, so it needs length to be stable at working
-   temperatures. An 8-mer dT would not hold at room temperature; it would also bind any short
-   A-rich stretch anywhere in a transcript.
+a. Tm belongs to a duplex *in a buffer*, and salt is one of the levers that raises it: it
+   shields the negative charge on both backbones and lets them approach, so binding is done in
+   high salt. Taking the salt away and warming pushes the same duplex the other way, past its
+   Tm — which is the elution.
+b. Only the temperature changed, and this is the weakest duplex anywhere in the protocol:
+   every pair is A–T, with two hydrogen bonds and no G or C to push the Tm up, so it is the
+   first thing in the tube to open when the beads are warmed. At 50 °C the wash was above its
+   Tm, the mRNA came off into the wash, and the wash went down the drain. There is no way to
+   tell this apart from "capture failed" without having measured.
+c. An AT-only duplex is weak per base pair, so length is the only lever left once the sequence
+   is fixed: it needs 20–25 bases to hold at working temperatures. An 8-mer dT would not hold
+   at room temperature, and it would also bind any short A-rich stretch anywhere in a
+   transcript.
+
+This is the adapter-stem calculation from the walk with the aim reversed: there the duplex has
+to stay shut through a ligation at room temperature, here it has to be opened on purpose, and
+the same three levers — length, GC, salt — do both jobs.
 :::
 
 ## E5. Reading a fragment-analyser trace
@@ -145,10 +153,11 @@ b. Short molecules cluster and amplify more efficiently than long ones, so dimer
    over-represented on the flow cell relative to their share of the trace. They produce
    reads containing only adapter, which are worthless. A dimer peak of this size can consume
    a large fraction of the run.
-c. Prevention: match adapter concentration to the amount of input DNA — excess adapter is the
-   usual cause; use adapters with a T overhang and inserts with an A tail so adapters cannot
-   ligate to each other. Rescue: a size selection, for example a bead clean-up at a ratio that
-   leaves short fragments in solution, or a gel cut.
+c. Prevention: a single A on the insert and a single T on the adapter, so that an adapter end
+   can only pair with an insert end and not with another adapter; and adapter concentration
+   matched to the amount of input DNA, since the more adapter ends there are per insert end,
+   the more often two adapters meet each other first. Rescue: a size selection — a bead
+   clean-up at a ratio that leaves short fragments in solution, or a gel cut.
 :::
 
 # Part 3 — Oligo design
@@ -180,8 +189,9 @@ your own reasoning.
 
 ## E7. Degenerate positions
 
-a. You want an 8 nt UMI in a primer. How do you specify it when ordering, and how many
-   distinct molecules does that produce?
+a. You want an 8 nt UMI in a primer — a random stretch that tags one starting molecule, so
+   that two reads carrying the same tag can be recognised as copies of it. How do you specify
+   that stretch when ordering, and how many distinct molecules does it produce?
 b. Oligo-dT primers are often ordered as `T(20)VN` rather than `T(22)`. What does `VN` mean,
    and what problem does it solve?
 c. Why can a UMI never be added during PCR?
@@ -291,7 +301,7 @@ Using the NEB DNA polymerase selection chart, pick an enzyme for each job and na
 that decides it:
 
 a. Fill in a 5' overhang, without displacing the strand downstream of it
-b. Amplify a bisulfite-converted template
+b. Amplify a bisulfite-converted template, in which most cytosines are now uracil
 c. Amplify a 12 kb product with as few errors as possible
 d. Copy a circular template round and round, displacing the strand ahead
 e. Add a single non-templated A to a blunt 3' end
@@ -335,7 +345,7 @@ b. **3'→5' exonuclease** on a proofreading polymerase, chewing in from the 3' 
    passes the block.
 c. **3'→5' exonuclease** again, this time doing the job it is famous for.
 d. Not an exonuclease at all — **uracil excision** by a contaminating or deliberately added
-   UDG, or a polymerase that stalls at U so the adapter is simply never copied. Check whether
+   UDG, or a polymerase that stalls at U so the adapter is never copied at all. Check whether
    your master mix contains UDG, which some kits include to prevent carry-over contamination.
 :::
 

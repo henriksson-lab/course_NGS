@@ -6,9 +6,9 @@ Pen and paper. Most problems are of the kind you meet when a result looks wrong,
 
 # Part 1 — DNA methylation
 
-## E1. Reading a bisulfite experiment
+## E1. Reading the conversion control
 
-At one CpG, 30 reads cover the site: 21 show C and 9 show T. The unmethylated lambda spike-in was sequenced as well: 12,000 cytosines were counted, and 60 of them were read as C.
+An EM-seq library of the kind traced in this deck has been sequenced. At one CpG, 30 reads cover the site: 21 show C and 9 show T. The unmethylated lambda control rode through the same library: 12,000 of its cytosines were counted, and 60 of them were read as C.
 
 a. What is the raw methylation level at the CpG?
 b. What is the conversion failure rate?
@@ -28,24 +28,24 @@ b. e = 60 / 12,000 = 0.5%.
 c. Observed = m + (1 - m) e, so m = (observed - e) / (1 - e) = (0.70 - 0.005) / 0.995 = 69.8%. The correction is negligible here. The real limit is coverage: with 30 reads the standard error of 70% is sqrt(0.7 x 0.3 / 30), about 8 points. The correction matters at a site with a low raw level, where a fixed 0.5% is a large share: a raw 3% becomes (0.03 - 0.005) / 0.995 = 2.5%.
 :::
 
-## E2. Pick the method and say which property decides
+## E2. Which property decides
 
-For each project, name the method you would use and the property that decides.
+For each project, name the property of the sample or of the question that decides which chemistry can be used, and say what the candidates do about it.
 
 a. 5 ng of cell-free DNA from plasma, genome-wide 5mC.
-b. Brain tissue: you need 5mC and 5hmC separately.
+b. Brain tissue, with 5mC and 5hmC wanted separately.
 c. 400 patient samples, 500 ng of DNA each, promoter methylation only.
 d. A repeat-rich region where reads must be phased over 20 kb.
 
 ::: {.callout-note collapse="true" appearance="minimal"}
 ## Solution
-a. **EM-seq** (or TAPS). Bisulfite fragments and destroys much of a small, already short sample; enzymatic conversion does not damage the DNA. Input and fragment length decide.
+a. **Input and fragment length** decide. Bisulfite works hot and at low pH, so it fragments the DNA as it converts: a sample that is already about 170 bp long and present in nanograms loses much of what it had. Enzymatic conversion, as in the EM-seq trace in this deck, and TAPS do not cut the backbone, so the insert that enters the chemistry leaves it at the same length.
 
-b. **TAB-seq or oxBS-seq** (or TAPS with protection of 5hmC). Bisulfite reads both as C; the extra step protects one and converts the other. What decides is the ability to separate the two marks. oxBS needs a subtraction of two noisy measurements, TAB-seq reads 5hmC directly.
+b. **Whether the two marks can be separated** decides. Neither bisulfite nor EM-seq separates them: both protect 5mC and 5hmC together, so a C in the read means either one. oxBS-seq, TAB-seq and TAPSβ each act on one of the two, so that the marks come apart — the chemistries are in [converting chemistry into sequence](../chemistry-to-sequence/lec.qmd). TAB-seq reports 5hmC directly; oxBS-seq reports it as the difference between two experiments, which costs what E4 works out.
 
-c. **RRBS.** MspI digestion plus size selection concentrates reads on CpG-rich regions, so many samples can be run at low cost. Cost per sample decides; the price is that CpG-poor regions are not seen.
+c. **Cost per sample** decides. RRBS spends the reads where the CpGs are: MspI digestion and size selection leave a small, CpG-rich share of the genome, which can be sequenced to the same depth for a fraction of a whole-genome library ([Part B](../chemistry-to-sequence/lec.qmd)). CpG-poor regions are not covered at all.
 
-d. **Nanopore sequencing**, which reads modified bases from the current without conversion and gives long reads. Read length decides, and no chemistry step breaks the DNA.
+d. **Read length**, together with whether any step cuts the DNA, decides. A conversion chemistry delivers short reads of a converted copy, which cannot be phased across 20 kb; a nanopore read reports the modified base from the current itself, with no conversion step and nothing to shorten the molecule.
 :::
 
 ## E3. A trap: standard adapters in a bisulfite library
@@ -59,10 +59,12 @@ b. Give two ways to design around it.
 ## Solution
 a. Every cytosine in the adapter is unmethylated, so bisulfite converted it to uracil. The primer sites no longer match the PCR primers and the flow-cell oligos, and the DNA is also fragmented by the treatment, so molecules cut between their adapters cannot be amplified.
 
-b. Use adapters in which every C is replaced by 5-methylcytosine, which resists conversion, as in the original RRBS protocol; or tag after conversion (PBAT-type protocols), which puts adapters on the single-stranded DNA that survived. Enzymatic conversion (EM-seq) avoids the problem by converting the library after adapters are on, with adapters that tolerate the enzymes.
+b. Two designs get around it. The first is an adapter in which every C is 5-methylcytosine, which the chemistry cannot touch, so the primer sites still match afterwards; this is the problem methylated adapters were first made for. The second is to tag after the conversion (PBAT-type protocols), which puts the adapters on the single-stranded pieces that survived it, and so answers the fragmentation as well — the common choice for single cells. EM-seq meets only the first of the two failures, since nothing in it cuts the backbone, and it meets that one with a methylated adapter: its deaminase reaches the adapter as readily as the insert.
 :::
 
 ## E4. Subtracting two noisy numbers
+
+Separating 5mC from 5hmC costs two experiments and a subtraction ([which chemistry reads which mark](../chemistry-to-sequence/lec.qmd)). This problem is about what the subtraction costs.
 
 At site 1, BS-seq reads 80% C and oxBS-seq reads 55% C. At site 2, BS-seq reads 40% C (50 reads) and oxBS-seq reads 46% C (50 reads).
 
@@ -82,6 +84,8 @@ b. The subtraction gives 40 - 46 = -6%, which is impossible. The standard errors
 :::
 
 ## E5. RRBS arithmetic
+
+RRBS itself belongs to [Part B](../chemistry-to-sequence/lec.qmd); everything needed here is in the numbers.
 
 MspI cuts at C^CGG. In a region, the cut sites lie at 100, 160, 300, 330, 700 and 1500 bp. The library keeps fragments of 40-220 bp.
 
