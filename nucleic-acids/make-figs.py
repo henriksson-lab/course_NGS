@@ -297,6 +297,59 @@ def fig_end_to_enzyme():
     return svg(760, 60 + len(rows) * 30 + 32, "".join(out))
 
 
+def fig_walk_ends():
+    """The spine of the deck: the TruSeq DNA PCR-free front end, drawn at the left
+    end of one sheared fragment. Molecule-level counterpart to genomic-dna's
+    fig22-walk-truseq, which draws the same protocol as blocks."""
+    out = [t(40, 26, "One sheared fragment, drawn at its left end after every step of the "
+                     "TruSeq DNA PCR-free front end.", 14, INK)]
+    rows = [("1  as sheared", "  GCTTAGCCA", "TACGAATCGGT", "",
+             "a 3' overhang, and a 5' end with no phosphate"),
+            ("2  end repair", "ATGCTTAGCCA", "TACGAATCGGT", "change an end",
+             "blunt, 5'-P, 3'-OH: one state, not a mixture"),
+            ("3  dA-tail", " ATGCTTAGCCA", "ATACGAATCGGT", "change an end",
+             "a single 3' A: only a T can answer it")]
+    ys = [72, 150, 228]
+    for (lab, top, bot, op, note), y in zip(rows, ys):
+        b, _ = duplex(228, y, top, bot, labels=False)
+        out.append(b)
+        out.append(t(40, y + 18, lab, 13, INK))
+        if op:
+            out.append(t(505, y + 18, op, 12.5, HOT, weight="bold"))
+        out.append(t(620, y + 18, note, 11.5, MUTE))
+    # row 1: the two things wrong with a sheared end
+    out.append(t(255, 58, "5'-OH", 11.5, BAD, anchor="middle", family=MONO))
+    out.append(t(228, 122, "3' overhang", 11.5, MUTE))
+    # row 2: one state for every end
+    out.append(t(234, 136, "5'-P", 11.5, OK, family=MONO))
+    out.append(t(234, 200, "3'-OH", 11.5, OK, family=MONO))
+    # row 3: the added base
+    out.append(t(228, 278, "non-templated A", 11.5, HOT))
+
+    # row 4: the ligated junction
+    y = 318
+    b, _ = duplex(228, y, "CGATCGTTGCTTAGCCA", "GCTAGCAACGAATCGGT", labels=False)
+    out.append(b)
+    out.append(t(40, y + 18, "4  ligate the adapter", 13, INK))
+    out.append(t(505, y + 18, "join", 12.5, HOT, weight="bold"))
+    out.append(t(620, y + 18, "both nicks sealed; the stem stays shut", 11.5, MUTE))
+    out.append(t(268, y - 16, "adapter", 12, TOP, anchor="middle"))
+    out.append(t(383, y - 16, "insert", 12, MUTE, anchor="middle"))
+    out.append(line(228 + 7 * DX - 3, y - 12, 228 + 7 * DX - 3, y + 4, OK, 2))
+    out.append(line(228 + 6 * DX - 3, y + 18, 228 + 6 * DX - 3, y + 34, OK, 2))
+    out.append(t(228, y + 54, "the A/T pair, and one nick on each strand for the ligase",
+                 11.5, OK))
+
+    # row 5: nothing happens to the molecule
+    out.append(t(40, 404, "5  beads, size selection", 13, INK))
+    out.append(t(228, 404, "unchanged", 13, MUTE, style="italic"))
+    out.append(t(505, 404, "keep or discard", 12.5, HOT, weight="bold"))
+    out.append(t(620, 404, "the molecule is unchanged; the population is not", 11.5, MUTE))
+    out.append(t(40, 440, "The fourth operation, copy, never happens here: the molecule that "
+                          "was ligated is the one that is read.", 13.5, HOT))
+    return svg(880, 462, "".join(out))
+
+
 build(__file__, [
     ("polarity", fig_polarity),
     ("end-chemistry", fig_end_chemistry),
@@ -311,4 +364,5 @@ build(__file__, [
     ("oligo-mods", fig_oligo_mods),
     ("dna-vs-rna", fig_dna_rna),
     ("rna-ends", fig_rna_ends),
+    ("walk-ends", fig_walk_ends),
 ])
