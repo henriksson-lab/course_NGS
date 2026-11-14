@@ -40,19 +40,7 @@ Part C starts from a biological question and derives the protocol from blocks. H
 - Nothing in the library is the protein or the nucleosome. What you sequence is **where an enzyme or a chemical got access**
 - Align the reads and count starts per position: the pile-up is the measurement
 - Every method in this deck is a choice of *which enzyme*, *where it is placed*, and *what is done with the ends*
-
-## The blocks we will reuse
-
-| Block | What it does here | Where it appears |
-|---|---|---|
-| [Nuclease](../enzymes/lec-nucleases.qmd) (DNase I, MNase) | Cuts DNA where it is not protected | DNase-seq, MNase-seq, CUT&RUN |
-| [Tn5 transposase](../enzymes/lec-transposases.qmd) | Cuts and ligates adapters in one step | ATAC-seq, CUT&Tag |
-| Crosslinking and reversal | Freezes protein on DNA, then releases it | ChIP-seq |
-| [Antibody on beads](../selection/lec.qmd) | Pulls out one protein and what it holds | ChIP-seq |
-| Tether (protein A fusion) | Puts an enzyme exactly where an antibody is | CUT&RUN, CUT&Tag |
-| DNA-modifying enzyme | Leaves a chemical record instead of a cut | DamID, Fiber-seq, calling cards |
-
-Each protocol below is a small rearrangement of these. Ask of each: what is cut, what is kept, and what do the ends look like?
+- The deck works through those choices one protocol at a time. Ask of each: what is cut, what is kept, and what do the ends look like?
 
 ## DNase-seq: cut open DNA and keep the ends
 
@@ -264,6 +252,19 @@ If your antibody only works after crosslinking, or your sample is fixed tissue, 
 - Libraries made with PCR lack DNA methylation, which may matter for the factor
 
 [O'Malley et al. 2016, doi:10.1016/j.cell.2016.04.038]{.small} · [protocol page](https://henriksson-lab.github.io/NGS_101/dap-seq__10.1016+j.cell.2016.04.038/01_dap-seq.html){.small}
+
+## The blocks we reused
+
+| Block | What it does here | Where it appeared |
+|---|---|---|
+| [Nuclease](../enzymes/lec-nucleases.qmd) (DNase I, MNase) | Cuts DNA where it is not protected | DNase-seq, MNase-seq, CUT&RUN |
+| [Tn5 transposase](../enzymes/lec-transposases.qmd) | Cuts and ligates adapters in one step | ATAC-seq, CUT&Tag |
+| Crosslinking and reversal | Freezes protein on DNA, then releases it | ChIP-seq |
+| [Antibody on beads](../selection/lec.qmd) | Pulls out one protein and what it holds | ChIP-seq |
+| Tether (protein A fusion) | Puts an enzyme exactly where an antibody is | CUT&RUN, CUT&Tag |
+| DNA-modifying enzyme | Leaves a chemical record instead of a cut | DamID, Fiber-seq, calling cards |
+
+Every protocol in this deck was a rearrangement of these six rows. Comparing two protocols means asking which row changed.
 
 ## Why the real protocols differ
 

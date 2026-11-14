@@ -56,33 +56,13 @@ Part C case. The building block is proximity ligation; the rest of the unit is a
 
 [Dekker et al. 2002, doi:10.1126/science.1067799]{.small}
 
-## 3C: one place against one place
-
-![](fig05-3c.svg){width=88%}
-
-- The first method. Fix cells, digest, ligate under dilute conditions, reverse the crosslinks, and ask by PCR whether A and B are joined
-- It needs you to know in advance which pair to test, and each pair needs its own primers
-- Everything that followed was an answer to "can I ask about more pairs at once?"
-
-[Dekker et al. 2002, doi:10.1126/science.1067799]{.small}
-
-## 4C: one viewpoint, all partners
-
-![](fig06-4c.svg){width=86%}
-
-- Cut the 3C library with a second enzyme and ligate again, now so dilute that fragments close into circles
-- Primers anchored in the viewpoint point **outwards**, so the PCR runs across the junction into whatever the viewpoint touched
-- Related: **5C** (many primer pairs) and **Capture-C** (oligo capture of many viewpoints) trade breadth against depth
-
-[Zhao et al. 2006, doi:10.1038/ng1891]{.small} · [Simonis et al. 2006, doi:10.1038/ng1896]{.small} · [Hughes et al. 2014, doi:10.1038/ng.2871]{.small} · [protocol page](https://henriksson-lab.github.io/NGS_101/4c-seq__10.1016+j.ymeth.2019.07.014/4c-seq.html){.small}
-
 ## Hi-C: mark the junction, then sequence everything
 
 ![](fig07-hic-junction.svg){width=58%}
 
 - [Fill in](../end-chemistry/lec.qmd) the sticky ends with a **biotinylated nucleotide** before ligation. The biotin then lies exactly at the junction
 - The sequence changes too: with HindIII the junction carries a new NheI site
-- Now there is no need for primers at all: sequence every junction in the library
+- Nothing has to be known in advance about which pair to ask about: sequence every junction in the library
 
 [Lieberman-Aiden et al. 2009, doi:10.1126/science.1181369]{.small} · [protocol page](https://henriksson-lab.github.io/NGS_101/hi-c-original__10.1126+science.1181369/hi-c-original.html){.small}
 
@@ -149,6 +129,27 @@ Part C case. The building block is proximity ligation; the rest of the unit is a
 - **Loop extrusion**: cohesin pulls a loop through until it meets CTCF. This model explains how TADs and loops arise
 
 [Dixon et al. 2012, doi:10.1038/nature11082]{.small} · [Sanborn et al. 2015, doi:10.1073/pnas.1518552112]{.small} · [Fudenberg et al. 2016, doi:10.1016/j.celrep.2016.04.085]{.small}
+
+## What came before the matrix: 3C
+
+![](fig05-3c.svg){width=88%}
+
+- The method Hi-C replaced. Fix cells, digest, ligate under dilute conditions, reverse the crosslinks, and ask by PCR whether A and B are joined
+- The same four steps, with a primer pair standing in for the biotin pull-down. So the pair has to be chosen in advance, and each pair needs its own primers
+- A matrix is what you get once the junction can be found without naming it first
+
+[Dekker et al. 2002, doi:10.1126/science.1067799]{.small}
+
+## 4C: a viewpoint asks a narrower question
+
+![](fig06-4c.svg){width=86%}
+
+- Cut the 3C library with a second enzyme and ligate again, now so dilute that fragments close into circles
+- Primers anchored in the viewpoint point **outwards**, so the PCR runs across the junction into whatever the viewpoint touched
+- One chosen locus against everything, for a small fraction of the reads a matrix costs
+- **5C** (many primer pairs) and **Capture-C** (oligo capture of many viewpoints) sit between the two
+
+[Zhao et al. 2006, doi:10.1038/ng1891]{.small} · [Simonis et al. 2006, doi:10.1038/ng1896]{.small} · [Hughes et al. 2014, doi:10.1038/ng.2871]{.small} · [protocol page](https://henriksson-lab.github.io/NGS_101/4c-seq__10.1016+j.ymeth.2019.07.014/4c-seq.html){.small}
 
 ## HiChIP: pull down the contacts of one protein
 
