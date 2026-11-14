@@ -65,7 +65,7 @@ Connect back to C7: there the compartment barcode named a cell. Here it names a 
 ![](fig04-permeabilisation.svg){width=75%}
 
 - Digest too little and RNA stays in the cell; too much and it spreads
-- The right time depends on tissue type, fixation, thickness and age of the block ([fix and permeabilise, then react in place](../tricks/lec-more.qmd) is the general form of this step)
+- The right time depends on tissue type, fixation, thickness and age of the block ([fix and permeabilise instead of isolating](../compartments/lec.qmd) is the general form of this step)
 - Visium therefore ships a **tissue optimisation** slide: permeabilise for a series of times, make fluorescent cDNA, and read the footprint
 
 ::: {.notes}
@@ -110,7 +110,7 @@ The 2016 paper already treated this as the central optimisation. Everything down
 ![](fig09-array-making.svg){width=81%}
 
 - Printed arrays: the manufacturer knows the position of each barcode
-- Randomly placed beads: positions are found afterwards by sequencing the beads in place (Slide-seq), or by optical decoding after combinatorial synthesis (HDST)
+- Randomly placed beads, one barcode per bead, poured onto the slide (**Slide-seq** and **HDST**, two slides on): positions are found afterwards by sequencing the beads in place (Slide-seq), or by optical decoding after combinatorial synthesis (HDST)
 - Patterned DNA nanoballs: the position is fixed in advance and decoded by sequencing
 
 [Rodriques et al. 2019, doi:10.1126/science.aaw1219; Vickovic et al. 2019, doi:10.1038/s41592-019-0548-y]{.small}
@@ -128,6 +128,8 @@ The 2016 paper already treated this as the central optimisation. Everything down
 ## Beads: decode after you pour
 
 Slide-seq and HDST need a map from barcode to position, but the beads land at random.
+
+**Sequencing by ligation** reads a base with a ligase instead of a polymerase: a labelled probe oligo is joined onto a primer only if it matches the template at the position being queried, the colour is imaged, and the cycle repeats. It was largely replaced by sequencing by synthesis in bulk instruments, but it is still the readout in several in-situ methods, because it needs no flow cell and works where the molecules cannot be moved. Worth knowing on both counts, since an imaging chemistry that lost one competition can win another.
 
 - **Slide-seq** — 10 µm beads, each coated with one barcode; positions read by sequencing-by-ligation on the beads, in place
 - **Slide-seqV2** — the same idea with improved bead chemistry and a better library, giving higher sensitivity
@@ -189,11 +191,13 @@ The practical rule: sequence deeper per area, not per spot, and judge saturation
 
 ## FISSEQ: sequence RNA where it sits
 
-![](fig15-fisseq.svg){width=90%}
+![](fig15-fisseq.svg){width=82%}
 
-- Reverse transcribe in the fixed cell with modified nucleotides, crosslink the cDNA to protein, circularise, and amplify by rolling circle
-- Each amplicon is a **rolony**: a cluster of copies of one cDNA, pinned at the position of its RNA
-- Read by sequencing-by-ligation under a microscope. No library, no flow cell
+- Reverse transcribe in the fixed cell with modified nucleotides, crosslink the cDNA to protein, circularise, amplify by rolling circle
+- Each amplicon is a **rolony**: copies of one cDNA, pinned where its RNA sat
+- Read by sequencing-by-ligation under a microscope, in the SOLiD style. No library, no flow cell
+- A published method rather than a kit, and one that others have found hard to reproduce. The
+  chemistry it borrows had already lost the bulk-sequencing competition
 
 [Lee et al. 2014, doi:10.1126/science.1250212]{.small}
 
@@ -202,7 +206,7 @@ The practical rule: sequence deeper per area, not per spot, and judge saturation
 ![](fig16-starmap.svg){width=87%}
 
 - FISSEQ copies everything; STARmap targets a **chosen gene panel** with a [padlock probe](../targeted/lec.qmd) pair per transcript
-- The code in the padlock, not the transcript sequence, is what is read, so a short read round count is enough
+- The code in the padlock, not the transcript sequence, is what is read, so a short read round count is enough; the rounds are run by SEDAL, STARmap's own sequencing-by-ligation chemistry
 - Amplicons are cast into a hydrogel and the tissue is cleared with protease so that light and reagents can get in
 
 [Wang et al. 2018, doi:10.1126/science.aat5691]{.small}

@@ -85,6 +85,7 @@ the purchased adapter already carries P5, P7, the index and both primer sites.
 - That is the point of the kit: no PCR duplicates, no PCR bias in GC-rich DNA
 - The price: the library is quantified by qPCR, because only molecules with an adapter at **both**
   ends cluster, and a gel or Qubit cannot tell those from the rest
+  ([what qPCR and Qubit each measure](../qc/lec.qmd))
 - The price again: all adapters are long oligos, each index a separate purchase
 
 ## Tagmentation: one enzyme, two jobs

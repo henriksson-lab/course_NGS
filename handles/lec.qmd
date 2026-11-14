@@ -95,7 +95,7 @@ QC step — both are linked at the end of this deck.
 
 ![](fig07-rna-3prime.svg){width=76%}
 
-- RNA ligase 2 truncated, a K227Q mutant, joins a pre-adenylated adapter to a 3'-OH without ATP
+- RNA ligase 2 truncated, the K227Q mutant ([T4 RNA ligase 2](../enzymes/lec-ligases.qmd)), joins a pre-adenylated adapter to a 3'-OH without ATP
 - The adapter is blocked at its 3' end and has an adenylated 5' end, so it cannot join to itself
 - Protocol: [NEBNext Low-bias Small RNA](https://henriksson-lab.github.io/NGS_101/nebnext-low-bias-small-rna/nebnext-low-bias-small-rna.html)
 
@@ -147,7 +147,7 @@ RNAs ([small RNA protocols](../rna/lec-small-rna.qmd)).
 - Any sequence on a primer's 5' end is copied into the product from the second cycle on
   ([amplification](../amplification/lec.qmd))
 - The tail adds no specificity: only the 3' part decides where the primer anneals
-- This is how amplicon, RACE and many single-cell methods add their handles
+- This is how amplicon, RACE (rapid amplification of cDNA ends) and many single-cell methods add their handles
 
 ## The RT primer as the handle
 
@@ -164,7 +164,7 @@ RNAs ([small RNA protocols](../rna/lec-small-rna.qmd)).
 ![](fig12-random-primer.svg){width=78%}
 
 - When the DNA is already fragmented, random primers carrying a tail attach the handle anywhere
-- Bisulfite conversion breaks DNA, so ligating adapters beforehand wastes the input
+- [Bisulfite conversion](../chemistry-to-sequence/lec.qmd) breaks DNA, so ligating adapters beforehand wastes the input
 - Protocol: [PBAT](https://henriksson-lab.github.io/NGS_101/pbat__10.1093+nar+gks454/pbat.html)
 
 [Miura et al. 2012, doi:10.1093/nar/gks454; Smallwood et al. 2014, doi:10.1038/nmeth.3035]{.small}
@@ -206,7 +206,7 @@ RNAs ([small RNA protocols](../rna/lec-small-rna.qmd)).
 ## Template switching: what to watch for
 
 - The extra C's are added most often at a **capped** end, so full-length cDNA is enriched, but the process is not a perfect test of the cap
-- The TSO can pair with internal runs of G or C and add the handle in the middle of a transcript
+- The template-switch oligo (TSO) can pair with internal runs of G or C and add the handle in the middle of a transcript
 - Free TSO can also be copied and joined to itself, giving a by-product that competes in PCR
 - Smart-seq3 adds an internal-tag and UMI to the TSO to count molecules
   ([barcodes and UMIs](../barcodes-umis/lec.qmd))
@@ -236,7 +236,7 @@ RNAs ([small RNA protocols](../rna/lec-small-rna.qmd)).
 
 ![](fig18-index-pcr.svg){width=76%}
 
-- Ligate or tag only the stub every sample shares; add P5, P7 and the index by PCR
+- Ligate or tag only the stub, the [truncated adapter](../library-molecule/lec.qmd) every sample shares; add P5, P7 and the index by PCR
 - One adapter stock for the whole lab; the index is chosen at the PCR step
 - Double indexing guards against reads that carry the wrong sample's index
 
@@ -280,7 +280,7 @@ RNAs ([small RNA protocols](../rna/lec-small-rna.qmd)).
 | TruSeq DNA | Repair, A-tail, ligation; index PCR for the rest |
 | ATAC-seq | Tn5, then PCR with indexed primer tails |
 | SMART-seq2 | RT primer tail and template switching; Tn5 for the final library |
-| CEL-Seq | RT primer tail carrying a T7 promoter; the second handle is added after the IVT step |
+| CEL-Seq | RT primer tail carrying a T7 promoter; the second handle is added after [in vitro transcription](../amplification/lec.qmd) |
 | iCLIP | 3' RNA adapter ligation, RT primer tail, circularisation |
 | PBAT | Tailed random primers after bisulfite |
 

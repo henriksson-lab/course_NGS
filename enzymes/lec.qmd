@@ -58,7 +58,7 @@ A vendor chart compares polymerases on the same axes. Group them by the question
 - **Conditions:** extension temperature
 
 Each column is a yes-or-no question with a consequence for a library step. The next slides
-take them in turn, using the same seven enzymes throughout.
+take them in turn, using the same eight enzymes throughout.
 
 ## The chart, part 1: what it does to the DNA it meets
 
@@ -113,10 +113,12 @@ take them in turn, using the same seven enzymes throughout.
 ![](fig07-nick-translation.svg){width=92%}
 
 - Pol I and Taq cut away the strand in front of them as they copy. That is **nick translation**
-- Taq's activity cuts a flap, not a nucleotide at a time: the basis of hydrolysis probes
+- Taq's activity cuts a flap, not a nucleotide at a time: the basis of **hydrolysis probes**,
+  the labelled oligos a real-time PCR cuts apart to give its signal
 - It is why a **nick is not a stable mark** in a reaction with these enzymes
 - Klenow lacks it (the large fragment was made by removing that domain); T4 DNA polymerase
-  and the HiFi enzymes never had it
+  and the HiFi enzymes never had it — **HiFi** here names the high-fidelity enzyme class, not
+  PacBio's HiFi reads ([platforms](../sequencers/lec-platforms.qmd))
 
 ## Strand displacement: three ways to meet a downstream strand
 
@@ -131,12 +133,13 @@ take them in turn, using the same seven enzymes throughout.
 
 ![](fig09-rca-mda.svg){width=100%}
 
-- **phi29** is a proofreading enzyme with very high processivity and very strong displacement,
-  and works at 30 °C: no cycling, no heat, and products tens of kb long
+- **phi29** is a proofreading enzyme with very high **processivity** — how many bases it adds
+  before letting go of the template — and very strong displacement, and works at 30 °C: no
+  cycling, no heat, and products tens of kb long
 - **MDA** adds random primers, so each displaced strand is itself primed and copied
   ([amplification](../amplification/lec.qmd))
-- **Bst** large fragment does the same at 60–65 °C, which is why it is the enzyme of LAMP and
-  of many nicking-based amplifications
+- **Bst** large fragment does the same at 60–65 °C, which is why it is the enzyme of
+  [LAMP](../amplification/lec.qmd) and of many nicking-based amplifications
 
 ## The 3' end the enzyme leaves
 
@@ -190,9 +193,9 @@ signature in the data, and some methods read it on purpose.
 
 - Archaeal family-B enzymes (Pfu and its engineered descendants) have a **read-ahead pocket** that detects
   uracil in the template and stalls. It protects them from deaminated cytosine
-- **dUTP second strand** exploits it: stranded RNA-seq kits ([RNA](../rna/lec.qmd))
-  mark the second strand with dU, then
-  use USER or a U-intolerant polymerase so only the first strand is amplified
+- **dUTP second strand** exploits it: stranded RNA-seq kits ([RNA](../rna/lec.qmd)) mark the
+  second strand with dU, then use USER ([a cut at every uracil](lec-nucleases.qmd)) or a
+  U-intolerant polymerase, so only the first strand is amplified
 - Uracil-tolerant variants have the pocket engineered out: pick them when the template
   *contains* dU you want to keep
 

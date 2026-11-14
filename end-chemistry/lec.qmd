@@ -192,6 +192,7 @@ Check the exact dNTP mix in the RRBS protocol before stating which bases are unm
 - SMRTbell libraries close both ends this way; see the
   [sequencers deck](../sequencers/lec-platforms.qmd)
 - Splinkerette uses a blocked hairpin to stop one-sided priming
+  ([splinkerette PCR](../amplification/lec.qmd))
 
 ## Degraded and single-stranded input
 
@@ -199,7 +200,7 @@ Check the exact dNTP mix in the RRBS protocol before stating which bases are unm
 
 - When ends are too damaged for duplex ligation, work on one strand at a time
 - Single-strand ligation: ligate an adapter to the 3'-OH of denatured DNA, copy, then add the other
-- Adaptase tails and joins a stub in one tube
+- Adaptase, a vendor enzyme mix, tails the 3' end without a template and ligates a stub to it in one tube
 - Protocol: [single-stranded ancient DNA](https://henriksson-lab.github.io/NGS_101/single-stranded-ancient-dna__10.1038+nprot.2013.038/single-stranded-library.html)
 
 [Gansauge and Meyer 2013, doi:10.1038/nprot.2013.038; Luo et al. 2018, doi:10.1038/s41467-018-06355-2]{.small}
@@ -209,7 +210,7 @@ Check the exact dNTP mix in the RRBS protocol before stating which bases are unm
 ![](fig19-dilute.svg){width=89%}
 
 - Joining two ends of the same molecule does not depend on concentration; joining two molecules does
-- Dilute: circles. Concentrated: chimeras
+- Dilute: circles. Concentrated: [chimeras](../amplification/lec.qmd), one molecule made of two unrelated pieces
 - Do the opposite for adapters, where you want molecules to meet
 
 ## What went wrong: observations

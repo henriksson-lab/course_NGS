@@ -101,7 +101,7 @@ Part C case. The building block is proximity ligation; the rest of the unit is a
 ![](fig09-matrix.svg){width=70%}
 
 - Bin the genome, then count read pairs between every two bins: a symmetric matrix
-- The diagonal is brightest because neighbours on a chain touch most often. Everything else is structure on top
+- The diagonal is brightest because neighbours on a chain touch most often. Everything else is structure on top: squares along the diagonal, labelled **TADs**, are stretches that touch inside themselves more than outside, and a bright dot, a **loop**, is one pair of distant sites that touch. Both are taken apart four slides on
 - The first maps resolved megabases. Resolution is a question of **how many contacts** you collect, and of fragment size
 
 ## Not every read pair is a contact
@@ -136,7 +136,7 @@ Part C case. The building block is proximity ligation; the rest of the unit is a
 
 - Micrococcal nuclease cuts between nucleosomes with almost no sequence preference, so the map is not limited by restriction sites
 - It leaves heterogeneous ends, so they are repaired and biotin-labelled before ligation
-- A second crosslinker (DSG) in addition to formaldehyde improved mammalian maps
+- A second crosslinker, [DSG](../chromatin/lec.qmd), in addition to formaldehyde improved mammalian maps
 
 [Hsieh et al. 2015, doi:10.1016/j.cell.2015.05.048]{.small} · [Krietenstein et al. 2020, doi:10.1016/j.molcel.2020.03.003]{.small} · [protocol page](https://henriksson-lab.github.io/NGS_101/micro-c__10.1016+j.cell.2015.05.048/micro-c.html){.small}
 

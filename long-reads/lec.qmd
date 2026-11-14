@@ -44,7 +44,7 @@ In each case the library must keep the molecule as long as it was in the cell. T
 - **Elute warm and wait.** A 37 °C elution improves recovery of high-molecular-weight DNA from beads
 - **Measure the right thing.** A spectrophotometer reports purity and says nothing about breaks. Use fluorometric mass, then a size method that works for long DNA
 
-Length is lost silently: the library looks normal, and the N50 is half of what you expected.
+Length is lost silently: the library looks normal, and the N50 is half of what you expected. The **N50** is the length at which half of all the bases sit in reads (or molecules) at least that long, so it reports where the bulk of the sequence is, not the longest read you can find.
 
 ## Count molecules, not mass
 

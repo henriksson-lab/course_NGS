@@ -91,7 +91,7 @@ format:
 
 ![](fig09-taps.svg){width=78%}
 
-- TET oxidises 5mC and 5hmC to 5caC; pyridine borane reduces that to a base read as T
+- TET oxidises 5mC and 5hmC to 5caC, the last step of [the TET cascade](../modifications/lec.qmd); pyridine borane reduces that to a base read as T
 - Only the minority of modified cytosines change, so the read stays four-letter
 - Add a protection step (TAPSβ) to restrict it to 5mC; protocol: [TAPS in NGS 101](https://henriksson-lab.github.io/NGS_101/taps__10.1038+s41587-019-0041-2/taps.html)
 
@@ -214,7 +214,7 @@ format:
 
 - No conversion: the [polymerase's speed](../sequencers/lec-platforms.qmd) is recorded for each base
 - A modified template slows incorporation, seen as a longer gap between pulses
-- Circular consensus gives many passes, which averages the noise from one pass
+- Circular consensus, the reads sold as [HiFi](../sequencers/lec-platforms.qmd), gives many passes, which averages the noise from one pass
 
 [Flusberg et al. 2010, doi:10.1038/nmeth.1459; Fiber-seq: Stergachis et al. 2020, doi:10.1126/science.aaz1646]{.small}
 
@@ -222,7 +222,7 @@ format:
 
 ![](fig23-nanopore.svg){width=78%}
 
-- A modified base changes the current for each k-mer containing it
+- The pore holds a short stretch of bases at a time, a k-mer, and a modified base changes the current for every k-mer that contains it
 - The basecaller is trained on known modified DNA, so what you detect depends on the training data
 - One molecule can carry several marks, which conversion cannot show
 

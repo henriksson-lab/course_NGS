@@ -149,7 +149,7 @@ into software. When you design a prep, ask whether the wet-lab enrichment you ar
 |---|---|---|
 | Illumina | P5 / P7, dual indexes | insert size, dimers, diversity |
 | MGI | its own adapters, circularisable | same, plus clean circularisation |
-| PacBio | hairpin SMRTbell adapters | intact HMW DNA, size selection |
+| PacBio | hairpin SMRTbell adapters | intact high-molecular-weight (HMW) DNA, size selection |
 | Nanopore | motor-protein adapter | molecule length, gentle handling |
 
 The chemistry in the rest of this course is largely shared. What changes between platforms is

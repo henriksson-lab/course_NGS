@@ -506,9 +506,10 @@ def fig_twostage():
     out.append(t(590, 118, "A collision needs the same", 12.5, INK))
     out.append(t(590, 136, "index in the same droplet.", 12.5, INK))
     out.append(t(590, 170, "5 nuclei per droplet,", 12.5, HOT))
-    out.append(t(590, 188, "96 indexes: about 5%", 12.5, HOT))
+    out.append(t(590, 188, "96 indexes: about 4%", 12.5, HOT))
     out.append(t(590, 206, "lost, not 96%.", 12.5, HOT))
-    out.append(t(40, 250, "1 - e^(-5/96) = 5.1% of nuclei share a droplet with a nucleus of the same index.",
+    out.append(t(40, 236, "A nucleus can only collide with the other four, not with itself:", 13, MUTE))
+    out.append(t(40, 256, "1 - e^(-4/96) = 4.1% of nuclei share a droplet with a nucleus of the same index.",
                  13, MUTE))
     return svg(800, 270, "".join(out))
 

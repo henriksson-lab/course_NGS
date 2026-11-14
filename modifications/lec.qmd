@@ -66,7 +66,7 @@ Frame the whole deck as: handle plus readout. Students should be able to name, f
 
 - Adapters added before conversion are made with 5mC in place of C, as in the original [RRBS](https://henriksson-lab.github.io/NGS_101/https://henriksson-lab.github.io/NGS_101/rrbs-illumina__10.1038+nature07107/rrbs-illumina.html) protocol
 - Bisulfite also breaks DNA: a molecule cut between its two adapters cannot be amplified
-- Tagging **after** conversion (PBAT) puts adapters on what survived, and is the common choice for single cells
+- Tagging **after** conversion (PBAT, post-bisulfite adapter tagging) puts adapters on what survived, and is the common choice for single cells
 
 [Meissner et al. 2008, doi:10.1038/nature07107; Smallwood et al. 2014, doi:10.1038/nmeth.3035; Olova et al. 2018, doi:10.1186/s13059-018-1408-2]{.small}
 

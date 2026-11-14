@@ -72,8 +72,8 @@ protocol step: what is the state of the ends now?
 - A **nick** is a broken backbone with every base present: a ligase can seal it
 - A **gap** is missing bases: a polymerase must fill it in first, then a ligase seals
 - Several protocols depend on this distinction — Tn5 leaves a 9 nt gap
-  ([transposases](../enzymes/lec-transposases.qmd)), nick translation walks a nick along the
-  molecule
+  ([transposases](../enzymes/lec-transposases.qmd)), and **nick translation** walks a nick
+  along the molecule as a polymerase copies from it ([enzymes](../enzymes/lec.qmd))
 
 ## What a ligase actually requires
 
@@ -101,15 +101,16 @@ whole of [end chemistry](../end-chemistry/lec.qmd).
 ## Worked example: why end repair and A-tailing exist
 
 You sheared genomic DNA. The ends are ragged, some 5'-phosphates are missing, some 3' ends
-are blocked by damage. Adapters cannot ligate.
+are blocked by damage. **Adapters** — the known sequences the sequencer needs on both ends of
+every molecule ([anatomy of a library molecule](../library-molecule/lec.qmd)) — cannot ligate.
 
 1. **End repair** — a polymerase fills in 5' overhangs and chews back 3' overhangs; a kinase
    (T4 PNK) puts a phosphate on every 5' end → uniform, blunt, ligatable
 2. **A-tailing** — a polymerase adds a single non-templated A to each 3' end
 3. The adapter carries a matching single **T** overhang
 
-The A/T pair is not for strength. It is to stop inserts ligating to each other and adapters
-ligating to each other.
+The A/T pair is not for strength. It is to stop **inserts** — the unknown pieces that sit
+between the adapters — ligating to each other, and adapters ligating to each other.
 
 [Non-templated A addition: Clark 1988, doi:10.1093/nar/16.20.9677]{.small}
 
@@ -119,7 +120,8 @@ ligating to each other.
 
 - **Tm** is a property of a duplex *in a buffer*, not of one oligo on its own
 - Every primer, probe, splint, bait and capture step is a hybridisation whose Tm you are
-  choosing, whether you meant to or not
+  choosing, whether you meant to or not — a **splint** being an oligo that pairs with two ends
+  at once so a ligase can join them ([ligases](../enzymes/lec-ligases.qmd))
 
 [SantaLucia 1998, nearest-neighbour thermodynamics, doi:10.1073/pnas.95.4.1460]{.small}
 
@@ -148,10 +150,11 @@ raises it by shielding the backbone's negative charge.
 
 They are short, perfectly formed, and amplify better than anything else in the tube.
 
-- A dimer is ~120 bp against an insert of ~300–500 bp: it clusters more efficiently and can
-  take over a sequencing run
+- A dimer is ~120 bp against an insert of ~300–500 bp: short molecules make clusters
+  ([how a cluster forms](../sequencers/lec.qmd)) more readily, so a dimer can take over a run
 - Prevention: keep adapter concentration matched to the amount of input DNA, use A/T
-  overhangs so adapters cannot self-ligate, remove them by size selection
+  overhangs so adapters cannot self-ligate, remove them by **size selection** (a bead ratio
+  chosen to leave short fragments behind)
 - Detection: a sharp low peak on a fragment-analyser trace ([QC](../qc/lec.qmd)), or a flood
   of adapter-only reads
 

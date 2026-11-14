@@ -204,7 +204,7 @@ To separate synthesis from decay you need a **time axis in the library**: mark t
 
 ## What goes wrong
 
-- **Antibodies:** m6A antibodies can also bind the related cap mark m6Am; check the specificity, and use input
+- **Antibodies:** m6A antibodies can also bind the related cap mark m6Am, the same methyl on the first transcribed base when that base is an adenosine; check the specificity, and use input
 - **Crosslinking:** low efficiency, so duplicates and background dominate; use adapters with random bases and a size-matched input
 - **Labelling:** 4sU at high dose or long exposure alters the cell; keep it low and short, and include an unlabelled control
 - **Run-on and NET-seq:** nuclei or chromatin must be intact and RNase-free, or the nascent RNA is lost

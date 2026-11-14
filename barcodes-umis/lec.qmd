@@ -134,7 +134,7 @@ Commercial index plates come pre-checked for most of this, which is why a custom
 
 ## Barcode collisions and what to do about them
 
-- **Two cells, one barcode.** In split-pool, load 50,000 cells onto 96³ = 884,736 paths and about 5.5% of cells share a path with another. Fewer cells per round keeps this low.
+- **Two cells, one barcode.** In split-pool, load 50,000 cells onto 96³ = 884,736 paths and about 5.5% of cells share a path with another. Published designs vary the round sizes, so the arithmetic is an illustration: SPLiT-seq uses 48 wells in round 1 ([compartments](../compartments/lec.qmd)). Fewer cells per round keeps this low.
 - **Barcode errors.** An error in a cell barcode makes a phantom cell. Correct against a **whitelist** of real barcodes when you have one, and merge near-duplicates when you do not.
 - **Ambient material.** In droplets, free RNA gets tagged with the barcode of a bead that never met a cell. This is a wet-lab fix, not a barcode one.
 - **Doublets.** Two real cells under one barcode. Hashing (below) makes them visible.

@@ -215,7 +215,7 @@ def fig_oligo_mods():
     marks = [(120, "biotin", "grabs streptavidin beads", -1),
              (216, "phosphate", "lets a ligase use this end", 1),
              (312, "lipid", "sits in a cell membrane", -1),
-             (408, "dU", "cut out later by USER", 1),
+             (408, "dU", "USER excises it, leaving a gap", 1),
              (504, "phosphorothioate", "survives exonucleases", -1),
              (600, "C3 / ddC / inv-dT", "3' blocked: no extension", 1)]
     for x, lab, note, side in marks:
@@ -269,10 +269,12 @@ def fig_dna_rna():
     b, w = duplex(50, 190, "AUGCUUAGCCA", "TACGAATCGGT", topfill=HOT, botfill=TOP,
                   ltop="5'", rtop="3'", lbot="3'", rbot="5'")
     out.append(b)
-    out.append(t(50 + w + 50, 206, "RNase H cuts only the RNA strand here", 13, MUTE))
-    out.append(t(50 + w + 50, 226, "— the basis of rRNA depletion and of", 13, MUTE))
-    out.append(t(50 + w + 50, 244, "second-strand synthesis", 13, MUTE))
-    return svg(560, 272, "".join(out))
+    out.append(t(50 + w + 50, 200, "RNase H cuts only the RNA strand here.", 13, MUTE))
+    out.append(t(50 + w + 50, 218, "That is how rRNA depletion strips the", 13, MUTE))
+    out.append(t(50 + w + 50, 236, "ribosomal RNA that is most of a prep,", 13, MUTE))
+    out.append(t(50 + w + 50, 254, "and how second-strand synthesis turns", 13, MUTE))
+    out.append(t(50 + w + 50, 272, "a cDNA strand into a duplex.", 13, MUTE))
+    return svg(560, 292, "".join(out))
 
 
 def fig_end_to_enzyme():

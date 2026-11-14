@@ -114,6 +114,7 @@ Each protocol below is a small rearrangement of these. Ask of each: what is cut,
 | Spin, transpose | Wash with Tween-20 before transposition | Removes mitochondria released by lysis |
 | Water in the reaction | PBS plus digitonin and Tween-20 in the reaction | Lower background; works on frozen tissue |
 
+- The detergents differ in how hard they pull a membrane apart: IGEPAL and NP-40 are the same non-ionic detergent under two names, Tween-20 is milder, and digitonin works by binding cholesterol, so it opens the plasma membrane and largely spares the nuclear one
 - Mitochondrial DNA has no nucleosomes, so Tn5 cuts it with ease. In an unmodified protocol it can take a large share of the reads
 - Each change is small. Together they raise the fraction of reads that fall in nuclear open chromatin
 
@@ -155,7 +156,7 @@ Each protocol below is a small rearrangement of these. Ask of each: what is cut,
 ![](fig11-crosslink.svg){width=72%}
 
 - Formaldehyde, typically 1% for 10 min at room temperature, then quenched with glycine
-- DSG is added as a second crosslinker, before or after formaldehyde depending on the protocol, for factors that bind chromatin through partners. Heat does not reverse it, but the proteins are digested anyway
+- DSG, disuccinimidyl glutarate, is added as a second crosslinker, before or after formaldehyde depending on the protocol, for factors that bind chromatin through partners. Its arms reach further than formaldehyde's and join protein to protein only. Heat does not reverse it, but the proteins are digested anyway
 - More crosslinking gives more signal until it hides the epitope or the chromatin will not shear. Titrate it
 
 [Robertson et al. 2007, doi:10.1038/nmeth1068]{.small}
@@ -250,7 +251,7 @@ If your antibody only works after crosslinking, or your sample is fixed tissue, 
 
 - A transposase fused to a TF drops transposons into the genome near the TF's binding sites
 - Reads are insertion points. Because the insertions are permanent, they accumulate over time instead of showing one moment
-- Mammalian versions use piggyBac. The collection page shows the earlier yeast Ty5 implementation
+- Mammalian versions use piggyBac. The collection page shows the earlier implementation in yeast, which used Ty5, a yeast retrotransposon, as the element being dropped in
 
 [Wang et al. 2012, doi:10.1534/genetics.111.137315]{.small} · [protocol page](https://henriksson-lab.github.io/NGS_101/calling-card-seq-genomic-ty5-recovery__10.1101+gr.114850.110/01_calling-card-seq.html){.small}
 

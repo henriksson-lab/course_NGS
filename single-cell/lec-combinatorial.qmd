@@ -59,7 +59,7 @@ The second half of the deck asks a different question: once every molecule carri
 
 - Fixed, permeabilised cells are reverse-transcribed in wells, then barcodes are ligated onto the cDNA's primer in two further rounds, using short linkers ([SPLiT-seq](https://henriksson-lab.github.io/NGS_101/https://henriksson-lab.github.io/NGS_101/split-seq__10.1126+science.aam8999/split-seq.html))
 - The last oligo also carries the UMI and a biotin; the cells are then lysed and cDNA is purified on streptavidin
-- Aliquots of the pool are amplified with a different sublibrary index, so the total barcode space multiplies, as does the number of samples
+- Aliquots of the pool are amplified with a different **sublibrary index**, one more barcode added per aliquot in that PCR, so the total barcode space multiplies, as does the number of samples
 
 [Rosenberg et al. 2018, doi:10.1126/science.aam8999]{.small}
 

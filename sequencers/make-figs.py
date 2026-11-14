@@ -220,11 +220,13 @@ def fig_i5_orientation():
         out.append(t(250, y + 22, "sample sheet needs:", 12, MUTE))
         out.append(t(400, y + 22, read, 13.5, OK if written == read else BAD, family=MONO))
         out.append(t(50, y + 42, instr, 11.5, MUTE))
-    out.append(t(40, 224, "Get this wrong and the run looks empty: every read lands in "
-                          "Undetermined, with the indexes themselves intact.", 14, HOT))
-    out.append(t(40, 248, "Always check the current instrument documentation — the lists "
+    out.append(t(40, 224, "The sample sheet is the file that tells the instrument which "
+                          "index belongs to which sample.", 13, MUTE))
+    out.append(t(40, 248, "Get this wrong and the run looks empty: every read lands in "
+                          "Undetermined, the bin for reads matching no index.", 14, HOT))
+    out.append(t(40, 272, "Always check the current instrument documentation — the lists "
                           "change with reagent versions.", 13, MUTE))
-    return svg(700, 268, "".join(out))
+    return svg(700, 292, "".join(out))
 
 
 def fig_readthrough():
@@ -309,7 +311,7 @@ def fig_dnbseq():
     steps = [("adapters +\nsplint", "ligate the ends\ntogether"),
              ("ssDNA circle", "exonuclease removes\nanything still linear"),
              ("rolling circle", "phi29 copies round\nand round"),
-             ("DNA nanoball", "one long concatemer,\nfolded up")]
+             ("DNA nanoball", "one head-to-tail\nconcatemer, folded up")]
     for i, (h, b) in enumerate(steps):
         x = 42 + i * 162
         out.append(box(x, 52, 140, 100, "", "#fbfbf9", MUTE))
@@ -323,8 +325,10 @@ def fig_dnbseq():
     out.append(t(40, 182, "No PCR on the flow cell, so no PCR duplicates from clustering and "
                           "no index hopping of the Illumina kind.", 14, OK))
     out.append(t(40, 206, "The balls sit on a patterned array and are read by probe-anchor "
-                          "ligation, not by a processive polymerase.", 13.5, MUTE))
-    return svg(710, 226, "".join(out))
+                          "ligation: an anchor oligo binds the", 13.5, MUTE))
+    out.append(t(40, 224, "adapter, then a labelled probe is ligated beside it — no "
+                          "polymerase copies the template.", 13.5, MUTE))
+    return svg(710, 244, "".join(out))
 
 
 def fig_other_shortread():
@@ -332,8 +336,8 @@ def fig_other_shortread():
 
     panels = [
         ("Element AVITI \u2014 avidity",
-         ["a multivalent probe carries many copies",
-          "of one base, so it binds a polony tightly"],
+         ["a probe carrying many copies of one base",
+          "grips a polony: a clonal cluster of copies"],
          ["bright signal from little reagent;",
           "binding is separated from incorporation"]),
         ("Ultima \u2014 flow-based, no terminator",
@@ -468,7 +472,7 @@ def fig_ont_kits():
     rows = [("ligation", "end-repair, dA-tail, ligate the adapter",
              "best yield and read length; most handling", OK),
             ("rapid", "a transposase inserts the adapter sequence",
-             "ten minutes, but tagmentation cuts the DNA", HOT),
+             "ten minutes, but tagmentation — cut and tag in one — shortens the DNA", HOT),
             ("ultra-long", "very gentle, very high molecular weight input",
              "reads in the hundreds of kilobases", TOP)]
     for i, (name, how, trade, col) in enumerate(rows):

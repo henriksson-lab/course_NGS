@@ -78,8 +78,8 @@ then ask what else the enzyme does in the tube. The deck closes with the skill i
 - Free transposome: genome-wide, a little sequence bias
 - **[ATAC-seq](https://henriksson-lab.github.io/NGS_101/atac-seq__10.1038+nmeth.2688/atac-seq.html)**: nucleosomes block Tn5, so tags land in open chromatin
   ([chromatin](../chromatin/lec.qmd))
-- **Fused** variants carry Tn5 to a protein target: [CUT&Tag](https://henriksson-lab.github.io/NGS_101/cut-tag__10.1038+s41467-019-09982-5/cut-tag.html) uses protein A to bring it to an
-  antibody-bound histone mark
+- **Fused** variants carry Tn5 to a protein target: [CUT&Tag](https://henriksson-lab.github.io/NGS_101/cut-tag__10.1038+s41467-019-09982-5/cut-tag.html) uses **protein A**, which binds
+  any antibody, to park Tn5 at an antibody-bound histone mark ([tethering](../chromatin/lec.qmd))
 
 [Buenrostro 2013, doi:10.1038/nmeth.2688]{.small}
 
@@ -110,7 +110,9 @@ then ask what else the enzyme does in the tube. The deck closes with the skill i
 - **TET2** oxidises 5mC and 5hmC; **T4-BGT** glucosylates 5hmC. Both are protected
 - **APOBEC3A** deaminates the cytosine that is left, turning C into U, read as T: a chemical
   property turned into a base change ([converting chemistry into sequence](../chemistry-to-sequence/lec.qmd))
-- The DNA is not damaged by harsh chemistry, so libraries can be built from far less input
+- The DNA is not damaged by harsh chemistry — **bisulfite** conversion deaminates C but
+  fragments the DNA as it goes ([modifications](../modifications/lec.qmd)) — so libraries can
+  be built from far less input
 
 [Vaisvila 2021, doi:10.1101/gr.266551.120]{.small}
 

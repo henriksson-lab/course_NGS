@@ -668,6 +668,52 @@ def fig_long():
     return svg(760, ya + 60, "".join(out))
 
 
+def fig_bead_ladder():
+    """A simulated ladder cleaned at a series of ratios. Same model as fig_spri_curve."""
+    lanes = [("input", None), ("0.5x", 700), ("0.6x", 520), ("0.7x", 390),
+             ("0.8x", 300), ("1.0x", 170), ("1.8x", 70)]
+    sizes = [3000, 1500, 1000, 700, 500, 400, 300, 200, 100]
+    out = [t(24, 24, "The same ladder, cleaned at a series of bead ratios "
+                     "(simulated, not a vendor figure).", 14, INK)]
+    x0, y0, lw, gap, gh = 150, 52, 74, 12, 210
+    smin, smax = 85, 3600
+
+    def yp(s):
+        return y0 + gh * (1 - math.log(s / smin) / math.log(smax / smin))
+
+    for s in sizes:
+        out.append(t(x0 - 18, yp(s) + 4, str(s), 11, MUTE, anchor="end"))
+    out.append(t(x0 - 18, y0 - 14, "bp", 11, MUTE, anchor="end"))
+
+    for i, (name, mid) in enumerate(lanes):
+        lx = x0 + i * (lw + gap)
+        out.append('<rect x="%d" y="%d" width="%d" height="%d" fill="#f7f8f9" '
+                   'stroke="%s" stroke-width="0.6"/>' % (lx, y0 - 6, lw, gh + 16, MUTE))
+        out.append(t(lx + lw / 2, y0 - 16, name, 12, INK if mid is None else HOT,
+                     anchor="middle", weight="bold"))
+        for s in sizes:
+            f = 1.0 if mid is None else 1 / (1 + math.exp(-(math.log(s / mid)) * 3.2))
+            if f < 0.04:
+                continue
+            out.append('<rect x="%d" y="%.1f" width="%d" height="8" rx="2" fill="%s" '
+                       'opacity="%.2f"/>' % (lx + 7, yp(s) - 4, lw - 14,
+                                             INK if mid is None else TOP, 0.12 + 0.88 * f))
+        if mid is not None and mid >= smin:
+            out.append(line(lx - 4, yp(mid), lx + lw + 4, yp(mid), BAD, 1.3, dash="4 3"))
+
+    right = x0 + 6 * (lw + gap) + lw
+    out.append(t(right, y0 - 32, "dashed: half retained", 11, BAD, anchor="end"))
+    out.append(t(right, y0 + gh + 28, "1.8x keeps even the shortest:", 11, MUTE, anchor="end"))
+    out.append(t(right, y0 + gh + 42, "a clean-up, not a selection", 11, MUTE, anchor="end"))
+    out.append(t(24, y0 + gh + 76, "Read it as a design tool: pick the ratio whose "
+                 "half-retention line sits just below the shortest fragment you want to keep.",
+                 13, INK))
+    out.append(t(24, y0 + gh + 96, "Bands are computed from the same retention model as the "
+                 "curve, not measured. Every bead lot differs: calibrate once, then trust "
+                 "your own numbers.", 12.5, MUTE))
+    return svg(x0 + 7 * (lw + gap) + 20, y0 + gh + 110, "".join(out))
+
+
 build(__file__, [
     ("why", fig_why),
     ("methods", fig_methods),
@@ -689,4 +735,5 @@ build(__file__, [
     ("endpoints", fig_endpoints),
     ("type-iis", fig_typeIIS),
     ("long", fig_long),
+    ("bead-ladder", fig_bead_ladder),
 ])

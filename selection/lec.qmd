@@ -56,7 +56,8 @@ Frame selection as the step where a property that differs between wanted and unw
 
 ![](fig04-handles.svg){width=78%}
 
-- An **antibody** selects a protein and carries along whatever the protein holds: this is chromatin immunoprecipitation and the CLIP family
+- An **antibody** selects a protein and carries along whatever the protein holds: this is
+  [chromatin immunoprecipitation](../chromatin/lec.qmd) (ChIP) and [the CLIP family](../modifications/lec-rna.qmd)
 - **Oligo-dT** selects a 3' poly(A) tail, which keeps mature mRNA and discards rRNA, but is blind to degraded or non-polyadenylated RNA
 
 ## Hybridisation capture with baits
@@ -72,7 +73,7 @@ Frame selection as the step where a property that differs between wanted and unw
 
 ![](fig06-daisy.svg){width=90%}
 
-- Adapters are identical on every fragment, so on-target fragments hybridise to off-target ones through them
+- Adapters are identical on every fragment, so on-target fragments hybridise to off-target ones through them: **off-target daisy-chaining**
 - Blocking oligos cover the adapters; **Cot-1 DNA** covers human repeats, which are present in many fragments and would otherwise pull each other down
 
 ## Capture worked example: tumour DNA in plasma
@@ -157,7 +158,7 @@ The same selectivity applies to your good molecules the moment they have a free 
 ![](fig12-mspi.svg){width=90%}
 
 - A restriction enzyme that cares about methylation reads the epigenome; one that does not reads the sequence
-- MspI is insensitive to the CpG methylation at its site, which is why it is used to enrich CpG-rich regions for **reduced-representation bisulfite sequencing**
+- MspI is insensitive to the CpG methylation at its site, which is why it is used to enrich CpG-rich regions for **reduced-representation [bisulfite](../chemistry-to-sequence/lec.qmd) sequencing**
 
 [Meissner et al. 2008, doi:10.1038/nature07107]{.small}, [protocol on NGS 101](https://henriksson-lab.github.io/NGS_101/rrbs-illumina__10.1038+nature07107/rrbs-illumina.html)
 
@@ -165,9 +166,9 @@ The same selectivity applies to your good molecules the moment they have a free 
 
 ![](fig13-circularise.svg){width=90%}
 
-- A probe closes into a circle only if both arms bind adjacent to a gap that polymerase fills and [ligase seals](../enzymes/lec-ligases.qmd)
+- A **molecular inversion probe** (MIP) closes into a circle only if both arms bind adjacent to a gap that polymerase fills and [ligase seals](../enzymes/lec-ligases.qmd)
 - Exonuclease then removes everything linear, which is nearly everything in the tube, so on-target circles dominate
-- The linker can carry a **[UMI](../barcodes-umis/lec.qmd)**, so each captured molecule is counted once
+- The linker can carry a **[UMI](../barcodes-umis/lec.qmd)**, so each captured molecule is counted once: that version is the [smMIP](../targeted/lec.qmd)
 
 [Hiatt et al. 2013, doi:10.1101/gr.147686.112]{.small}, [smMIP on NGS 101](https://henriksson-lab.github.io/NGS_101/smmip__10.1101+gr.147686.112/smmip.html)
 

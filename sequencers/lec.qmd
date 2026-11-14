@@ -75,7 +75,9 @@ signals. That has consequences you will meet constantly:
 - **Loading concentration matters.** Too much library and clusters merge; too little and you
   waste the run. Getting from ng/µL to a loading molarity is [QC](../qc/lec.qmd).
 - **Patterned flow cells** (NovaSeq, NextSeq 2000) have fixed wells and use a different
-  amplification chemistry (ExAmp), which changes how duplicates and index hopping arise.
+  amplification chemistry (**ExAmp**: the first molecule to reach a well amplifies at constant
+  temperature and fills it, shutting the others out), which changes how duplicates and index
+  hopping arise.
 
 A library is not just molecules — it is molecules at a known concentration.
 
@@ -170,7 +172,8 @@ structure may look impossible at first glance — see the entries in the
 - **Cluster density** — too high merges clusters; too low wastes capacity
 - **Phasing and pre-phasing** — a few molecules in each cluster fall behind or run ahead, so
   the signal gets noisier with every cycle. This is why quality falls along a read
-- **Low diversity** — see above; fix with PhiX or staggered primers
+- **Low diversity** — see above; fix with PhiX ([a balanced spike-in library](../qc/lec.qmd))
+  or staggered primers
 - **Free adapter** — dimers cluster beautifully and index-hop
 - **Over-amplified library** — duplicates and skewed coverage, invisible until analysis
   ([amplification](../amplification/lec.qmd))

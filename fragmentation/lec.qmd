@@ -84,7 +84,7 @@ This deck covers the main ways of cutting, the targets set by the sequencer, and
 ![](fig07-restriction.svg){width=93%}
 
 - Every fragment starts and ends at a recognition site: identical ends in every cell, but sizes set by the genome, not by you
-- That is a feature when you want the same loci every time (reduced-representation bisulfite sequencing, Hi-C, ddRAD), a flaw when you want even coverage
+- That is a feature when you want the same loci every time (reduced-representation bisulfite sequencing, [Hi-C](../3d-genome/lec.qmd), ddRAD), a flaw when you want even coverage
 
 [Meissner et al. 2005, doi:10.1093/nar/gki901]{.small}
 
@@ -111,7 +111,7 @@ This deck covers the main ways of cutting, the targets set by the sequencer, and
 ![](fig10-targets.svg){width=75%}
 
 - Short-read clusters want inserts of a few hundred bases; **long-read machines want what you started with**
-- Cell-free DNA and nucleosome-protected fragments arrive at their own natural length: size selection should not fight it
+- Cell-free DNA (shed into plasma by dying cells) and nucleosome-protected fragments arrive at their own natural length: size selection should not fight it
 - Ranges are typical working ones, not limits; check the current kit
 
 ## Insert length against read length
@@ -198,7 +198,7 @@ When a library looks wrong, ask about the beads before you blame the enzyme. The
 
 ![](fig18-endpoints.svg){width=60%}
 
-- Random shear points are a free label. In a human cancer or T-cell clone, every cell with a provirus in one place has the same junction but a different shear length. Count the lengths, count the cells
+- Random shear points are a free label. In a human cancer or T-cell clone, every cell with a provirus (a retroviral genome built into the host chromosome) in one place has the same junction but a different shear length. Count the lengths, count the cells
 - Dilution is the bottleneck: the number of molecules entering PCR should stay below the number of possible lengths, or the labels collide
 
 [Gillet et al. 2011, doi:10.1182/blood-2010-10-312926; Berry et al. 2012, doi:10.1093/bioinformatics/bts004]{.small}

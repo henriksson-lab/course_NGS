@@ -97,9 +97,10 @@ Real on-target rates depend on the kit and the number of rounds. Treat 70% as an
 
 ![](fig18-padlock-chain.svg){width=76%}
 
-- Worth following once in full: these four steps turn up in three different places in this course, and they are the same four every time
+- Worth following once in full: the same four steps turn up wherever padlocks are used
 - The circle is the whole trick. It is the only product that survives the exonuclease, and it carries the captured target inside it
-- Only then does the route branch: PCR off the backbone gives a panel in a tube, while [rolling circle](../amplification/lec.qmd) gives a rolony that is read where it lies ([spatial](../spatial/lec.qmd))
+- The common use is the left branch: one probe per region, hundreds of regions in one tube, then a single PCR off the shared backbone. The probes do the targeting, so the whole panel amplifies with one primer pair
+- The same closed circle can instead be copied in place by [rolling circle](../amplification/lec.qmd), which is how in-situ methods read it without ever making a library ([spatial](../spatial/lec.qmd))
 - A UMI sitting in the backbone rides through all of it, so what is counted at the end is molecules
 
 [Padlocks: Nilsson et al. 1994, doi:10.1126/science.7522346]{.small}
@@ -177,6 +178,7 @@ Real on-target rates depend on the kit and the number of rounds. Treat 70% as an
 - The tag must be present before the first amplification, otherwise copies cannot be told from originals
 - Earlier is better, but each protocol only protects against steps downstream of the tag
 - smMIPs and SureSelect XT HS2 put the tag in the reagent that selects or ligates; Safe-SeqS in the first PCR primer
+- **MBC** in the figure is the kit's name for that tag: a molecular barcode, which is a UMI on the adapter. SureSelect XT HS2 gets its own slide shortly
 
 ## Worked example: molecules, not reads
 
@@ -184,6 +186,7 @@ Real on-target rates depend on the kit and the number of rounds. Treat 70% as an
 
 - 10 ng of cell-free DNA is about 3000 haploid genomes: a locus is present on 3000 molecules
 - A variant at 0.1% is on about 3 of them; with that few, chance decides whether any is in your tube
+- That 0.1% is a **variant allele fraction**, or VAF: the share of molecules at the locus that carry the variant
 - Sensitivity is set by **input molecules**, so low-VAF assays are limited by blood volume, not sequencing
 
 ## Family sizes tell you what to fix

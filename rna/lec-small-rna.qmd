@@ -26,7 +26,7 @@ A 22 nt microRNA has no tail to prime from, and is too short to fragment. Two th
 - **Handles must be put on by ligation**, because the RNA is shorter than most primers — of [the five ways](../handles/lec.qmd), only one is left
 - **Ends decide everything.** Whether an RNA enters the library depends on its 5' and 3' chemistry, not its sequence
 
-The same logic covers the ribosome footprints of Ribo-seq, at about 28 nt, and tRNA fragments, snoRNAs and piRNAs.
+The same logic covers the ribosome footprints of Ribo-seq — the piece of mRNA a ribosome shields from nuclease, with its own slide later in this deck — at about 28 nt, and tRNA fragments, snoRNAs and piRNAs.
 
 This deck first covers the tricks for short RNAs: ligation order, dimer suppression and circularisation. It then covers tag and full-length protocols, which solve a different problem: seeing very little RNA, or seeing a whole transcript.
 

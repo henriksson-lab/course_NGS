@@ -184,7 +184,7 @@ This is why a ligation is always followed by a bead step: it removes the PEG and
 ![](fig16-captrap.svg){width=92%}
 
 - **Problem:** most cDNA is truncated; you want molecules that begin at the true 5' end ([TSS mapping](../modifications/lec-rna.qmd))
-- **Trick:** oxidise the cap diol with periodate, attach biotin, digest unprotected single-stranded RNA, pull down on streptavidin
+- **Trick:** oxidise the cap **diol** — the two neighbouring free hydroxyls on the cap's ribose, which the body of the chain does not have — with periodate, attach biotin, digest unprotected single-stranded RNA, pull down on streptavidin
 - **Reason:** only a fully paired hybrid with its cap intact keeps biotin and survives
 - **Used in:** [CAGE](https://henriksson-lab.github.io/NGS_101/cage__10.1038+nprot.2012.005/cage.html) [Takahashi et al. 2012, doi:10.1038/nprot.2012.005]{.small}
 

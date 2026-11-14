@@ -36,7 +36,7 @@ A sequence you amplify is a sequence you have **changed the abundance of**. The 
 
 - Each cycle ideally doubles every molecule, so ten cycles give about a thousand-fold
 - Real efficiency is below 100 %, and falls as primers and polymerase are consumed and products anneal to each other
-- The plateau is not a safe place to stop: product made after the knee is mostly damage
+- The plateau is not a safe place to stop: the knee is where the curve first bends away from doubling, and product made after it is mostly damage
 
 [Saiki et al. 1988, doi:10.1126/science.2448875]{.small}
 
@@ -177,14 +177,14 @@ A sequence you amplify is a sequence you have **changed the abundance of**. The 
 ![](fig17-nested.svg){width=82%}
 
 - A second pair of primers **inside** the first selects the right product from a messy first round. Mispriming products rarely carry both inner sites
-- Anchored PCR adds the missing primer site: a linker, a poly-G tail or a template-switch oligo gives you something to prime from at the unknown end
+- Anchored PCR adds the missing primer site: a linker (an adapter, in the older vocabulary of these methods), a poly-G tail or a template-switch oligo gives you something to prime from at the unknown end
 - A related design is [nested patch PCR](https://henriksson-lab.github.io/NGS_101/nested-patch-pcr__10.1101+gr.078204.108/01_nested-patch-pcr.html)
 
 ## Trick: splinkerettes against one-sided background
 
 ![](fig18-splinkerette.svg){width=84%}
 
-- A linker-ligation PCR amplifies **every** fragment that has a linker at each end, with or without your target. The splinkerette has a hairpin, so its primer site only exists after the vector-specific primer has copied into it
+- A linker-ligation PCR, where an adapter goes on every fragment and the primers sit in it, amplifies **every** fragment that has a linker at each end, with or without your target. The splinkerette has a hairpin, so its primer site only exists after the vector-specific primer has copied into it
 - The method is described for mapping transposon insertions; used here for mapping integrations in human cells. Protocol: [splinkerette PCR](https://henriksson-lab.github.io/NGS_101/splinkerette-pcr__10.1371+journal.pone.0010168/splinkerette.html)
 
 [Potter and Luo 2010, doi:10.1371/journal.pone.0010168]{.small}

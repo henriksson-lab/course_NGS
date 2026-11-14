@@ -140,7 +140,7 @@ Neither is wrong. The question is what you want to avoid: extra cycles, or long 
 
 - The original design read a polyadenylated barcode and translated it to a guide through a table
 - Direct capture copies the guide RNA itself in the reverse transcription of a 10x 5' library
-- The proxy is exposed to the template-switching problem from the first deck; direct capture is not
+- The proxy is exposed to the swapping problem from the first deck ([a trap: two RNAs in one virion](lec.qmd)), where reverse transcriptase jumps between the two viral genomes in one particle and carries a barcode over to the wrong guide; direct capture is not. That is a different event from the TSO [template switching](../handles/lec.qmd) used to build libraries
 
 [Dixit et al. 2016, doi:10.1016/j.cell.2016.11.038; Replogle et al. 2020, doi:10.1038/s41587-020-0470-y]{.small}
 
@@ -236,8 +236,8 @@ Neither is wrong. The question is what you want to avoid: extra cycles, or long 
 ## When counts look wrong
 
 - Skewed counts also in the plasmid pool: the library was uneven before the screen
-- A few guides with huge counts: PCR jackpotting or too few cells carried through
-- Reads for the wrong guide with the right barcode: template switching in the virus
+- A few guides with huge counts: **PCR jackpotting**, where one template happens to be copied in the first cycles and its lead is then amplified with everything else, or too few cells carried through
+- Reads for the wrong guide with the right barcode: reverse transcriptase switching between the two genomes in a virion
 - Unexpected index pairs: index hopping, so use unique dual indexes
 - Many reads, few distinct integration sites: not enough input DNA
 

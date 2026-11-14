@@ -131,7 +131,8 @@ removed keeps cutting.
 
 ![](fig34-cas.svg){width=100%}
 
-- An RNA guide loads the nuclease, which cuts wherever the guide pairs next to a **PAM**
+- An RNA guide loads the nuclease, which cuts wherever the guide pairs next to a **PAM** — a
+  short fixed motif the enzyme must find beside the match, so not every sequence is targetable
 - **Cas9**: blunt cut. **Cas12a**: a staggered cut with a short 5' overhang
 - In libraries they **deplete** unwanted sequences ([DASH](https://henriksson-lab.github.io/NGS_101/dash__10.1186+s13059-016-0904-5/01_dash.html) removes abundant sequences before
   amplification) or **cut** a target to attach adapters

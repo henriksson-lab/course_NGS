@@ -113,7 +113,7 @@ Load at $\lambda = 0.1$. Use $e^{-x}\approx 1-x+x^2/2$, so $P(0)=e^{-0.1}\approx
 
 - Mix human and mouse cells; barcodes with both species are collisions
 - Only half of doublets are mixed-species, so double the observed fraction
-- Cell hashing and genotype mixing mark samples so that doublets can be flagged without species mixing
+- Cell hashing and genotype mixing — pooling donors and telling them apart by their common SNPs — mark samples so that doublets can be flagged without species mixing
 
 [Stoeckius et al. 2018, doi:10.1186/s13059-018-1603-1; Kang et al. 2018, doi:10.1038/nbt.4042]{.small}
 
@@ -170,7 +170,7 @@ Load at $\lambda = 0.1$. Use $e^{-x}\approx 1-x+x^2/2$, so $P(0)=e^{-0.1}\approx
 
 - Pre-index nuclei in wells, then load many per droplet
 - Nuclei in one droplet share a droplet barcode but differ in the first index
-- Worked: 5 nuclei per droplet, 96 indexes: $1-e^{-5/96}\approx 5\%$ ambiguous
+- Worked: 5 nuclei per droplet, 96 indexes. A nucleus can only collide with the other four, so $1-e^{-4/96}\approx 4\%$ are ambiguous
 
 [Lareau et al. 2019, doi:10.1038/s41587-019-0147-6; Datlinger et al. 2021, doi:10.1038/s41592-021-01153-z]{.small}
 

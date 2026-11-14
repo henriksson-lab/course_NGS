@@ -194,3 +194,30 @@ at most one sentence for the advanced reader on why the idea is worth knowing. N
 and nothing in Foundations — that would spend the student's attention early on a chemistry
 they will never meet on an instrument, which is the opposite of keeping Illumina as the focal
 point (see F above).
+
+## The course does not make recommendations
+
+Course owner's rule, and it applies everywhere, not just to the case that prompted it.
+
+The course teaches what each chemistry does, what it costs and how it fails, and leaves the
+choice to the reader. It does not tell anyone which protocol to run, which to avoid, or what
+to read "for the idea rather than to adopt" — that last phrasing was written into the FISSEQ
+slide and removed, because it is advice wearing the clothes of a caveat.
+
+Write facts the reader can act on themselves:
+
+- not "read it for the idea rather than as a protocol to adopt"
+- but "a published method rather than a kit, and one that others have found hard to reproduce"
+
+The second says strictly more, and leaves the decision where it belongs.
+
+**A related distinction worth keeping visible, because the course currently blurs it:**
+nothing non-commercial is "standard". FISSEQ, STARmap and most of the named academic methods
+in Parts C and D are published demonstrations, not products: no vendor supports them, and
+reproducing one is a project in itself. Kits are different in kind, not merely in cost. The
+decks often list the two side by side as though a reader could pick either off a shelf. State
+which is which when it matters and let that speak for itself.
+
+Checked at the time of writing: no deck contains "we recommend", "you should use", "the best
+choice" or "is recommended". The failure mode is subtler than those phrases, so it is worth
+re-reading new slides for it rather than grepping.

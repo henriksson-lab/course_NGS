@@ -135,7 +135,8 @@ def fig_chart_chem():
     b, r, bt = tbl(30, 62, heads, rows)
     out.append(b)
     out.append(foot(bt + 22, "Ranks, not numbers: error rates depend on the assay. Compare rows within one vendor's chart.", MUTE))
-    return svg(int(r) + 20, int(bt) + 36, "".join(out))
+    out.append(foot(bt + 42, "Mn2+ in place of Mg2+ loosens Taq's base selection: that is what lets it copy RNA, and what costs it fidelity.", MUTE))
+    return svg(int(r) + 20, int(bt) + 56, "".join(out))
 
 
 def fig_chart_use():
@@ -614,7 +615,8 @@ def fig_nuclease_map():
     b, r, bt = tbl(30, 62, heads, rows, size=12.5, rh=27)
     out.append(b)
     out.append(foot(bt + 22, "Three questions for any nuclease: what does it need, where does it cut, what end does it leave?", MUTE))
-    return svg(int(r) + 20, int(bt) + 36, "".join(out))
+    out.append(foot(bt + 42, "An RNP is the nuclease loaded with its guide RNA before use; a PAM is the short motif it must find beside the match.", MUTE))
+    return svg(int(r) + 20, int(bt) + 56, "".join(out))
 
 
 def fig_type_iis():

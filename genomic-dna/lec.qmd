@@ -148,14 +148,14 @@ Question: germline variants and copy number, good coverage of GC-extremes. Sampl
 ![](fig19-field-table.svg){width=95%}
 
 - Tagmentation kits give up PCR-free-ness for input and speed; ligation kits give up input for flatness
-- Illumina DNA Prep uses bead-linked transposomes so yield saturates and libraries pool without individual quantification above 100 ng
+- Illumina DNA Prep uses **bead-linked transposomes**, Tn5 held on beads so that a fixed number of enzyme sites does the cutting: yield saturates, and libraries pool without individual quantification above 100 ng
 - Nextera XT was designed around small genomes; for a human genome prefer a protocol built for 100 ng and up
 
 ## Degraded DNA is damaged before you start
 
 ![](fig11-damage.svg){width=88%}
 
-- Ancient and some forensic or FFPE DNA is short, nicked, and full of deaminated cytosines (C becomes U, read as T)
+- Ancient and some forensic DNA, or DNA from FFPE blocks (formalin-fixed, paraffin-embedded tissue), is short, nicked, and full of deaminated cytosines (C becomes U, read as T)
 - The damage accumulates at molecule ends, so the read-end pattern is the signature that the DNA is authentic
 - Library prep must keep short molecules and decide what to do about the uracils
 
@@ -233,7 +233,7 @@ Question: germline variants and copy number, good coverage of GC-extremes. Sampl
 
 - Size trace: one peak at the design size. A peak near 130 bp is adapter dimers
 - A second, larger peak means over-amplification; cut cycles, do not re-purify
-- After sequencing: duplicate rate, insert size, GC-versus-coverage curve, and fold-80 base penalty
+- After sequencing: duplicate rate, insert size, GC-versus-coverage curve, and the **fold-80 base penalty** — how much more depth you would need for 80% of positions to reach the mean coverage, so 1 is perfectly even and 2 means half the run is wasted on evenness
 
 ## Design from the sample, then compare
 
