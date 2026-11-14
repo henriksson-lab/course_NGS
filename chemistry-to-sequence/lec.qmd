@@ -33,12 +33,31 @@ format:
 
 - A polymerase pairs the base in front of it; a methyl group on C does not change that pairing
 - Conversion chemistry edits the **template**, so that the **copy** differs
+- One case carries the base route through the next slides: **EM-seq**
 
-## Bisulfite: unmethylated C becomes U
+## EM-seq: protect the mark, deaminate the rest
+
+![](fig08-em-seq.svg){width=78%}
+
+- The measuring step is a cytidine deaminase, **APOBEC3A**: it turns a bare cytosine into uracil
+- A protected cytosine is not its substrate. **TET2** oxidises 5mC to 5caC and **T4-BGT** puts a sugar on 5hmC ([both enzymes](../enzymes/lec-transposases.qmd)); neither product can be deaminated
+- So the molecule leaves the tube with every unprotected C as U and every marked C unchanged, and nothing has cut the backbone
+
+[Vaisvila et al. 2021, doi:10.1101/gr.266551.120]{.small}
+
+## What the copy then says
+
+- Uracil pairs with adenine, so after PCR the position reads as **T**. A T was a bare C, a C was protected: the property is now a base change
+- The template is full of uracil, so the polymerase that copies it must accept uracil as a template base ([amplification](../amplification/lec.qmd))
+- Whatever you still need to read must be protected too. Adapters for a conversion library are built with 5mC in place of every C, and go on **before** the conversion ([end chemistry](../end-chemistry/lec.qmd))
+- The protocol walk, genomic DNA to pooled library, is in [DNA modifications](../modifications/lec.qmd)
+
+## Bisulfite: the same conversion by chemistry
 
 ![](fig03-bisulfite.svg){width=80%}
 
-- Bisulfite deaminates C to U fast and 5mC very slowly, so after PCR, T means unmethylated and C means methylated
+- Bisulfite deaminates a bare C to U fast and 5mC very slowly, with no protection step: the difference in rate does the separating
+- Heat and low pH are what make it work, and they also [fragment the DNA](../fragmentation/lec.qmd); EM-seq reaches the same readout at 37 C and so needs less input
 - The first method to give methylation at one base in one molecule
 
 [Frommer et al. 1992, doi:10.1073/pnas.89.5.1827]{.small}
@@ -48,7 +67,7 @@ format:
 ![](fig04-align.svg){width=80%}
 
 - Align with C and T treated as matching, then count C against T at each reference C
-- Cost: harsh chemistry [fragments DNA](../fragmentation/lec.qmd), and a three-letter read maps less uniquely
+- A three-letter read maps less uniquely, so part of the genome stops being readable
 - The two strands stop being complementary, so you read four strands, not two
 
 ## Controls that must ride along
@@ -63,7 +82,7 @@ format:
 
 ![](fig06-matrix.svg){width=60%}
 
-- Bisulfite cannot separate 5mC from 5hmC, a different mark with different biology
+- Neither bisulfite nor EM-seq separates 5mC from 5hmC: a C in the read means either one, and they are different marks with different biology
 - Each later method changes which column reads as C
 
 [Booth et al. 2012, doi:10.1126/science.1220671; Yu et al. 2012, doi:10.1016/j.cell.2012.04.027]{.small}
@@ -72,20 +91,9 @@ format:
 
 ![](fig07-tab-seq.svg){width=90%}
 
-- Block the base you want to keep, then spend a harsher step on the rest
+- EM-seq protected both marks together; protect only one of them and the two come apart
 - TAB-seq protects 5hmC with a sugar; oxBS-seq instead oxidises 5hmC so that it converts, leaving 5mC as C
 - Subtract two experiments and you have both marks; protocols: [TAB-seq](https://henriksson-lab.github.io/NGS_101/tab-seq__10.1016+j.cell.2012.04.027/tab-seq.html), [oxBS-seq](https://henriksson-lab.github.io/NGS_101/oxbs-seq__10.1126+science.1220671/oxbs-seq.html)
-
-
-
-## EM-seq: the same readout, gentler
-
-![](fig08-em-seq.svg){width=78%}
-
-- [TET2 and a glucosyltransferase](../enzymes/lec-transposases.qmd) protect 5mC and 5hmC; APOBEC3A then deaminates only plain C
-- The result looks like bisulfite, with less fragmentation and so lower input and better coverage
-
-[Vaisvila et al. 2021, doi:10.1101/gr.266551.120]{.small}
 
 ## TAPS: convert the modified base instead
 
@@ -246,18 +254,18 @@ format:
 - Each readout has its own false positive, and its own control
 - Decide the control before the experiment, not at the analysis
 
-## Choosing a chemistry
+## Which question each chemistry can answer
 
-Start from the question, not the method.
+Each route answers a different question, and none of them answers all of them.
 
-- **Where is the mark, roughly?** Antibody enrichment, or a cut-based method
-- **At which base, and what fraction?** Conversion, with a spike-in; TAPS or EM-seq when DNA is precious
-- **5mC or 5hmC?** Protect-then-convert, or a method that leaves one of them unconverted
-- **When was this RNA made?** A metabolic label read by conversion
-- **Who touched this RNA?** Crosslinking, then a truncation or a mutation
-- **Is there a phase relationship along one molecule?** Native long reads
+- **Where is the mark, roughly?** Antibody enrichment and cut-based methods give a map, not a base
+- **At which base, and in what fraction of molecules?** Conversion does, read against a spike-in. Bisulfite fragments the DNA as it works; TAPS and EM-seq do not, so more of a small sample survives
+- **5mC or 5hmC?** Neither bisulfite nor EM-seq separates them. Protecting one and converting the other does, at the cost of two experiments subtracted
+- **When was this RNA made?** A metabolic label, read as a conversion
+- **Who touched this RNA?** A crosslink, read as a truncation or a mutation
+- **Is there a phase relationship along one molecule?** Only a native long read keeps it
 
-Whichever you pick, write down what a false positive and a false negative look like first.
+Each has a characteristic false positive, and they are not the same one.
 
 ::: {.notes}
 Refer back to the first slide: base, end or junction.
@@ -267,12 +275,12 @@ Refer back to the first slide: base, end or junction.
 
 **Where this block is used**
 
-- [DNA modifications, damage and dynamics](../modifications/lec.qmd) — bisulfite, EM-seq, TAPS and break mapping as full protocols
+- [DNA modifications, damage and dynamics](../modifications/lec.qmd) — the EM-seq walk from genomic DNA to a pooled library, and break mapping as a full protocol
 - [RNA modifications and dynamics](../modifications/lec-rna.qmd) — the CLIP family, m6A, metabolic labelling and structure probing
 - [Long reads](../long-reads/lec.qmd) — direct RNA and native basecalling, the route with no conversion at all
 
 **What the chemistry then constrains**
 
-- [Amplification](../amplification/lec.qmd) — a converted template is full of uracil, so the polymerase must tolerate it
-- [End chemistry](../end-chemistry/lec.qmd) — why the adapters go on before conversion and are made of methylated cytosines
+- [Amplification](../amplification/lec.qmd) — copying a uracil-containing template
+- [End chemistry](../end-chemistry/lec.qmd) — the end states an adapter needs, and when it can be put on
 - [Tricks: bases](../tricks/lec-more.qmd) — protect-then-convert, position as information, affinity and native readout, indexed by problem

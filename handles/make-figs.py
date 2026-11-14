@@ -87,16 +87,17 @@ def fig_problem():
 
 def fig_five():
     rows = [
-        ("1  DNA ligation", "T4 DNA ligase, adapters", "dsDNA ends"),
-        ("2  RNA ligation", "T4 RNA ligases, adapters", "RNA ends"),
-        ("3  Primer tails", "any polymerase; the primer is the handle", "copies"),
-        ("4  Transposition", "Tn5 cuts and tags in one step", "dsDNA, anywhere"),
-        ("5  Template switching", "RT adds the handle at the cDNA end", "5' end of RNA"),
+        ("1  DNA ligation", "join something on", "T4 DNA ligase, adapters", "dsDNA ends"),
+        ("2  RNA ligation", "join something on", "T4 RNA ligases, adapters", "RNA ends"),
+        ("3  Primer tails", "copy with something attached", "any polymerase; the primer is the handle", "copies"),
+        ("4  Transposition", "insert while cutting", "Tn5 cuts and tags in one step", "dsDNA, anywhere"),
+        ("5  Template switching", "copy with something attached", "RT adds the handle at the cDNA end", "5' end of RNA"),
     ]
     out = [t(20, 24, "way", 13, MUTE), t(240, 24, "picture", 13, MUTE), t(480, 24, "what does the work", 13, MUTE)]
-    for i, (name, enz, _) in enumerate(rows):
+    for i, (name, idea, enz, _) in enumerate(rows):
         y = 56 + i * 48
-        out.append(t(20, y + 16, name, 15, INK, weight="bold"))
+        out.append(t(20, y + 10, name, 15, INK, weight="bold"))
+        out.append(t(20, y + 28, idea, 11, HOT))
         x0 = 240
         if i == 0:
             out += [bx(x0, y, 40, 18, "A", "A"), bx(x0 + 42, y, 90, 18, "insert", "I"), bx(x0 + 134, y, 40, 18, "B", "B")]
@@ -114,11 +115,10 @@ def fig_five():
         else:
             out += [bx(x0 + 34, y, 140, 8, "", "R"), bx(x0, y + 14, 34, 8, "", "A"), bx(x0 + 34, y + 14, 140, 8, "", "I")]
         out.append(t(480, y + 16, enz, 14, INK))
-    out.append(t(20, 56 + 5 * 48 + 8,
-                 "Also: homopolymer tailing, topoisomerase, recombination. All use the same three ideas:",
+    out.append(t(20, 56 + 5 * 48 + 12,
+                 "Also: circularisation (join), homopolymer tailing (copy), topoisomerase and recombination (join).",
                  13, MUTE))
-    out.append(t(20, 56 + 5 * 48 + 28, "join something on, copy with something attached, or insert while cutting.", 13, MUTE))
-    return svg(820, 56 + 5 * 48 + 44, "".join(out))
+    return svg(820, 56 + 5 * 48 + 28, "".join(out))
 
 
 def fig_ligation_kinds():

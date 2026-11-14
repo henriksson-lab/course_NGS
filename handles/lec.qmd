@@ -33,17 +33,19 @@ The whole course reduces to this: you cannot design a primer for what you do not
 
 ## Five ways to attach a handle
 
-![](fig02-five-ways.svg){width=68%}
+![](fig02-five-ways.svg){width=64%}
 
+- All five use the same three ideas: **join something on**, **copy with something attached**, or **insert while cutting**. Every family slide below says which
+- Circularisation joins a molecule to its own other end and homopolymer tailing makes an end worth copying from, so neither is a sixth way; topoisomerase and recombination also join without a ligase, and are cloning tools more than library chemistry
 - Each way differs in **which end it uses**, **what it needs the end to look like**
   ([end chemistry](../end-chemistry/lec.qmd) gives every end state named here), and **what it does to the rest of the molecule**
-- Pick by the starting material, not by habit: the last slide of this deck is a decision table
+- The last slide of this deck is a table from starting material to family
 
 ## DNA ligation: four flavours
 
 ![](fig03-ligation-kinds.svg){width=88%}
 
-- T4 DNA ligase joins a 5'-phosphate to a 3'-OH when both sit side by side in a duplex
+- **Join something on.** T4 DNA ligase joins a 5'-phosphate to a 3'-OH when both sit side by side in a duplex
   ([ligases, kinases, phosphatases](../enzymes/lec-ligases.qmd))
 - The end shape sets how selective it is. A splint turns ligation of any two ends into ligation of two chosen ends
 - Protocol: [TruSeq DNA PCR-Free](https://henriksson-lab.github.io/NGS_101/truseq-dna-pcr-free/truseq-dna-pcr-free.html) ligates adapters this way
@@ -95,7 +97,7 @@ QC step — both are linked at the end of this deck.
 
 ![](fig07-rna-3prime.svg){width=76%}
 
-- RNA ligase 2 truncated, the K227Q mutant ([T4 RNA ligase 2](../enzymes/lec-ligases.qmd)), joins a pre-adenylated adapter to a 3'-OH without ATP
+- **Join something on.** RNA ligase 2 truncated, the K227Q mutant ([T4 RNA ligase 2](../enzymes/lec-ligases.qmd)), joins a pre-adenylated adapter to a 3'-OH without ATP
 - The adapter is blocked at its 3' end and has an adenylated 5' end, so it cannot join to itself
 - Protocol: [NEBNext Low-bias Small RNA](https://henriksson-lab.github.io/NGS_101/nebnext-low-bias-small-rna/nebnext-low-bias-small-rna.html)
 
@@ -133,7 +135,7 @@ RNAs ([small RNA protocols](../rna/lec-small-rna.qmd)).
 
 ![](fig09-circularise.svg){width=61%}
 
-- A ligase joins the two ends of a single molecule when the concentration is low enough
+- **Join something on**, to the molecule's own other end: a ligase joins both ends of one molecule when the concentration is low enough
 - The cDNA 3' end meets the primer's 5' end, so one primer supplies handles at both ends
 - iCLIP uses this ([the CLIP family](../modifications/lec-rna.qmd)); the cDNA 3' end marks
   where RT stopped at the crosslink
@@ -144,7 +146,7 @@ RNAs ([small RNA protocols](../rna/lec-small-rna.qmd)).
 
 ![](fig10-primer-tail.svg){width=55%}
 
-- Any sequence on a primer's 5' end is copied into the product from the second cycle on
+- **Copy with something attached.** Any sequence on a primer's 5' end is copied into the product from the second cycle on
   ([amplification](../amplification/lec.qmd))
 - The tail adds no specificity: only the 3' part decides where the primer anneals
 - This is how amplicon, RACE (rapid amplification of cDNA ends) and many single-cell methods add their handles
@@ -153,9 +155,10 @@ RNAs ([small RNA protocols](../rna/lec-small-rna.qmd)).
 
 ![](fig11-rt-primer.svg){width=92%}
 
-- Handle, barcode and UMI all ride on one oligo-dT primer
-- Protocols: [CEL-Seq](https://henriksson-lab.github.io/NGS_101/cel-seq__10.1016+j.celrep.2012.08.003/cel-seq.html), [Drop-seq](https://henriksson-lab.github.io/NGS_101/drop-seq__10.1016+j.cell.2015.05.002/drop-seq.html)
+- **Copy with something attached.** Handle, barcode and UMI all ride on one oligo-dT primer
 - The handle is on the 5' end of the cDNA first strand, in the same tube as RT
+- [SMART-seq2](https://henriksson-lab.github.io/NGS_101/smart-seq2__10.1038+nmeth.2639/smart-seq2.html) uses the plainest version of this primer, a handle and a T-run and nothing else, and is picked up again at template switching below
+- [CEL-Seq](https://henriksson-lab.github.io/NGS_101/cel-seq__10.1016+j.celrep.2012.08.003/cel-seq.html) and [Drop-seq](https://henriksson-lab.github.io/NGS_101/drop-seq__10.1016+j.cell.2015.05.002/drop-seq.html) add the barcode and the UMI to the same oligo
 
 [CEL-Seq: Hashimshony et al. 2012, doi:10.1016/j.celrep.2012.08.003; Drop-seq: Macosko et al. 2015, doi:10.1016/j.cell.2015.05.002]{.small}
 
@@ -163,7 +166,7 @@ RNAs ([small RNA protocols](../rna/lec-small-rna.qmd)).
 
 ![](fig12-random-primer.svg){width=78%}
 
-- When the DNA is already fragmented, random primers carrying a tail attach the handle anywhere
+- **Copy with something attached.** When the DNA is already fragmented, random primers carrying a tail attach the handle anywhere
 - [Bisulfite conversion](../chemistry-to-sequence/lec.qmd) breaks DNA, so ligating adapters beforehand wastes the input
 - Protocol: [PBAT](https://henriksson-lab.github.io/NGS_101/pbat__10.1093+nar+gks454/pbat.html)
 
@@ -173,7 +176,7 @@ RNAs ([small RNA protocols](../rna/lec-small-rna.qmd)).
 
 ![](fig13-tn5.svg){width=60%}
 
-- Tn5 loaded with adapter oligos cuts the target and joins the adapter's 3' end to each new
+- **Insert while cutting.** Tn5 loaded with adapter oligos cuts the target and joins the adapter's 3' end to each new
   5' end ([transposases](../enzymes/lec-transposases.qmd))
 - No fragmentation, end repair or ligation is needed beforehand
 - The 9 nt between the two cuts leave a gap that is filled in later
@@ -196,10 +199,11 @@ RNAs ([small RNA protocols](../rna/lec-small-rna.qmd)).
 
 ![](fig15-template-switch.svg){width=73%}
 
-- Reverse transcriptase reaches the 5' end of the RNA, adds a few C's, and uses a GGG oligo
+- **Copy with something attached.** Reverse transcriptase reaches the 5' end of the RNA, adds a few C's, and uses a GGG oligo
   as a new template ([polymerases and RTs](../enzymes/lec.qmd))
 - The handle lands on the first-strand cDNA, which now has the same end at both ends
-- Protocols: [SMART-seq2](https://henriksson-lab.github.io/NGS_101/smart-seq2__10.1038+nmeth.2639/smart-seq2.html), [SMART-seq3](https://henriksson-lab.github.io/NGS_101/smart-seq3__10.1038+s41587-020-0497-0/smart-seq3.html)
+- This is SMART-seq2's second handle, added in the same tube as its RT primer. Its oligo-dT and its TSO carry the **same** sequence, so one primer amplifies every full-length cDNA
+- [SMART-seq3](https://henriksson-lab.github.io/NGS_101/smart-seq3__10.1038+s41587-020-0497-0/smart-seq3.html) keeps the step and changes the oligo
 
 [Zhu et al. 2001, doi:10.2144/01304pf02; Picelli et al. 2013, doi:10.1038/nmeth.2639]{.small}
 
@@ -208,6 +212,7 @@ RNAs ([small RNA protocols](../rna/lec-small-rna.qmd)).
 - The extra C's are added most often at a **capped** end, so full-length cDNA is enriched, but the process is not a perfect test of the cap
 - The template-switch oligo (TSO) can pair with internal runs of G or C and add the handle in the middle of a transcript
 - Free TSO can also be copied and joined to itself, giving a by-product that competes in PCR
+- That shared handle is a PCR site, not a sequencing adapter: SMART-seq2 tagments the amplified cDNA, so its handles arrive as primer tail, template switching, transposition, in that order
 - Smart-seq3 adds an internal-tag and UMI to the TSO to count molecules
   ([barcodes and UMIs](../barcodes-umis/lec.qmd))
 
@@ -217,20 +222,9 @@ RNAs ([small RNA protocols](../rna/lec-small-rna.qmd)).
 
 ![](fig16-tailing.svg){width=77%}
 
-- Terminal transferase adds nucleotides to any 3'-OH on DNA; poly(A) polymerase does the same for RNA
+- **Copy with something attached**, once there is something to copy from: terminal transferase adds nucleotides to any 3'-OH on DNA, and poly(A) polymerase does the same for RNA
 - The tail gives a pairing sequence, so a primer with a handle can start from it
 - Handy for input with no usable ends, but tail length varies and the tail takes read length
-
-## Topoisomerase and recombination
-
-![](fig17-topo-recomb.svg){width=92%}
-
-- Both are cloning tools more than library chemistry; both attach a handle without a ligase
-- Topoisomerase I keeps the energy of the broken bond and spends it joining the insert
-- Recombination swaps segments between att sites that came on PCR primers
-- Other overlap-based joins such as Gibson assembly rely on homology arms from primer tails
-
-[Shuman 1994, doi:10.1016/s0021-9258(18)31688-0; Hartley et al. 2000, doi:10.1101/gr.143000; Gibson et al. 2009, doi:10.1038/nmeth.1318]{.small}
 
 ## Trick: truncated adapters and index PCR
 
