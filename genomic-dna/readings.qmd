@@ -16,7 +16,7 @@ facilitates improved mapping and assembly of (G+C)-biased genomes.* Nature Metho
 libraries.* Genome Biology 12:R18.
 [doi:10.1186/gb-2011-12-2-r18](https://doi.org/10.1186/gb-2011-12-2-r18) — **start here**
 
-> Where GC bias comes from in the PCR step and what changes it (cycling conditions, polymerase, additives). Read it with the compounding-efficiency slide in mind.
+> Where GC bias comes from in the PCR step and what changes it (cycling conditions, polymerase, additives). Read it alongside the amplification unit, which works out what that bias costs.
 
 **Ross MG, et al. (2013).** *Characterizing and measuring bias in sequence data.* Genome Biology 14:R51.
 [doi:10.1186/gb-2013-14-5-r51](https://doi.org/10.1186/gb-2013-14-5-r51)

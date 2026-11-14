@@ -130,7 +130,7 @@ Every failure has a **signature** (what you see) and a **control** (what proves 
 ![](fig09-f-chimera.svg){width=92%}
 
 - **Cause:** ligation of two inserts; an incomplete PCR product priming on another template; template switching
-- **Known source:** chimeras form in whole-genome amplification ([MDA, MALBAC and PTA](../genomic-dna/lec.qmd)) [Lasken and Stockwell 2007, doi:10.1186/1472-6750-7-19]{.small}
+- **Known source:** chimeras form in whole-genome amplification ([MDA, MALBAC and PTA](../amplification/lec.qmd)) [Lasken and Stockwell 2007, doi:10.1186/1472-6750-7-19]{.small}
 - **Control:** mix human and mouse cells or DNA before the step: a read with both species is a chimera
 
 ## Index hopping

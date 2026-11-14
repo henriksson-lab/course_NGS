@@ -276,7 +276,7 @@ phosphatases) work.
 **Where these enzymes decide the step**
 
 - [Fragmentation](../fragmentation/lec.qmd) — enzymatic cutting, and the repair any ragged end needs
-- [Genomic DNA](../genomic-dna/lec.qmd) — MDA, MALBAC and PTA are three ways of spending displacement
+- [Amplification](../amplification/lec.qmd) — MDA, MALBAC and PTA are three ways of spending displacement
 - [Modifications: DNA](../modifications/lec.qmd) — converted DNA carries uracil, so the dU column picks the PCR enzyme
 - [Long reads](../long-reads/lec.qmd) — where processivity and longest product stop being academic
 

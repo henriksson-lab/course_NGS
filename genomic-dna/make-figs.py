@@ -578,6 +578,57 @@ def fig_decision():
     return svg(730, 256, "".join(out))
 
 
+# ---- the construct-walk idiom, as used in design/fig02-walk-dna.svg ----
+PB, PR, PP, GR, PG, PO = "#e8eef5", "#f5eae6", "#efe9f3", "#f1f1ee", "#e6f0e8", "#f7ece5"
+VIO = "#6b5b8a"
+KIND = {"p5": (PB, TOP), "p7": (PR, BAD), "idx": (PP, VIO), "ins": ("none", MUTE),
+        "ad": (GR, MUTE), "hot": (PO, HOT), "ok": (PG, OK)}
+
+
+def chain(x, y, parts, h=22, size=11.5):
+    out = []
+    for label, w, k in parts:
+        fill, col = KIND[k]
+        out.append(box(x, y, w, h, label, fill, col, size, col, r=3))
+        x += w
+    return "".join(out), x
+
+
+def fig_walk_truseq():
+    """TruSeq DNA PCR-free, construct after every block."""
+    out = [t(40, 26, "TruSeq DNA PCR-free: the construct after every block. 1 ug of blood DNA.",
+             14, INK)]
+    rows = [
+        ("1  shear to ~350 bp",
+         [("genomic insert, ragged ends", 230, "ins")],
+         "mixed 5'-P / 5'-OH, overhangs"),
+        ("2  end repair",
+         [("insert, blunt, 5'-P and 3'-OH", 230, "ins")],
+         "every end now the same"),
+        ("2  dA-tail",
+         [("A", 14, "hot"), ("insert", 230, "ins"), ("A", 14, "hot")],
+         "one 3' A, so only a T can ligate"),
+        ("3  ligate the full adapter",
+         [("P5 i5 R1", 66, "p5"), ("insert", 230, "ins"), ("R2 i7 P7", 66, "p7")],
+         "forked adapter, already full length"),
+        ("4  no PCR",
+         [("P5 i5 R1", 66, "p5"), ("insert", 230, "ins"), ("R2 i7 P7", 66, "p7")],
+         "nothing to add: the ends are complete"),
+        ("5  size select, qPCR, load",
+         [("P5 i5 R1", 66, "p5"), ("insert", 230, "ins"), ("R2 i7 P7", 66, "p7")],
+         "unchanged since block 3"),
+    ]
+    for i, (lab, parts, note) in enumerate(rows):
+        y = 52 + i * 34
+        out.append(t(40, y + 15, lab, 12.5, INK))
+        s, _ = chain(250, y, parts)
+        out.append(s)
+        out.append(t(620, y + 15, note, 11.5, MUTE))
+    out.append(t(40, 52 + 6 * 34 + 14, "The molecule that was ligated is the molecule that is "
+                 "read. That is what PCR-free buys, and why block 4 can be nothing.", 13.5, HOT))
+    return svg(980, 52 + 6 * 34 + 34, "".join(out))
+
+
 build(__file__, [
     ("recipe", fig_recipe),
     ("input-scale", fig_input_scale),
@@ -600,4 +651,5 @@ build(__file__, [
     ("field-table", fig_field_table),
     ("qc", fig_qc),
     ("decision", fig_decision),
+    ("walk-truseq", fig_walk_truseq),
 ])

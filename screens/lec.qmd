@@ -143,6 +143,15 @@ This plasmid count is the **time-zero reference** for the cells too: a guide tha
 
 [Sanjana et al. 2014, doi:10.1038/nmeth.3047; Naldini et al. 1996, doi:10.1126/science.272.5259.263]{.small}
 
+## Vector geometry decides the readout
+
+![](fig16-v1-v2.svg){width=93%}
+
+- lentiCRISPR v1 and v2 share the guide scaffold but differ in the position of the cPPT
+- That alters which primer pairs make a short product: read the map, not the name
+
+[Sanjana et al. 2014, doi:10.1038/nmeth.3047]{.small}
+
 ## Packaging: the virus carries RNA and nothing else
 
 ![](fig11-packaging.svg){width=84%}
@@ -196,7 +205,18 @@ Reverse transcriptase jumps between the two RNA copies. If a particle holds two 
 
 [Hill et al. 2018, doi:10.1038/nmeth.4604]{.small}
 
+## The problem handed to the next deck
+
+![](fig17-one-end-known.svg){width=75%}
+
+- For a guide, both ends are known and PCR is simple
+- For an insertion site (a lentiviral integration, a transposon mutant, a Cas9 break tagged with an oligo) only one end is known
+- *Reading screens out* starts here
+
 ## Other ways to put DNA into a genome
+
+The trace just followed used one delivery route and one payload. The rest of this deck changes
+one piece of it at a time and leaves the construction alone.
 
 - **Lentivirus**: single copy, stable, most human cell types. The default for pooled screens
 - **Transposons** (Sleeping Beauty, piggyBac): a [transposase](../enzymes/lec-transposases.qmd) cuts the element out of a plasmid and pastes it into the genome. Used for insertional mutagenesis in mammalian cells, where the site of insertion is the readout
@@ -233,25 +253,9 @@ Which one you use decides what you must later read: a guide, a barcode, or an in
 
 - The library is the variable region, amplified with [tailed primers](../handles/lec.qmd) in two steps — the same construction as a guide readout, so the same [skew and dimer](../amplification/lec.qmd) traps apply
 - The read must span the diversity. A randomised peptide fits in one read; an **scFv** (single-chain variable fragment: the two antibody variable domains joined by a linker, some 750 bases) or a multi-domain binder does not, which pushes the readout to [long reads](../long-reads/lec.qmd)
-- Chemistry can be encoded in the DNA: [silent cPTM phage encoding](https://henriksson-lab.github.io/NGS_101/silent-cptm-phage-encoding__10.1021+jacs.5b10390/01_chem.html) marks each chemically modified sub-pool with synonymous codons, so one panning run is decoded by sequencing [Tjhung et al. 2015, doi:10.1021/jacs.5b10390]{.small}
-- [Click display](https://henriksson-lab.github.io/NGS_101/click-display__10.1093+nar+gkad643/chem.html) and [CFMS mRNA display](https://henriksson-lab.github.io/NGS_101/cfms-mrna-display__10.1002+anie.201207005/chem.html) are in the collection; [PHAGE-ATAC](https://henriksson-lab.github.io/NGS_101/phage-atac__10.1038+s41587-021-01065-5/phage-atac.html) runs the idea backwards, using a nanobody-phage as the staining reagent in a [single-cell](../single-cell/lec.qmd) assay [Fiskin et al. 2022, doi:10.1038/s41587-021-01065-5]{.small}
 
-## Vector geometry decides the readout
-
-![](fig16-v1-v2.svg){width=93%}
-
-- lentiCRISPR v1 and v2 share the guide scaffold but differ in the position of the cPPT
-- That alters which primer pairs make a short product: read the map, not the name
-
-[Sanjana et al. 2014, doi:10.1038/nmeth.3047]{.small}
-
-## The problem handed to the next deck
-
-![](fig17-one-end-known.svg){width=75%}
-
-- For a guide, both ends are known and PCR is simple
-- For an insertion site (a lentiviral integration, a transposon mutant, a Cas9 break tagged with an oligo) only one end is known
-- *Reading screens out* starts here
+Variations on the encoding — chemically modified sub-pools, click chemistry, cell-free mRNA
+display, phage used as a staining reagent — are in the [reading list](readings.qmd).
 
 ## What to remember
 

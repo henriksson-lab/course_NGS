@@ -51,97 +51,67 @@ be able to predict most of the kit before they see it.
 - Input ranges are from the vendor guides in the collection and change between versions: check the current guide
 - Protocols named here: [TruSeq DNA PCR-Free](https://henriksson-lab.github.io/NGS_101/truseq-dna-pcr-free/truseq-dna-pcr-free.html), [NEBNext Ultra II FS PCR-free](https://henriksson-lab.github.io/NGS_101/nebnext-ultra-ii-fs-dna-pcr-free/nebnext-ultra-ii-fs-dna-pcr-free.html), [Illumina DNA Prep](https://henriksson-lab.github.io/NGS_101/illumina-dna-prep/illumina-dna-prep.html), [Nextera XT](https://henriksson-lab.github.io/NGS_101/nextera-xt-dna-library-prep/nextera-xt.html)
 
-## Block 1: three ways to fragment
+## Design: a clinical whole genome from 1 µg of blood DNA
 
-![](fig03-fragmentation.svg){width=95%}
+![](fig22-walk-truseq.svg){width=70%}
 
-- Human DNA is megabases long; Illumina clusters want a few hundred base pairs ([what the sequencer wants](../sequencers/lec.qmd))
-- Shearing is unbiased by sequence but leaves ragged ends, so everything downstream must repair them
-- Enzymatic fragmentation trades a little sequence preference for a one-tube, low-input workflow
+Question: germline variants and copy number across the whole genome, GC-extremes included.
+Sample: a blood draw, so micrograms of long, intact DNA.
 
-## Blocks 2 and 3: the ligation library
+- With that much input, block 4 can be **nothing**, and the other four blocks have to hand the sequencer a finished molecule on their own
+- The whole walk is above; the next four slides take it one block at a time, asking after each what sits on the two ends. The protocol is [TruSeq DNA PCR-Free](https://henriksson-lab.github.io/NGS_101/truseq-dna-pcr-free/truseq-dna-pcr-free.html)
+- [NEBNext Ultra II FS PCR-free](https://henriksson-lab.github.io/NGS_101/nebnext-ultra-ii-fs-dna-pcr-free/nebnext-ultra-ii-fs-dna-pcr-free.html) makes the same choices with enzymatic fragmentation; the same blocks with 5 to 12 cycles of PCR are the [NEBNext Ultra II](https://henriksson-lab.github.io/NGS_101/nebnext-ultra-ii-dna-library-prep-user-adaptor/nebnext-ultra-ii-user.html) family
 
-![](fig04-ligation-library.svg){width=92%}
+## Block 1: shear the 1 µg to about 350 bp
 
-- End repair makes ends blunt with 5'-phosphate, A-tailing adds one 3' A, the adapter carries a T ([end chemistry](../end-chemistry/lec.qmd))
-- That A/T handshake is the reason the product is clean: inserts cannot join each other
-- The cost is several enzymatic steps and bead clean-ups, each of which loses molecules
+![](fig03-fragmentation.svg){width=88%}
+
+- Acoustic shearing is unbiased by sequence, which is what even coverage needs ([fragmentation](../fragmentation/lec.qmd))
+- 350 bp is set against the read length and the cluster, not against the chemistry ([what the sequencer wants](../sequencers/lec.qmd))
+- **Construct now**: insert of about 350 bp, ragged ends, a mixture of overhangs and 5'-OH, which no ligase can use
+- Row 2 repairs and A-tails in the same tube; row 3 does blocks 1 to 3 at once, and returns later in this deck
+
+## Blocks 2 and 3: repair the ends, add one A, ligate the adapter
+
+![](fig04-ligation-library.svg){width=85%}
+
+- End repair leaves every end blunt with a 5'-phosphate, one 3' A is added, and the adapter carries the matching T ([end chemistry](../end-chemistry/lec.qmd))
+- The A/T handshake is what keeps the product clean: inserts cannot join each other, and adapters cannot join each other
+- **Construct now**: adapter – insert – adapter, one at each end, the unpaired arms of each fork still single-stranded
+- Each of those enzyme steps ends in a bead clean-up, and every clean-up loses molecules
 
 [A-tailing and end repair as in Illumina's TruSeq guide, see the collection page for TruSeq PCR-Free]{.small}
 
-## Blocks 1 to 3 in one reaction: tagmentation
+## Block 4: nothing, because the fork was already full length
 
-![](fig05-tagmentation.svg){width=95%}
+![](fig06-adapter-types.svg){width=92%}
 
-- A Tn5 transposase dimer loaded with adapters cuts the DNA and attaches the adapter to each 5' end
-- A 9 nt gap remains on the other strand, filled by the polymerase in the first PCR step ([transposases](../enzymes/lec-transposases.qmd))
-- Less input and fewer steps: this is the idea behind [Nextera XT](https://henriksson-lab.github.io/NGS_101/nextera-xt-dna-library-prep/nextera-xt.html) and Illumina DNA Prep
-
-[Adey et al. 2010, doi:10.1186/gb-2010-11-12-r119]{.small}
-
-## Block 4: do you need PCR at all?
-
-![](fig06-adapter-types.svg){width=95%}
-
-- If the ligated adapter already carries P5, P7 and the index ([the molecule](../library-molecule/lec.qmd)), every ligated fragment can seed a cluster
-- With stub adapters, PCR is what installs the flow-cell sequences, so it is mandatory
-- A PCR-free library cannot be quantified by fluorescence alone: **qPCR** counts only molecules with both adapters
+- A **full-length** adapter arrives with P5, i5 and R1 on one end and R2, i7 and P7 on the other, so the molecule is finished the moment it is ligated ([the molecule](../library-molecule/lec.qmd))
+- **Construct now**, read out: P5-i5-R1-insert-R2-i7-P7. Every ligated fragment can seed a cluster, and no base of it has been copied
+- With stub adapters the flow-cell ends are missing and PCR installs them, so block 4 stops being optional
+- What that PCR costs — GC and length bias, duplicates, library complexity — is worked out in [amplification](../amplification/lec.qmd)
 
 [Kozarewa et al. 2009, doi:10.1038/nmeth.1311]{.small}
 
-## What PCR costs, step one: unequal efficiency compounds
+## Block 5: size select, count by qPCR, load
 
-![](fig07-compounding.svg){width=95%}
+![](fig20-qc.svg){width=90%}
 
-- Fragments do not amplify equally: GC content, length and secondary structure all change efficiency
-- A 10-point efficiency gap per cycle, twelve cycles, and one fragment is nearly twice as common
-- The numbers are illustrative; the point is that the gap grows with every cycle
+- Bead size selection brings the trace to one peak at the design size; a sharp peak near 130 bp is adapter dimers, which would take cluster space
+- Fluorescence counts every molecule, including the ones that lost an adapter: **qPCR** counts only those carrying both flow-cell ends ([cleanup and QC](../qc/lec.qmd))
+- **Construct at the flow cell**: unchanged since block 3. The molecule that was ligated is the molecule that is read
+- The third trace belongs to the PCR route, where a second, larger peak means too many cycles
 
-## What PCR costs, step two: GC bias
+## The same spine, blocks 1 to 3 in one enzyme: tagmentation
 
-![](fig08-gc-curve.svg){width=73%}
+![](fig05-tagmentation.svg){width=92%}
 
-- Very GC-rich fragments melt incompletely; very AT-rich ones can be lost in the same cycling
-- Result: coverage that tracks GC content, with regions such as GC-rich promoters and first exons under-covered
-- PCR-free libraries are much flatter, which is why clinical genome pipelines favour them
+- A Tn5 dimer loaded with adapters cuts the DNA and joins an adapter to each 5' end ([transposases](../enzymes/lec-transposases.qmd))
+- **Construct after that one step**: adapter – insert – adapter, with a 9 nt gap on the other strand at each end
+- The adapters are stubs and the gap is unfilled, so the first PCR does both jobs: block 4 is not optional here
+- Less input and fewer steps, at the price of a sequence preference: [Nextera XT](https://henriksson-lab.github.io/NGS_101/nextera-xt-dna-library-prep/nextera-xt.html) and Illumina DNA Prep
 
-[Aird et al. 2011, doi:10.1186/gb-2011-12-2-r18; Ross et al. 2013, doi:10.1186/gb-2013-14-5-r51]{.small}
-
-## What PCR costs, step three: duplicates
-
-![](fig09-duplicates.svg){width=88%}
-
-- A PCR duplicate is one original molecule sequenced more than once: it adds no information and can fake a variant
-- Tools mark duplicates by coordinates, which also flags molecules that merely coincided
-- A [UMI](../barcodes-umis/lec.qmd) in the adapter (some PCR-free kits include one) separates the two cases
-
-## Duplicates are really about complexity
-
-![](fig10-complexity.svg){width=84%}
-
-- If the library holds M distinct molecules and you read N, the fraction of new reads is about $(1-e^{-x})/x$ with $x=N/M$
-- Below $x=0.1$ almost every read is new; at $x=3$ two reads in three repeat an earlier one
-- More sequencing then buys nothing: a high duplicate rate is a **library** problem, not a sequencer problem
-
-## Worked example: how many molecules do you really have?
-
-10 ng of human DNA, 3.3 pg per haploid genome:
-
-- 10 000 pg / 3.3 pg is about **3000 copies** of every locus
-- Assume 20% of fragments end up with an adapter at both ends (an assumption: check your protocol): about **600 molecules** per locus
-- 30x sequencing: $x = 30/600 = 0.05$, about **97% unique**. Fine
-- Now 100 pg: 30 copies, about 6 molecules per locus, $x = 5$ at 30x: **about 20% unique**
-
-At 100 pg, no extra sequencing rescues the library. Only more input or a different method does.
-
-## Design 1: clinical whole genome, 1 µg of blood DNA
-
-Question: germline variants and copy number, good coverage of GC-extremes. Sample: plenty, intact.
-
-- Fragment to about 350 bp, end repair, A-tail, ligate **full-length** adapters, size select, **no PCR**
-- That is [TruSeq DNA PCR-Free](https://henriksson-lab.github.io/NGS_101/truseq-dna-pcr-free/truseq-dna-pcr-free.html); [NEBNext Ultra II FS PCR-free](https://henriksson-lab.github.io/NGS_101/nebnext-ultra-ii-fs-dna-pcr-free/nebnext-ultra-ii-fs-dna-pcr-free.html) makes the same choice with enzymatic fragmentation
-- Quantify by qPCR; pool by molarity
-- The same blocks with 5 to 12 PCR cycles are the NEBNext Ultra II family, e.g. [Ultra II (USER adaptor)](https://henriksson-lab.github.io/NGS_101/nebnext-ultra-ii-dna-library-prep-user-adaptor/nebnext-ultra-ii-user.html)
+[Adey et al. 2010, doi:10.1186/gb-2010-11-12-r119]{.small}
 
 ## What the field does, side by side
 
@@ -149,7 +119,18 @@ Question: germline variants and copy number, good coverage of GC-extremes. Sampl
 
 - Tagmentation kits give up PCR-free-ness for input and speed; ligation kits give up input for flatness
 - Illumina DNA Prep uses **bead-linked transposomes**, Tn5 held on beads so that a fixed number of enzyme sites does the cutting: yield saturates, and libraries pool without individual quantification above 100 ng
-- Nextera XT was designed around small genomes; for a human genome prefer a protocol built for 100 ng and up
+- Nextera XT was designed around small genomes, and its 1 ng input is matched to them rather than to a human genome
+
+## Worked example: how many molecules do you really have?
+
+10 ng of human DNA, 3.3 pg per haploid genome:
+
+- 10 000 pg / 3.3 pg is about **3000 copies** of every locus
+- Assume 20% of fragments end up with an adapter at both ends (an assumption: check your protocol): about **600 molecules** per locus
+- 30x sequencing: $x = 30/600 = 0.05$ reads per molecule, so about **97% unique** on the saturation curve ([amplification](../amplification/lec.qmd))
+- Now 100 pg: 30 copies, about 6 molecules per locus, $x = 5$ at 30x, and **about 20% unique**
+
+At 100 pg, no extra sequencing rescues the library. Only more input or a different method does.
 
 ## Degraded DNA is damaged before you start
 
@@ -189,51 +170,19 @@ Question: germline variants and copy number, good coverage of GC-extremes. Sampl
 - Amplification must produce nanograms to micrograms, and it can fail in the three ways shown
 - Every single-cell WGA method is a different attempt to make that amplification even and faithful
 
-## MDA: the isothermal route
+## Amplifying one genome is not amplifying a library
 
-![](fig15-mda.svg){width=95%}
+- A bulk library is already millions of distinct molecules and PCR makes more of each. Whole-genome amplification has to **create** the library first, roughly a million-fold from two copies, and only then do blocks 1 to 3 run
+- So unevenness that a bulk library would absorb arrives here as a genotype: a locus copied from one allele and not the other reads as a homozygote, and an error made in the first copy sits in half the reads
+- MDA, MALBAC and PTA are three attempts at that amplification, and they differ in how many generations stand between the original molecule and each copy ([amplification](../amplification/lec.qmd)); the product then enters an ordinary ligation library
+- What you can call follows from the evenness you get: copy number tolerates noise in depth, single-nucleotide variants tolerate neither dropout nor an early error
 
-- Phi29 is processive and [strand-displacing](../enzymes/lec.qmd), with proofreading, so copies are long and accurate
-- Displaced strands get primed again and the product hyperbranches
-- Coverage is uneven and chimeric molecules form
+## After sequencing: read the run back
 
-[Dean et al. 2002, doi:10.1073/pnas.082089499]{.small}
-
-## MALBAC: stop the copies from becoming templates
-
-![](fig16-malbac.svg){width=95%}
-
-- Primers carry a common 27 nt tag, so full copies have complementary ends and fold into loops
-- Five quasi-linear cycles, then PCR on the tag
-- Aimed at even coverage for copy number; see [MALBAC](https://henriksson-lab.github.io/NGS_101/malbac__10.1126+science.1229164/malbac.html)
-
-[Zong et al. 2012, doi:10.1126/science.1229164]{.small}
-
-## PTA: limit the size of every copy
-
-![](fig17-pta.svg){width=84%}
-
-- Terminating nucleotides stop each copy early, so products stay short and are not re-amplified as templates
-- The aim is uniform coverage and few false single-nucleotide variants from a single cell
-- See [PTA](https://henriksson-lab.github.io/NGS_101/pta__10.1073+pnas.2024176118/pta.html); the product then goes through an ordinary ligation library
-
-[Gonzalez-Pena et al. 2021, doi:10.1073/pnas.2024176118]{.small}
-
-## Comparing the three
-
-![](fig18-wga-compare.svg){width=95%}
-
-- Pick by what you will call: copy number tolerates noise in depth, SNVs tolerate neither dropout nor early errors
-- Doublets and contaminants are a library-level risk for all three
-- Statements here are qualitative and come from each method's own paper: check benchmarks before relying on them
-
-## Check the library before you sequence it
-
-![](fig20-qc.svg){width=95%}
-
-- Size trace: one peak at the design size. A peak near 130 bp is adapter dimers
-- A second, larger peak means over-amplification; cut cycles, do not re-purify
-- After sequencing: duplicate rate, insert size, GC-versus-coverage curve, and the **fold-80 base penalty** — how much more depth you would need for 80% of positions to reach the mean coverage, so 1 is perfectly even and 2 means half the run is wasted on evenness
+- Duplicate rate and insert-size distribution say whether the library held as many distinct molecules as the run asked for
+- The GC-versus-coverage curve says whether the chemistry tracked the template or its own preferences
+- **Fold-80 base penalty**: how much more depth you would need for 80% of positions to reach the mean coverage. 1 is perfectly even, 2 means half the run went on evenness
+- These are the numbers that answer the question on the first slide; the Bioanalyzer trace only said the library was built
 
 ## Design from the sample, then compare
 
@@ -245,11 +194,11 @@ Question: germline variants and copy number, good coverage of GC-extremes. Sampl
 
 ## Summary
 
-- **Do PCR-free when input allows**: flatter coverage, fewer duplicates, no amplification artefacts
-- Low input forces PCR or tagmentation; duplicates and GC bias are the price
-- Damaged DNA needs end and uracil choices; single-stranded libraries recover the shortest molecules
-- A single cell needs whole-genome amplification first, and each method trades evenness against errors
-- Always read the library by its complexity, not only its yield
+- The sample decides the route: micrograms of intact DNA allow a PCR-free ligation library, in which the ligated molecule is the sequenced molecule
+- Low input is what forces PCR or tagmentation, and [amplification](../amplification/lec.qmd) holds what that costs
+- Damaged DNA needs end and uracil choices; a single-stranded library recovers the shortest molecules
+- A single cell has no library to prepare: whole-genome amplification has to make one, and its evenness decides what can be called
+- Read a library by its complexity, not only by its yield
 
 ## Where this connects
 
