@@ -268,6 +268,50 @@ c. The steps that put in the most shear: vortexing or vigorous pipetting first, 
    single transfer.
 :::
 
+## E12. Read the ladder, pick the ratio
+
+The ladder panel in the lecture shows the same ladder after a clean-up at 0.5x, 0.6x, 0.7x,
+0.8x, 1.0x and 1.8x. You have a ligated library whose inserts are centred on 350 bp, plus
+adapter dimers at about 130 bp and a tail of long concatemers above 1.5 kb.
+
+a. You may do one single-sided clean-up only. Which ratio do you choose, and what do you lose?
+b. Now do it two-sided. Give both ratios, say which fraction you keep at each step, and name
+   the one arithmetic mistake that would move your lower edge.
+c. The ligation was done in a buffer containing PEG, and you did not clean up before the
+   size selection. Which way does every cut-off move, and why?
+d. Your neighbour reports that the same nominal 0.8x gives them a visibly different cut-off.
+   Give two reasons that are not pipetting error.
+
+::: {.callout-tip collapse="true" appearance="minimal"}
+## Hint
+Work from the half-retention line in each lane: the ratio whose line sits just below the
+shortest fragment you want to keep. Remember that an edge is a slope, so "just below" costs
+you something at the edge.
+:::
+
+::: {.callout-note collapse="true" appearance="minimal"}
+## Solution
+a. About 0.8x. Its half-retention point is near 300 bp, so the 350 bp inserts are mostly kept
+   while the 130 bp dimers are left behind. What you lose is the long tail, which a one-sided
+   clean-up at this ratio keeps — and roughly half of everything sitting at 300 bp, because
+   that is what the half-retention line means. A lower ratio loses more of the insert peak.
+b. First addition around 0.5-0.6x: the long concatemers bind and are discarded with the
+   beads, and you keep the supernatant. Then raise the total to about 0.8x: the inserts bind
+   and the dimers stay in solution, so you keep the beads. The mistake is counting the second
+   addition as a fraction of the supernatant rather than of the original sample volume. The
+   second addition is the difference between the two totals, calculated on the original
+   volume.
+c. Every cut-off moves down, so you keep shorter fragments than you intended. The beads bring
+   PEG, but so does the sample, and what sets binding is the final PEG concentration. A
+   nominal 0.8x in a PEG-containing buffer behaves like a higher ratio, and the dimers you
+   meant to discard can come back.
+d. Any two of: a different bead lot, whose PEG concentration and bead mass differ and which
+   vendors do not always publish; beads not fully resuspended or used cold, so the true
+   bead-to-sample ratio is not the nominal one; a different sample buffer carrying its own
+   PEG or salt; small volumes, where a few microlitres of pipetting error is a large part of
+   the ratio.
+:::
+
 # Self-check
 
 Answer without looking anything up.
@@ -302,5 +346,7 @@ Answer without looking anything up.
 
 - Take a kit you use and write down, for each step, what the volume of beads is relative to
   the sample. Compute the final PEG concentration for each.
-- Run your own bead ladder: a DNA ladder cleaned at 0.6x, 0.8x and 1.0x, then a trace for each.
+- Run your own bead ladder: a DNA ladder cleaned at 0.6x, 0.8x and 1.0x, then a trace for
+  each. Compare it with the simulated panel in the lecture: the shape should match, the
+  numbers will not.
   Compare to the curves in the deck.

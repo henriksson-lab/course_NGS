@@ -440,6 +440,35 @@ def fig_starmap():
     return svg(720, 240, "".join(out))
 
 
+def fig_imaging_code():
+    """Combinatorial hybridisation rounds as an error-robust barcode."""
+    out = [t(20, 24, "No sequencer: the identity is a code read out over rounds of hybridisation.", 14, INK)]
+    genes = [("gene A", [1, 1, 0, 1, 0, 0, 1, 0]),
+             ("gene B", [1, 0, 1, 0, 1, 1, 0, 0]),
+             ("gene C", [0, 1, 1, 0, 0, 1, 1, 0])]
+    x0, y0, dx, dy = 110, 64, 42, 34
+    for r in range(8):
+        out.append(t(x0 + r * dx, y0 - 14, str(r + 1), 11, MUTE, anchor="middle"))
+    out.append(t(x0 - 70, y0 - 14, "round", 11, MUTE))
+    for i, (name, bits) in enumerate(genes):
+        y = y0 + i * dy
+        out.append(t(x0 - 70, y + 5, name, 12, INK))
+        for r, b in enumerate(bits):
+            if b:
+                out.append(dot(x0 + r * dx, y, 9, HOT))
+            else:
+                out.append('<circle cx="%d" cy="%d" r="9" fill="none" stroke="%s" '
+                           'stroke-width="1.2"/>' % (x0 + r * dx, y, MUTE))
+    yb = y0 + 3 * dy + 10
+    out.append(t(20, yb + 16, "Filled: the gene lights up in that round. Each gene gets its own on/off pattern, "
+                              "and the patterns are chosen", 12.5, INK))
+    out.append(t(20, yb + 34, "far apart, so one missed or spurious round still points at one gene — the "
+                              "edit-distance idea, in colours rather than bases.", 12.5, INK))
+    out.append(t(20, yb + 58, "Nothing is amplified, nothing is sequenced, and the panel is fixed before "
+                              "the experiment starts.", 12.5, MUTE))
+    return svg(x0 + 8 * dx + 20, yb + 72, "".join(out))
+
+
 build(__file__, [
     ("three-routes", fig_three_routes),
     ("capture-oligo", fig_capture_oligo),
@@ -457,4 +486,5 @@ build(__file__, [
     ("geomx-construct", fig_geomx_construct),
     ("fisseq", fig_fisseq),
     ("starmap", fig_starmap),
+    ("imaging-code", fig_imaging_code),
 ])

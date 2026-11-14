@@ -19,6 +19,7 @@ named in several decks, so they cost no new vocabulary:
 | **TruSeq DNA PCR-free** | the DNA ligation library: ends, adapters, PCR-free | handles, end-chemistry, genomic-dna, amplification, tricks, design |
 | **SMART-seq2** | the RNA/cDNA spine: RT, template switching, full length | handles, enzymes, rna, single-cell |
 | **EM-seq** | conversion chemistry: protect, deaminate, read as T | enzymes/lec-transposases, chemistry-to-sequence, modifications |
+| **SPLiT-seq** | combinatorial barcoding: the barcode is the path | single-cell/lec-combinatorial, compartments, barcodes-umis |
 | **10x 3′ and 5′** | compartments, cell barcodes, **UMIs**, read structure | library-molecule, barcodes-umis, single-cell, compartments |
 
 **Start with an amplicon, because it is the one case where the sequence is already known.**

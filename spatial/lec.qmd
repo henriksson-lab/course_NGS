@@ -211,6 +211,15 @@ The practical rule: sequence deeper per area, not per spot, and judge saturation
 
 [Wang et al. 2018, doi:10.1126/science.aat5691]{.small}
 
+## MERFISH and seqFISH: no library at all
+
+![](fig17-imaging-code.svg){width=46%}
+
+- Probes are hybridised to the RNA and then read out over rounds of imaging. A gene's identity is its on/off pattern across the rounds, not a sequence anyone determines [Lubeck et al. 2014, doi:10.1038/nmeth.2892; Chen et al. 2015, doi:10.1126/science.aaa6090]{.small}
+- The patterns are chosen far apart, so a missed or spurious round still points at one gene. That is the [edit-distance argument](../barcodes-umis/lec.qmd) from barcode design, in colours instead of bases
+- The panel is fixed before the experiment: you see the genes you made probes for and nothing else. Adding rounds buys more genes, which is how seqFISH+ reaches transcriptome scale [Eng et al. 2019, doi:10.1038/s41586-019-1049-y]{.small}
+- This is the edge of this course. No adapters, no amplification, no sequencer — the same information problem, solved with optics
+
 ## The methods side by side
 
 | Method | Position from | RNA captured by | What is sequenced |

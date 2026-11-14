@@ -144,6 +144,15 @@ Size selection narrows the distribution and removes the worst. It does **not** m
 
 [Hawkins et al. 1994, doi:10.1093/nar/22.21.4543; Rohland and Reich 2012, doi:10.1101/gr.128124.111]{.small}
 
+## What a ratio actually does to a ladder
+
+![](fig21-bead-ladder.svg){width=65%}
+
+- Each lane is the same ladder after one clean-up. Lower ratio, less PEG, higher cut-off: the short bands fade out from the bottom up
+- The edge is a slope, not a wall. At 0.8x a 300 bp fragment is half kept, so half of what you wanted is in the discarded supernatant
+- 1.8x keeps essentially everything above ~100 bp, which is why it is the default clean-up ratio and not a selection
+- Simulated from the curve above, not measured. The point is how to read such a panel, not these numbers
+
 ## Two edges make a window
 
 ![](fig13-double-sided.svg){width=83%}
