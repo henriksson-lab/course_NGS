@@ -80,16 +80,20 @@ def fig_block_nick():
     out.append(t(x0 + 30, 52, "adapter", 12, TOP, anchor="middle"))
     out.append(t(x0 + 165, 52, "insert, 5'-OH ends", 12, MUTE, anchor="middle"))
     out.append(t(x0 + 300, 52, "adapter", 12, BAD, anchor="middle"))
-    out.append(line(x0 + 6, y1, x0 + 324, y1, TOP, 3))
-    out.append(line(x0 + 6, y2, x0 + 54, y2, BOT, 3))
-    out.append(line(x0 + 66, y2, x0 + 264, y2, BOT, 3))
+    # One nick per end, and they fall on opposite strands: at the left junction the
+    # adapter's 3'-OH meets the insert's unphosphorylated 5' end on the top strand,
+    # while the bottom strand runs the other way and is sealed there. The right
+    # junction is the mirror image.
+    out.append(line(x0 + 6, y1, x0 + 54, y1, TOP, 3))
+    out.append(line(x0 + 66, y1, x0 + 324, y1, TOP, 3))
+    out.append(line(x0 + 6, y2, x0 + 264, y2, BOT, 3))
     out.append(line(x0 + 276, y2, x0 + 324, y2, BOT, 3))
-    for xx in (x0 + 60, x0 + 270):
-        out.append(dot(xx, y2, 4.5, HOT))
-    out.append(t(x0 + 60, 140, "nick", 12, HOT, anchor="middle"))
-    out.append(t(x0 + 270, 140, "nick", 12, HOT, anchor="middle"))
-    out.append(t(x0 + 165, 160, "top strand joined; bottom strand cannot be sealed", 12, MUTE,
-                 anchor="middle"))
+    out.append(dot(x0 + 60, y1, 4.5, HOT))
+    out.append(dot(x0 + 270, y2, 4.5, HOT))
+    out.append(t(x0 + 60, 140, "nick, top strand", 12, HOT, anchor="middle"))
+    out.append(t(x0 + 270, 140, "nick, bottom strand", 12, HOT, anchor="middle"))
+    out.append(t(x0 + 165, 160, "one strand joined at each end; the nicks are on opposite "
+                                "strands", 12, MUTE, anchor="middle"))
     xr = 470
     out.append(box(xr, 70, 80, 22, "insert", "none", MUTE, 12, MUTE, r=3))
     out.append(box(xr + 100, 70, 80, 22, "insert", "none", MUTE, 12, MUTE, r=3))
@@ -174,9 +178,11 @@ def fig_splint():
     out += [s1, s2, s3, pairs(x, y, y + 30, top, bot)]
     out.append(t(x - 10, y, "5'", 13, MUTE, anchor="end"))
     out.append(t(x - 10, y + 30, "3'", 13, MUTE, anchor="end"))
+    out.append(t(x + w + 8, y, "3'", 13, MUTE))
     out.append(t(x + w + 8, y + 30, "5'", 13, MUTE))
-    out.append(t(x + 4 * DX, y - 22, "end of molecule 1", 12, TOP, anchor="middle"))
-    out.append(t(x + 12 * DX, y - 22, "end of molecule 2 (5'-P)", 12, HOT, anchor="middle"))
+    # each on its own side of the nick: centred on the two halves they ran together
+    out.append(t(x + 8 * DX - 10, y - 22, "end of molecule 1", 12, TOP, anchor="end"))
+    out.append(t(x + 8 * DX + 6, y - 22, "end of molecule 2 (5'-P)", 12, HOT))
     out.append(line(x + 8 * DX - 2, y - 14, x + 8 * DX - 2, y + 40, HOT, 1.6, dash="3 3"))
     out.append(t(x + 8 * DX - 2, y + 62, "nick: ligase seals it", 12.5, HOT, anchor="middle"))
     out.append(t(x + 8 * DX, y + 84, "splint (bottom strand) is complementary to both ends", 12.5,
@@ -367,9 +373,11 @@ def fig_template_switch():
     s3, w = seq(x, y + 30, bot, BOT)
     out += [s1, s2, s3, pairs(x, y, y + 30, top, bot)]
     out.append(t(x + 4 * DX, y - 18, "template-switch oligo (adapter + GGG)", 12.5, HOT, anchor="middle"))
-    out.append(t(x + 17 * DX, y - 18, "mRNA, 5' end to poly(A)", 12.5, TOP, anchor="middle"))
+    # over the right of the mRNA and of the cDNA: centred, these ran into the
+    # labels for the oligo and for the added C's
+    out.append(t(x + 20 * DX, y - 18, "mRNA, 5' end to poly(A)", 12.5, TOP, anchor="middle"))
     out.append(t(x + 7.5 * DX, y + 54, "added C's pair with GGG", 12.5, BOT, anchor="middle"))
-    out.append(t(x + 17 * DX, y + 54, "cDNA from oligo-dT", 12.5, BOT, anchor="middle"))
+    out.append(t(x + 20 * DX, y + 54, "cDNA from oligo-dT", 12.5, BOT, anchor="middle"))
     out.append(t(x - 10, y + 30, "3'", 13, MUTE, anchor="end"))
     out.append(t(x + w + 8, y + 30, "5'", 13, MUTE))
     out.append(t(40, 190, "Result: the first strand ends in a known sequence on both sides, "
@@ -460,14 +468,14 @@ def fig_circularise():
     out.append(t(xe + 20, 82, "truncated end: the informative base", 12.5, BAD))
     out.append(t(40, 128, "2  ligate ends", 13, HOT))
     out.append(path("M 110 190 C 110 140 250 140 250 190 C 250 232 110 232 110 190 Z", TOP, 3))
-    out.append(dot(180, 143, 6, BAD))
+    out.append(dot(180, 152, 6, BAD))          # on the circle, at its apex
     out.append(t(262, 168, "informative end now sits next to", 12.5, MUTE))
     out.append(t(262, 184, "the primer part", 12.5, MUTE))
     out.append(t(40, 258, "3  cut at the site in the primer: a new linear molecule, with the "
                           "informative base next to an adapter that PCR and the sequencer can use.",
                  13.5, INK))
-    out.append(line(150, 144, 150, 134, HOT, 2.6))
-    out.append(t(150, 128, "cut", 12.5, HOT, anchor="middle"))
+    out.append(line(150, 149, 150, 163, HOT, 2.6))   # crossing the circle, not above it
+    out.append(t(150, 141, "cut", 12.5, HOT, anchor="middle"))
     return svg(720, 278, "".join(out))
 
 
@@ -608,7 +616,7 @@ def fig_duplex():
     out.append(dot(200, 98, 5, HOT))
     out.append(t(350, 90, "mutation at the same position, both strands", 12.5, HOT))
     out.append(t(40, 140, "strand family a-b:  reads agree  -> consensus", 13, TOP))
-    out.append(t(40, 162, "strand family b-a:  reads agree  -> consensus", 13, BAD))
+    out.append(t(40, 162, "strand family b-a:  reads agree  -> consensus", 13, BOT))
     out.append(t(40, 190, "a variant is real only if both families carry it", 14, OK))
     out.append(t(40, 216, "an error on one strand appears in one family only: discarded. "
                           "Error rates drop by orders of magnitude.", 13.5, INK))
@@ -670,7 +678,8 @@ def fig_budget():
     out.append(t(40, 172, "1 ng is about 300 haploid genome copies (3.3 pg each). 30x coverage "
                           "of unique molecules needs most of them.", 13.5, INK))
     out.append(t(40, 194, "More PCR cycles add reads, not information: duplicates rise "
-                          "instead. PCR-free is best when input allows.", 13.5, INK))
+                          "instead. A PCR-free preparation skips the loss, and costs input.",
+                 13.5, INK))
     return svg(720, 214, "".join(out))
 
 
@@ -717,12 +726,16 @@ def fig_beads():
 def fig_lowvol():
     out = [t(40, 26, "Rate depends on concentration. One molecule in a smaller volume is a "
                      "higher concentration.", 14, INK)]
+    # one molecule in V microlitres, in molar: 1 / (Avogadro * V)
+    def one_copy_M(vol_uL):
+        return 1.0 / (6.02214e23 * vol_uL * 1e-6)
+    big, small_ = one_copy_M(25), one_copy_M(1)
     out.append(box(70, 56, 150, 100, "", "none", MUTE, r=5))
     out.append(dot(150, 120, 6, HOT))
-    out.append(t(145, 176, "25 uL: 1 copy = 66 fM", 13, BAD, anchor="middle"))
+    out.append(t(145, 176, f"25 uL: 1 copy = {big * 1e21:.0f} zM", 13, BAD, anchor="middle"))
     out.append(box(330, 106, 50, 50, "", "none", MUTE, r=5))
     out.append(dot(355, 134, 6, HOT))
-    out.append(t(355, 176, "1 uL: 1 copy = 1.7 pM", 13, OK, anchor="middle"))
+    out.append(t(355, 176, f"1 uL: 1 copy = {small_ * 1e18:.1f} aM", 13, OK, anchor="middle"))
     out.append(t(440, 90, "25 times the concentration,", 13, INK))
     out.append(t(440, 108, "so a first-order enzymatic step", 13, INK))
     out.append(t(440, 126, "runs about 25 times faster.", 13, INK))
@@ -786,7 +799,7 @@ def fig_invessel():
         out.append(path(f"M {70+i*34} 96 q 12 -26 24 0", TOP, 2.4))
     out.append(t(70, 120, "ligation of crosslinked fragments in free solution: "
                           "random joins are possible", 12.5, MUTE))
-    out.append(t(40, 158, "in situ (in situ Hi-C)", 13, OK))
+    out.append(t(40, 158, "inside the nucleus (in situ Hi-C)", 13, OK))
     out.append(path("M 100 200 C 100 170 220 170 220 200 C 220 232 100 232 100 200 Z", TOP, 2.4,
                     PB))
     for i in range(3):
@@ -941,10 +954,15 @@ def fig_native():
         pts.append(f"{x},{lv + 60}")
     out.append(f'<polyline points="{" ".join(pts)}" fill="none" stroke="{TOP}" stroke-width="2"/>')
     out.append(t(80, 52, "nanopore current while one k-mer passes", 12.5, MUTE))
-    mod_x = 80 + 5 * 26 + 5
-    out.append(f'<rect x="{mod_x}" y="106" width="26" height="60" fill="{HOT}" opacity="0.18"/>')
-    out.append(t(mod_x + 13, 186, "same k-mer,", 12, HOT, anchor="middle"))
-    out.append(t(mod_x + 13, 200, "5mC: level shifts", 12, HOT, anchor="middle"))
+    mod_x, mod_w = 80 + 5 * 26, 2 * 26     # the run the modified k-mer holds
+    out.append(f'<rect x="{mod_x}" y="106" width="{mod_w}" height="60" fill="{HOT}" '
+               f'opacity="0.18"/>')
+    # the level the same k-mer gives unmethylated: without something to compare
+    # against, the figure asserts a shift it does not show
+    out.append(line(mod_x + 6, 136, mod_x + mod_w - 6, 136, MUTE, 1.4, dash="4 3"))
+    out.append(t(mod_x + mod_w + 10, 140, "level without the 5mC", 11, MUTE))
+    out.append(t(mod_x + mod_w / 2, 186, "same k-mer,", 12, HOT, anchor="middle"))
+    out.append(t(mod_x + mod_w / 2, 200, "5mC: level shifts", 12, HOT, anchor="middle"))
     out.append(t(40, 232, "Methylation is called without bisulfite and with long reads, so it "
                           "can be phased to a haplotype or a read.", 14, INK))
     out.append(t(40, 254, "PacBio reads modifications from polymerase kinetics instead.", 13.5, MUTE))

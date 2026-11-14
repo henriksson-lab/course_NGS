@@ -249,11 +249,12 @@ def fig_beadoligo():
         out.append(box(x + 80, y - 13, 100, 26, "ACGTTGCAGTCA", "#f7ede6", HOT, 11.5, HOT))
         out.append(box(x + 180, y - 13, 76, 26, umis[i], "#f5eae6", BAD, 11.5, BAD))
         out.append(box(x + 256, y - 13, 90, 26, "TTTTTTTT...", GREENF, OK, 11.5, OK))
-    out.append(t(230, 62, "handle", 11.5, TOP, anchor="middle"))
-    out.append(t(320, 62, "cell barcode", 11.5, HOT, anchor="middle"))
-    out.append(t(320, 76, "(same on the bead)", 10.5, HOT, anchor="middle"))
-    out.append(t(448, 62, "UMI", 11.5, BAD, anchor="middle"))
-    out.append(t(448, 76, "(differs per oligo)", 10.5, BAD, anchor="middle"))
+    # two label rows, both clear of the first oligo box, whose top edge is at y = 75
+    out.append(t(230, 54, "handle", 11.5, TOP, anchor="middle"))
+    out.append(t(320, 54, "cell barcode", 11.5, HOT, anchor="middle"))
+    out.append(t(320, 68, "(same on the bead)", 10.5, HOT, anchor="middle"))
+    out.append(t(448, 54, "UMI", 11.5, BAD, anchor="middle"))
+    out.append(t(448, 68, "(differs per oligo)", 10.5, BAD, anchor="middle"))
     out.append(t(530, 218, "oligo-dT captures poly(A) mRNA", 11.5, OK, anchor="middle"))
     out.append(t(40, 252, "Only the cell barcode is shared. The UMIs make every captured molecule distinct. "
                           "Drop-seq uses 12 nt of barcode and 8 nt of UMI.", 13.5, INK))
@@ -411,17 +412,20 @@ def fig_collapse():
     umis = [("ACGTAC", 120), ("ACGTAG", 4), ("TTGCAA", 35), ("TTGCAT", 2), ("GGATCC", 9)]
     out = [t(40, 26, "Sequencing errors create near-copies of real UMIs. Merge a small UMI into a large neighbour.", 14, INK)]
     pos = [(110, 90), (110, 160), (320, 90), (320, 160), (480, 125)]
+    rad = [10 + math.sqrt(n) * 1.8 for _, n in umis]
     # edges: hamming 1 and count ratio rule: big >= 2*small - 1
     keep = set(range(len(umis)))
     for i, (a, na) in enumerate(umis):
         for j, (b, nb) in enumerate(umis):
             if i != j and hamming(a, b) == 1 and na >= 2 * nb - 1:
-                out.append(arrow(pos[j][0], pos[j][1] - 16 if pos[j][1] > pos[i][1] else pos[j][1] + 16,
-                                 pos[i][0], MUTE) if False else "")
-                out.append(line(pos[j][0], pos[j][1], pos[i][0], pos[i][1], MUTE, 1.5, dash="4 3"))
+                # edge to edge, not centre to centre: an unfilled circle does not
+                # hide the line, and it would run through the count inside it
+                sgn = 1 if pos[j][1] > pos[i][1] else -1
+                out.append(line(pos[j][0], pos[j][1] - sgn * rad[j],
+                                pos[i][0], pos[i][1] + sgn * rad[i], MUTE, 1.5, dash="4 3"))
                 keep.discard(j)
     for i, ((u, n), (x, y)) in enumerate(zip(umis, pos)):
-        r = 10 + math.sqrt(n) * 1.8
+        r = rad[i]
         c = TOP if i in keep else MUTE
         out.append(f'<circle cx="{x}" cy="{y}" r="{r:.0f}" fill="{BLUEF if i in keep else "none"}" stroke="{c}" stroke-width="1.6"/>')
         out.append(t(x, y + 4, str(n), 11, c, anchor="middle"))
@@ -471,7 +475,9 @@ def fig_umilen():
 def fig_duplex():
     out = [t(40, 26, "UMI plus duplex tag: a real variant must appear on both strands of the original molecule.", 14, INK)]
     for p, (ttl, both, c) in enumerate([("true variant", True, OK), ("damage on one strand", False, BAD)]):
-        x0 = 40 + p * 340
+        # 400 apart, not 340: at 340 the left panel's "bottom strand family" ran
+        # into the right panel's strands
+        x0 = 40 + p * 400
         out.append(t(x0, 56, ttl, 13, c))
         out.append(line(x0, 84, x0 + 230, 84, TOP, 3))
         out.append(line(x0, 98, x0 + 230, 98, BOT, 3))
@@ -491,7 +497,7 @@ def fig_duplex():
         out.append(t(x0, 238, "both families agree: keep" if both else "one family only: reject", 12.5, c))
     out.append(t(40, 262, "Single-strand damage (deamination, oxidation) and early PCR errors appear on "
                           "one strand only.", 13.5, INK))
-    return svg(720, 282, "".join(out))
+    return svg(790, 282, "".join(out))
 
 
 # ------------------------------------------------------------------ 17 read structure
@@ -607,9 +613,11 @@ def fig_hashing():
         x = 70 + i * 70
         out.append(f'<circle cx="{x}" cy="100" r="22" fill="none" stroke="{c}" stroke-width="2"/>')
         out.append(t(x, 104, tg, 14, c, anchor="middle", weight="bold"))
-        out.append(arrow(x, 134, x + (1 - i) * 18, MUTE) if False else "")
-    out.append(arrow(140, 142, 140, MUTE))
-    out.append(t(140, 168, "pool, run once", 12, MUTE, anchor="middle"))
+        out.append(line(x, 124, 140, 140, MUTE, 1.2))
+    # figlib's arrow() is horizontal only; pooling runs downwards, so draw it here
+    out.append(line(140, 140, 140, 150, MUTE, 1.4))
+    out.append(f'<path d="M 140 156 L 135 148 L 145 148 Z" fill="{MUTE}"/>')
+    out.append(t(140, 174, "pool, run once", 12, MUTE, anchor="middle"))
     # table
     x0 = 330
     out.append(t(x0, 56, "hashtag reads per cell barcode", 12.5, MUTE))

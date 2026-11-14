@@ -62,7 +62,7 @@ The calculations are done by hand. Do them at least once with a pencil before tr
 100 µL sample, you want to remove everything shorter than about 150 bp.
 
 - Read the curve: about 1.0× keeps fragments above roughly 150 bp, so add **100 µL** of beads
-- To also remove fragments below about 250 bp, use 0.8×: **80 µL** of beads
+- To also remove fragments below about 300 bp, use 0.8×: **80 µL** of beads
 - Calculate from the final sample volume: if you add water to raise a small sample to 50 µL, the ratio refers to the 50 µL
 - The cut-off values above come from the schematic curve, not a rule: check them against a ladder
 

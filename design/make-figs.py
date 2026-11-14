@@ -92,7 +92,8 @@ def fig_walk_dna():
         out.append(t(40, y + 15, lab, 13, INK))
         s, xe = chain(240, y, parts)
         out.append(s)
-        out.append(t(560, y + 15, note, 12, MUTE))
+        # 580, not 560: the step-5 chain is the longest and reaches 558
+        out.append(t(580, y + 15, note, 12, MUTE))
     out.append(t(40, 238, "Ask at every step: what is on each 5' and 3' end, and which end "
                           "can the next enzyme use?", 14, HOT))
     return svg(900, 258, "".join(out))
@@ -579,7 +580,7 @@ def fig_capstone_oligos():
              "before the fill-in."),
         (HOT, "self-dimer: 6 bp, CTATAG, across the P5-index junction. Change the index and "
               "this span changes."),
-        (HOT, "hairpin: a 4 bp stem with a 20 nt loop; the last six bases stay free, so the "
+        (HOT, "hairpin: a 4 bp stem with a 20 nt loop; the last seven bases stay free, so the "
               "primer can still prime."),
         (MUTE, "i7 primer, P7 + i7 + tail B, 47 nt: tail B Tm 55.7 °C, within 0.1 °C "
                "of tail A, so one annealing step suits both."),

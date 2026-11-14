@@ -128,7 +128,7 @@ def fig_ratio():
     out.append(t(x0 + w / 2, y0 + h + 34, "fragment size (bp)", 11, MUTE, anchor="middle"))
     out.append(t(x0 - 8, y0 + 8, "bound", 11, MUTE, anchor="end"))
     out.append(t(x0 - 8, y0 + h, "free", 11, MUTE, anchor="end"))
-    for ratio, s50, c in ((0.6, 500, HOT), (0.8, 250, TOP), (1.0, 170, OK), (1.8, 80, VIO)):
+    for ratio, s50, c in ((0.6, 520, HOT), (0.8, 300, TOP), (1.0, 170, OK), (1.8, 70, VIO)):
         pts = []
         for i in range(101):
             lg = math.log10(50) + (math.log10(2000) - math.log10(50)) * i / 100
@@ -136,7 +136,9 @@ def fig_ratio():
             pts.append(f"{x0 + w * i / 100:.1f},{y0 + h - f * h:.1f}")
         out.append(f'<polyline points="{" ".join(pts)}" fill="none" stroke="{c}" stroke-width="2.4"/>')
         xl = x0 + w * (math.log10(s50) - math.log10(50)) / (math.log10(2000) - math.log10(50))
-        out.append(t(xl + 8, y0 + h / 2 + 18, f"{ratio}x", 12.5, c))
+        # on the curve's own half-height point: lower down, the next curve to the
+        # right has already risen through where the label would sit.
+        out.append(t(xl + 14, y0 + h / 2, f"{ratio}x", 12.5, c))
     out.append(t(40, 252, "Higher ratio, more PEG, shorter fragments kept. Calibrate with a "
                           "ladder: the curve moves with bead lot and buffer.", 13.5, INK))
     return svg(720, 272, "".join(out))
@@ -145,8 +147,8 @@ def fig_ratio():
 def fig_double():
     out = [t(40, 26, "Double-sided selection: two bead additions keep a window.", 14, INK)]
     cols = [("1  add 0.6x beads", "long fragments (above ~500) bind", "keep the supernatant,\nbin the beads"),
-            ("2  add beads to 0.8x total", "medium fragments (above ~250)\nbind from the supernatant", "keep the beads,\nbin the supernatant"),
-            ("3  wash, elute", "what stuck in step 2:\n~250 to ~500 bp", "")]
+            ("2  add beads to 0.8x total", "medium fragments (above ~300)\nbind from the supernatant", "keep the beads,\nbin the supernatant"),
+            ("3  wash, elute", "what stuck in step 2:\n~300 to ~520 bp", "")]
     for i, (h, b, c) in enumerate(cols):
         x = 40 + i * 215
         out.append(box(x, 48, 195, 108, "", "#fbfbf9", MUTE))
@@ -208,10 +210,13 @@ def fig_qpcr():
     xs, ys, ws, hs = 440, 48, 200, 130
     out.append(line(xs, ys + hs, xs + ws, ys + hs, MUTE, 1.2))
     out.append(line(xs, ys, xs, ys + hs, MUTE, 1.2))
-    out.append(line(xs + 10, ys + 10, xs + ws - 10, ys + hs - 10, TOP, 2.2))
+    x1, y1, x2, y2 = xs + 10, ys + 10, xs + ws - 10, ys + hs - 10
+    out.append(line(x1, y1, x2, y2, TOP, 2.2))
     for k in range(4):
+        # the standards lie on the fitted line: the most concentrated (k = 0, the
+        # earliest Cq on the left panel) sits bottom right, at the lowest Cq.
         xx = xs + 24 + (3 - k) * 50
-        out.append(dot(xx, ys + 24 + k * 29, 4.5, cols[k]))
+        out.append(dot(xx, y1 + (xx - x1) / (x2 - x1) * (y2 - y1), 4.5, cols[k]))
     out.append(t(xs + ws / 2, ys + hs + 22, "log10 concentration", 11, MUTE, anchor="middle"))
     out.append(t(xs - 8, ys + 8, "Cq", 11, MUTE, anchor="end"))
     out.append(t(40, 224, "Fit the line through the standards, read the unknown off it, then "
@@ -349,7 +354,9 @@ def fig_diag_qpcr():
     xc = x0 + w * 14.5 / 40
     out.append(line(xc, y0 + h - h / 3, xc, y0 + h, HOT, 1.4, dash="4 3"))
     out.append(t(xc, y0 + h + 18, "extra cycles", 12, HOT, anchor="middle"))
-    out.append(t(x0 + w * 0.9, y0 + 20, "plateau: over-amplified", 12, BAD, anchor="end"))
+    # beside the plateau, not on it: inside the axes the curve runs through this line
+    out.append(t(x0 + w + 8, y0 + 14, "plateau:", 12, BAD))
+    out.append(t(x0 + w + 8, y0 + 30, "over-amplified", 12, BAD))
     out.append(t(x0 + w / 2, y0 + h + 36, "cycle", 11, MUTE, anchor="middle"))
     out.append(t(40, 244, "ATAC-seq does five cycles, runs 5 uL in a qPCR, and adds the "
                           "cycles needed to reach one third of maximum.", 13.5, INK))

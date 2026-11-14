@@ -127,7 +127,7 @@ Counting losses is a skill: write the recovery of each step, then multiply. Six 
 
 ![](fig29-lowvol.svg){width=89%}
 
-- 1 copy in 1 µL is 1.7 pM; in 25 µL it is 66 fM. A first-order step runs 25× faster in the smaller volume
+- 1 copy in 1 µL is 1.7 aM; in 25 µL it is 66 zM. A first-order step runs 25× faster in the smaller volume
 - **Trick:** shrink the volume to microlitres, or nanolitres in a droplet or nanowell
 - **Used in:** [SMART-seq3xpress](https://henriksson-lab.github.io/NGS_101/smart-seq3xpress__10.1038+s41587-022-01311-4/smart-seq3xpress.html) [Hagemann-Jensen et al. 2022, doi:10.1038/s41587-022-01311-4]{.small}
 

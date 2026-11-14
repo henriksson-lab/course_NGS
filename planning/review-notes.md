@@ -351,3 +351,11 @@ as "rewritten" rather than "failed".
 Related, lower risk: `modifications/fig15` and `fig32` use OK/HOT/TOP as card-identity
 colours, which puts one named method in green beside others — close to a verdict the course
 does not make.
+
+## Split-pool collision figures use different cell counts
+
+`tricks/fig31-splitpool` loads 10,000 cells (1.1% collisions) and
+`barcodes-umis/fig08-splitpool` loads 50,000 (5.5%). Both are arithmetically right and the
+repetition between the trick catalogue and the unit that owns a block is deliberate, but a
+reader comparing the two sees two different answers to what looks like one question. Either
+use the same load in both, or have the trick-catalogue figure say it is a different scenario.
