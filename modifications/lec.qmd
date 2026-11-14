@@ -39,36 +39,45 @@ Frame the whole deck as: handle plus readout. Students should be able to name, f
 ![](fig01-cytosine-family.svg){width=92%}
 
 - In human somatic cells most CpGs carry 5-methylcytosine (5mC); TET enzymes oxidise it step by step to 5hmC, 5fC and 5caC
-- All five pair with guanine, so every one is copied as C
-- A library of native DNA therefore holds no trace of the marks: the chemistry has to change the letters first
+- All five pair with guanine, so every one is copied as C: a library of native DNA holds no trace of the marks
+- The chemistries that change that are worked through in [converting chemistry into sequence](../chemistry-to-sequence/lec.qmd). Whichever one is used, the rule to carry here is: a C still in the read was protected, a T was not
 
-## Bisulfite: deaminate what is not protected
+## EM-seq: build the library first, convert it second
 
-![](fig02-bisulfite-chem.svg){width=92%}
+One [NEBNext EM-seq](https://henriksson-lab.github.io/NGS_101/nebnext-enzymatic-methyl-seq-v2/nebnext-em-seq-v2.html) library, from genomic DNA to a pooled product. The blocks are the ordinary ones; what is special is their **order** and three enzymes.
 
-- Bisulfite adds to cytosine, which is then deaminated to uracil; the methyl group of 5mC hinders the first step, so 5mC stays C
-- After PCR: **C in the read = methylated, T = unmethylated**
-- Used on DNA since the 1990s, and still the reference all other methods are compared against
+- **1. Fragment** to a few hundred bases and **2. end-repair and dA-tail**: the front end of any ligation library, unchanged ([genomic DNA](../genomic-dna/lec.qmd))
+- The two control DNAs go in here, before anything else happens to the sample, so that they meet every step the sample meets
+- The conversion comes **after** the adapters are on. That is the point of the method: enzymes do not shear DNA, so the molecule that enters the chemistry is already a finished library molecule
+- **The molecule now:** `A-overhang — insert — A-overhang`, and no adapter yet
 
-[Frommer et al. 1992, doi:10.1073/pnas.89.5.1827]{.small}
+[Vaisvila et al. 2021, doi:10.1101/gr.266551.120]{.small}
 
-## Reading a bisulfite read
-
-![](fig03-bs-read-example.svg){width=92%}
-
-- The methylation level of a CpG is C / (C + T) over all reads covering it, so it is a fraction of molecules, not a yes or no
-- A cytosine outside a CpG is read as T: in most human tissues it is not methylated
-- After conversion the two strands are no longer complementary, so the aligner treats them separately
-
-## The adapters must survive the chemistry too
+## Step 3: an adapter that survives a deaminase
 
 ![](fig04-bs-adapter.svg){width=92%}
 
-- Adapters added before conversion are made with 5mC in place of C, as in the original [RRBS](https://henriksson-lab.github.io/NGS_101/https://henriksson-lab.github.io/NGS_101/rrbs-illumina__10.1038+nature07107/rrbs-illumina.html) protocol
-- Bisulfite also breaks DNA: a molecule cut between its two adapters cannot be amplified
-- Tagging **after** conversion (PBAT, post-bisulfite adapter tagging) puts adapters on what survived, and is the common choice for single cells
+- The adapter is made with 5mC in place of every C, so the deaminase cannot touch it: the primer sites still match after the conversion
+- The figure shows the problem for bisulfite, where methylated adapters were first used; an enzymatic deamination poses it in the same form
+- Where the chemistry breaks DNA, the adapters can instead go on afterwards (PBAT, post-bisulfite adapter tagging), which is the common choice for single cells. EM-seq has no such breakage, which is why it can keep the ordinary order
+- **The molecule now:** `5mC adapter — insert — 5mC adapter`
 
-[Meissner et al. 2008, doi:10.1038/nature07107; Smallwood et al. 2014, doi:10.1038/nmeth.3035; Olova et al. 2018, doi:10.1186/s13059-018-1408-2]{.small}
+[Smallwood et al. 2014, doi:10.1038/nmeth.3035; Olova et al. 2018, doi:10.1186/s13059-018-1408-2]{.small}
+
+## Steps 4 and 5: protect, then deaminate
+
+- **TET2** oxidises 5mC and **T4-BGT** glucosylates 5hmC, and neither product can be deaminated; **APOBEC3A** then deaminates every cytosine that was left unprotected to uracil
+- Both marks are protected together, so a C in this library means 5mC **or** 5hmC. oxBS-seq, TAB-seq and TAPS beta each separate the two, which decides what the number means where 5hmC is abundant, as in brain and in TET-mutant tumours
+- Nothing here cuts the backbone, so the insert keeps its length and both adapters stay attached
+- **The molecule now:** `5mC adapter — insert, every unprotected C now U — 5mC adapter`, and the two strands have stopped being complementary
+
+## Step 6: amplify, pool, and read the controls
+
+![](fig10-spikein.svg){width=90%}
+
+- The template is now full of uracil, so the polymerase has to copy uracil as a template base ([amplification](../amplification/lec.qmd)); the index arrives in that PCR
+- **The finished molecule:** `P5 — index — read-1 site — insert, U read as T — read-2 site — index — P7`, pooled by molarity like any other library
+- The two controls come out of this same library: **unmethylated lambda** gives the fraction of plain C the deaminase missed, **CpG-methylated pUC19** whether the protection held. Read both before the data, and report them with it
 
 ## What a three-letter alphabet costs
 
@@ -76,72 +85,8 @@ Frame the whole deck as: handle plus readout. Students should be able to name, f
 
 - Reads from an unmethylated region contain almost no C, so fewer distinct sequences are left and mapping becomes ambiguous
 - The library is low in diversity: the same problem as the first cycles on the [sequencer deck](../sequencers/lec.qmd), and the same remedy (PhiX)
-- Damage and low diversity together are why bisulfite libraries need more input and more reads than ordinary DNA
-
-## Bisulfite cannot tell 5mC from 5hmC
-
-![](fig06-readout-matrix.svg){width=76%}
-
-- 5hmC also resists deamination, so both marks read as C
-- In brain and in stem cells 5hmC is abundant, and the two marks have different meanings
-- The table is the map for the next slides: what each base reads as, once the method has run
-
-## oxBS-seq and TAB-seq: protect one, change the other
-
-![](fig07-oxbs-tab.svg){width=92%}
-
-- **oxBS:** an oxidant turns 5hmC into 5fC, which bisulfite deaminates. A C then means 5mC only; 5hmC is the difference between BS and oxBS
-- **TAB-seq:** a glucosyl group protects 5hmC while TET oxidises 5mC to 5caC, which bisulfite converts. A C then means 5hmC directly
-- Both add steps to bisulfite and inherit its damage; a difference of two noisy numbers is itself noisy
-
-[Booth et al. 2012, doi:10.1126/science.1220671; Yu et al. 2012, doi:10.1016/j.cell.2012.04.027]{.small}
-
-## EM-seq: enzymes instead of bisulfite
-
-![](fig08-emseq.svg){width=89%}
-
-- TET2 and a glucosyltransferase protect 5mC and 5hmC; a cytidine deaminase (APOBEC) then converts only what is left unprotected
-- The library is built first with ordinary adapters, so the DNA is not fragmented by the conversion
-- Same reading rule as bisulfite, with longer inserts, more even coverage and lower input; see the [NEBNext EM-seq v2 kit](https://henriksson-lab.github.io/NGS_101/https://henriksson-lab.github.io/NGS_101/nebnext-enzymatic-methyl-seq-v2/nebnext-em-seq-v2.html)
-
-[Vaisvila et al. 2021, doi:10.1101/gr.266551.120]{.small}
-
-## TAPS: change the modified base instead
-
-![](fig09-taps.svg){width=92%}
-
-- TET oxidises 5mC and 5hmC to 5caC; pyridine borane reduces 5caC to dihydrouracil, which PCR reads as T
-- Unmodified C is left alone, so the sequence keeps its four letters and mapping is easy, and the DNA is not degraded
-- With a glucosyltransferase to protect 5hmC the method reports 5mC only (TAPS beta). See [TAPS](https://henriksson-lab.github.io/NGS_101/https://henriksson-lab.github.io/NGS_101/taps__10.1038+s41587-019-0041-2/taps.html)
-
-[Liu et al. 2019, doi:10.1038/s41587-019-0041-2]{.small}
-
-## Controls tell you how far to trust a number
-
-![](fig10-spikein.svg){width=90%}
-
-- Add unmethylated lambda DNA to measure how much C fails to convert, and a CpG-methylated control (for example pUC19) to check that protection worked
-- Incomplete conversion pushes methylation up; incomplete protection or oxidation pushes it down
-- Report the control values with the data: a 2% site cannot be believed without them
-
-## RRBS: spend the reads where the CpGs are
-
-![](fig11-rrbs.svg){width=92%}
-
-- **MspI** cuts C^CGG whatever the methylation ([nucleases](../enzymes/lec-nucleases.qmd) places it among the methylation-sensitive pairs), so every fragment starts at a CpG and CpG islands are cut densely
-- Size selection keeps short fragments, which come mostly from islands and promoters; then methylated adapters and bisulfite
-- [Targeted sequencing](../targeted/lec.qmd) treats RRBS as a *selection* method; here it is the methylation readout that the selection serves
-- The end-repair fill-in rebuilds the cut-site cytosine, so that one position carries no information and is trimmed
-
-[Meissner et al. 2008, doi:10.1038/nature07107]{.small}
-
-## Choosing a methylation method
-
-- **Whole-genome 5mC, ordinary input:** bisulfite or EM-seq; prefer EM-seq for low input or fragile DNA such as cell-free DNA
-- **5hmC separately** (brain, TET-mutant tumours): oxBS, TAB-seq or TAPS beta
-- **Many samples, promoters and islands only:** RRBS
-- **Long molecules, phasing, repeats:** [nanopore sequencing](../long-reads/lec-instruments.qmd) reads modified bases from the current signal, with no conversion at all [Simpson et al. 2017, doi:10.1038/nmeth.4184]{.small}
-- **Whatever you choose:** spike-in controls, and say in the paper what fraction converted
+- Low diversity is why a converted library needs more input and more reads than ordinary DNA, and with bisulfite the damage adds to it
+- RRBS spends those reads where the CpGs are ([Part B](../chemistry-to-sequence/lec.qmd)); its end-repair fill-in rebuilds the cut-site cytosine, so that one position is trimmed
 
 ## DNA breaks: the end is the handle
 
@@ -151,7 +96,7 @@ A genome-wide library breaks the DNA itself, by sonication or tagmentation. So h
 
 - The first adapter is the handle; the rest of the library is ordinary
 - Handling is the enemy: the DNA must not be sheared while you work
-- Methods differ in how they protect, mark and recover the broken end: [BLESS](https://henriksson-lab.github.io/NGS_101/https://henriksson-lab.github.io/NGS_101/bless__10.1038+nmeth.2408/bless.html), [DSBCapture](https://henriksson-lab.github.io/NGS_101/https://henriksson-lab.github.io/NGS_101/dsbcapture__10.1038+nmeth.3960/dsbcapture.html), [END-seq](https://henriksson-lab.github.io/NGS_101/https://henriksson-lab.github.io/NGS_101/end-seq__10.1016+j.molcel.2016.06.034/end-seq.html)
+- Methods differ in how they protect, mark and recover the broken end: [BLESS](https://henriksson-lab.github.io/NGS_101/bless__10.1038+nmeth.2408/bless.html), [DSBCapture](https://henriksson-lab.github.io/NGS_101/dsbcapture__10.1038+nmeth.3960/dsbcapture.html), [END-seq](https://henriksson-lab.github.io/NGS_101/end-seq__10.1016+j.molcel.2016.06.034/end-seq.html)
 
 ## END-seq: label the break first
 
@@ -188,7 +133,7 @@ Count the ends in one diploid human cell, about 6.2 Gb of DNA, sonicated to 200 
 
 - A blunt, protected double-stranded oligonucleotide is transfected with Cas9; NHEJ joins it into each break
 - Fragment, ligate adapters, and PCR from the tag outward: only broken sites are amplified
-- Reads begin in the tag and continue into the flanking genome, which locates every cut, including off-target ones. One end known and one unknown is a readout problem in its own right, worked through in [reading screens out](../screens/lec-readout.qmd) ([GUIDE-seq](https://henriksson-lab.github.io/NGS_101/https://henriksson-lab.github.io/NGS_101/guide-seq__10.1038+nbt.3117/guide-seq.html))
+- Reads begin in the tag and continue into the flanking genome, which locates every cut, including off-target ones. One end known and one unknown is a readout problem in its own right, worked through in [reading screens out](../screens/lec-readout.qmd) ([GUIDE-seq](https://henriksson-lab.github.io/NGS_101/guide-seq__10.1038+nbt.3117/guide-seq.html))
 
 [Tsai et al. 2015, doi:10.1038/nbt.3117]{.small}
 
@@ -196,8 +141,8 @@ Count the ends in one diploid human cell, about 6.2 Gb of DNA, sonicated to 200 
 
 ![](fig15-offtarget-handles.svg){width=92%}
 
-- **[CHANGE-seq](https://henriksson-lab.github.io/NGS_101/https://henriksson-lab.github.io/NGS_101/change-seq__10.1038+s41587-020-0555-7/change-seq.html):** tagment purified DNA, close it into circles, let Cas9 open them; only cut molecules get adapters
-- **[DISCOVER-seq](https://henriksson-lab.github.io/NGS_101/https://henriksson-lab.github.io/NGS_101/discover-seq__10.1126+science.aav9023/discover-seq.html):** ChIP-seq of MRE11, a repair factor that gathers at breaks; no tag needed, so it works in tissue
+- **[CHANGE-seq](https://henriksson-lab.github.io/NGS_101/change-seq__10.1038+s41587-020-0555-7/change-seq.html):** tagment purified DNA, close it into circles, let Cas9 open them; only cut molecules get adapters
+- **[DISCOVER-seq](https://henriksson-lab.github.io/NGS_101/discover-seq__10.1126+science.aav9023/discover-seq.html):** ChIP-seq of MRE11, a repair factor that gathers at breaks; no tag needed, so it works in tissue
 - In vitro methods find more sites than any cell will cut; cell-based methods find the ones that matter
 
 [Lazzarotto et al. 2020, doi:10.1038/s41587-020-0555-7; Wienert et al. 2019, doi:10.1126/science.aav9023]{.small}
@@ -216,7 +161,7 @@ Count the ends in one diploid human cell, about 6.2 Gb of DNA, sonicated to 200 
 
 - Knock down one repair-related gene per cell in a [pooled screen](../screens/lec.qmd), cut the same site in all of them, and read the outcome together with the knockdown identity
 - The signal is a change in the **mix** of outcomes between knockdowns, so each needs many cells
-- A targeted amplicon library with a perturbation barcode: no new chemistry, a new design ([Repair-seq](https://henriksson-lab.github.io/NGS_101/https://henriksson-lab.github.io/NGS_101/repair-seq-crispr-outcomes__10.1016+j.cell.2021.10.002/01_repair-seq-crispr-outcomes.html))
+- A targeted amplicon library with a perturbation barcode: no new chemistry, a new design ([Repair-seq](https://henriksson-lab.github.io/NGS_101/repair-seq-crispr-outcomes__10.1016+j.cell.2021.10.002/01_repair-seq-crispr-outcomes.html))
 
 [Hussmann et al. 2021, doi:10.1016/j.cell.2021.10.002]{.small}
 
@@ -225,7 +170,7 @@ Count the ends in one diploid human cell, about 6.2 Gb of DNA, sonicated to 200 
 ![](fig18-repli-seq.svg){width=87%}
 
 - Pulse cells with BrdU, stain DNA content, and sort **early** and **late** S-phase cells
-- Pull down BrdU-labelled DNA from each, sequence, and plot log2(early / late): peaks are early-replicating domains ([E/L Repli-seq](https://henriksson-lab.github.io/NGS_101/https://henriksson-lab.github.io/NGS_101/e-l-repli-seq__10.1038+nprot.2017.148/el-repli-seq.html))
+- Pull down BrdU-labelled DNA from each, sequence, and plot log2(early / late): peaks are early-replicating domains ([E/L Repli-seq](https://henriksson-lab.github.io/NGS_101/e-l-repli-seq__10.1038+nprot.2017.148/el-repli-seq.html))
 - Early domains tend to be open and gene-rich; late domains silent and lamina-associated
 
 [Marchal et al. 2018, doi:10.1038/nprot.2017.148]{.small}
@@ -244,7 +189,7 @@ Count the ends in one diploid human cell, about 6.2 Gb of DNA, sonicated to 200 
 
 - Without any label, compare coverage between S-phase and G1 cells: early-replicating DNA has already doubled
 - The ratio ranges only from 1 to 2, so counting statistics matter more than in a BrdU pull-down, which amplifies the contrast
-- One S-phase cell is enough for a binary early or late call per bin: see [scRepli-seq](https://henriksson-lab.github.io/NGS_101/https://henriksson-lab.github.io/NGS_101/screpli-seq__10.1038+s41596-020-0378-5/screpli-seq.html) [Miura et al. 2020, doi:10.1038/s41596-020-0378-5]{.small}
+- One S-phase cell is enough for a binary early or late call per bin: see [scRepli-seq](https://henriksson-lab.github.io/NGS_101/screpli-seq__10.1038+s41596-020-0378-5/screpli-seq.html) [Miura et al. 2020, doi:10.1038/s41596-020-0378-5]{.small}
 
 ## One table: question, handle, protocol
 
@@ -262,11 +207,12 @@ Count the ends in one diploid human cell, about 6.2 Gb of DNA, sonicated to 200 
 - [Fragmentation](../fragmentation/lec.qmd) — MspI in RRBS, sonication only *after* the break is tagged; where you cut decides what a read start means
 - [Selection](../selection/lec.qmd) — streptavidin on the biotinylated hairpin, anti-BrdU on labelled strands; one break end in three million is found by affinity, never by reading more
 - [Amplification](../amplification/lec.qmd) — a converted library is uracil-rich and damaged, so the polymerase and the cycle count are part of the chemistry
-- [Transposases and modifying enzymes](../enzymes/lec-transposases.qmd) — TET, glucosyltransferase and APOBEC: the enzymes that let EM-seq and TAPS replace bisulfite
+- [Transposases and modifying enzymes](../enzymes/lec-transposases.qmd) — TET2, T4-BGT and APOBEC3A: the three enzymes the EM-seq trace runs on
 
 **The same handle elsewhere**
 
 - [Chromatin](../chromatin/lec.qmd) — methyltransferase footprinting writes an accessibility mark and then reads it as a base change, exactly as here
+- [Long reads](../long-reads/lec-instruments.qmd) — a modified base read from the signal itself, the route that needs no conversion at all
 
 **If this fails**
 
