@@ -244,7 +244,7 @@ def fig_hic_junction():
     check_pairing("GGCA    ", "CCGTTCGA")
     check_pairing("    TCGG", "    AGCC")
     # row 2: fill-in
-    y0 = 180
+    y0 = 200
     out.append(t(X, y0 - 30, "Klenow fills in the overhangs with biotinylated nucleotide", 12.5, INK))
     s, _ = seq(X + 40, y0, "GGCA", TOP)
     out.append(s)
@@ -263,7 +263,7 @@ def fig_hic_junction():
     out.append(dot(X + 40 + 5 * DX, y0 - 20, 4, OK))
     out.append(t(X + 40 + 5 * DX + 10, y0 - 17, "biotin", 11, OK))
     # row 3: ligated
-    y1 = 280
+    y1 = 300
     out.append(t(X, y1 - 30, "Blunt ligation joins the ends; the junction contains biotin", 12.5, INK))
     s, _ = seq(X + 40, y1, "GGCAAGCTAGCTTCGG", TOP)
     out.append(s)

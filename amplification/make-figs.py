@@ -489,12 +489,14 @@ def fig_lamp():
 
 def fig_sda():
     out = [t(30, 24, "Nicking-enzyme SDA: nick, extend with displacement, repeat, at one temperature.", 14, INK)]
-    ys = [78, 148, 218]
+    ys = [78, 148, 238]
     heads = ["1. primer carrying a nicking site binds, a copy is made",
              "2. the nicking enzyme cuts the new strand only",
              "3. polymerase (exo-minus) extends from the nick and displaces the strand"]
-    for nm, y in zip(heads, ys):
-        out.append(t(30, y - 32, nm, 13, INK, weight="bold"))
+    # step 3 keeps its heading where the even spacing would put it and drops the
+    # drawing lower, so the long heading clears the "displaced strand" label.
+    for nm, y, off in zip(heads, ys, (32, 32, 52)):
+        out.append(t(30, y - off, nm, 13, INK, weight="bold"))
     out.append(DNA(60, 400, ys[0], TOP, 3))
     out.append(DNA(60, 400, ys[0] + 8, BOT, 3))
     out.append(R(60, ys[0] - 10, 60, 28, WARM, HOT, 1.2))
@@ -514,9 +516,9 @@ def fig_sda():
     out.append(t(440, 100, "opposite primer and the cycle", 13, INK))
     out.append(t(440, 120, "repeats on both strands: growth", 13, INK))
     out.append(t(440, 140, "is exponential, without heat.", 13, INK))
-    out.append(t(30, 262, "Walker et al. made the nick with a restriction enzyme and modified "
+    out.append(t(30, 282, "Walker et al. made the nick with a restriction enzyme and modified "
                           "nucleotides; nicking enzymes do the same without them.", 13.5, MUTE))
-    return svg(760, 278, "".join(out))
+    return svg(760, 298, "".join(out))
 
 
 def arc(cx, cy, r, a0, a1, col):

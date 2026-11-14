@@ -305,7 +305,7 @@ def fig_two():
     out.append(t(x0 + 1.5 * cw, 64, "beads per droplet", 12.5, MUTE, anchor="middle"))
     for j, nm in enumerate(names):
         out.append(box(x0 + j * cw, y0 - 6, cw, 26, nm, PALE_TOP, MUTE, 12.5))
-    out.append(t(x0 - 12, y0 + 40, "cells", 12.5, MUTE, anchor="end"))
+    out.append(t(x0 - 25, 64, "cells", 12.5, MUTE, anchor="middle"))
     outcome = {(1, 1): ("usable", OK, PALE_OK), (1, 0): ("lost", MUTE, "none"),
                (1, 2): ("cell split over barcodes", BAD, PALE_HOT), (2, 1): ("doublet", BAD, PALE_HOT),
                (2, 2): ("doublet", BAD, PALE_HOT), (2, 0): ("lost", MUTE, "none"),
@@ -328,7 +328,7 @@ def fig_two():
 
 def fig_barnyard():
     out = [t(40, 26, "A species-mixing experiment makes doublets visible.", 14, INK)]
-    x0, y0, S = 80, 246, 170
+    x0, y0, S = 140, 246, 170
     out.append(line(x0, y0, x0 + S, y0, MUTE, 1))
     out.append(line(x0, y0, x0, y0 - S, MUTE, 1))
     rnd = random.Random(11)
@@ -344,13 +344,13 @@ def fig_barnyard():
     out.append(t(x0 + S / 2, y0 + 20, "human UMIs per barcode", 12, A_COL, anchor="middle"))
     out.append(t(x0 - 14, y0 - S / 2, "mouse UMIs", 12, B_COL, anchor="end"))
     out.append(t(x0 + 70, y0 - S * 0.72, "mixed: a collision", 12, BAD))
-    out.append(t(320, 80, "Mix human and mouse cells 1:1.", 13, INK))
-    out.append(t(320, 102, "A barcode with both is certainly a doublet.", 13, INK))
-    out.append(t(320, 124, "A doublet of two human cells is invisible.", 13, INK))
-    out.append(t(320, 160, "If 3% of barcodes are mixed,", 13, HOT))
-    out.append(t(320, 178, "the total doublet rate is about 6%.", 13, HOT))
-    out.append(t(40, 268, "With a 1:1 mix, half of all doublets are same-species, hence unseen.", 12.5, MUTE))
-    return svg(640, 288, "".join(out))
+    out.append(t(350, 80, "Mix human and mouse cells 1:1.", 13, INK))
+    out.append(t(350, 102, "A barcode with both is certainly a doublet.", 13, INK))
+    out.append(t(350, 124, "A doublet of two human cells is invisible.", 13, INK))
+    out.append(t(350, 160, "If 3% of barcodes are mixed,", 13, HOT))
+    out.append(t(350, 178, "the total doublet rate is about 6%.", 13, HOT))
+    out.append(t(40, 294, "With a 1:1 mix, half of all doublets are same-species, hence unseen.", 12.5, MUTE))
+    return svg(700, 308, "".join(out))
 
 
 # ------------------------------------------------------------------ 12 nuclei
