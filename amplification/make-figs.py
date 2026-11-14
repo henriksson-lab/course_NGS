@@ -264,7 +264,8 @@ def fig_dimer():
     for s, lab in ((100, "100"), (300, "300"), (1000, "1 kb")):
         xx = 70 + 560 * math.log(s / 50) / math.log(1500 / 50)
         out.append(t(xx, 154 + 80 + 18, lab, 12, MUTE, anchor="middle"))
-    out.append(t(215, 62, "adapter dimer, ~120 bp, sharp", 12.5, HOT))
+    # clear of the dimer peak itself, which rises to y=48 around x=205 to 238
+    out.append(t(246, 62, "adapter dimer, ~120 bp, sharp", 12.5, HOT))
     out.append(t(470, 80, "insert library, broad", 12.5, TOP))
     out.append(t(30, 276, "The dimer is a perfect little amplicon, so it takes a larger share of the "
                           "clusters than its mass suggests.", 13.5, INK))

@@ -263,7 +263,11 @@ def fig_displacement_modes():
             out.append(arrow(280, yy - 4, 328, TOP))
         else:
             out.append(line(60, yy + 10, 330, yy + 10, TOP, 3))
-            out.append(t(340, yy + 15, "✂ ✂ ✂", 13, HOT))
+            # the downstream strand is cut off ahead of the new one and released
+            # as short pieces; drawn, not written, so it survives any font
+            for k in range(5):
+                out.append(line(340 + k * 16, yy + 10, 350 + k * 16, yy + 10, HOT, 3))
+            out.append(line(430, yy + 10, 480, yy + 10, HOT, 3))
             out.append(arrow(280, yy - 4, 328, TOP))
         out.append(t(510, yy + 15, b, 13.5, INK))
     out.append(foot(y + 3 * 68 - 4, "Blue: new strand. Orange: the downstream strand that is in the way."))
@@ -324,8 +328,11 @@ def fig_rt_switch():
     bot1 = " " * 6 + "CCC" + cp(rna)
     y = 76
     out.append(t(30, y - 28, "1. RT reaches the 5' end of the RNA and adds non-templated C's; the oligo (orange) anneals by its G's", 13.5, INK))
-    d, w = dc(80, y, top1, bot1, tr=[(0, 9, HOT), (9, 21, TOP)], br=[(0, 21, BOT)], labels=True)
+    d, w = dc(80, y, top1, bot1, tr=[(0, 9, HOT), (9, 21, TOP)], br=[(0, 21, BOT)], labels=False)
     out.append(d)
+    # the cDNA starts six bases in, so its 3' label goes there, not at the margin
+    out.append(t(72, y, "5'", 11.5, MUTE, anchor="end"))
+    out.append(t(80 + 6 * DX - 8, y + 30, "3'", 11.5, MUTE, anchor="end"))
     y2 = 188
     out.append(t(30, y2 - 28, "2. RT carries on copying the oligo: the cDNA now carries a known sequence at its 3' end", 13.5, INK))
     bot2 = cp(top1)
@@ -521,13 +528,15 @@ def fig_splint():
     a, d = "GCTAGGAT", "TTCAGC"
     for k, (lab, aa, dd) in enumerate([("DNA ends on a DNA splint (T4 DNA ligase)", a, d),
                                        ("RNA ends on a DNA splint (a ligase for RNA:DNA hybrids, e.g. SplintR)", "GCUAGGAU", "UUCAGC")]):
-        y = 74 + k * 96
-        out.append(t(30, y - 26, lab, 13.5, INK))
+        # headroom: the nick mark runs from y-12 to y+4, so the label above it
+        # needs to sit clear of both the mark and the panel title
+        y = 82 + k * 96
+        out.append(t(30, y - 34, lab, 13.5, INK))
         top = aa + dd
         d1, w = dc(100, y, top, cp(top), tr=[(0, 8, TOP), (8, 14, HOT)], br=[(0, 14, BOT)], labels=False)
         out.append(d1)
         out.append(mark(100, y, 8, strand=0))
-        out.append(t(100 + 8 * DX - 20, y - 14, "5'-P + 3'-OH meet here", 12, BAD, anchor="start"))
+        out.append(t(100 + 8 * DX - 20, y - 16, "5'-P + 3'-OH meet here", 12, BAD, anchor="start"))
         out.append(t(92, y + 30, "3'", 11.5, MUTE, anchor="end"))
         out.append(t(100 + w + 6, y + 30, "5' splint", 11.5, MUTE))
     out.append(foot(76 + 96 + 62, "Used to join an RNA to an adapter by sequence, to close padlock probes, and to read single bases (mismatch at the junction blocks ligation)."))
@@ -538,10 +547,11 @@ def fig_splint():
 def fig_circle():
     out = [lead("Circularisation: one molecule, two ends, one ligation")]
     out.append(line(60, 90, 300, 90, TOP, 3))
+    # both ends are the ends the ligation needs: neither is a failure
     out.append(dot(60, 90, 6, OK))
-    out.append(dot(300, 90, 6, BAD))
+    out.append(dot(300, 90, 6, OK))
     out.append(t(60, 120, "5'-P", 13, OK, anchor="middle"))
-    out.append(t(300, 120, "3'-OH", 13, BAD, anchor="middle"))
+    out.append(t(300, 120, "3'-OH", 13, OK, anchor="middle"))
     out.append(arrow(330, 90, 400, HOT))
     out.append(f'<circle cx="480" cy="90" r="40" fill="none" stroke="{TOP}" stroke-width="3"/>')
     out.append(t(540, 94, "dilute: ends find each other, not another molecule", 13.5, INK))
@@ -558,7 +568,8 @@ def fig_pnk():
             ("5'-P with ATP and ADP", "exchange: slow, reversible", "can also take a phosphate off (kinase reverse)", MUTE)]
     y = 62
     for a, b, c, col in rows:
-        out.append(t(40, y, a, 14.5, col, weight="bold", family=MONO))
+        # not MONO: the mono stack has no arrow glyph, so it renders as a box
+        out.append(t(40, y, a, 14.5, col, weight="bold"))
         out.append(t(290, y, b, 13.5, INK))
         out.append(t(520, y, c, 13.5, MUTE))
         y += 34
@@ -641,7 +652,7 @@ def fig_type_iis():
 
 def fig_methyl_pair():
     out = [lead("Same site, different sensitivity: methylation-sensitive pairs read the epigenome")]
-    heads = ["Enzyme", "site", "unmethylated", "CpG-methylated (C in CCGG)"]
+    heads = ["Enzyme", "site", "unmethylated", "methylated (CpG C, or Dam A)"]
     rows = [["MspI", "C^CGG", "cuts", "cuts"],
             ["HpaII", "C^CGG", "cuts", "no cut"],
             ["DpnI", "GA^TC", "no cut", "cuts (methylated A required)"],
@@ -655,18 +666,19 @@ def fig_methyl_pair():
 
 def fig_nicking():
     out = [lead("A nicking enzyme plus a displacing polymerase copies a site forever")]
-    out.append(line(60, 80, 540, 80, TOP, 3))
-    out.append(line(60, 102, 540, 102, BOT, 3))
+    out.append(line(60, 102, 510, 102, BOT, 3))          # template strand
     out.append(box(110, 62, 70, 14, "", fill=WARM, stroke=HOT))
     out.append(t(145, 56, "site", 12, HOT, anchor="middle"))
-    out.append(t(262, 70, "↓ nick (top strand only)", 12.5, BAD))
-    out.append(arrow(262, 128, 420, TOP))
-    out.append(line(262, 128, 540, 128, TOP, 3))
-    out.append(line(500, 80, 570, 52, HOT, 3))
-    out.append(t(580, 56, "old top strand is displaced as a single strand", 13.5, INK))
-    out.append(t(580, 130, "new copy is nicked again: the cycle repeats", 13.5, INK))
-    out.append(foot(184, "Nicks leave a 3'-OH, which is all a displacing polymerase (Bst, Klenow exo−) needs. Amplification at constant temperature, without cycling."))
-    return svg(900, 200, "".join(out))
+    out.append(line(60, 80, 262, 80, TOP, 3))            # top strand up to the nick
+    out.append(line(262, 68, 262, 92, BAD, 2.4))         # the nick itself
+    out.append(t(272, 62, "nick (top strand only)", 12.5, BAD))
+    out.append(arrow(262, 80, 430, TOP, 3, 7))           # new strand from the 3'-OH
+    out.append(line(430, 80, 520, 46, HOT, 3))           # old strand peeled off ahead of it
+    out.append(t(532, 46, "old top strand is displaced as a single strand", 13.5, INK))
+    out.append(t(532, 92, "the new copy carries the site again: it is nicked", 13.5, INK))
+    out.append(t(532, 110, "and copied once more, at one temperature", 13.5, INK))
+    out.append(foot(156, "Nicks leave a 3'-OH, which is all a displacing polymerase (Bst, Klenow exo−) needs. Amplification at constant temperature, without cycling."))
+    return svg(900, 172, "".join(out))
 
 
 def fig_exo_table():
@@ -705,10 +717,12 @@ def fig_chromatin_digest():
     out.append(line(40, 110, 740, 110, BOT, 2.4))
     for cx in (110, 230, 350, 620):
         out.append(f'<circle cx="{cx}" cy="110" r="26" fill="{SOFT}" stroke="{MUTE}" stroke-width="2"/>')
+    # cut marks drawn, not written: the scissors glyph is missing from the
+    # figure fonts and left the two labels pointing at nothing
     for x in (170, 290, 440, 565, 690):
-        out.append(t(x, 78, "✂", 16, HOT, anchor="middle"))
-    out.append(t(170, 60, "MNase", 12.5, HOT, anchor="middle"))
-    out.append(t(500, 60, "open region: DNase I", 12.5, HOT, anchor="middle"))
+        out.append(line(x, 96, x, 124, HOT, 2.4))
+    out.append(t(170, 80, "MNase", 12.5, HOT, anchor="middle"))
+    out.append(t(500, 80, "open region: DNase I", 12.5, HOT, anchor="middle"))
     out.append(t(110, 160, "~147 bp", 12.5, MUTE, anchor="middle"))
     out.append(t(230, 160, "protected", 12.5, MUTE, anchor="middle"))
     out.append(foot(204, "MNase leaves 5'-OH and 3'-phosphate: repair before ligation. DNase I leaves 5'-P and 3'-OH. Ca2+ activates MNase, Mg2+ DNase I."))
@@ -747,7 +761,13 @@ def fig_cas():
         px = 100 if pam_left else 500
         out.append(box(px, y - 10, 60 if pam_left else 60, 14, "", fill=WARM, stroke=HOT))
         out.append(t(px + 30, y - 16, "PAM", 12, HOT, anchor="middle"))
-        out.append(line(160 if pam_left else 160, y - 30, 500 if not pam_left else 500, y - 30, TOP, 2))
+        # the guide: at y-30 it read as an underline of the caption above it,
+        # and it carried no label at all
+        out.append(line(160, y - 20, 500, y - 20, TOP, 2))
+        if pam_left:
+            out.append(t(506, y - 16, "guide", 11.5, TOP))
+        else:
+            out.append(t(154, y - 16, "guide", 11.5, TOP, anchor="end"))
         if pam_left:
             out.append(line(430, y - 10, 430, y + 12, BAD, 2.4))
             out.append(line(460, y + 8, 460, y + 30, BAD, 2.4))
@@ -772,7 +792,9 @@ def fig_tn5_mech():
     out.append(d)
     out.append(mark(60, y, 0, 0))
     out.append(mark(60, y, 9, 1))
-    out.append(t(60 + 9 * DX + 10, y + 58, "9 nt", 12.5, BAD))
+    # span the two cuts, so "9 nt" names the distance and not the base beside it
+    out.append(line(58.5, y + 44, 60 + 9 * DX - 1.5, y + 44, BAD, 1))
+    out.append(t(60 + 4.5 * DX, y + 58, "9 nt", 12.5, BAD, anchor="middle"))
     y = 164
     out.append(t(30, y - 24, "2. after cutting: the adapter (transferred strand) sits on the 5' end only", 13.5, INK))
     top = ME + tgt[:9] + tgt[9:]
@@ -821,12 +843,13 @@ def fig_tn5_variants():
     out.append(box(396, 80, 30, 26, "Tn5", fill=WARM, stroke=HOT, size=11))
     out.append(box(486, 80, 30, 26, "Tn5", fill=WARM, stroke=HOT, size=11))
     out.append(t(650, 54, "CUT&amp;Tag: protein A–Tn5 on an antibody", 13.5, INK))
-    out.append(line(660, 150, 940, 150, BOT, 2.6))
-    out.append(f'<circle cx="800" cy="150" r="20" fill="{SOFT}" stroke="{MUTE}" stroke-width="2"/>')
-    out.append(line(800, 130, 800, 96, TOP, 2.4))
-    out.append(line(800, 96, 788, 80, TOP, 2.4))
-    out.append(line(800, 96, 812, 80, TOP, 2.4))
-    out.append(box(776, 54, 48, 22, "pA–Tn5", fill=WARM, stroke=HOT, size=11))
+    # dropped 16 px so the pA-Tn5 box clears the title running across it
+    out.append(line(660, 166, 940, 166, BOT, 2.6))
+    out.append(f'<circle cx="800" cy="166" r="20" fill="{SOFT}" stroke="{MUTE}" stroke-width="2"/>')
+    out.append(line(800, 146, 800, 112, TOP, 2.4))
+    out.append(line(800, 112, 788, 96, TOP, 2.4))
+    out.append(line(800, 112, 812, 96, TOP, 2.4))
+    out.append(box(776, 70, 48, 22, "pA–Tn5", fill=WARM, stroke=HOT, size=11))
     out.append(foot(216, "Loaded: sold with its adapters bound. Fused: Tn5 joined to a targeting protein. Same chemistry, different address."))
     out.append(foot(238, "[Buenrostro 2013, doi:10.1038/nmeth.2688]  [Kaya-Okur 2019, doi:10.1038/s41467-019-09982-5]", MUTE))
     return svg(980, 254, "".join(out))
@@ -913,7 +936,8 @@ def fig_chooser():
     heads = ["Step", "Deciding property", "Enzyme family"]
     rows = [
         ["End repair, make blunt", "3'→5' exo and a 5'→3' pol, no displacement", "T4 DNA pol (+ Klenow)"],
-        ["Add one A", "non-templated 3' addition, no 3'→5' exo", "Klenow exo−, Taq"],
+        # not "non-templated ...": tbl() greys any cell that starts with "no"
+        ["Add one A", "3' addition without a template, no 3'→5' exo", "Klenow exo−, Taq"],
         ["Library PCR", "fidelity, longest product, uracil tolerance", "HiFi polymerase"],
         ["Whole-genome amplification", "strand displacement, processivity", "phi29, Bst"],
         ["First-strand cDNA", "RT activity, RNase H, temperature", "MMLV-type RT"],

@@ -188,8 +188,10 @@ def fig_lsk():
     out.append(lab(40, 56, "1. repair damage; every end gets a 5' phosphate and a single 3' A", 12.5, INK))
     out.append(strand(120, 520, 80, TOP))
     out.append(strand(120, 520, 94, BOT))
-    out.append(t(526, 98, "A", 11, HOT, family=MONO))
-    out.append(t(108, 84, "A", 11, HOT, family=MONO))
+    # the dA goes on each strand's 3' end: the right end of the top strand, the
+    # left end of the bottom one
+    out.append(t(526, 84, "A", 11, HOT, family=MONO))
+    out.append(t(108, 98, "A", 11, HOT, family=MONO))
     out.append(lab(40, 130, "2. the adapter has a T overhang, and a motor protein already on it", 12.5, INK))
     out.append(strand(160, 480, 154, TOP))
     out.append(strand(160, 480, 168, BOT))
@@ -317,8 +319,9 @@ def fig_drna():
                    12.5, INK))
     out.append(strand(80, 440, 222, RNA, 3.5))
     out.append(strand(120, 440, 236, BOT, 3))
-    out.append(box(480, 212, 60, 20, "RLA", TY, HOT, 11, HOT))
-    out.append(motor(560, 222, 8))
+    out.append(box(480, 212, 60, 20, "RTA", TB, TOP, 11, TOP))
+    out.append(box(548, 212, 60, 20, "RLA", TY, HOT, 11, HOT))
+    out.append(motor(626, 222, 8))
     out.append(arrow(430, 262, 90, HOT, 1.6, 5))
     out.append(lab(260, 282, "read direction: 3' to 5'", 12, HOT, "middle"))
     out.append(t(40, 312, "No RT bias, no PCR, and modifications are in the signal. The price is that the whole "
@@ -343,8 +346,9 @@ def fig_cas9():
     out.append(strand(80, 250, 212, MUTE))
     out.append(strand(270, 510, 212, HOT, 6))
     out.append(strand(530, 700, 212, MUTE))
-    for xx in (252, 524):
-        out.append(motor(xx - 4 if xx < 300 else xx + 6, 212, 7))
+    # the motor adapter sits on the target's own cut ends, not on the background
+    for xx in (262, 518):
+        out.append(motor(xx, 212, 7))
     out.append(lab(390, 240, "adapters on the target ends", 11.5, OK, "middle"))
     out.append(lab(40, 266, "Background DNA has no phosphate, so it is not sequenced, and no PCR is "
                             "needed, so modifications survive.", 12.5, INK))
@@ -362,10 +366,10 @@ def fig_adaptive():
         for j, ln in enumerate(n.split("\n")):
             out.append(t(x + 80, 82 + j * 16, ln, 12, INK, anchor="middle"))
         out.append(arrow(x + 163, 94, x + 187, MUTE, 1.4, 4))
-    out.append(box(610, 40, 190, 46, "", TG, OK))
-    out.append(t(705, 68, "on target: keep reading", 12, OK, anchor="middle"))
-    out.append(box(610, 102, 190, 46, "", TR, BAD))
-    out.append(t(705, 130, "off target: reverse voltage, eject", 12, BAD, anchor="middle"))
+    out.append(box(610, 40, 214, 46, "", TG, OK))
+    out.append(t(717, 68, "on target: keep reading", 12, OK, anchor="middle"))
+    out.append(box(610, 102, 214, 46, "", TR, BAD))
+    out.append(t(717, 130, "off target: reverse voltage, eject", 12, BAD, anchor="middle"))
     out.append(lab(40, 178, "No wet-lab step: the target list is a file, so changing the target means changing "
                             "the file.", 12.5, INK))
     out.append(lab(40, 198, "The cost: ejected molecules still occupy the pore for a moment, and a blocked "
@@ -412,13 +416,14 @@ def fig_zmw():
                      for j in range(17))
         out.append(f'<polyline points="{p}" fill="none" stroke="{c}" stroke-width="2.2"/>')
     out.append(t(x0, 60, "each base gives a flash of its own colour", 12, INK))
-    out.append(t(x0 + 250, 96, "a long gap", 11.5, HOT))
-    out.append(t(x0 + 250, 112, "before this one", 11.5, HOT))
-    out.append(t(40, 196, "The timing between flashes is data too: a modified base on the "
+    # above the trace: at the old position the two lines were painted across the peak
+    out.append(t(x0 + 245, 76, "a long gap", 11.5, HOT))
+    out.append(t(x0 + 245, 90, "before this one", 11.5, HOT))
+    out.append(t(40, 206, "The timing between flashes is data too: a modified base on the "
                           "template slows the polymerase down.", 14, INK))
-    out.append(t(40, 220, "That is how PacBio calls 5mC and 6mA without any conversion "
+    out.append(t(40, 230, "That is how PacBio calls 5mC and 6mA without any conversion "
                           "chemistry at all.", 13.5, OK))
-    return svg(700, 240, "".join(out))
+    return svg(700, 250, "".join(out))
 
 
 def fig_ccs():
@@ -450,7 +455,7 @@ def fig_nanopore():
     out.append(t(60, 88, "membrane", 11.5, MUTE))
     out.append(f'<path d="M 216 96 L 204 78 L 248 78 L 236 96 L 236 108 L 248 126 L 204 126 '
                f'L 216 108 Z" fill="#eef1f3" stroke="{TOP}" stroke-width="1.6"/>')
-    out.append(t(226, 146, "pore", 11.5, TOP, anchor="middle"))
+    out.append(t(196, 150, "pore", 11.5, TOP, anchor="end"))
     out.append(f'<path d="M 120 52 C 170 52, 180 70, 226 78" fill="none" stroke="{MUTE}" '
                f'stroke-width="2.4"/>')
     out.append(dot(150, 56, 8, HOT))
@@ -508,7 +513,7 @@ def fig_error_profiles():
         out.append(f'<rect x="{bx}" y="{y-11}" width="200" height="12" fill="#eceff1"/>')
         out.append(f'<rect x="{bx}" y="{y-11}" width="{200*acc:.0f}" height="12" '
                    f'fill="{col}" opacity="0.8"/>')
-    out.append(t(330, 44, "accuracy of a single raw read", 11.5, MUTE))
+    out.append(t(330, 44, "accuracy of a single raw read: a ranking, not a scale", 11.5, MUTE))
     out.append(t(40, 246, "This decides whether you need UMIs or consensus reads, and "
                           "whether a variant call can be trusted.", 14, INK))
     out.append(t(40, 270, "A library cannot fix a platform's error mode — but it can give "

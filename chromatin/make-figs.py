@@ -76,8 +76,8 @@ def fig_layers():
     out.append(t(240, y - 36, "TF bound", 12, HOT, anchor="middle"))
     for x in (330, 368, 406, 444):
         out.append(nuc(x, y, 12))
-    out.append(t(150, y + 40, "open DNA", 12, MUTE, anchor="middle"))
-    out.append(t(560, y + 40, "open DNA", 12, MUTE, anchor="middle"))
+    out.append(t(192, y + 40, "open DNA", 12, MUTE, anchor="middle"))
+    out.append(t(552, y + 40, "open DNA", 12, MUTE, anchor="middle"))
     out.append(t(98, y - 36, "nucleosomes", 12, NUCS, anchor="middle"))
     out.append(nuc(660, y, 12))
     # question boxes
@@ -184,16 +184,22 @@ def fig_tn5():
     out.append(t(300, y + 4, "Tn5 dimer", 12, BAD, anchor="middle"))
     out.append(box(250, 38, 44, 16, "adapter", PALE_B, TOP, 10.5, TOP))
     out.append(box(306, 38, 44, 16, "adapter", PALE_B, TOP, 10.5, TOP))
+    out.append(t(24, y - 1, "5'", 11.5, MUTE, anchor="end"))
+    out.append(t(694, y - 1, "3'", 11.5, MUTE))
+    out.append(t(24, y + 9, "3'", 11.5, MUTE, anchor="end"))
+    out.append(t(694, y + 9, "5'", 11.5, MUTE))
     out.append(t(30, 136, "Tn5 loaded with two adapters binds DNA and cuts both strands, staggered by 9 nt", 12.5, INK))
     y2 = 186
     out.append(dna(30, 290, y2 - 5, TOP, 3.2))
     out.append(dna(30, 290, y2 + 5, BOT, 3.2))
     out.append(dna(380, 690, y2 - 5, TOP, 3.2))
     out.append(dna(380, 690, y2 + 5, BOT, 3.2))
-    out.append(dna(290, 305, y2 - 5, HOT, 3.2))
-    out.append(dna(365, 380, y2 + 5, HOT, 3.2))
-    out.append(box(262, y2 - 36, 56, 16, "adapter", PALE_B, TOP, 10.5, TOP))
-    out.append(box(352, y2 + 18, 56, 16, "adapter", PALE_B, TOP, 10.5, TOP))
+    # the adapter is joined to a 5' end, so the strand that overhangs is the one
+    # carrying it: the bottom strand on the left product, the top strand on the right
+    out.append(dna(290, 305, y2 + 5, HOT, 3.2))
+    out.append(dna(365, 380, y2 - 5, HOT, 3.2))
+    out.append(box(262, y2 + 18, 56, 16, "adapter", PALE_B, TOP, 10.5, TOP))
+    out.append(box(352, y2 - 36, 56, 16, "adapter", PALE_B, TOP, 10.5, TOP))
     out.append(t(336, y2 + 54, "9 nt single-stranded gap on each side", 12, HOT, anchor="middle"))
     out.append(t(30, 268, "Each adapter is joined to one 5' end only. The gap is filled in later, "
                           "by the 72 °C step before PCR.", 12.5, INK))
@@ -457,7 +463,7 @@ def fig_cuttag():
     y = 172
     out.append(dna(30, 690, y - 4, TOP, 2.6))
     out.append(dna(30, 690, y + 4, BOT, 2.6))
-    out.append(tf(360, y - 18, 8))
+    out.append(tf(360, y - 7, 8))
     for x in (330, 390):
         out.append(box(x - 14, y - 32, 28, 12, "", PALE_B, TOP))
         out.append(box(x - 14, y + 14, 28, 12, "", PALE_R, BAD))
@@ -508,12 +514,12 @@ def fig_calling_cards():
     out = [t(30, 24, "Calling cards: the protein leaves a permanent record.", 14, INK)]
     y = 82
     out.append(dna(30, 690, y, MUTE, 3))
-    out.append(tf(290, y - 12, 8))
-    out.append(box(262, y - 52, 56, 18, "PB", PALE_R, BAD, 11.5, BAD))
-    out.append(t(330, y - 40, "transposase fused to the TF", 12, BAD))
-    for x in (230, 270, 340, 380):
+    out.append(tf(305, y - 12, 8))
+    out.append(box(277, y - 52, 56, 18, "PB", PALE_R, BAD, 11.5, BAD))
+    out.append(t(345, y - 40, "transposase fused to the TF", 12, BAD))
+    for x in (230, 266, 340, 380):
         out.append(f'<path d="M {x} {y - 4} l 0 -14 l 8 0 l 0 14" fill="none" stroke="{HOT}" stroke-width="2.4"/>')
-    out.append(t(410, y + 30, "new insertions cluster near the TF's sites", 12, HOT))
+    out.append(t(305, y + 30, "new insertions cluster near the TF's sites", 12, HOT, anchor="middle"))
     out.append(t(30, 140, "1  express the TF-transposase fusion; the transposon (the 'card') inserts nearby", 12.5, INK))
     out.append(t(30, 160, "2  cells can be kept, sorted or differentiated; the insertions are in the genome for good", 12.5, INK))
     out.append(t(30, 180, "3  later, recover the junction between transposon and genome by PCR and sequence it", 12.5, INK))

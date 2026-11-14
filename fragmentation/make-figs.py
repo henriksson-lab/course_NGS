@@ -126,8 +126,8 @@ def fig_methods():
         out.append(t(cols[0], y, r[0], 14, INK, weight="bold"))
         for x, s in zip(cols[1:], r[1:]):
             out.append(t(x, y, s, 13.5, INK))
-    out.append(t(30, 56 + 7 * 31 + 6, "The first three are used to make libraries from anything; the "
-                                      "last four also tell you about the sample.", 13.5, INK))
+    out.append(t(30, 56 + 7 * 31 + 6, "The first three work on anything; the next three also report on "
+                                      "the sample; the last one is for RNA.", 13.5, INK))
     return svg(760, 56 + 7 * 31 + 24, "".join(out))
 
 
@@ -243,7 +243,7 @@ def fig_tag_ratio():
 
 
 def fig_restriction():
-    random.seed(11)
+    random.seed(18)   # a draw whose site counts match the rates quoted below
     n = 16000
     dna = "".join(random.choice("ACGT") for _ in range(n))
     def sites(motif):
@@ -289,7 +289,8 @@ def fig_nuclease():
     for cx, n_ in zip(xs, (1, 2, 3, 4)):
         pass
     ys = [ylog(s, 52, 136, 100, 1200) for s in (147, 300, 450, 600, 750)]
-    for k, cx in enumerate(xs):
+    # lanes left to right: light digestion (full ladder) to complete (one band)
+    for k, cx in zip((3, 2, 1, 0), xs):
         for j, yy in enumerate(ys):
             if k == 0 and j == 0:
                 out.append(band(cx, yy, 26, INK, 0.9))
@@ -299,7 +300,7 @@ def fig_nuclease():
                 out.append(band(cx, yy, 26, INK, 0.85 - j * 0.18))
             elif k == 3 and j <= 4:
                 out.append(band(cx, yy, 26, INK, 0.7 - j * 0.1))
-    out.append(t(625, 214, "MNase titration", 12.5, MUTE, anchor="middle"))
+    out.append(t(625, 214, "MNase titration: more enzyme →", 12.5, MUTE, anchor="middle"))
     out.append(t(30, 196, "Mono-nucleosomes run at about 147 bp plus a little linker.", 14, INK))
     out.append(t(30, 218, "More enzyme or more time: the ladder collapses to one band.", 14, INK))
     return svg(760, 238, "".join(out))
@@ -350,7 +351,7 @@ def fig_targets():
         ("Illumina, PE150 insert", 250, 600, TOP),
         ("PacBio HiFi", 10e3, 25e3, HOT),
         ("nanopore, ligation", 5e3, 60e3, HOT),
-        ("nanopore, ultra-long", 100e3, 1.5e6, BAD),
+        ("nanopore, ultra-long", 100e3, 1.5e6, HOT),
     ]
     for i, (name, a, b, col) in enumerate(rows):
         y = 52 + i * 30
@@ -588,7 +589,7 @@ def fig_partial():
         [0.4, 0.5, 0.5, 0.4, 0.2, 0.0, 0.0],
         [0.1, 0.2, 0.4, 0.5, 0.5, 0.3, 0.1],
         [0.0, 0.0, 0.1, 0.2, 0.4, 0.6, 0.5],
-        [0.0, 0.0, 0.0, 0.0, 0.1, 0.3, 0.9],
+        [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.9],
     ]
     for cx, p in zip(xs, prof):
         for yy, v in zip(ys, p):
@@ -615,11 +616,16 @@ def fig_endpoints():
         out.append(line(x0, y0 + 64, x0, y0 + 84, HOT, 2.6))
         out.append(t(x0 - 8, y0 + 98, "integration site", 11.5, HOT, anchor="end"))
         seen = set()
-        for i in range(n_mol):
-            L = random.randint(60, 520) if k == 0 else random.choice([120, 160, 200, 240, 280, 320, 360])
+        if k == 0:
+            lengths = [random.randint(60, 520) for _ in range(n_mol)]
+        else:
+            lengths = [120, 160, 200, 240, 280, 320, 360] * 2
+            random.shuffle(lengths)
+        # one molecule per row: two on a row read as a single two-coloured molecule
+        for i, L in enumerate(lengths):
             col = BAD if L in seen else TOP
             seen.add(L)
-            yy = y0 + 4 + (i % 10) * 5.5
+            yy = y0 + 4 + i * (5.5 if k == 0 else 4.4)
             out.append(line(x0, yy, x0 + L, yy, col, 2.6))
     out.append(t(30, 322, "Blue: a length seen once, counted as one cell. Red: a repeated length, which "
                           "cannot be told from PCR copies.", 13, INK))

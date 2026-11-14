@@ -48,7 +48,8 @@ def fig_universal_ends():
         out.append(box(x + 52, y, w, 20, "insert " + "ABC"[i], "none", MUTE, 12, MUTE))
         out.append(box(x + 52 + w, y, 52, 20, "P7", "#f5eae6", BAD, 12, BAD))
         out.append(arrow(x + 16, y + 32, x + 62, HOT))
-        out.append(t(x + 52 + w + 64, y + 15, "same primer, same site", 12, MUTE))
+        # the label belongs to the primer arrow, not to the far end of the molecule
+        out.append(t(x + 70, y + 36, "same primer, same site", 12, MUTE))
     out.append(t(40, 212, "This is the whole reason a library exists: the sequencer only knows "
                           "how to read the ends you gave it.", 14, HOT))
     return svg(680, 232, "".join(out))
@@ -94,8 +95,9 @@ def fig_bridge():
             out.append(f'<path d="M {x0+40} 150 C {x0+40} 80, {x0+140} 80, {x0+140} 150" '
                        f'fill="none" stroke="{TOP}" stroke-width="2.6"/>')
             out.append(vtick(x0 + 140, 150, 142, BAD, 2.6))
-            out.append(t(x0 + 90, 92, "free end finds a", 11.5, MUTE, anchor="middle"))
-            out.append(t(x0 + 90, 106, "P7 oligo nearby", 11.5, MUTE, anchor="middle"))
+            # above the arc: the curve peaks near y = 98, so these must clear it
+            out.append(t(x0 + 90, 64, "free end finds a", 11.5, MUTE, anchor="middle"))
+            out.append(t(x0 + 90, 78, "P7 oligo nearby", 11.5, MUTE, anchor="middle"))
         else:
             for i in range(9):
                 xx = x0 + 18 + i * 19
@@ -125,7 +127,8 @@ def fig_linearise():
                 out.append(t(xx, y - 14, "×", 13, BAD, anchor="middle"))
         if panel == 2:
             out.append(arrow(x0 + 150, y - 48, x0 + 178, HOT))
-            out.append(t(x0 + 95, y - 56, "R1 primer", 12, HOT, anchor="middle"))
+            # beside the arrow, clear of the panel title above it
+            out.append(t(x0 + 144, y - 44, "R1 primer", 12, HOT, anchor="end"))
     out.append(t(40, 196, "Only one strand is read at a time. Everything else is removed or "
                           "blocked at its 3' end.", 14, MUTE))
     return svg(690, 216, "".join(out))
@@ -171,7 +174,9 @@ def fig_read_order():
     out.append(arrow(rx + rw, y + 40, rx + rw + 120, HOT))
     out.append(t(rx + rw + 128, y + 44, "1  Read 1 → into the insert", 12, HOT))
     ix, iw = pos["i7"]
-    out.append(arrow(ix + iw, y - 16, ix, "#6b5b8a"))
+    # Index 1 is read on the same template as Read 1, before the paired-end
+    # turnaround, so it runs the same way along the molecule drawn here
+    out.append(arrow(ix, y - 16, ix + iw, "#6b5b8a"))
     out.append(t(ix + iw + 6, y - 12, "2  Index 1 (i7)", 12, "#6b5b8a"))
     jx, jw = pos["i5"]
     out.append(arrow(jx, y - 16, jx + jw, "#6b5b8a"))
@@ -191,13 +196,14 @@ def fig_pe_turnaround():
              "copy it, then remove\nthe strand just read",
              "Read 2 primer anneals\nand reads the other end"]
     for i, s in enumerate(steps):
-        x = 40 + i * 162
-        out.append(box(x, 52, 142, 86, "", "#fbfbf9", MUTE))
+        # 152 wide: the longest line is within a few px of a 142 px box
+        x = 40 + i * 170
+        out.append(box(x, 52, 152, 86, "", "#fbfbf9", MUTE))
         for j, ln in enumerate(s.split("\n")):
-            out.append(t(x + 71, 86 + j * 17, ln, 11.5, INK, anchor="middle"))
-        out.append(t(x + 71, 66, str(i + 1), 13, HOT, anchor="middle", weight="bold"))
+            out.append(t(x + 76, 86 + j * 17, ln, 11.5, INK, anchor="middle"))
+        out.append(t(x + 76, 66, str(i + 1), 13, HOT, anchor="middle", weight="bold"))
         if i < 3:
-            out.append(arrow(x + 146, 95, x + 164, MUTE))
+            out.append(arrow(x + 156, 95, x + 172, MUTE))
     out.append(t(40, 168, "Read 2 is a fresh copy of the opposite strand — it is not the same "
                           "molecule read backwards.", 14, INK))
     out.append(t(40, 192, "This costs time and chemistry, which is why paired-end runs cost "

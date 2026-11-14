@@ -212,8 +212,10 @@ def fig_oligo_mods():
     out.append(line(120, y, 600, y, TOP, 3))
     out.append(t(108, y + 5, "5'", 13, MUTE, anchor="end"))
     out.append(t(612, y + 5, "3'", 13, MUTE))
+    # a 5'-phosphate is a property of the 5' end, so it is drawn on that end,
+    # under the line, opposite the biotin
     marks = [(120, "biotin", "grabs streptavidin beads", -1),
-             (216, "phosphate", "lets a ligase use this end", 1),
+             (120, "phosphate", "lets a ligase use this end", 1),
              (312, "lipid", "sits in a cell membrane", -1),
              (408, "dU", "USER excises it, leaving a gap", 1),
              (504, "phosphorothioate", "survives exonucleases", -1),
@@ -235,9 +237,8 @@ def fig_rna_ends():
     out = []
     y = 74
     out.append(line(110, y, 420, y, TOP, 3.2))
-    out.append(f'<circle cx="104" cy="{y}" r="9" fill="{HOT}"/>')
-    out.append(t(104, y + 4, "m7G", 8.5, "#fff", anchor="middle", weight="bold"))
-    out.append(t(104, y - 20, "cap", 13, HOT, anchor="middle"))
+    out.append(dot(104, y, 7, HOT))
+    out.append(t(104, y - 20, "m7G cap", 13, HOT, anchor="middle"))
     out.append(t(265, y - 20, "coding and untranslated sequence", 13, MUTE, anchor="middle"))
     s, w = seq(424, y + 5, "AAAAAAAAAA", BOT)
     out.append(s)
@@ -328,7 +329,8 @@ def fig_walk_ends():
 
     # row 4: the ligated junction
     y = 318
-    b, _ = duplex(228, y, "CGATCGTTGCTTAGCCA", "GCTAGCAACGAATCGGT", labels=False)
+    # adapter CGATCGT (its 3' T pairs with the A-tail) + the whole insert of rows 1-3
+    b, _ = duplex(228, y, "CGATCGT" + "ATGCTTAGCCA", "GCTAGCA" + "TACGAATCGGT", labels=False)
     out.append(b)
     out.append(t(40, y + 18, "4  ligate the adapter", 13, INK))
     out.append(t(505, y + 18, "join", 12.5, HOT, weight="bold"))
