@@ -12,6 +12,7 @@ Exits 1 if any rule is broken, so it can gate a commit.
 """
 import math
 import os
+import struct
 import re
 import sys
 
@@ -52,8 +53,37 @@ def images_in(s):
 
 
 def svg_size(path):
+    """Natural size of a figure or photo, so the height estimate covers both."""
+    if path.lower().endswith((".png", ".jpg", ".jpeg")):
+        return raster_size(path)
     m = re.search(r'viewBox="0 0 ([\d.]+) ([\d.]+)"', open(path).read())
     return (float(m.group(1)), float(m.group(2))) if m else None
+
+
+def raster_size(path):
+    """PNG and JPEG dimensions from the header, without an image library."""
+    with open(path, "rb") as fh:
+        head = fh.read(26)
+        if head[:8] == b"\x89PNG\r\n\x1a\n":
+            w, h = struct.unpack(">II", head[16:24])
+            return (float(w), float(h))
+        if head[:2] == b"\xff\xd8":
+            fh.seek(2)
+            while True:
+                b = fh.read(1)
+                while b and b != b"\xff":
+                    b = fh.read(1)
+                while b == b"\xff":
+                    b = fh.read(1)
+                if not b:
+                    return None
+                marker = b[0]
+                size = struct.unpack(">H", fh.read(2))[0]
+                if 0xC0 <= marker <= 0xCF and marker not in (0xC4, 0xC8, 0xCC):
+                    h, w = struct.unpack(">HH", fh.read(5)[1:])
+                    return (float(w), float(h))
+                fh.seek(size - 2, 1)
+    return None
 
 
 def estimate_height(slide, qmd_dir):

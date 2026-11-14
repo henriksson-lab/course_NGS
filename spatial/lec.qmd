@@ -94,7 +94,7 @@ The 2016 paper already treated this as the central optimisation. Everything down
 
 ![](fig07-read-layout.svg){width=85%}
 
-- 16 nt barcode and 12 nt UMI fit in a short Read 1; the 90 nt Read 2 is the transcript — the [same construct](../library-molecule/lec.qmd) as a 10x 3' library, with the barcode naming a spot
+- 16 nt barcode and 12 nt UMI fit in a short Read 1; the 90 nt Read 2 is the transcript — the [same construct](../single-cell/lec.qmd) as a 10x 3' library, with the barcode naming a spot
 - The barcode is looked up in a table that comes with the slide, giving x and y
 - Position is a lookup; the biology is read 2
 

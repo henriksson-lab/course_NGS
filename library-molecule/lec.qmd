@@ -103,8 +103,9 @@ the purchased adapter already carries P5, P7, the index and both primer sites.
 ![](fig07-tag-combos.svg){width=100%}
 
 - Tag A and tag B are loaded at random, so half the fragments are A/A or B/B
-- Only A/B fragments can pick up both an i5 and an i7 primer: the other half never clusters
-- This is the Nextera equivalent of the Y adapter, and it costs half the library
+- Those carry the **same sequence at both ends**, so each strand's two ends are an inverted repeat. On denaturation they snap shut into a panhandle and the primer cannot get on
+- So they are not merely unamplifiable, they are **suppressed** — and that is what makes the system work: the PCR is spent on A/B, the only product that can end up with P5 at one end and P7 at the other ([suppression PCR](../tricks/lec.qmd))
+- It still costs half the input molecules. This is the Nextera equivalent of the Y adapter
 
 ## The Nextera molecule
 
@@ -148,37 +149,16 @@ Both kinds hop indexes if free oligo survives into the pool: clean-up decides, n
 
 ![](fig11-read-structures.svg){width=65%}
 
-- Four reads, four kinds of content: **insert**, **sample index**, **cell barcode**, **UMI**
-- Only the insert is the biology; the rest is bookkeeping that must be readable
+- Every library carries two kinds of content: the **insert**, which is the biology, and the **sample index**, which says whose it is
+- Some protocols add further labels in the same places — a cell barcode, a UMI — and those belong to the protocols that need them ([barcodes and UMIs](../barcodes-umis/lec.qmd), [single cells](../single-cell/lec.qmd))
+- What matters here is the geometry: a label is only readable if a primer site sits next to it
 
 ## Placing a label
 
 ![](fig12-barcode-placement.svg){width=77%}
 
 - A label can sit in an index read, at the start of a read, or next to the insert
-- The earlier it is added, the earlier samples can be pooled: the real reason single-cell protocols barcode at the first step
-
-## Example: 10x 3′ v3
-
-![](fig13-tenx.svg){width=94%}
-
-- [10x 3′ v3](https://henriksson-lab.github.io/NGS_101/10x-chromium-single-cell-3-ge-v3/01_10x-3prime-v3.html)
-  reads 28 / 8 / 0 / 91: barcode and UMI in Read 1, transcript in Read 2 — the chemistry that
-  builds it is in [single cells](../single-cell/lec.qmd)
-- Notice what is **absent**: no i5, so the P5 end sits right beside the Read 1 site
-
-[Zheng et al. 2017, doi:10.1038/ncomms14049]{.small}
-
-## What a barcode and a UMI must satisfy
-
-- **Cell barcode / sample index:** far enough apart to survive sequencing errors, balanced in base
-  composition, and unique for the pair if hopping matters
-- **UMI:** random, one per starting molecule, long enough that two molecules rarely share one
-  ([barcodes and UMIs](../barcodes-umis/lec.qmd) sets both lengths from first principles)
-- Both must sit **between a primer site and the insert**, or the primer cannot reach them
-- A UMI read in Read 1 is bases the aligner must not see: tell the pipeline to cut them off
-
-[Kivioja et al. 2012, doi:10.1038/nmeth.1778; dual indexing: Kircher et al. 2012, doi:10.1093/nar/gkr771]{.small}
+- The earlier it is added, the earlier material can be pooled, and everything after that is one tube instead of many
 
 ## When is strand information kept?
 
@@ -219,14 +199,16 @@ Both kinds hop indexes if free oligo survives into the pool: clean-up decides, n
 
 ## Read structure to construct
 
-A pipeline expects 16 + 10 bases in Read 1, 90 bases of transcript in Read 2, a single 8 base
-sample index, and no second index. Work backwards:
+A core facility offers you 151 bases in Read 1, 151 in Read 2, and two 8-base index reads.
+Work backwards to the molecule:
 
-1. Read 1 = barcode + UMI, so both sit directly **after** the Read 1 site
-2. Read 2 has to enter the insert from the Read 2 side
-3. One index means one index read: put it by P7, read as Index 1
-4. No i5, so the molecule goes P5 → Read 1 site: the flow cell P5 end sits right beside it
-5. State the cycle numbers as `26 / 8 / 0 / 90`
+1. Two index reads means two indexes, one at each end: i5 by P5, i7 by P7
+2. Read 1 enters the insert from one side, Read 2 from the other, so there is a primer site
+   on each side of the insert
+3. 151 + 151 of insert means an insert of at least about 300 bp, or the reads meet and run
+   into the opposite adapter
+4. The molecule is therefore P5 – i5 – Read 1 site – insert – Read 2 site – i7 – P7
+5. State the cycle numbers as `151 / 8 / 8 / 151`
 
 If a design cannot be drawn this way, it cannot be sequenced as written; that is cheaper to learn
 on paper.

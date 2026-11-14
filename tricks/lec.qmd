@@ -111,11 +111,13 @@ This is why a ligation is always followed by a bead step: it removes the PEG and
 
 ## Suppression PCR
 
-![](fig08-suppression.svg){width=92%}
+![](fig08-suppression.svg){width=80%}
 
-- **Problem:** molecules with the same end on both sides (primer by-products, tailed cDNA) amplify as well as the useful ones
-- **Trick:** use a long adapter so those molecules form a stem-loop on denaturation ([the same trick used as a selection](../selection/lec.qmd))
+- **Problem:** molecules with the same end on both sides amplify as well as the useful ones
+- **Trick:** a long adapter, so those molecules form a stem-loop on denaturation ([also used as a selection](../selection/lec.qmd))
 - **Reason:** intramolecular annealing beats primer annealing, so a molecule with identical ends is not copied
+- **Quietly, it is what makes [Nextera](../library-molecule/lec.qmd) work:** Tn5 loads its two tags at random, and the A/A and B/B halves panhandle, so the PCR is spent on A/B
+- **Partial by design:** nanoCAGE weakens it deliberately — **semi-suppressive PCR**, a shorter stem that lets some of the suppressed species through [Plessy et al. 2010, doi:10.1038/nmeth.1470]{.small}
 - **Used in:** [Quartz-Seq](https://henriksson-lab.github.io/NGS_101/quartz-seq__10.1186+gb-2013-14-4-r31/quartz-seq.html) [Sasagawa et al. 2013, doi:10.1186/gb-2013-14-4-r31]{.small}
 
 ## Exonuclease clean-up of what did not react
