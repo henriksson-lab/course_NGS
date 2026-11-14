@@ -136,7 +136,7 @@ def fig_pcr_skew():
             out.append(f'<rect x="{x0 + i*11}" y="{170 - hh:.0f}" width="8" height="{hh:.0f}" fill="{BOT}" opacity="0.85"/>')
         out.append(line(x0, 170, x0 + n * 11, 170, INK, 1.2))
         out.append(t(x0 + n * 11 / 2, 188, "28 different guides", 11.5, MUTE, anchor="middle"))
-    out.append(t(30, 226, "A 1% difference in efficiency per cycle becomes a ~20% difference after 20 cycles.", 14, INK))
+    out.append(t(30, 226, "Simulated. 1% per cycle is 22% after 20 cycles; here the efficiencies differ by a few per cent.", 14, INK))
     out.append(t(30, 246, "Amplify the pool as little as you can, and in many small reactions.", 14, HOT))
     return svg(760, 264, "".join(out))
 
@@ -154,7 +154,9 @@ def fig_gibson():
         out.append(t(x + i * DX, 86, ch, 13, TOP if i < n + len(ov) else BOT, family=MONO))
         out.append(t(x + i * DX, 116, bot[i], 13, TOP if i < n else BOT, family=MONO))
     out.append(pairs(x, 86, 116, top, bot))
-    out.append(t(x - 10, 86, "vector", 12.5, TOP, anchor="end")); out.append(t(x - 10, 116, "insert", 12.5, BOT, anchor="end"))
+    # the labels name the two molecules, so each sits where its own colour is
+    out.append(t(x - 10, 86, "vector", 12.5, TOP, anchor="end"))
+    out.append(t(x + len(top) * DX + 6, 116, "insert", 12.5, BOT))
     for (c, y0, y1) in ((n + len(ov), 70, 92), (n, 100, 122)):
         out.append(line(x + c * DX - 1.5, y0, x + c * DX - 1.5, y1, BAD, 2.2))
     out.append(t(x + (n + len(ov)) * DX, 62, "nick", 12, BAD, anchor="middle")); out.append(t(x + n * DX, 138, "nick", 12, BAD, anchor="middle"))
@@ -291,7 +293,7 @@ def fig_integration():
     out.append(b)
     out.append(f'<rect x="{60+4*DX-2}" y="52" width="{5*DX+4}" height="62" rx="3" fill="none" stroke="{HOT}" stroke-width="1.4" stroke-dasharray="4 3"/>')
     out.append(t(60 + 6.5 * DX, 44, "target", 12, HOT, anchor="middle"))
-    out.append(t(30, 158, "after integration", 12.5, MUTE))
+    out.append(t(30, 150, "after integration", 12.5, MUTE))
     lt = "ACTG"; tsd = "GCAGT"; rt = "TC"
     x = 60
     b1, w1 = duplex(x, 170, lt + tsd, comp(lt + tsd), labels=False)
@@ -362,7 +364,7 @@ def fig_one_end():
     out.append(t(80, 76, "host DNA", 12.5, MUTE, anchor="middle")); out.append(t(80, 120, "unknown", 12.5, BAD, anchor="middle"))
     out.append(t(460, 76, "host DNA", 12.5, MUTE, anchor="middle")); out.append(t(460, 120, "unknown", 12.5, BAD, anchor="middle"))
     out.append(arrow(150, 142, 80, HOT, 2)); out.append(t(158, 146, "primer in the LTR", 12.5, HOT))
-    out.append(t(60, 150, "?", 22, BAD)); out.append(t(220, 176, "no second primer site", 12.5, BAD))
+    out.append(t(60, 150, "?", 22, BAD)); out.append(t(40, 176, "no second primer site", 12.5, BAD))
     out.append(t(30, 214, "PCR needs two primer sites. Here there is one, and the job is to get a second one.", 14, INK))
     return svg(640, 232, "".join(out))
 
@@ -372,7 +374,8 @@ def fig_one_end():
 def fig_needle():
     out = [t(30, 26, "What is in the tube: ~15 million guide copies diluted in 100 micrograms of genome", 14, INK)]
     out.append(box(40, 50, 600, 30, "", GREY, MUTE))
-    out.append(t(340, 70, "one diploid human genome: ~6.4 Gb, ~6.6 pg", 13, MUTE, anchor="middle"))
+    # left-aligned: centred, the label ran under the cassette tick at x = 410
+    out.append(t(56, 70, "one diploid human genome: ~6.4 Gb, ~6.6 pg", 13, MUTE))
     out.append(f'<rect x="410" y="50" width="4" height="30" fill="{HOT}"/>')
     out.append(line(412, 80, 470, 120, HOT, 1.2)); out.append(t(476, 126, "one integrated guide cassette", 12.5, HOT))
     rows = ["100 ug of DNA = 100e-6 / 6.6e-12 = ~1.5 x 10^7 genomes",
@@ -420,13 +423,18 @@ def fig_stagger():
     for i, p in enumerate(pads):
         y = 66 + i * 24
         out.append(t(30, y, "P%d" % (i + 1), 11.5, MUTE))
-        out.append(t(x0, y, p, 13, BAD, family=MONO))
-        out.append(t(x0 + len(p) * DX, y, const, 13, TOP, family=MONO))
+        # seq() advances one DX per base, which is what the cycle boxes below
+        # are spaced on; a plain t() packs the glyphs tighter and the columns
+        # then no longer line up with the box they are supposed to sit in
+        s_, _ = seq(x0, y, p, BAD, 13)
+        out.append(s_)
+        s_, _ = seq(x0 + len(p) * DX, y, const, TOP, 13)
+        out.append(s_)
     for c in (0, 4):
         out.append(f'<rect x="{x0 + c*DX - 1.5}" y="48" width="{DX+1}" height="124" fill="none" stroke="{HOT}" stroke-width="1.3"/>')
     out.append(t(x0 + 0.5 * DX, 190, "cycle 1", 12, HOT, anchor="middle")); out.append(t(x0 + 4.5 * DX, 190, "cycle 5", 12, HOT, anchor="middle"))
-    out.append(t(420, 82, "Without stagger, every cluster would show", 12.5, MUTE)); out.append(t(420, 99, "the same base in each early cycle,", 12.5, MUTE))
-    out.append(t(420, 116, "and the instrument loses its calibration.", 12.5, MUTE))
+    out.append(t(470, 82, "Without stagger, every cluster would show", 12.5, MUTE)); out.append(t(470, 99, "the same base in each early cycle,", 12.5, MUTE))
+    out.append(t(470, 116, "and the instrument loses its calibration.", 12.5, MUTE))
     out.append(t(30, 226, "Pooling the five primers makes the first cycles look like random sequence.", 14, HOT))
     return svg(760, 244, "".join(out))
 
@@ -472,7 +480,7 @@ def fig_pcr_bias():
             out.append(f'<rect x="{x0 + i*30}" y="{170 - h * 0.9:.0f}" width="22" height="{h*0.9:.0f}" fill="{PAL[i % 8]}" opacity="0.85"/>')
         out.append(line(x0, 170, x0 + 180, 170, INK, 1.2))
         out.append(t(x0, 188, "GC content: low", 11.5, MUTE)); out.append(t(x0 + 180, 188, "high", 11.5, MUTE, anchor="end"))
-    out.append(t(30, 226, "Six guides in equal numbers: high-GC amplicons amplify less, so counts reflect chemistry too.", 13.5, INK))
+    out.append(t(30, 226, "Illustrative. Six guides in equal numbers: high-GC amplicons amplify less, so counts reflect chemistry too.", 13.5, INK))
     out.append(t(30, 246, "Counting the molecules, not their PCR copies, removes that term.", 14, HOT))
     return svg(760, 264, "".join(out))
 
@@ -535,7 +543,9 @@ def fig_cropseq():
     out = [t(30, 26, "CROP-seq: put the guide where a polyadenylated transcript will carry it", 14, INK)]
     s1, x1 = cons(40, 44, [("5' LTR", 54, "r"), ("...", 40, "k"), ("U6 + guide", 90, "t"), ("EFS", 40, "b"), ("puro", 50, "g"), ("3' LTR + U6 + guide", 130, "r")], h=30, size=11)
     out.append(s1)
-    out.append(line(184, 92, 460, 92, OK, 2)); out.append(t(190, 108, "Pol II transcript: puro mRNA with the guide in its 3' UTR, then poly(A)", 12.5, OK))
+    # the transcript starts at the EFS promoter, not inside the U6 cassette
+    out.append(line(264, 92, 446, 92, OK, 2))
+    out.append(t(264, 108, "Pol II transcript: puro mRNA with the guide in its 3' UTR, then poly(A)", 12.5, OK))
     out.append(t(40, 150, "capture:", 12.5, MUTE))
     out.append(box(110, 134, 190, 24, "bead oligo-dT + cell barcode", BLUE, TOP, 11.5, TOP))
     out.append(t(310, 151, "reads the 3' end of the same message that carries the guide", 12.5, MUTE))
@@ -609,7 +619,8 @@ def fig_guideseq():
     out.append(t(40, 52, "break in genome", 12, MUTE)); out.append(t(265, 100, "tag inserted at break", 12, HOT, anchor="middle"))
     out.append(t(30, 134, "Shear, ligate adapter with UMI, nested PCR from the tag and adapter", 13, INK))
     out.append(line(60, 174, 330, 174, MUTE, 3)); out.append(box(290, 160, 40, 28, "tag", TAN, HOT, 12, HOT))
-    out.append(arrow(310, 152, 360, TOP, 1.8))
+    # the nested primer sits in the tag and reads into the genome beside it
+    out.append(arrow(312, 152, 210, TOP, 1.8))
     out.append(t(60, 212, "known tag on one side; unknown genome next to it; adapter from the shear on the other", 12.5, MUTE))
     out.append(t(30, 242, "Every read that contains the tag next to genome names a break. A one-end-known problem again.", 14, HOT))
     return svg(760, 260, "".join(o for o in out if o))

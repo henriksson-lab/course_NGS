@@ -91,7 +91,7 @@ def fig_construct():
     for i, (a, b) in enumerate(boxes):
         out.append(t((a + b) / 2, 118, str(i + 1), 13, HOT, anchor="middle", weight="bold"))
     legend = [
-        "1  P5 · pairs with the P5 lawn oligo, so this end can start a cluster",
+        "1  P5 · the same letters as the P5 lawn oligo, so the other strand's copy can grab the lawn",
         "2  i5 · sample index, read as Index 2",
         "3  Read 1 site · where the Read 1 primer anneals; the read starts just after it",
         "4  insert · the sample's DNA or cDNA, the only part of the molecule nobody designed",
@@ -372,10 +372,11 @@ def fig_full_vs_truncated():
     out.append(box(xs + 406, 180, 44, 22, "i7", IDXF, IDXC, 12, IDXC))
     out.append(box(xs + 450, 180, 60, 22, "P7′", P7F, BAD, 12, BAD))
     out.append(arrow(xs + 336, 214, xs + 246, HOT))
-    out.append(t(xs + 420, 230, "its own tailed primer", 12, HOT, anchor="middle"))
+    # second line, so this label cannot be read as belonging to the left-hand arrow
+    out.append(t(xs + 291, 250, "its own tailed primer", 12, HOT, anchor="middle"))
     out.append(t(xs + 530, 197, "cost: needs PCR", 12.5, BAD))
     out.append(t(xs + 530, 133, "adapters can be generic", 12.5, OK))
-    return svg(xs + 680, 250, "".join(out))
+    return svg(xs + 680, 268, "".join(out))
 
 
 def fig_tailed_primer():
@@ -494,9 +495,10 @@ def fig_10x():
     # Read 1
     out.append(arrow(b[1][1], y - 20, b[3][1], HOT, 2.2))
     out.append(t(b[1][1], y - 30, "Read 1 · 28 cycles = 16 + 12", 12.5, HOT))
-    # index 1
-    out.append(arrow(b[6][1], y + 50, b[7][1], IDXC, 2.2))
-    out.append(t(b[7][0] - 6, y + 66, "Index 1 · 8 cycles", 12.5, IDXC, anchor="middle"))
+    # index 1, drawn above: below the molecule it crowds the Read 2 label
+    out.append(arrow(b[6][1], y - 20, b[7][1], IDXC, 2.2))
+    out.append(t((b[6][1] + b[7][1]) / 2, y - 30, "Index 1 · 8 cycles", 12.5, IDXC,
+                 anchor="middle"))
     # Read 2
     out.append(arrow(b[6][0], y + 40, b[5][0] + 30, BAD, 2.2))
     out.append(t(b[6][0] - 4, y + 60, "Read 2 · 91 cycles into the cDNA", 12.5, BAD, anchor="end"))
@@ -522,21 +524,31 @@ def fig_strand():
         fx0, fx1 = 480, 640
         out.append(arrow(fx0, y + 10, fx1, MUTE, 1.4))
         out.append(line(fx0, y + 26, fx1, y + 26, "#c9ccd0", 6))
+        # HOT and BAD are too close in hue to tell apart at this size, so each
+        # arrow carries its own tag as well
+        def leftward(col, lab, short=False):
+            out.append(arrow(fx1 - 4, y + 40, fx1 - (36 if short else 54), col, 2.2))
+            out.append(t(fx1 + 6, y + 44, lab, 11.5, col))
+
+        def rightward(col, lab):
+            out.append(arrow(fx0 + 4, y + 40, fx0 + 54, col, 2.2))
+            out.append(t(fx0 - 6, y + 44, lab, 11.5, col, anchor="end"))
+
         if mode == "random":
-            out.append(arrow(fx0 + 4, y + 40, fx0 + 54, HOT, 2.2))
-            out.append(arrow(fx1 - 4, y + 40, fx1 - 54, BAD, 2.2))
-            out.append(t(fx1 + 16, y + 28, "or the other way round: R1 on either strand", 12.5, BAD))
+            rightward(HOT, "R1")
+            leftward(BAD, "R2")
+            out.append(t(fx1 + 34, y + 28, "or the other way round: R1 on either strand", 12.5, BAD))
         elif mode == "antisense":
-            out.append(arrow(fx1 - 4, y + 40, fx1 - 54, HOT, 2.2))
-            out.append(arrow(fx0 + 4, y + 40, fx0 + 54, BAD, 2.2))
-            out.append(t(fx1 + 16, y + 28, "R1 antisense, R2 sense, every time", 12.5, OK))
+            leftward(HOT, "R1")
+            rightward(BAD, "R2")
+            out.append(t(fx1 + 34, y + 28, "R1 antisense, R2 sense, every time", 12.5, OK))
         else:
-            out.append(arrow(fx1 - 4, y + 40, fx1 - 36, HOT, 2.2))
-            out.append(arrow(fx0 + 4, y + 40, fx0 + 54, BAD, 2.2))
-            out.append(t(fx1 + 16, y + 28, "R1 reads barcode + UMI; R2 sense", 12.5, OK))
+            leftward(HOT, "R1", short=True)
+            rightward(BAD, "R2")
+            out.append(t(fx1 + 34, y + 28, "R1 reads barcode + UMI; R2 sense", 12.5, OK))
         y += 62
-    out.append(t(40, y + 10, "Arrows: Read 1 (orange) and Read 2 (red) drawn on a fragment cut from the transcript.",
-                 12.5, MUTE))
+    out.append(t(40, y + 10, "Arrows: Read 1 and Read 2, tagged R1 and R2, drawn on a fragment cut "
+                             "from the transcript.", 12.5, MUTE))
     return svg(920, y + 28, "".join(out))
 
 
@@ -616,7 +628,7 @@ def fig_derive():
     out.append(t(b[2][1], y - 30, "Read 1: 9 UMI + 75 insert = 84", 12.5, HOT))
     out.append(arrow(b[5][1], y + 46, b[6][1], IDXC, 2.2))
     out.append(t(b[6][1] + 6, y + 62, "Index 1: 10", 12.5, IDXC, anchor="middle"))
-    out.append(line(b[1][0], y + 46, b[1][1], IDXC, 2.2))
+    out.append(arrow(b[1][0], y + 46, b[1][1], IDXC, 2.2))
     out.append(t(b[1][0] + 30, y + 62, "Index 2: 10", 12.5, IDXC, anchor="middle"))
     out.append(arrow(b[5][0], y + 78, b[4][0] + 60, BAD, 2.2))
     out.append(t(b[5][0] - 4, y + 94, "Read 2: 75 insert", 12.5, BAD, anchor="end"))

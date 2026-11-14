@@ -310,3 +310,28 @@ oxBS-minus-BS subtraction (E4 / E4) and RRBS cost (E5 / E8). In each pair the mo
 version is the harder one — it adds a correction and a standard error, an impossible negative,
 and fragment-size arithmetic — so they are a progression rather than a duplicate, and both
 were kept. Worth a deliberate decision by someone who owns both pages.
+
+## Three course-wide inconsistencies the figure audit found
+
+Each needs an author decision rather than a silent edit.
+
+**Adapter-dimer size.** `library-molecule/fig15` says ~135 bp; `nucleic-acids/lec.qmd` says
+~120 bp; `qc/exercise.qmd` uses 120 and 130. Both are defensible: 136 is the arithmetic for
+the dual-indexed construct fig15 actually draws (70 + 66), 120 is the single-index number.
+Pick one convention and say which construct it refers to.
+
+**Guide-pool size in screens.** `fig18` works in 70,000 guides, `fig09` in 100,000, and
+`lec.qmd` in 120,000 throughout. Changing fig18 ripples into its "~200 cells per guide".
+Related and worth its own look: at 100 µg of gDNA (about 1.5e7 genomes) and 120,000 guides,
+the readout samples roughly 125 cells per guide, far below the 500 cells per guide the deck
+says the screen was *run* at. The decks never connect those two numbers, and a student who
+does will think one of them is wrong.
+
+**HOT and BAD are too close.** `#b4532a` and `#a33a28` cannot be told apart at 2 px stroke or
+12 px type, and one figure depended on the distinction until the auditor added text tags.
+Widening that hue gap in `tools/figlib.py` would help the whole course, at the cost of
+regenerating every figure. Worth doing deliberately, not as a side effect of something else.
+
+Also noted: cairosvg resolves figlib's `ui-monospace` to a proportional font, so tightly
+packed `mono()` runs look overlapped in a local PNG render and are correct in a browser.
+Render with `DejaVu Sans Mono` substituted before believing a mono overlap.

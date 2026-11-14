@@ -261,13 +261,16 @@ def fig_dropseq():
         x1 = 170 + 14 * math.cos(math.radians(a))
         y1 = 120 + 14 * math.sin(math.radians(a))
         out.append(line(x1, y1, 170 + 28 * math.cos(math.radians(a)), 120 + 28 * math.sin(math.radians(a)), HOT, 1.4))
-    out.append(t(170, 172, "gel bead", 12, INK, anchor="middle"))
+    # above the bead: below it the label crossed the droplet outline
+    out.append(t(170, 84, "gel bead", 12, INK, anchor="middle"))
     out.append(t(130, 224, "oil droplet, about 1 nl", 11.5, MUTE, anchor="middle"))
     out.append(t(260, 60, "oligo on the bead", 12.5, INK, weight="bold"))
     s, e = parts(260, 70, [("Read 1 primer", 100, OK), ("cell barcode", 100, HOT), ("UMI", 60, BAD), ("poly(dT)VN", 80, TOP)], 28)
     out.append(s)
-    out.append(t(260, 126, "16 nt, the same on every oligo of one bead", 11.5, HOT))
-    out.append(t(260, 144, "12 nt, different on every oligo", 11.5, BAD))
+    out.append(t(410, 116, "16 nt", 11, HOT, anchor="middle"))
+    out.append(t(490, 116, "12 nt", 11, BAD, anchor="middle"))
+    out.append(t(260, 146, "The barcode is the same on every oligo of one bead; the UMI differs between them.",
+                 12.5, INK))
     out.append(t(260, 180, "The bead dissolves and frees its oligos; the mRNA primes on poly(dT)VN.", 12.5, INK))
     out.append(t(260, 200, "RT runs inside the GEM, so every cDNA carries its cell's barcode.", 12.5, INK))
     return svg(780, 244, "".join(out))
@@ -321,9 +324,11 @@ def fig_poisson():
 def fig_bead_types():
     out = [t(30, 22, "The bead decides how well droplets are used and when the barcode is released.", 14, INK)]
     out.append(card(30, 38, 180, 150, "Drop-seq", ["rigid bead", "bead loading is random,", "so most droplets lack one", "mRNA sticks to the bead;", "RT after breaking droplets"], TOP, 11.5))
-    out.append(card(220, 38, 180, 150, "inDrop", ["hydrogel bead", "beads close-pack, so almost", "every droplet gets one", "oligo freed by UV light;", "RT inside the droplet"], HOT, 11.5))
-    out.append(card(410, 38, 180, 150, "10x Chromium", ["gel bead, dissolves", "ordered flow gives most", "droplets (GEMs) a bead", "oligo released by reducing", "agent; RT inside the GEM"], OK, 11.5))
-    out.append(card(600, 38, 180, 150, "HyDrop", ["dissolvable hydrogel bead", "made in the lab by", "split-pool barcoding", "RNA or ATAC from the", "same type of bead"], BAD, 11.5))
+    out.append(card(220, 38, 180, 150, "inDrop", ["hydrogel bead", "beads close-pack, so almost", "every droplet gets one", "oligo freed by UV light;", "RT inside the droplet"], TOP, 11.5))
+    # all four cards share one colour: OK for one vendor and BAD for another
+    # would read as a verdict on four methods the deck does not rank
+    out.append(card(410, 38, 180, 150, "10x Chromium", ["gel bead, dissolves", "ordered flow gives most", "droplets (GEMs) a bead", "oligo released by reducing", "agent; RT inside the GEM"], TOP, 11.5))
+    out.append(card(600, 38, 180, 150, "HyDrop", ["dissolvable hydrogel bead", "made in the lab by", "split-pool barcoding", "RNA or ATAC from the", "same type of bead"], TOP, 11.5))
     return svg(800, 206, "".join(out))
 
 
@@ -341,7 +346,7 @@ def fig_tenx_construct():
     out.append(t(140, 196, "Read 1: 28 cycles = barcode + UMI", 12, HOT))
     out.append(arrow(30 + 40 + 70 + 80 + 56 + 200 + 70, 176, 30 + 40 + 70 + 80 + 56 + 10, TOP, 2.2))
     out.append(t(300, 214, "Read 2: about 90 cycles into the insert", 12, TOP))
-    out.append(t(560, 176, "i7: 10 cycles, sample index", 12, MUTE))
+    out.append(t(560, 176, "i7: 8 cycles, sample index", 12, MUTE))
     return svg(800, 232, "".join(out))
 
 
@@ -382,7 +387,8 @@ def fig_knee():
     out.append(t(24, 58, "UMIs", 12, MUTE))
     out.append(t(x0 + 70, y0 - 150, "cells", 13, HOT, weight="bold"))
     out.append(t(x0 + 240, y0 - 16, "empty droplets: ambient RNA", 13, MUTE))
-    out.append(t(x0 + 190, y0 - 120, "knee", 12, INK))
+    out.append(line(348, 120, 370, 104, MUTE, 1))
+    out.append(t(344, 124, "knee", 12, INK, anchor="end"))
     out.append(t(580, 80, "Ambient RNA is the same in every", 12.5, INK))
     out.append(t(580, 98, "droplet, so it also leaks into real", 12.5, INK))
     out.append(t(580, 116, "cells. Cells that burst early make", 12.5, INK))
@@ -672,7 +678,7 @@ def fig_hashing():
 
 
 def fig_crispr_handles():
-    out = [t(30, 22, "Three ways to read which guide a cell received, using the poly(A) capture that is already there.", 14, INK)]
+    out = [t(30, 22, "Three ways to read which guide a cell received: two ride the poly(A) capture, one has its own handle.", 14, INK)]
     out.append(t(30, 52, "Perturb-seq", 13, TOP, weight="bold"))
     s, _ = parts(150, 38, [("guide barcode in a Pol II transcript", 240, TOP), ("poly(A)", 60, None)], 24)
     out.append(s)
@@ -697,7 +703,7 @@ def fig_crop_ltr():
     out.append(t(60, 96, "after integration both LTRs carry the guide cassette", 12, MUTE))
     out.append(arrow(60, 124, 190, HOT, 2))
     out.append(t(200, 128, "Pol III from the 5' U6: the working guide RNA, not polyadenylated", 12.5, HOT))
-    out.append(arrow(160, 156, 520, TOP, 2))
+    out.append(arrow(290, 156, 496, TOP, 2))   # starts at EF1a, not inside the 5' LTR
     out.append(t(60, 180, "Pol II from EF1a: puro mRNA that ends in the 3' LTR copy and is polyadenylated", 12.5, TOP))
     out.append(t(30, 214, "Only the second transcript is captured by oligo(dT). It contains the guide sequence, so the cell's "
                  "perturbation is read from its own library.", 12.5, INK))
@@ -715,7 +721,7 @@ def fig_vdj_locus():
     out.append(arrow(42, 100, 130, MUTE, 2))
     out.append(t(86, 120, "short 5' read", 12, MUTE, anchor="middle"))
     out.append(t(86, 138, "ends in V", 12, MUTE, anchor="middle"))
-    out.append(t(300, 112, "CDR3 spans the V-D-J junction", 12.5, HOT))
+    out.append(t(300, 112, "CDR3 spans the V(D)J junction", 12.5, HOT))
     out.append(t(300, 130, "and identifies the clone", 12.5, HOT))
     out.append(t(30, 190, "A standard 3' or 5' gene-expression library cannot reach the junction with a short read.", 13.5, INK))
     out.append(t(30, 210, "The receptor needs its own library, built by amplifying from constant-region primers.", 13.5, INK))
